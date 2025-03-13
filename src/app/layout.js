@@ -1,15 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "@fontsource/kanit"; // Defaults to weight 400
+import "@fontsource/kanit/400.css"; // Specify weight
+import "@fontsource/kanit/400-italic.css"; // Specify weight and style
+import MainNav from "@/components/main-nav";
 
 export const metadata = {
   title: "Create Next App",
@@ -19,9 +13,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`antialiased`} >
+        <MainNav />
         {children}
       </body>
     </html>
