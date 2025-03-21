@@ -57,9 +57,9 @@ export function ProductsMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList className="bg-[#fef6f6] hover:bg-[#fef6f6]">
-        <NavigationMenuItem className="">
-          <NavigationMenuTrigger className="">
-            <p className="inline-flex cursor-pointer py-2 gap-2 items-center text-[17px]">Produits</p>
+        <NavigationMenuItem className="bg-[#fef6f6] hover:bg-[#fef6f6]">
+          <NavigationMenuTrigger className="bg-[#fef6f6] hover:bg-[#fef6f6]">
+            <p className="inline-flex cursor-pointer py-2 gap-2 items-center text-[17px] bg-[#fef6f6] hover:bg-[#fef6f6]">Produits</p>
           </NavigationMenuTrigger>
           
           <NavigationMenuContent>
@@ -72,8 +72,8 @@ export function ProductsMenu() {
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
                     <img src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      Cuisine
+                    <div className="mt-4 text-lg font-semibold leading-none">
+                      Meuble Cuisine
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Armoires de cuisine, façades, accessoires et plans de travail
@@ -110,7 +110,7 @@ const ListItem = React.forwardRef(function ListItem({ className, title, children
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-lg font-bold leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>

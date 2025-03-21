@@ -36,7 +36,7 @@ const CoverSection = () => {
       gap: '0px',
       padding: '5rem',
       drag: 'free',
-    //   focus: 'center',
+      focus: 'center',
       pagination: false,
       breakpoints: {
         640: { perPage: 1 },

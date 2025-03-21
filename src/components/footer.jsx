@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -63,16 +64,16 @@ const Footer = () => {
             <div className="flex gap-10">
               <ul className="space-y-5">
                 <li className="text-slate-700 font-semibold hover:text-accent-red">
-                  <a href="https://intercocina.com/shop">Produits</a>
+                  <Link href="shop">Produits</Link>
                 </li>
                 <li className="text-slate-700 font-semibold hover:text-accent-red">
-                  <a href="https://intercocina.com/blogs">Blog</a>
+                  <Link href="/blogs">Blog</Link>
                 </li>
                 <li className="text-slate-700 font-semibold hover:text-accent-red">
-                  <a href="https://intercocina.com/event/list">Événements</a>
+                  <Link href="/event/list">Événements</Link>
                 </li>
                 <li className="text-slate-700 font-semibold hover:text-accent-red">
-                  <a href="#">Politique de confidentialité</a>
+                  <Link href="#">Politique de confidentialité</Link>
                 </li>
               </ul>
             </div>
@@ -81,16 +82,16 @@ const Footer = () => {
             <h3 className="py-6 text-lg text-accent-red font-semibold">Ressources</h3>
             <ul className="space-y-5">
               <li className="text-slate-700 font-semibold hover:text-accent-red">
-                <a href="https://intercocina.com/aprops">À propos</a>
+                <Link href="h/aprops">À propos</Link>
               </li>
               <li className="text-slate-700 font-semibold hover:text-accent-red">
-                <a href="https://intercocina.com/contact">Contactez-nous</a>
+                <Link href="/contact">Contactez-nous</Link>
               </li>
               <li className="text-slate-700 font-semibold hover:text-accent-red">
-                <a href="https://intercocina.com/faqs">FAQs</a>
+                <Link href="/faqs">FAQs</Link>
               </li>
               <li className="text-slate-700 font-semibold hover:text-accent-red">
-                <a href="https://intercocina.com/reclamation">Réclamation</a>
+                <Link href="/reclamation">Réclamation</Link>
               </li>
             </ul>
           </div>
@@ -153,7 +154,7 @@ const Footer = () => {
         <div>
           <ul className="flex items-center gap-4">
             <li>
-              <a
+              <Link
                 href="https://www.linkedin.com/company/inter-cocina"
                 target="__blank"
                 aria-label="Linkedin page link"
@@ -166,10 +167,10 @@ const Footer = () => {
                   title="Linkedin page link"
                   alt="Linkedin page link"
                 />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="https://www.facebook.com/IntercocinaSARL"
                 target="__blank"
                 aria-label="facebook page link"
@@ -182,10 +183,10 @@ const Footer = () => {
                   title="Facebook page link"
                   alt="Facebook page link"
                 />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="https://www.instagram.com/intercocinasarl"
                 target="__blank"
                 aria-label="Instagram page link"
@@ -198,7 +199,7 @@ const Footer = () => {
                   title="Instagram page link"
                   alt="Instagram page link"
                 />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

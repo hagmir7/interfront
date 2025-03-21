@@ -20,7 +20,7 @@ const StatsSection = () => {
         </div>
         <div className="grid">
           <div className="grid col-start-1 row-start-1 place-items-center">
-            <div className="w-48 rounded-full aspect-square bg-red-300"></div>
+            <div className="w-48 rounded-full aspect-square bg-red-500"></div>
           </div>
           <div className="grid col-start-1 row-start-1 gap-6 md:grid-cols-2">
             <div className="space-y-6">

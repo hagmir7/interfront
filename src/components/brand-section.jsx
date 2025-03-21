@@ -70,8 +70,8 @@ const BrandsSection = () => {
           ))}
         </ul>
 
-        <div className="flex flex-col justify-center gap-10 px-4 py-24 md:flex-row">
-          <a href="/contact" className="btn btn-primary">
+        <div className="flex flex-col justify-center gap-10 px-4 py-18 md:flex-row">
+          <a href="/contact" className="btn btn-primary text-center">
             Travaillez avec nous
           </a>
         </div>

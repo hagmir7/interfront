@@ -74,10 +74,10 @@ const MainSection = () => {
 
                 <div className="relative order-1 col-span-full xl:order-2 xl:col-span-1">
                     <div
-                        className="absolute z-0 rounded-full -top-8 -right-16 w-28 h-28 md:w-52 md:h-52 bg-accent-gray-200"
+                        className="absolute z-0 rounded-full -top-8 -right-16 w-28 h-28 md:w-52 md:h-52 bg-gray-300"
                     ></div>
                     <div
-                        className="absolute rounded-full -bottom-8 -left-16 md:-bottom-16 bg-accent-red-400 w-36 h-36 md:w-64 md:h-64"
+                        className="absolute rounded-full -bottom-8 -left-16 md:-bottom-16 bg-red-400 w-36 h-36 md:w-64 md:h-64"
                     ></div>
                     <div className="relative z-20 rounded-3xl animate__animated animate__zoomIn">
                         <div className="swiper header-swiper swiper-initialized swiper-horizontal swiper-backface-hidden">

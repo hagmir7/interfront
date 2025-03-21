@@ -175,22 +175,22 @@ const MainNav = () => {
                 <div className="container mx-auto px-4 flex justify-between items-center">
                     <ul className="flex flex-col lg:flex-row gap-5 py-2 text-sm font-medium">
                         <li>
-                            <Link href="/" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[17px] text-neutral-600">
+                            <Link href="/" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 Accueil
                             </Link>
                         </li>
                         <li>
-                            <Link href="/shop" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[17px] text-neutral-600">
+                            <Link href="/shop" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 Produits
                             </Link>
                         </li>
                         <li>
-                            <Link href="/aprops" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[17px] text-neutral-600">
+                            <Link href="/aprops" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 À propos
                             </Link>
                         </li>
                         <li>
-                            <Link href="/event/list" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[17px] text-neutral-600">
+                            <Link href="/event/list" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 Événements
                             </Link>
                         </li>
@@ -199,7 +199,7 @@ const MainNav = () => {
 
                     </ul>
                     <div className='flex gap-3'>
-                        <Link href="/contact" className="rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 rounded-full text-sm hover:text-white">
+                        <Link href="/contact" className="rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.464 16.828C2 15.657 2 14.771 2 11s0-5.657 1.464-6.828C4.93 3 7.286 3 12 3s7.071 0 8.535 1.172S22 7.229 22 11s0 4.657-1.465 5.828C19.072 18 16.714 18 12 18c-2.51 0-3.8 1.738-6 3v-3.212c-1.094-.163-1.899-.45-2.536-.96"></path>

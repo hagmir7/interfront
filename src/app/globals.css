@@ -194,7 +194,7 @@ body {
   }
 
   .btn-primary {
-      @apply bg-red-400 text-white hover:text-red-400 hover:bg-transparent border hover:border-red-400;
+      @apply bg-red-500 text-white hover:text-red-400 hover:bg-transparent border hover:border-red-400;
   }
 
   .btn-accent-white-filled {
