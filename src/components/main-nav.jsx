@@ -13,10 +13,12 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { ProductsMenu } from "./products-menu";
+import TopNav from "./top-nav";
 
 const MainNav = () => {
     return (
         <nav className="bg-[#e5484d0d] border-b-2 border-red-500">
+            {/* <TopNav /> */}
             <div className="container mx-auto flex flex-wrap items-center justify-between px-4 py-4">
 
                 {/* Mobile menu */}
