@@ -1,8 +1,8 @@
 
 import "./globals.css";
-import "@fontsource/kanit"; // Defaults to weight 400
-import "@fontsource/kanit/400.css"; // Specify weight
-import "@fontsource/kanit/400-italic.css"; // Specify weight and style
+import "@fontsource/figtree"; // Defaults to weight 400
+import "@fontsource/figtree/400.css"; // Specify weight
+import "@fontsource/figtree/400-italic.css"; // Specify weight and style
 import MainNav from "@/components/main-nav";
 
 export const metadata = {
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`antialiased`} >
+      <body >
         <MainNav />
         {children}
       </body>

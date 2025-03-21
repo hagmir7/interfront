@@ -56,10 +56,10 @@ const components = [
 export function ProductsMenu() {
   return (
     <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className='bg-[#e5484d0d] hover:bg-[#e5484d0d]'>
-            <p className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[17px] text-neutral-600">Getting starts</p>
+      <NavigationMenuList className="bg-[#fef6f6] hover:bg-[#fef6f6]">
+        <NavigationMenuItem className="">
+          <NavigationMenuTrigger className="">
+            <p className="inline-flex cursor-pointer py-2 gap-2 items-center text-[17px]">Produits</p>
           </NavigationMenuTrigger>
           
           <NavigationMenuContent>
@@ -71,24 +71,24 @@ export function ProductsMenu() {
                     href="/"
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
+                    <img src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                      Cuisine
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
+                      Armoires de cuisine, façades, accessoires et plans de travail
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem href="#" title="Revêtement et Sole">
+                Parquet, Plinthe et Accessoires
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem href="#" title="Placards et Dressings">
+                Placards et Dressing sur mesure
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem href="#" title="Salles de bain">
+                Meubles et Accessoires de Salle de bain
               </ListItem>
             </ul>
           </NavigationMenuContent>
