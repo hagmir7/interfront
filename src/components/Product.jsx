@@ -72,7 +72,7 @@ const Product = ({ product }) => {
 
 
         try {
-            const response = await fetch(`http://interapi.facepy.com/api/products/dimensions/${product.slug}`);
+            const response = await fetch(`https://interapi.facepy.com/api/products/dimensions/${product.slug}`);
             const data = await response.json();
 
 
