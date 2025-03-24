@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, Thumbs } from 'swiper/modules';
@@ -52,7 +53,7 @@ const Carousel = ({ images }) => {
                 onClick={(e) => e.preventDefault()}
               >
                 <img
-                  src={image}
+                  src={`https://intercocina.com/storage/public/${image}`}
                   className='lazy-image max-lg:mx-auto rounded-2xl m-auto max-h-[500px] mt-0 loaded'
                   alt={`Product ${index + 1}`}
                 />
@@ -75,7 +76,7 @@ const Carousel = ({ images }) => {
         {images.map((image, index) => (
           <SwiperSlide key={index} style={{width: '100px'}}>
             <img
-              src={image}
+              src={`https://intercocina.com/storage/public/${image}`}
               alt={`Thumbnail ${index + 1}`}
               style={{
                 width: '100%',
