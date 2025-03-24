@@ -32,26 +32,28 @@ const CoverSection = () => {
   
     const splideInstance = new Splide(splideRef.current, {
       type: 'loop',
-      perPage: 6,
-      gap: '0px',
-      padding: '5rem',
       drag: 'free',
       focus: 'center',
+      perPage: 6,
+      gap: '30px',
       pagination: false,
       breakpoints: {
-        640: { perPage: 1 },
-        768: { perPage: 2 },
-        1024: { perPage: 3 },
+        480: { perPage: 1, padding: '2rem' }, // Small phones
+        640: { perPage: 1, padding: '3rem' }, // Larger phones
+        768: { perPage: 2, padding: '4rem' }, // Tablets
+        1024: { perPage: 3, padding: '4rem' }, // Small laptops
+        1280: { perPage: 4, padding: '5rem' }, // Desktops
+        1440: { perPage: 5, padding: '5rem' }, // Large screens
       },
-      arrows: true,
       autoScroll: {
-        speed: 1, // Adjust speed as needed
+          speed: 0.5,
       },
     }).mount({ AutoScroll });
   
     return () => {
       splideInstance.destroy();
     };
+    
   }, []);
 
 

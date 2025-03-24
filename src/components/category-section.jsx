@@ -3,23 +3,23 @@ import React from 'react';
 function CategorySection() {
   const products = [
     {
-      imageUrl: 'https://laca.ma/storage/01JMDBDHC2XMSGCYAVWFWTEV37.jpg',
+      imageUrl: 'https://www.starax.com.tr/file/image/our-products-img1.png',
       title: 'Meuble de cuisine',
-      description: 'Ajoutez une touche de modernité et de chaleur à votre intéri...',
+      description: 'Caisson, Armoires de cuisine, façades, accessoires et plans de travail',
       link: 'https://laca.ma/category/parquet-classe-31ac3-5',
       badge: 'Nouvelle arrivée'
     },
     {
       imageUrl: 'https://laca.ma/storage/01JMDBFZ8EQZHST1Z8VBN5T9HD.jpg',
       title: 'Revêtement et Sole',
-      description: 'Le parquet Classe 32/AC4 est un revêtement stratifié polyval...',
+      description: 'Revêtement de sol stratifié, Parquet, Plinthe et Accessoires...',
       link: 'https://laca.ma/category/parquets-classe-32ac4-5',
       badge: 'Populaire'
     },
     {
-      imageUrl: 'https://laca.ma/storage/01JMDBJ5Y2YQA1JW3KVX06APPE.jpg',
+      imageUrl: 'https://www.starax.com.tr/file/image/our-products-img2.png',
       title: 'Placards et Dressings',
-      description: 'Le parquet Classe 33/AC5 est conçu pour les espaces à trafic...',
+      description: 'Placards et Dressing sur mesure...',
       link: 'https://laca.ma/category/parquet-classe-33ac5-5',
       badge: 'Premium'
     },
@@ -39,7 +39,7 @@ function CategorySection() {
             className="relative h-[320px] overflow-hidden rounded-2xl shadow-lg transform transition-transform duration-500 hover:-translate-y-2"
           >
             <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-110"
+              className="absolute inset-0 bg-cover transition-transform duration-700 hover:scale-110"
               style={{ backgroundImage: `url(${product.imageUrl})` }}
             ></div>
             

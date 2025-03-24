@@ -1,13 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 
 const BlogSection = async () => {
   
-  const respones = await fetch('http://interapi.facepy.com/api/posts/home');
-  if(!respones.ok) {
-    throw new Error('Something went wrong');
+  const response = await fetch('https://interapi.facepy.com/api/posts/home')
+  if(!response.ok){
+    throw new Error('Failed to fetch articles')
   }
-  
-  const articles = respones.json();
+  const articles = await response.json();
 
   return (
     <section className="py-12 overflow-x-hidden">
@@ -22,23 +22,23 @@ const BlogSection = async () => {
       <div className="px-4 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {articles.data.map(post => (
-            <div key={post.id} className="col-span-full md:col-span-1">
-              <a className="block" href={post.url} target="_blank" rel="noopener noreferrer">
+            <div key={post.slug} className="col-span-full md:col-span-1">
+              <Link className="block" href={`/blogs/${post.slug}`} rel="noopener noreferrer">
                 <div className="overflow-hidden w-full bg-white rounded-lg border">
                   <img 
                     loading="lazy" 
                     className="w-full transform transition-transform duration-300 hover:scale-110" 
-                    src={post.image} 
+                    src={`https://intercocina.com/storage/public/${post.image}`}
                     alt={post.title}
                   />
                 </div>
                 <h3 className="pt-4 text-xl font-bold">
-                  {post.shortTitle}
+                  {post.title}
                 </h3>
                 <p className="text-slate-500 text-md">
-                  {post.excerpt}
+                  {post.description}
                 </p>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
