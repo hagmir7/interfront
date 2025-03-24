@@ -70,7 +70,6 @@ const Product = ({ product }) => {
     async function getData() {
 
 
-
         try {
             const response = await fetch(`https://interapi.facepy.com/api/products/dimensions/${product.slug}`);
             const data = await response.json();
@@ -93,11 +92,9 @@ const Product = ({ product }) => {
                 setWidths([...new Set(data.dimensions.map(item => item?.width).filter(w => w != null))]);
             }
 
-
             if (data.dimensions?.length === 0) {
                 setCode(data.data?.code);
             }
-
 
         } catch (error) {
 
