@@ -59,15 +59,15 @@ const CoverSection = () => {
 
 
   const productData = [
-    { url: "/facade-laca-g3-vittoria", imageUrl: "https://intercocina.com/storage/public/01JJ9S1JJHSJZ9S8143SGR6MAT.png", title: "Vittoria - Laca G3" },
-    { url: "/facade-laca-g3-venecia", imageUrl: "https://intercocina.com/storage/public/01JJ9RTWHSK7XTNH0XY66D4GPG.png", title: "Venecia - Laca G3" },
-    { url: "/facade-laca-g3-brecia", imageUrl: "https://intercocina.com/storage/public/01JJ9RNXMMA92VV2PMMFH307XC.png", title: "Brecia - Laca G3" },
-    { url: "/facade-laca-g2-verona", imageUrl: "https://intercocina.com/storage/public/01JJ9MR9G97T5C29CPR017BA1E.png", title: "Verona - Laca G2" },
-    { url: "/facade-laca-g2-mesina", imageUrl: "https://intercocina.com/storage/public/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png", title: "Mesina - Laca G2" },
-    { url: "/facade-laca-g2-foggia", imageUrl: "https://intercocina.com/storage/public/01JJ9M513KM8P5MKBGMRCD412S.png", title: "Foggia - Laca G2" },
-    { url: "/facade-laca-g2-florencia", imageUrl: "https://intercocina.com/storage/public/01JJ9KRKCBEXK6V03HA4V8R74Y.png", title: "Florencia - Laca G2" },
-    { url: "/facade-laca-g1-latina", imageUrl: "https://intercocina.com/storage/public/01JJ9K28H7S9YDC7VKJCTWB8EX.png", title: "Latina - Laca G1" },
-    { url: "/facade-laca-g1-atania", imageUrl: "https://intercocina.com/storage/public/01JJ9JPT9EY7NCA37RW72P7PF7.png", title: "Catania - Laca G1" },
+    { url: "facade-laca-g3-vittoria", imageUrl: "https://intercocina.com/storage/public/01JJ9S1JJHSJZ9S8143SGR6MAT.png", title: "Vittoria - Laca G3" },
+    { url: "facade-laca-g3-venecia", imageUrl: "https://intercocina.com/storage/public/01JJ9RTWHSK7XTNH0XY66D4GPG.png", title: "Venecia - Laca G3" },
+    { url: "facade-laca-g3-brecia", imageUrl: "https://intercocina.com/storage/public/01JJ9RNXMMA92VV2PMMFH307XC.png", title: "Brecia - Laca G3" },
+    { url: "facade-laca-g2-verona", imageUrl: "https://intercocina.com/storage/public/01JJ9MR9G97T5C29CPR017BA1E.png", title: "Verona - Laca G2" },
+    { url: "facade-laca-g2-mesina", imageUrl: "https://intercocina.com/storage/public/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png", title: "Mesina - Laca G2" },
+    { url: "facade-laca-g2-foggia", imageUrl: "https://intercocina.com/storage/public/01JJ9M513KM8P5MKBGMRCD412S.png", title: "Foggia - Laca G2" },
+    { url: "facade-laca-g2-florencia", imageUrl: "https://intercocina.com/storage/public/01JJ9KRKCBEXK6V03HA4V8R74Y.png", title: "Florencia - Laca G2" },
+    { url: "facade-laca-g1-latina", imageUrl: "https://intercocina.com/storage/public/01JJ9K28H7S9YDC7VKJCTWB8EX.png", title: "Latina - Laca G1" },
+    { url: "facade-laca-g1-atania", imageUrl: "https://intercocina.com/storage/public/01JJ9JPT9EY7NCA37RW72P7PF7.png", title: "Catania - Laca G1" },
   ];
 
   return (

@@ -35,12 +35,6 @@ const Product = ({ product }) => {
 
     const [dimension, setDimension] = useState()
 
-    if (colors.length > 0) {
-        console.log("Print colors");
-
-        console.log(colors)
-    }
-
     useEffect(() => {
         getData();
         if (attributes.length > 0) {
