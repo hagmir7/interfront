@@ -182,11 +182,6 @@ const MainNav = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/shop" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
-                                Produits
-                            </Link>
-                        </li>
-                        <li>
                             <Link href="/aprops" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 À propos
                             </Link>
@@ -197,8 +192,6 @@ const MainNav = () => {
                             </Link>
                         </li>
                         <ProductsMenu />
-
-
                     </ul>
                     <div className='flex gap-3'>
                         <Link href="/contact" className="rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white">

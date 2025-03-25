@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import Link from "next/link";
 
 const BlogCard = ({ title, created_at, image, slug }) => {
@@ -18,7 +19,7 @@ const BlogCard = ({ title, created_at, image, slug }) => {
             <div className="mt-5.5">
                 <span className="flex items-center gap-3 mb-2.5">
                     <a className="text-custom-sm ease-out duration-200 hover:text-blue" href="#">
-                        {new Date(created_at).toLocaleDateString("fr-FR")}
+                        {format(new Date(created_at), "MMM dd, yyyy")}
                     </a>
                     <span className="block w-px h-4 bg-gray-300"></span>
                     <a className="text-custom-sm ease-out duration-200 hover:text-blue" href="#">

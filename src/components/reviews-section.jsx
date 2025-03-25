@@ -1,71 +1,21 @@
-'use client'
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 
-const reviewsData = [
-  {
-    id: 1,
-    customerName: "Sarah Johnson",
-    customerAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-    reviewText: "Amazing product! The quality exceeded my expectations. Would definitely recommend to others.",
-    rating: 5,
-    reviewDate: new Date("2024-01-15"),
-  },
-  {
-    id: 2,
-    customerName: "Michael Chen",
-    customerAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-    reviewText: "Great value for money. The customer service was exceptional throughout the process.",
-    rating: 4,
-    reviewDate: new Date("2024-01-14"),
-  },
-  {
-    id: 3,
-    customerName: "Emily Rodriguez",
-    customerAvatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    reviewText: "Solid product with great features. Just what I needed for my daily tasks.",
-    rating: 5,
-    reviewDate: new Date("2024-01-13"),
-  },
-  {
-    id: 4,
-    customerName: "David Wilson",
-    customerAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-    reviewText: "The product is good but there's room for improvement in some areas.",
-    rating: 4,
-    reviewDate: new Date("2024-01-12"),
-  },
-  {
-    id: 5,
-    customerName: "Lisa Thompson",
-    customerAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
-    reviewText: "Exceeded all my expectations! The attention to detail is remarkable.",
-    rating: 5,
-    reviewDate: new Date("2024-01-11"),
-  },
-  {
-    id: 6,
-    customerName: "James Parker",
-    customerAvatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6",
-    reviewText: "Very satisfied with my purchase. The quality is outstanding!",
-    rating: 5,
-    reviewDate: new Date("2024-01-10"),
-  },
-];
 
 const ReviewCard = ({ review }) => (
+  
   <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
     <div className="flex items-center mb-4">
       <img
-        src={review.customerAvatar}
-        alt={`${review.customerName}`}
-        className="w-12 h-12 rounded-full object-cover"
+        src="http://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
+        alt={`${review.full_name}`}
+        className="w-12 h-12 rounded-full object-cover border"
         loading="lazy"
       />
       <div className="ml-4">
-        <h3 className="font-semibold text-lg text-gray-800">{review.customerName}</h3>
-        <p className="text-sm text-gray-500">{format(review.reviewDate, "MMM dd, yyyy")}</p>
+        <h3 className="font-semibold text-lg text-gray-800">{review.full_name}</h3>
+        <p className="text-sm text-gray-500">{format(review.updated_at, "MMM dd, yyyy")}</p>
       </div>
     </div>
 
@@ -77,11 +27,17 @@ const ReviewCard = ({ review }) => (
       <FaStar className="text-yellow-400 w-5 h-5" />
     </div>
 
-    <p className="text-gray-600 line-clamp-3">{review.reviewText}</p>
+    <p className="text-gray-600 line-clamp-3">{review.comment}</p>
   </div>
 );
 
-const ReviewsSection = () => (
+const ReviewsSection = async () => {
+  const response = await fetch('https://interapi.facepy.com/api/reviews')
+  if(!response.ok){
+    throw new Error('Failed to fetch reviews')
+  }
+  const reviews = await response.json();
+  return (
   <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-12">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-12">
@@ -94,10 +50,11 @@ const ReviewsSection = () => (
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {reviewsData.map(review => <ReviewCard key={review.id} review={review} />)}
+        {reviews.map((review, index) => <ReviewCard key={index} review={review} />)}
       </div>
     </div>
   </div>
-);
+  )
+};
 
 export default ReviewsSection;
