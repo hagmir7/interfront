@@ -56,12 +56,12 @@ const ProductPage = async ({ params }) => {
           <div className="mt-6">
             {(product?.options?.length > 0 || product?.content) && (
               <div className="p-4 rounded-xl border bg-white">
-                <h2 className="sm:text-2xl text-xl font-bold">
+                <h2 className="text-lg md:text-xl font-bold">
                   Détails du produit {product?.name}
                 </h2>
 
                 {product?.options && Object.keys(product.options).length > 0 && (
-                  <div className="relative overflow-x-auto border-t-2 border-x-2 sm:rounded-lg mt-4">
+                  <div className="relative overflow-x-auto border-t-1 border-x-1 sm:rounded-lg mt-4">
                     <table className="w-full text-sm text-left rtl:text-right">
                       <tbody>
                         {Object.entries(product.options).map(([key, value]) => (

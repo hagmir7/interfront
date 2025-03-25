@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
+import BlogCard from './ui/BlogCard';
+import Link from 'next/link';
 
 const BlogSection = async () => {
   
@@ -12,35 +13,19 @@ const BlogSection = async () => {
   return (
     <section className="py-12 overflow-x-hidden">
        <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">
-          <h1 className="pt-10 pb-2 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
+          <h1 className="pt-10 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
               Nos Articles récents
           </h1>
           <p className="text-center text-slate-500 md:text-lg animate__animated animate__fadeInUp">
-              Découvrez nos derniers articles et inspirations pour l’aménagement de vos espaces ! Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
+              Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
           </p>
       </div>
       <div className="px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {articles.data.map(post => (
-            <div key={post.slug} className="col-span-full md:col-span-1">
-              <Link className="block" href={`/blogs/${post.slug}`} rel="noopener noreferrer">
-                <div className="overflow-hidden w-full bg-white rounded-lg border">
-                  <img 
-                    loading="lazy" 
-                    className="w-full transform transition-transform duration-300 hover:scale-110" 
-                    src={`https://intercocina.com/storage/public/${post.image}`}
-                    alt={post.title}
-                  />
-                </div>
-                <h3 className="pt-4 text-xl font-bold">
-                  {post.title}
-                </h3>
-                <p className="text-slate-500 text-md">
-                  {post.description}
-                </p>
-              </Link>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-7.5">
+          {articles.map(post => <BlogCard key={post.slug} {...post} />)}
+        </div>
+        <div className="flex flex-col justify-center gap-10 px-4 py-18 md:flex-row">
+          <Link href="/blogs" className="btn btn-primary text-center">Voir Plus</Link>
         </div>
       </div>
     </section>
