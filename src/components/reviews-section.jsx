@@ -70,12 +70,11 @@ const ReviewCard = ({ review }) => (
     </div>
 
     <div className="flex mb-3">
-      {[...Array(5)].map((_, i) => (
-        <FaStar
-          key={i}
-          className={`${i < review.rating ? "text-yellow-400" : "text-gray-300"} w-5 h-5`}
-        />
-      ))}
+      <FaStar className="text-yellow-400 w-5 h-5" />
+      <FaStar className="text-yellow-400 w-5 h-5" />
+      <FaStar className="text-yellow-400 w-5 h-5" />
+      <FaStar className="text-yellow-400 w-5 h-5" />
+      <FaStar className="text-yellow-400 w-5 h-5" />
     </div>
 
     <p className="text-gray-600 line-clamp-3">{review.reviewText}</p>

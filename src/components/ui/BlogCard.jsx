@@ -25,7 +25,7 @@ const BlogCard = ({ title, created_at, image, slug }) => {
                         INTERCOCINA
                     </a>
                 </span>
-                <h2 className="font-medium text-dark text-lg sm:text-xl ease-out duration-200 mb-4 hover:text-blue">
+                <h2 className="font-bold text-dark text-lg sm:text-xl ease-out duration-200 mb-4 hover:text-blue">
                     <a href={`/blogs/${slug}`}>
                         {title}
                     </a>

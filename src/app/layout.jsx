@@ -4,6 +4,8 @@ import "@fontsource/figtree"; // Defaults to weight 400
 import "@fontsource/figtree/400.css"; // Specify weight
 import "@fontsource/figtree/400-italic.css"; // Specify weight and style
 import MainNav from "@/components/main-nav";
+import Footer from "@/components/footer";
+import LoadingBar from "@/components/ui/LoadingBar";
 
 export const metadata = {
   title: "Fabricant de meubles de cuisine de lux. - Intercocina",
@@ -12,10 +14,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body >
+        <LoadingBar />
         <MainNav />
+
         {children}
+        <Footer />
       </body>
     </html>
   );
