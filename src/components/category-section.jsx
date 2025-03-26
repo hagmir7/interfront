@@ -36,7 +36,7 @@ function CategorySection() {
         {products.map((product, index) => (
           <div
             key={index}
-            className="relative h-[320px] overflow-hidden rounded-2xl shadow-lg transform transition-transform duration-500 hover:-translate-y-2"
+            className="relative h-[320px] overflow-hidden rounded-xl shadow-ms transform transition-transform duration-500 hover:-translate-y-2"
           >
             <div 
               className="absolute inset-0 bg-cover transition-transform duration-700 hover:scale-110"
