@@ -36,7 +36,7 @@ export default async function CategoryPage({ params, searchParams }) {
                     </div>
                     <div className="flex flex-wrap justify-center items-center gap-4">
                         {Array.isArray(category.types) && category.types.map((product_type, index) => (
-                            <Link key={index} href={`/category/${slug}?type=${product_type.type}`} aria-label={`Filter products by type: ${type}`} className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-full shadow-sm bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300">
+                            <Link key={index} href={`/category/${slug}?type=${product_type.slug}`} aria-label={`Filter products by type: ${type}`} className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-full shadow-sm bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300">
                                 {product_type.name}
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
