@@ -42,7 +42,7 @@ const BrandsSection = () => {
   ];
 
   return (
-    <section className="py-16 overflow-hidden bg-gray-50">
+    <section className="py-16 overflow-hidden">
       <div className="max-w-7xl md:mx-auto">
         <h2 className="py-5 text-2xl font-bold text-center md:text-4xl">
           Nos marques

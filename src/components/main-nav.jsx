@@ -17,7 +17,7 @@ import TopNav from "./top-nav";
 
 const MainNav = () => {
     return (
-        <nav className="bg-[#e5484d0d] border-b-2 border-red-500">
+        <nav className="bg-[#fef6f6] border-b-2 border-red-500">
             {/* <TopNav /> */}
             <div className="container mx-auto flex flex-wrap items-center justify-between px-4 py-4">
 
