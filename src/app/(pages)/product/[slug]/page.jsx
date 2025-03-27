@@ -65,7 +65,7 @@ const ProductPage = async ({ params }) => {
                     <table className="w-full text-sm text-left rtl:text-right">
                       <tbody>
                         {Object.entries(product.options).map(([key, value]) => (
-                          <tr key={key} className="border-b-2 font-semibold hover:bg-gray-50 duration-500">
+                          <tr key={key} className="border-b-1 font-semibold hover:bg-gray-50 duration-500">
                             <th className="px-6 py-4 text-gray-900 whitespace-nowrap">{key}</th>
                             <td className="px-6 py-4">{value}</td>
                           </tr>
