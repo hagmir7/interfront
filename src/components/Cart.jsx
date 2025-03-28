@@ -25,14 +25,7 @@ export default function Cart() {
   const handleCheckout = async () => {
     setIsCheckingOut(true);
     try {
-      // Implement your checkout logic here
-      // For example, create an order, process payment, etc.
-      console.log('Checkout initiated', cart);
-      
-      // Simulated async checkout process
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Clear cart after successful checkout
       clearCart();
     } catch (error) {
       console.error('Checkout failed', error);

@@ -26,7 +26,6 @@ export default function AddToCart() {
                 special: ""
             }
         }
-        console.log("Cart:", cart)
         setSpinner(false)
     }
 

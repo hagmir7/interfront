@@ -17,12 +17,10 @@ export function CartProvider({ children }) {
     useEffect(() => {
         // Add more detailed logging
         const savedCart = localStorage.getItem('cart')
-        console.log('Saved cart from localStorage:', savedCart);
-        
+
         if (savedCart) {
             try {
                 const parsedCart = JSON.parse(savedCart);
-                console.log('Parsed cart:', parsedCart);
                 setCart(parsedCart);
             } catch (error) {
                 console.error('Error parsing cart from localStorage:', error);
@@ -31,13 +29,10 @@ export function CartProvider({ children }) {
     }, [])
 
     useEffect(() => {
-        // Log cart changes
-        console.log('Cart updated:', cart);
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
     const addToCart = (item) => {
-        console.log('Adding item to cart:', item);
         setCart(prevCart => {
             const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
 
@@ -68,12 +63,6 @@ export function CartProvider({ children }) {
     const clearCart = () => {
         setCart([]);
     };
-
-    // const countItemsInCart = useCallback(() => {
-    //     const itemCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    //     console.log('Current cart item count:', itemCount.length);
-    //     return itemCount;
-    // }, [cart]);
 
     const countItemsInCart = ()=>{
         return 100;
