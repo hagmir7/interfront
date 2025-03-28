@@ -2,9 +2,9 @@ import ProductCard from '@/components/ProductCard';
 import ProductFilter from '@/components/ProductFilter';
 import Link from 'next/link';
 
-// Dynamic metadata
+
 export async function generateMetadata({ params, searchParams }) {
-    const { slug } = params;
+    const { slug } = await params;
     const baseUrl = "https://intercocina.com";
 
     // Fetch category
@@ -13,7 +13,7 @@ export async function generateMetadata({ params, searchParams }) {
         return { title: 'Catégorie introuvable', description: 'Erreur lors du chargement de la catégorie.' };
     }
     const category = await response.json();
-    const { type = category.types[0]?.slug } = searchParams || {};
+    const { type = category.types[0]?.slug } = await searchParams || {};
 
     // Fetch product type
     const response2 = await fetch(`https://interapi.facepy.com/api/types/${type}`);
@@ -34,7 +34,7 @@ export async function generateMetadata({ params, searchParams }) {
 
 
 export default async function CategoryPage({ params, searchParams }) {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Fetch category
     const response = await fetch(`https://interapi.facepy.com/api/categories/${slug}`);
@@ -42,7 +42,7 @@ export default async function CategoryPage({ params, searchParams }) {
         throw new Error('Failed to fetch category');
     }
     const category = await response.json();
-    const { type = category.types[0]?.slug } = searchParams || {};
+    const { type = category.types[0]?.slug } = await searchParams || {};
 
     // Fetch product type
     const response2 = await fetch(`https://interapi.facepy.com/api/types/${type}`);

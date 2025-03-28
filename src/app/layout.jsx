@@ -6,6 +6,7 @@ import "@fontsource/figtree/400-italic.css"; // Specify weight and style
 import MainNav from "@/components/main-nav";
 import Footer from "@/components/footer";
 import LoadingBar from "@/components/ui/LoadingBar";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Fabricant de meubles de cuisine de lux. - Intercocina",
@@ -18,7 +19,9 @@ export default function RootLayout({ children }) {
       <body className="bg-[#f2f2f2]">
         <LoadingBar />
         <MainNav />
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         <Footer />
       </body>
     </html>

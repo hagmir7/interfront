@@ -35,11 +35,11 @@ const ProductCard = ({
         </Link>
         
         <div className="absolute inset-x-0 bottom-0 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-full group-hover:translate-y-0 pb-4 space-x-2">
-          <button aria-label="Quick view" className="bg-white shadow-md rounded-full p-2 hover:bg-blue-50 transition-colors">
+          <Link href={`/product/${slug}`} aria-label="Quick view" className="bg-white shadow-md rounded-full p-2 hover:bg-blue-50 transition-colors">
             <Eye className="w-5 h-5 text-gray-700 hover:text-blue-600" />
-          </button>
+          </Link>
           
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors flex items-center space-x-2">
+          <button className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition-colors flex items-center space-x-2">
             <ShoppingCart className="w-5 h-5" />
             <span>Add to Cart</span>
           </button>

@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import DimentionLoading from './ui/dimention-loading';
+import { useCart } from '@/context/CartContext';
 
 const Product = ({ product }) => {
 
@@ -11,6 +12,8 @@ const Product = ({ product }) => {
     const [dimensions, setDimensions] = useState([]);
     const [heights, setHeights] = useState([]);
     const [widths, setWidths] = useState([]);
+
+    const { addToCart } = useCart();
 
 
     // Message
@@ -78,7 +81,7 @@ const Product = ({ product }) => {
             setAttributes(data.attributes || []);
             setColors(data.colors || []);
             setDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
-            setData(data.data);
+            setData(data);
             setPrice(product.price);
 
 
@@ -201,66 +204,40 @@ const Product = ({ product }) => {
     }
 
 
-    function addToCart() {
+    function handleAddToCart() {
 
         if (!validation()) {
             return;
         }
-
-
-
-
+        
         setSpinner(true);
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
         const cart = {
-            id: `${data.slug}${width}-${height}${dimension?.id}${color}${attribute?.id}`,
-            name: data.name,
+            id: `${product.slug}${width}-${height}${dimension?.id}${color}${attribute?.id || ""}${special ? "special" : ""}`,
+            name: product.name,
             price: price,
             quantity: quantity,
             attributes: {
-                color: color ? color : null,
-                color_name: color && dimension ? dimension.color : color ? colors.find(item => item.id === color).name : null,
-                image: data.images[0],
-                height: height ? height : null,
-                width: width ? width : null,
+                color: color || null,
+                color_name: color && dimension 
+                    ? dimension.color 
+                    : color 
+                    ? colors.find(item => item.id === color)?.name 
+                    : null,
+                image: product.images[0],
+                height: height || null,
+                width: width || null,
                 dimension: height && width ? `${height} * ${width}` : null,
                 slug: data.slug,
                 attribute: attributes.length ? attribute : null,
                 product_id: data.id,
-                dimension_id: dimension ? dimension.id : null,
+                dimension_id: dimension?.id || null,
                 special: special
-
             }
+        };
+        addToCart(cart);
 
-        }
-
-        // console.log(JSON.stringify({ cart }));
-
-
-        fetch("/add-to-cart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrfToken,
-                "Accept": "application/json"
-            },
-            credentials: 'include',
-            body: JSON.stringify({ cart })
-        })
-            .then(response => response.json())
-            .then(result => {
-                setSpinner(false);
-                if (window.Livewire) {
-                    window.Livewire.dispatch('add-to-cart');
-                } else {
-                    console.error("Livewire is not loaded");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                setSpinner(false);
-            });
-
+        setSpinner(false);
     }
 
 
@@ -282,7 +259,7 @@ const Product = ({ product }) => {
     return (
         <div>
             {
-                data ?
+                !data ?
                     (<DimentionLoading />) :
                     (<div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-5 gap-y-3 flex-wrap">
 
@@ -531,7 +508,7 @@ const Product = ({ product }) => {
                         +
                     </button>
                 </div>
-                <button onClick={addToCart} className="cursor-pointer group border-2 border-red-400 py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100">
+                <button onClick={handleAddToCart} className="cursor-pointer group border-2 border-red-400 py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100">
                     {spinner ? (
                         <svg aria-hidden="true" className="inline w-6 h-6 text-gray-200 animate-spin fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
