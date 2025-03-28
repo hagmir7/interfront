@@ -43,7 +43,7 @@ const ProductCategories = async () => {
                                 <div className="mt-2 mb-3 flex items-center justify-between">
                                     <p className="w-full">
                                         <span className="text-sm text-slate-900">
-                                            {/* {category.description} */}
+                                            {category.description?.slice(0, 70)}...  
                                         </span>
                                     </p>
                                 </div>

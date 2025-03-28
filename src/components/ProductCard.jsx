@@ -23,7 +23,7 @@ const ProductCard = ({
   return (
     <div className="group relative transition-all duration-300 shadow-sm hover:shadow-lg rounded-lg p-4 bg-white">
       <div className="relative overflow-hidden rounded-lg bg-gray-50 mb-4">
-        <Link href={slug} className="block">
+        <Link href={`/product/${slug}`} className="block">
           <img
             alt={name}
             loading="lazy"
@@ -50,7 +50,7 @@ const ProductCard = ({
         </div>
       </div>
       
-      <Link href={slug} className="block">
+      <Link href={`/product/${slug}`} className="block">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-1">
             {renderStars()}

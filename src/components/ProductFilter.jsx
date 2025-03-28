@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const SidebarSection = ({ title, items }) => (
   <>
@@ -7,10 +8,10 @@ const SidebarSection = ({ title, items }) => (
     <ul className="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400 mb-6">
       {items.map((item, index) => (
         <li key={index}>
-          <a href={item.href} className="flex items-center">
+          <Link href={item.href} className="flex items-center">
             <CheckCircle className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" />
             {item.label}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
