@@ -1,19 +1,29 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const CartContext = createContext(null);
+const CartContext = createContext({
+  cart: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
+  updateQuantity: () => {},
+  clearCart: () => {},
+  countItemsInCart: () => 0
+});
 
-
-export default function CartProvider({ children }) {
-
+export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        const sevedCart = localStorage.getItem('cart')
-        if (sevedCart) {
+        // Add more detailed logging
+        const savedCart = localStorage.getItem('cart')
+        console.log('Saved cart from localStorage:', savedCart);
+        
+        if (savedCart) {
             try {
-                setCart(JSON.parse(sevedCart))
+                const parsedCart = JSON.parse(savedCart);
+                console.log('Parsed cart:', parsedCart);
+                setCart(parsedCart);
             } catch (error) {
                 console.error('Error parsing cart from localStorage:', error);
             }
@@ -21,34 +31,30 @@ export default function CartProvider({ children }) {
     }, [])
 
     useEffect(() => {
+        // Log cart changes
+        console.log('Cart updated:', cart);
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-
-
     const addToCart = (item) => {
+        console.log('Adding item to cart:', item);
         setCart(prevCart => {
-            // Check if item already exists
             const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
 
             if (existingItemIndex > -1) {
-                // If item exists, update quantity
                 const updatedCart = [...prevCart];
                 updatedCart[existingItemIndex].quantity += item.quantity;
                 return updatedCart;
             }
 
-            // If item is new, add to cart
             return [...prevCart, item];
         });
     };
 
-    // Remove item from cart
     const removeFromCart = (itemId) => {
         setCart(prevCart => prevCart.filter(item => item.id !== itemId));
     };
 
-    // Update item quantity
     const updateQuantity = (itemId, quantity) => {
         setCart(prevCart =>
             prevCart.map(item =>
@@ -59,21 +65,29 @@ export default function CartProvider({ children }) {
         );
     };
 
-    // Clear entire cart
     const clearCart = () => {
         setCart([]);
     };
 
+    // const countItemsInCart = useCallback(() => {
+    //     const itemCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    //     console.log('Current cart item count:', itemCount.length);
+    //     return itemCount;
+    // }, [cart]);
 
-
+    const countItemsInCart = ()=>{
+        return 100;
+    }
+    
     return (
-        <CartContext.Provider
+        <CartContext.Provider 
             value={{
                 cart,
                 addToCart,
                 removeFromCart,
                 updateQuantity,
-                clearCart
+                clearCart,
+                countItemsInCart
             }}
         >
             {children}
@@ -81,14 +95,20 @@ export default function CartProvider({ children }) {
     );
 }
 
-
-
-export const useCart = () => {
+export function useCart() {
     const context = useContext(CartContext);
 
-    if (context === null) {
-        throw new Error('useCart must be used within a CartProvider');
+    if (!context) {
+        console.error('useCart must be used within a CartProvider');
+        return {
+          cart: [],
+          addToCart: () => {},
+          removeFromCart: () => {},
+          updateQuantity: () => {},
+          clearCart: () => {},
+          countItemsInCart: () => 0
+        };
     }
 
     return context;
-};
+}
