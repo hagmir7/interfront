@@ -26,8 +26,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-[#f2f2f2]">
         <LoadingBar />
-        <MainNav />
         <CartProvider>
+        <MainNav />
+        
           {children}
         </CartProvider>
         <Footer />

@@ -24,12 +24,12 @@ const MainNav = () => {
 
                 {/* Mobile menu */}
                 <div className="z-30">
-                    <button type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <Link href='/menu' className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                         <span className="sr-only">Open main menu</span>
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"></path>
                         </svg>
-                    </button>
+                    </Link>
 
                     <div className="fixed inset-0 bg-black bg-opacity-50" style={{ display: 'none' }}>
                     </div>
@@ -74,7 +74,9 @@ const MainNav = () => {
                 {/* End Mobile Menu */}
 
                 <Link href="/" className="flex items-center">
-                    <h1 className='text-3xl inter'><span className='text-[#b6b6b7]'>INTER</span><span className='text-[#ec2228]'>COCINA</span></h1>
+                    <h1 className='text-xl inter md:text-2xl'>
+                        <span className='text-[#b6b6b7]'>INTER</span><span className='text-[#ec2228]'>COCINA</span>
+                    </h1>
                     {/* <img src="https://intercocina.com/assets/imgs/intercocina-logo.png" alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
                 </Link>
 
