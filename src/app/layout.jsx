@@ -5,8 +5,9 @@ import "@fontsource/figtree/400.css"; // Specify weight
 import "@fontsource/figtree/400-italic.css"; // Specify weight and style
 import MainNav from "@/components/main-nav";
 import Footer from "@/components/footer";
-import LoadingBar from "@/components/ui/LoadingBar";;
+// import LoadingBar from "@/components/ui/LoadingBar";;
 import { CartProvider } from "@/context/CartContext";
+import { LoadingBar } from "@/components/ui/LoadingBar";
 
 export const metadata = {
   title: "Fabricant de meubles de cuisine de lux. - Intercocina",

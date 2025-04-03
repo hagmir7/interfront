@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { Trash } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -14,9 +15,13 @@ export default function Cart() {
   // If cart is empty
   if (cart.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-4">Votre panier</h1>
-        <p className="text-gray-600">Votre panier est vide</p>
+      <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-lg mt-3">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <div className="container mx-auto">
+            <h1 className="text-2xl font-bold mb-4">Votre panier</h1>
+            <p className="text-gray-600">Votre panier est vide</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -36,13 +41,13 @@ export default function Cart() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-lg mt-3">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <h1 className="text-xl md:text-2xl font-bold">Your Cart</h1>
-        <button 
+        <h1 className="text-xl md:text-2xl font-bold">Votre panier</h1>
+        {/* <button 
           onClick={clearCart} 
           className="bg-red-500 text-white px-3 py-1 md:px-4 md:py-2 rounded hover:bg-red-600 transition text-sm md:text-base"
         >
           Vider le panier
-        </button>
+        </button> */}
       </div>
       
       {/* Cart Items */}
@@ -66,7 +71,9 @@ export default function Cart() {
 
               {/* Product Details */}
               <div className="flex-grow">
-                <h2 className="text-base md:text-lg font-semibold">{item.name.replace("Façade", item.attributes?.attribute?.name)} {item.attributes?.dimension} {item.attributes?.color_name?.name}</h2>
+                <h2 className="text-base md:text-lg font-semibold">
+                  <Link href={`/product/${item.attributes.slug}`}>{item.name.replace("Façade", item.attributes?.attribute?.name)} {item.attributes?.dimension} {item.attributes?.color_name?.name}</Link>
+                </h2>
                 <p className="text-gray-600 text-sm md:text-base">Prix: {item.price} MAD</p>
                 
                 {/* Additional */}

@@ -10,11 +10,13 @@ import {
   } from "@/components/ui/navigation-menu"
   
 
-import Link from 'next/link';
+// import CLink from 'next/CLink';
 import React from 'react';
 import { ProductsMenu } from "./products-menu";
 import TopNav from "./top-nav";
 import CartCounter from "./CartCounter";
+import CLink from "./CLink";
+import { getCurrentUser } from "@/services/auth";
 
 const MainNav = () => {
     return (
@@ -24,12 +26,12 @@ const MainNav = () => {
 
                 {/* Mobile menu */}
                 <div className="z-30">
-                    <Link href='/menu' className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <CLink href='/menu' className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                         <span className="sr-only">Open main menu</span>
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"></path>
                         </svg>
-                    </Link>
+                    </CLink>
 
                     <div className="fixed inset-0 bg-black bg-opacity-50" style={{ display: 'none' }}>
                     </div>
@@ -55,30 +57,30 @@ const MainNav = () => {
                                 </div>
                             </div>
                             <nav className="divide-y">
-                                <Link className="block px-4 py-3 hover:bg-gray-50 text-red-500" href="/">
+                                <CLink className="block px-4 py-3 hover:bg-gray-50 text-red-500" href="/">
                                     Accueil
-                                </Link>
-                                <Link className="block px-4 py-3 hover:bg-gray-50 text-gray-700" href="/shop">
+                                </CLink>
+                                <CLink className="block px-4 py-3 hover:bg-gray-50 text-gray-700" href="/shop">
                                     Produits
-                                </Link>
+                                </CLink>
                             </nav>
                         </div>
 
                         <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-white">
-                            <Link href="/auth/login" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                            <CLink href="/auth/login" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
                                 Connexion / Inscription
-                            </Link>
+                            </CLink>
                         </div>
                     </div>
                 </div>
                 {/* End Mobile Menu */}
 
-                <Link href="/" className="flex items-center">
+                <CLink href="/" className="flex items-center">
                     <h1 className='text-xl inter md:text-2xl'>
                         <span className='text-[#b6b6b7]'>INTER</span><span className='text-[#ec2228]'>COCINA</span>
                     </h1>
                     {/* <img src="https://intercocina.com/assets/imgs/intercocina-logo.png" alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
-                </Link>
+                </CLink>
 
 
                 {/* Search */}
@@ -101,26 +103,27 @@ const MainNav = () => {
                 </div>
 
                 <div className="items-center space-x-4 hidden lg:flex">
-                    <Link href="#" className="hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] me-3">
+                    <CLink href="#" className="hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] me-3">
                         <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7.75 3.5C5.127 3.5 3 5.76 3 8.547C3 14.125 12 20.5 12 20.5s9-6.375 9-11.953C21 5.094 18.873 3.5 16.25 3.5c-1.86 0-3.47 1.136-4.25 2.79c-.78-1.654-2.39-2.79-4.25-2.79"></path>
                         </svg>
-                    </Link>
+                    </CLink>
 
-                    <Link href="/profile" className="hover:text-gray-600 p-2 rounded-full bg-[#efeeeb]">
+                    <CLink href="/profile" className="hover:text-gray-600 p-2 rounded-full bg-[#efeeeb]">
+                        {getCurrentUser() }
                         <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 7.5a3 3 0 1 1-6 0a3 3 0 0 1 6 0m4.5 13c-.475-9.333-14.525-9.333-15 0"></path>
                         </svg>
-                    </Link>
+                    </CLink>
 
                     {/* Cart side */}
                     <div className="z-30">
-                        <Link href="/cart" aria-label="Shopping Cart" className="inline-block hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200 cursor-pointer" aria-expanded="false">
+                        <CLink href="/cart" aria-label="Shopping Cart" className="inline-block hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200 cursor-pointer" aria-expanded="false">
                             <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.5 21a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m-8 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M3.71 5.4h15.214c1.378 0 2.373 1.27 1.995 2.548l-1.654 5.6C19.01 14.408 18.196 15 17.27 15H8.112c-.927 0-1.742-.593-1.996-1.452zm0 0L3 3"></path>
                             </svg>
                             <CartCounter />
-                        </Link>
+                        </CLink>
 
                         <div className="fixed inset-0 bg-black bg-opacity-50" style={{ display: 'none' }}>
                         </div>
@@ -161,12 +164,12 @@ const MainNav = () => {
                 {/* Moblie Cart button */}
                 <div>
                     <div className="items-center space-x-4 flex lg:hidden">
-                        <Link href="/cart" className="hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200">
+                        <CLink href="/cart" className="hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200">
                             <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.5 21a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m-8 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M3.71 5.4h15.214c1.378 0 2.373 1.27 1.995 2.548l-1.654 5.6C19.01 14.408 18.196 15 17.27 15H8.112c-.927 0-1.742-.593-1.996-1.452zm0 0L3 3"></path>
                             </svg>
                             <CartCounter />
-                        </Link>
+                        </CLink>
                     </div>
                 </div>
 
@@ -176,31 +179,31 @@ const MainNav = () => {
                 <div className="container mx-auto px-4 flex justify-between items-center">
                     <ul className="flex flex-col lg:flex-row gap-5 py-2 text-sm font-medium">
                         <li>
-                            <Link href="/" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
+                            <CLink href="/" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 Accueil
-                            </Link>
+                            </CLink>
                         </li>
                         <li>
-                            <Link href="/aprops" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
+                            <CLink href="/aprops" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 À propos
-                            </Link>
+                            </CLink>
                         </li>
                         <li>
-                            <Link href="/event/list" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
+                            <CLink href="/event/list" className="inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600">
                                 Événements
-                            </Link>
+                            </CLink>
                         </li>
                         <ProductsMenu />
                     </ul>
                     <div className='flex gap-3'>
-                        <Link href="/contact" className="rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white">
+                        <CLink href="/contact" className="rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.464 16.828C2 15.657 2 14.771 2 11s0-5.657 1.464-6.828C4.93 3 7.286 3 12 3s7.071 0 8.535 1.172S22 7.229 22 11s0 4.657-1.465 5.828C19.072 18 16.714 18 12 18c-2.51 0-3.8 1.738-6 3v-3.212c-1.094-.163-1.899-.45-2.536-.96"></path>
                                 </svg>
                             </span>
                             <span>Contactez-nous</span>
-                        </Link>
+                        </CLink>
                         {/* <Modal /> */}
                     </div>
                 </div>
