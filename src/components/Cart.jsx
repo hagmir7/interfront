@@ -97,7 +97,7 @@ export default function Cart() {
               <div className="flex items-center space-x-2">
                 <button 
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="bg-gray-200 px-2 rounded disabled:opacity-50"
+                  className="bg-gray-200 px-2 rounded disabled:opacity-50 cursor-pointer"
                   disabled={item.quantity <= 1}
                 >
                   -
@@ -105,7 +105,7 @@ export default function Cart() {
                 <span className="w-6 text-center">{item.quantity}</span>
                 <button 
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="bg-gray-200 px-2 rounded"
+                  className="bg-gray-200 px-2 rounded cursor-pointer"
                 >
                   +
                 </button>

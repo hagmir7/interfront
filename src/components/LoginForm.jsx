@@ -32,18 +32,18 @@ const LoginForm = () => {
     <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-lg p-6 space-y-6">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-800">Connexion</h2>
-        <p className="text-gray-500 text-sm mt-1">Accédez à votre compte</p>
+        <p className="text-gray-500 text-lg mt-1">Accédez à votre compte</p>
       </div>
       
       <form className="space-y-5" onSubmit={handleLogin}>
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-            <p className="text-red-600 text-sm">{error}</p>
+            <p className="text-red-600 text-md">{error}</p>
           </div>
         )}
         
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block mb-2 text-md font-medium text-gray-700">
             Adresse email
           </label>
           <input
@@ -60,10 +60,10 @@ const LoginForm = () => {
         
         <div>
           <div className="flex justify-between mb-2">
-            <label htmlFor="password" className="text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="text-md font-medium text-gray-700">
               Mot de passe
             </label>
-            <a href="/user/forgot-password" className="text-xs font-medium text-red-600 hover:text-red-800 transition-colors">
+            <a href="/user/forgot-password" className="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">
               Mot de passe oublié ?
             </a>
           </div>
@@ -88,7 +88,7 @@ const LoginForm = () => {
             onChange={(e) => setRememberMe(e.target.checked)}
             disabled={isLoading}
           />
-          <label htmlFor="remember" className="ml-2 text-sm text-gray-600">
+          <label htmlFor="remember" className="ml-2 text-md text-gray-600">
             Se souvenir de moi
           </label>
         </div>
@@ -109,7 +109,7 @@ const LoginForm = () => {
         </button>
         
         <div className="text-center mt-6">
-          <p className="text-sm text-gray-600">
+          <p className="text-md text-gray-600">
             Pas encore de compte ?{" "}
             <a href="/user/register" className="font-medium text-red-600 hover:text-red-800 transition-colors">
               Créer un nouveau compte

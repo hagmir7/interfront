@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="bg-[#f2f2f2]">
       <MainSection />
-      {/* <MainSectionGrid /> */}
+      <MainSectionGrid />
       <CategorySection />
       <ProductCategories />
       <CoverSection />
