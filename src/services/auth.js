@@ -35,25 +35,25 @@ export const logout = async () => {
 };
 
 
-export const getCurrentUser = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        return null;
-    }
+// export const getCurrentUser = async () => {
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//         return null;
+//     }
 
-    try {
-        const response = await axios.get(`${API_URL}/user`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        return response.data; // Current authenticated user
-    } catch (error) {
-        return null; // Token might be invalid or expired
-    }
-};
+//     try {
+//         const response = await axios.get(`${API_URL}/user`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`,
+//             },
+//         });
+//         return response.data; // Current authenticated user
+//     } catch (error) {
+//         return null; // Token might be invalid or expired
+//     }
+// };
 
-export const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
-    return token !== null;
-};
+// export const isAuthenticated = () => {
+//     const token = localStorage.getItem("token");
+//     return token !== null;
+// };
