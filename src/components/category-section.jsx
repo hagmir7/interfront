@@ -6,21 +6,21 @@ function CategorySection() {
       imageUrl: 'https://www.starax.com.tr/file/image/our-products-img1.png',
       title: 'Meuble de cuisine',
       description: 'Caisson, Armoires de cuisine, façades, accessoires et plans de travail',
-      link: 'https://laca.ma/category/parquet-classe-31ac3-5',
+      link: 'parquet-classe-31ac3-5',
       badge: 'Nouvelle arrivée'
     },
     {
       imageUrl: 'https://laca.ma/storage/01JMDBFZ8EQZHST1Z8VBN5T9HD.jpg',
       title: 'Revêtement et Sole',
       description: 'Revêtement de sol stratifié, Parquet, Plinthe et Accessoires...',
-      link: 'https://laca.ma/category/parquets-classe-32ac4-5',
+      link: 'parquets-classe-32ac4-5',
       badge: 'Populaire'
     },
     {
       imageUrl: 'https://www.starax.com.tr/file/image/our-products-img2.png',
       title: 'Placards et Dressings',
       description: 'Placards et Dressing sur mesure...',
-      link: 'https://laca.ma/category/parquet-classe-33ac5-5',
+      link: 'parquet-classe-33ac5-5',
       badge: 'Premium'
     },
   ];

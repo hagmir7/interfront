@@ -237,7 +237,11 @@ const Product = ({ product }) => {
         };
         addToCart(cart);
 
-        setSpinner(false);
+        setTimeout(()=>{
+            setSpinner(false);
+        }, 1000)
+
+        
     }
 
 

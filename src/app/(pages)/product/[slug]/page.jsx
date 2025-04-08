@@ -4,8 +4,7 @@ import Product from "@/components/Product";
 const ProductPage = async ({ params }) => {
 
   const {slug} = await params;
-
-
+  
   try {
     const response = await fetch(`https://interapi.facepy.com/api/products/${slug}`);
 

@@ -13,10 +13,10 @@ import MainSectionGrid from "@/components/ui/main-section-grid";
 export default function Home() {
   return (
     <div className="bg-[#f2f2f2]">
+      <SectionConver />
       <MainSection />
       <MainSectionGrid />
       <CategorySection />
-      <SectionConver />
       <ProductCategories />
       <CoverSection />
       <BrandsSection />
