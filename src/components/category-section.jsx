@@ -3,7 +3,7 @@ import React from 'react';
 function CategorySection() {
   const products = [
     {
-      imageUrl: 'https://www.starax.com.tr/file/image/our-products-img1.png',
+      imageUrl: 'https://www.starax.com.tr/documents/starax_base/img/kitchen-slide-1920x760.jpg',
       title: 'Meuble de cuisine',
       description: 'Caisson, Armoires de cuisine, façades, accessoires et plans de travail',
       link: 'parquet-classe-31ac3-5',
@@ -17,7 +17,7 @@ function CategorySection() {
       badge: 'Populaire'
     },
     {
-      imageUrl: 'https://www.starax.com.tr/file/image/our-products-img2.png',
+      imageUrl: 'https://www.starax.com.tr/documents/starax_base/img/bedroom-slide-1920x760.jpg',
       title: 'Placards et Dressings',
       description: 'Placards et Dressing sur mesure...',
       link: 'parquet-classe-33ac5-5',
@@ -38,10 +38,11 @@ function CategorySection() {
             key={index}
             className="relative h-[320px] overflow-hidden rounded-xl shadow-ms transform transition-transform duration-500 hover:-translate-y-2"
           >
-            <div 
-              className="absolute inset-0 bg-cover transition-transform duration-700 hover:scale-110"
+           <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-110" 
               style={{ backgroundImage: `url(${product.imageUrl})` }}
             ></div>
+
             
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
             

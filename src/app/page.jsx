@@ -8,6 +8,7 @@ import ProductCategories from "@/components/product-category-section";
 import ReviewSection from "@/components/reviews-section";
 import SectionConver from "@/components/SectionCover";
 import StatsSection from "@/components/stats-section";
+import Tracking from "@/components/Tracking";
 import MainSectionGrid from "@/components/ui/main-section-grid";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <MainSection />
       <MainSectionGrid />
       <CategorySection />
+      <Tracking />
       <ProductCategories />
       <CoverSection />
       <BrandsSection />

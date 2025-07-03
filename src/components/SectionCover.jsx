@@ -10,12 +10,12 @@ import { Mail, ShoppingCart } from "lucide-react";
 
 const SectionConver = () => {
     return (
-        <section className="relative bg-gradient-to-br from-blue-900 to-indigo-800 text-white overflow-hidden">
+        <section className="relative bg-gradient-to-br from-blue-900 to-gray-800 text-white overflow-hidden">
             <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="absolute inset-0 bg-cover bg-center"
+            <div className="absolute inset-0 bg-cover bg-center opacity-50"
                 style={{
                     backgroundImage:
-                        "url('https://images.unsplash.com/photo-1538944570562-2c9cb7857097?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                        "url('/imgs/fabrica.jpeg')",
                 }}
             ></div>
 
@@ -34,17 +34,17 @@ const SectionConver = () => {
                                 Leader des cuisines modernes au Maroc
                             </h1>
                             <p className="text-center text-white md:text-left text-lg font-semibold">
-                                Notre collection de meubles de cuisine est conçue pour transformer votre
+                                Meubles de cuisine est conçue pour transformer votre
                                 espace en un lieu d'inspiration gastronomique, où chaque détail compte.
                             </p>
-                            <div className="flex justify-center w-full md:justify-start gap-4">
-                                <CLink href="/contact" className="btn btn-accent-gray flex items-center justify-center w-full gap-2">
-                                    <Mail size={20} className="text-white" />
+                            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-4">
+                                <CLink href="/contact" className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-3 transition-all duration-300 flex items-center justify-center gap-3 text-white font-semibold">
+                                    <Mail size={20} />
                                     <span>Contact</span>
                                 </CLink>
 
-                                <CLink href="/shop" className="rounded-lg flex text-white bg-[#da3036] hover:bg-red-600 py-2 px-4 text-[17px] text-sm hover:text-white items-center justify-center w-full gap-2">
-                                    <ShoppingCart size={20} className="text-white" />
+                                <CLink href="/shop" className="bg-red-600 hover:bg-red-700 rounded-lg px-6 py-3 transition-all duration-300 flex items-center justify-center gap-3 text-white font-semibold shadow-lg">
+                                    <ShoppingCart size={20} />
                                     <span>Produits</span>
                                 </CLink>
                             </div>
@@ -53,7 +53,7 @@ const SectionConver = () => {
 
                     {/* Right Side: Features */}
                     <div className="w-full md:w-1/2 md:pl-12">
-                        <div className="bg-opacit backdrop-filter backdrop-blur-sm rounded-xl shadow-2xl overlook-hidden">
+                        <div className="rounded-xl shadow-2xl">
                             <Swiper
                                 modules={[Pagination]}
                                 spaceBetween={30}
