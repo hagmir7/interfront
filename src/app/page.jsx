@@ -9,7 +9,9 @@ import ReviewSection from "@/components/reviews-section";
 import SectionConver from "@/components/SectionCover";
 import StatsSection from "@/components/stats-section";
 import Tracking from "@/components/Tracking";
+import Caisson from "@/components/ui/Caisson";
 import MainSectionGrid from "@/components/ui/main-section-grid";
+import NewSection from "@/components/ui/NewSection";
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
       <SectionConver />
       <MainSection />
       <MainSectionGrid />
+      {/* <NewSection /> */}
+      <Caisson />
       <CategorySection />
       <Tracking />
       <ProductCategories />

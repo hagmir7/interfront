@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import LacaColors from '../LacaColors';
 import CLink from '../CLink';
+import { ArrowRight } from 'lucide-react';
 
 const MainSectionGrid = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -58,6 +59,8 @@ const MainSectionGrid = () => {
             modules={[Pagination]}
             spaceBetween={30}
             slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 1000 }}
             pagination={{
               clickable: true,
               dynamicBullets: true,
@@ -67,7 +70,7 @@ const MainSectionGrid = () => {
           >
             {heroCarouselData.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className='grid grid-cols-1 md:grid-cols-2 items-center p-6 md:p-8'>
+                <div className='grid grid-cols-1 md:grid-cols-2 items-center py-9 p-6 md:p-8'>
                   <div className='order-2 sm:order-1 space-y-4'>
                     <div className='flex items-center gap-4'>
                       <span className='text-2xl sm:text-4xl font-bold text-red-600'>
@@ -84,12 +87,15 @@ const MainSectionGrid = () => {
                     </h2>
                     <LacaColors />
                     <p className='text-gray-600 mb-7'>{item.description}</p>
-                    <CLink
-                      href={item.link}
-                      className='rounded-lg  text-white bg-[#da3036] hover:bg-red-600 py-3 px-5 text-[17px] text-sm hover:text-white'
-                    >
-                      Voir Plus
-                    </CLink>
+                    <div className='flex justify-end md:justify-start w-full'>
+                      <CLink
+                        href={item.link}
+                        className='rounded-lg flex gap-2  text-white bg-[#da3036] hover:bg-red-600 py-3 px-5 text-[17px] text-sm hover:text-white'
+                      >
+                        <span> Voir Plus</span>
+                        <ArrowRight />
+                      </CLink>
+                    </div>
                   </div>
                   <div className='order-1 sm:order-2 mb-4 sm:mb-0'>
                     <img
@@ -109,7 +115,7 @@ const MainSectionGrid = () => {
           {sideProductsData.map((product, index) => (
             <div
               key={index}
-              className='bg-white rounded-xl shadow-sm p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
+              className='bg-white rounded-xl shadow-sm p-3 md:p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
             >
               <div className='space-y-4 flex-1'>
                 <h3 className='text-xl font-semibold text-gray-900 hover:text-blue-600 transition'>
@@ -120,9 +126,7 @@ const MainSectionGrid = () => {
                     Matte et brillant
                   </p>
                   <div className='flex items-center gap-3'>
-                    <span className='text-gray-400'>
-                      À partir
-                    </span>
+                    <span className='text-gray-400'>À partir</span>
                     <span className='text-lg font-bold text-red-600'>
                       {product.salePrice} MAD
                     </span>

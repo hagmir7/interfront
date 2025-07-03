@@ -75,7 +75,7 @@ const CoverSection = () => {
       <div className="overflow-x-scroll no-scrollbar">
         <div ref={splideRef} className="splide" aria-label="Carousel">
           <div className="splide__track py-7">
-            <ul className="splide__list sm:gap-6 lg:gap-0">
+            <ul className="splide__list md:gap-10 xl:gap-0">
               {productData.map((product, index) => (
                 <li key={index} className="splide__slide">
                   <ProductCard product={product} />

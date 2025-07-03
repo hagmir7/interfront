@@ -3,7 +3,7 @@ import React from 'react';
 
 const StatsSection = () => {
   return (
-    <section className="py-16 overflow-hidden bg-accent-gray-50">
+    <section className="py-3 md:py-16 overflow-hidden bg-accent-gray-50">
       <div className="grid gap-8 px-4 lg:grid-cols-2 md:gap-20 md:max-w-7xl md:mx-auto">
         <div className="space-y-6 md:py-24">
           <h2 className="mb-4 text-2xl font-bold md:text-4xl">
