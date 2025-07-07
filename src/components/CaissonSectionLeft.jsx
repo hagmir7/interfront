@@ -7,7 +7,7 @@ const CaissonSectionLeft = () => {
 
   const features = [
     'Recyclable',
-    'Épaisseur optimisée',
+    'Épaisseur 16mm',
     'Durabilité & Longévité',
     'Haute résistance',
     'Densité élevée',
@@ -26,7 +26,7 @@ const CaissonSectionLeft = () => {
           <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4'>
             <div className='flex-1'>
               <h4 className='text-xl sm:text-2xl font-semibold mb-2'>
-                <a href='#' className='text-gray-900 hover:text-red-600 transition-colors'>
+                <a href='/category/caissons' className='text-gray-900 hover:text-red-600 transition-colors'>
                   Caisson de Cuisine Blanc
                 </a>
               </h4>

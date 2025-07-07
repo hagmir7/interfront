@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import '@splidejs/splide/css';
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 /* fonts */
 body {

@@ -7,7 +7,7 @@ const CaissonSection = () => {
 
   const features = [
     'Recyclable',
-    'Épaisseur optimisée',
+    'Épaisseur 18mm',
     'Durabilité & Longévité',
     'Haute résistance',
     'Densité élevée',
@@ -35,7 +35,7 @@ const CaissonSection = () => {
           <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4'>
             <div className='flex-1'>
               <h4 className='text-xl sm:text-2xl font-semibold mb-2'>
-                <a href='#' className='text-gray-900 hover:text-red-600 transition-colors'>
+                <a href='/category/caisson-hydrofuge' className='text-gray-900 hover:text-red-600 transition-colors'>
                   Caisson de Cuisine Hydrofuge
                 </a>
               </h4>
@@ -64,7 +64,7 @@ const CaissonSection = () => {
               It is a long established fact that a reader will be distracted
               by the readable content of a page when looking at its layout.
             </p>
-            
+
             {/* Features Grid */}
             <div className="w-full">
               <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">

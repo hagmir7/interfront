@@ -82,7 +82,7 @@ const MainSectionGrid = () => {
                         De
                       </span>
                     </div>
-                    <h2 className='text-xl sm:text-3xl font-semibold text-gray-900 hover:text-blue-600 transition'>
+                    <h2 className='text-xl sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition'>
                       <CLink href={item.link}>{item.title}</CLink>
                     </h2>
                     <LacaColors />
@@ -118,7 +118,7 @@ const MainSectionGrid = () => {
               className='bg-white rounded-xl shadow-sm p-3 md:p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
             >
               <div className='space-y-4 flex-1'>
-                <h3 className='text-xl font-semibold text-gray-900 hover:text-blue-600 transition'>
+                <h3 className='text-xl font-semibold text-gray-900 hover:text-red-600 transition'>
                   <CLink href={product.link}>{product.title}</CLink>
                 </h3>
                 <div>

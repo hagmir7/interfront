@@ -16,6 +16,7 @@ import { ProductsMenu } from "./products-menu";
 import TopNav from "./top-nav";
 import CartCounter from "./CartCounter";
 import CLink from "./CLink";
+import SideCart from "./SideCart";
 // import { getCurrentUser } from "@/services/auth";
 
 const MainNav = () => {
@@ -124,6 +125,8 @@ const MainNav = () => {
                             </svg>
                             <CartCounter />
                         </CLink>
+
+                        <SideCart />
 
                         <div className="fixed inset-0 bg-black bg-opacity-50" style={{ display: 'none' }}>
                         </div>
