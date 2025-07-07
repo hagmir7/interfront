@@ -9,21 +9,24 @@ import ReviewSection from "@/components/reviews-section";
 import SectionConver from "@/components/SectionCover";
 import StatsSection from "@/components/stats-section";
 import Tracking from "@/components/Tracking";
-import Caisson from "@/components/ui/Caisson";
 import MainSectionGrid from "@/components/ui/main-section-grid";
-import NewSection from "@/components/ui/NewSection";
+import CaissonSection from "@/components/CaissonSection";
+import CaissonSectionLeft from "@/components/CaissonSectionLeft";
 
 export default function Home() {
   return (
     <div className="bg-[#f2f2f2]">
       <SectionConver />
-      <MainSection />
+      {/* <MainSection /> */}
       <MainSectionGrid />
       {/* <NewSection /> */}
-      <Caisson />
+     
       <CategorySection />
-      <Tracking />
+      <CaissonSection />
+      <CaissonSectionLeft />
+     
       <ProductCategories />
+       <Tracking />
       <CoverSection />
       <BrandsSection />
       <StatsSection />

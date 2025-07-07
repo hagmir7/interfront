@@ -6,16 +6,16 @@ const ContactPage = () => {
 
 
   return (
-    <section className="px-4 py-32 md:mx-auto relative overflow-hidden bg-red-500">
+    <section className="px-4 py-10 md:py-32 md:mx-auto relative overflow-hidden bg-red-500">
       <div className="relative z-10 grid gap-16 px-4 md:grid-cols-2 md:max-w-7xl md:mx-auto">
         <div className="space-y-6">
           <h1 className="text-4xl font-bold text-left text-white md:text-4xl animate__animated animate__fadeInRight">
             Contactez-nous
           </h1>
-          <h2 className="text-xl font-bold text-left text-white md:text-2xl animate__animated animate__fadeInRight">
+          <h2 className="text-xl font-bold text-left text-white md:text-2xl animate__animated animate__fadeInRight mb-0">
             Intercocina - Là où les saveurs rencontrent l'innovation
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-2 hidden md:block">
             <p className="text-white text-start md:text-lg animate__animated animate__fadeInRight">
               Contactez-nous pour tous vos besoins et questions culinaires. Nous sommes là pour vous servir !
             </p>
