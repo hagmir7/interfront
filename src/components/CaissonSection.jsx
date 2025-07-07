@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { Star, CheckCircle } from 'lucide-react'
+import CLink from './CLink';
 
 const CaissonSection = () => {
 
@@ -80,30 +81,30 @@ const CaissonSection = () => {
           {/* Category Tags Section */}
           <div className='mt-6'>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-              <a
-                href="#"
+              <CLink
+                href="/category/caisson-hydrofuge?type=hydrofuge-haut"
                 className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Haut
-              </a>
-              <a
-                href="http://localhost:3000/category/caisson-hydrofuge?type=hydrofuge-bas"
+              </CLink>
+              <CLink
+                href="/category/caisson-hydrofuge?type=hydrofuge-bas"
                 className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Bas
-              </a>
-              <a
-                href="#"
+              </CLink>
+              <CLink
+                href="/category/caisson-hydrofuge?type=hydrofuge-colonne"
                 className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Colonne
-              </a>
-              <a
-                href="#"
+              </CLink>
+              <CLink
+                href="/category/accessoiriser?type=racrocheurs"
                 className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Accessoires
-              </a>
+              </CLink>
             </div>
           </div>
         </div>
