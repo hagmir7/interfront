@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Maximize2, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import CLink from '@/components/CLink';
 
 const page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -10,15 +11,6 @@ const page = () => {
         { id: 1, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-12.webp', alt: 'Project Image 1' },
         { id: 2, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-9.webp', alt: 'Project Image 2' },
         { id: 3, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-11.webp', alt: 'Project Image 3' },
-        { id: 4, src: '/api/placeholder/400/300', alt: 'Project Image 4' }
-    ];
-
-    const projectDetails = [
-        { label: 'Client', value: 'Martin Stewart' },
-        { label: 'Material', value: '100% Polyester' },
-        { label: 'Location', value: 'London, UK' },
-        { label: 'Shipping', value: 'Free Shipping' },
-        { label: 'Category', value: 'Child Trolly' }
     ];
 
     const openLightbox = (image) => {
@@ -46,17 +38,16 @@ const page = () => {
                                     </li>
                                 </ul>
                             </nav>
-
                             {/* Buttons */}
                             <div className="flex justify-center gap-4 flex-wrap">
-                                <a
-                                    href="#contact"
+                                <CLink
+                                    href="/contact"
                                     className="bg-white text-black font-semibold py-2 px-5 rounded-full hover:bg-gray-200 transition-colors"
                                 >
                                     Contactez-nous
-                                </a>
+                                </CLink>
                                 <a
-                                    href="https://wa.me/212600000000" // Replace with your WhatsApp number
+                                    href="https://wa.me/21266610759"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-green-500 flex gap-2 items-center text-white font-semibold py-2 px-5 rounded-full hover:bg-green-600 transition-colors"
@@ -96,46 +87,7 @@ const page = () => {
                                 </div>
                             ))}
                         </div>
-
-                        {/* Content Section */}
-                        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-                            <div className="space-y-6">
-                                <div>
-                                    <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        Research & Planning
-                                    </h2>
-                                    <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"></div>
-                                </div>
-
-                                <div className="space-y-4 text-gray-600 leading-relaxed">
-                                    <p>
-                                        Our comprehensive research and planning phase ensures every project delivers exceptional results.
-                                        We dive deep into understanding user needs, market trends, and technical requirements to create
-                                        solutions that not only look stunning but perform flawlessly across all platforms.
-                                    </p>
-
-                                    <p>
-                                        Through meticulous planning and iterative design processes, we transform complex challenges into
-                                        elegant, user-friendly experiences. Our approach combines creative vision with data-driven insights
-                                        to deliver products that exceed expectations and drive meaningful engagement.
-                                    </p>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2 pt-4">
-                                    {['UX Research', 'Market Analysis', 'Technical Planning', 'User Testing'].map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-
                 </div>
             </div>
 
