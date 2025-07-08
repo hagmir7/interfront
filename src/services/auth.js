@@ -25,7 +25,7 @@ export const forgotPassword = async (email) => {
 export const logout = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
-    
+
     await axios.post(`${API_URL}/logout`, {}, {
         headers: { Authorization: `Bearer ${token}` }
     });
@@ -34,26 +34,3 @@ export const logout = async () => {
     localStorage.removeItem("user");
 };
 
-
-// export const getCurrentUser = async () => {
-//     const token = localStorage.getItem("token");
-//     if (!token) {
-//         return null;
-//     }
-
-//     try {
-//         const response = await axios.get(`${API_URL}/user`, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//             },
-//         });
-//         return response.data; // Current authenticated user
-//     } catch (error) {
-//         return null; // Token might be invalid or expired
-//     }
-// };
-
-// export const isAuthenticated = () => {
-//     const token = localStorage.getItem("token");
-//     return token !== null;
-// };

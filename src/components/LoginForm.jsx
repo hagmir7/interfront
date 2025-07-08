@@ -22,6 +22,8 @@ const LoginForm = () => {
       await login({ email, password, rememberMe });
       router.push("/dashboard");
     } catch (err) {
+      console.log(err);
+      
       setError("Identifiants invalides. Veuillez réessayer.");
     } finally {
       setIsLoading(false);

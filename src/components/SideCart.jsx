@@ -73,7 +73,7 @@ const ShoppingCartSidebar = () => {
                               <input
                                 type="number"
                                 value={item.quantity}
-                                onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                                onChange={(e) => updateQuantity(item.id, parseInt(e.target.value || 0))}
                                 className="w-16 h-8 text-center border border-red-600 rounded-full mx-2 bg-gray-50 outline-none text-sm leading-8"
                               />
                               <button
