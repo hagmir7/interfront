@@ -1,4 +1,5 @@
 import React from 'react';
+import CLink from './CLink';
 
 function CategorySection() {
   const products = [
@@ -20,7 +21,7 @@ function CategorySection() {
       imageUrl: 'https://www.starax.com.tr/documents/starax_base/img/bedroom-slide-1920x760.jpg',
       title: 'Placards et Dressings',
       description: 'Placards et Dressing sur mesure...',
-      link: 'parquet-classe-33ac5-5',
+      link: '/placards',
       badge: 'Premium'
     },
   ];
@@ -61,7 +62,7 @@ function CategorySection() {
                   {product.description}
                 </p>
                 
-                <a 
+                <CLink
                   href={product.link}
                   className="group inline-flex items-center gap-2 mt-4 px-6 py-3 bg-white text-gray-800 rounded-lg font-medium transition-all duration-300 hover:bg-red-500 hover:text-white"
                   aria-label={`Acheter ${product.title}`}
@@ -80,7 +81,7 @@ function CategorySection() {
                       d="M14 5l7 7m0 0l-7 7m7-7H3"
                     ></path>
                   </svg>
-                </a>
+                </CLink>
               </div>
             </div>
           </div>

@@ -30,13 +30,13 @@ const ShoppingCartSidebar = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
-            <button
+            {/* <button
               type="button"
               onClick={() => setIsCartOpen(false)}
               className="w-10 h-10 flex items-center justify-center absolute top-2 right-2 opacity-50 hover:opacity-100 text-2xl transition-opacity z-50"
             >
               <X size={24} />
-            </button>
+            </button> */}
 
             {/* Content */}
             <div className="flex-grow overflow-y-auto py-6 px-4 flex flex-col justify-between">
