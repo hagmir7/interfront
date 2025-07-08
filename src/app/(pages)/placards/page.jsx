@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Maximize2, X } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -32,20 +33,43 @@ const page = () => {
         <div className="min-h-screen bg-[#f2f2f2]">
             <div className="relative min-h-[250px] max-sm:min-h-[230px] bg-cover bg-center z-[2] w-full before:absolute before:inset-0 before:bg-black before:opacity-40 before:z-[-1]"
                 style={{ backgroundImage: "url('https://www.gamso-menuiseries.fr/wp-content/uploads/2024/07/gamso-amenagement-interieur.jpg')" }}>
-                <div className="container relative z-1 table h-full mx-auto px-4">
-                    <div className="text-center py-[90px] max-sm:py-10 table-cell align-middle h-[500px] max-sm:h-[230px]">
-                        <h1 className="mb-2.5 lg:text-4xl md:text-3xl sm:text-2xl text-2xl text-white font-bold">
-                            Armoires
-                        </h1>
-                        <nav>
-                            <ul className="text-white">
-                                <li className="mr-[3px] pl-2 inline-block text-base font-medium relative before:content-['›'] before:absolute before:left-0 before:font-bold before:text-white">
-                                    Rangez vos vêtements avec style dans nos armoires design
-                                </li>
-                            </ul>
-                        </nav>
+                <div className="container relative z-10 table h-full mx-auto px-4">
+                    <div className="container relative z-10 table h-full mx-auto px-4">
+                        <div className="text-center py-[90px] max-sm:py-10 table-cell align-middle h-[500px] max-sm:h-[230px]">
+                            <h1 className="mb-2.5 text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                                Dressings et armoires sur mesure
+                            </h1>
+                            <nav>
+                                <ul className="text-white mb-6">
+                                    <li className="pl-4 inline-block text-lg font-medium relative before:content-['›'] before:absolute before:left-0 before:font-bold before:text-white">
+                                        Optimisez votre espace avec nos solutions de rangement élégantes et fonctionnelles
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            {/* Buttons */}
+                            <div className="flex justify-center gap-4 flex-wrap">
+                                <a
+                                    href="#contact"
+                                    className="bg-white text-black font-semibold py-2 px-5 rounded-full hover:bg-gray-200 transition-colors"
+                                >
+                                    Contactez-nous
+                                </a>
+                                <a
+                                    href="https://wa.me/212600000000" // Replace with your WhatsApp number
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-green-500 flex gap-2 items-center text-white font-semibold py-2 px-5 rounded-full hover:bg-green-600 transition-colors"
+                                >
+                                    <FaWhatsapp size={23} />
+                                    <span>WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
             <div className="max-w-7xl mx-auto py-12 px-4">
                 <div className=" gap-8">
