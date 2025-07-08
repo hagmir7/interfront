@@ -117,16 +117,17 @@ const MainNav = () => {
                         </svg>
                     </CLink>
 
+                    <SideCart />
                     {/* Cart side */}
                     <div className="z-30">
-                        <CLink href="/cart" aria-label="Shopping Cart" className="inline-block hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200 cursor-pointer" aria-expanded="false">
+                        <CLink href="/cart" aria-label="Shopping Cart" className=" hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200 cursor-pointer block md:hidden" aria-expanded="false">
                             <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.5 21a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m-8 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M3.71 5.4h15.214c1.378 0 2.373 1.27 1.995 2.548l-1.654 5.6C19.01 14.408 18.196 15 17.27 15H8.112c-.927 0-1.742-.593-1.996-1.452zm0 0L3 3"></path>
                             </svg>
                             <CartCounter />
                         </CLink>
 
-                        <SideCart />
+                        
 
                         <div className="fixed inset-0 bg-black bg-opacity-50" style={{ display: 'none' }}>
                         </div>
