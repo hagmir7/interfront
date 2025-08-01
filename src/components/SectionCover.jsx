@@ -130,7 +130,7 @@ const SectionConver = () => {
     backgroundPosition: 'top',
     transform: 'scaleY(-1)',
     opacity: '28%',
-    bottom: '-25px',
+    bottom: '-46px',
     WebkitMaskRepeat: 'no-repeat',
     maskRepeat: 'no-repeat',
     maskSize: 'cover',
