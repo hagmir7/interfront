@@ -3,7 +3,7 @@ import React from 'react';
 
 const ProductCategories = async () => {
 
-    const response = await fetch("https://intercocina.com/api/categories")
+    const response = await fetch("https://interapi.facepy.com/api/categories")
     if (!response.ok) {
         throw new Error("Failed to fetch categories")
     }

@@ -32,7 +32,7 @@ const CaissonSection = () => {
         {/* Product Details */}
         <div className='flex-1'>
           {/* Header with Title and Rating */}
-          <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4'>
+          <div className=' mb-4'>
             <div className='flex-1'>
               <h4 className='text-xl sm:text-2xl font-semibold mb-2'>
                 <a href='/category/caisson-hydrofuge' className='text-gray-900 hover:text-red-600 transition-colors'>
@@ -42,7 +42,7 @@ const CaissonSection = () => {
             </div>
 
             {/* Rating Section */}
-            <div className='flex flex-col sm:items-center text-left sm:text-center min-w-fit'>
+            <div className='min-w-fit'>
               <ul className='flex gap-0.5 mb-1'>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <li key={star}>
@@ -66,7 +66,7 @@ const CaissonSection = () => {
             </p>
 
             {/* Features Grid */}
-            <div className="w-full">
+            <div className="w-full hidden lg:block">
               <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-2 p-2 sm:p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">

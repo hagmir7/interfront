@@ -24,7 +24,7 @@ const SectionConver = () => {
             {/* Left Side: Company Info */}
             <div className='w-full md:w-1/2 mb-12 md:mb-0'>
               <div className='flex flex-col order-2 gap-3 pt-6 space-y-4 col-span-full md:px-4 xl:order-1 xl:col-span-1 md:py-10'>
-                <h1 className='text-4xl font-bold leading-tight text-center md:text-left md:text-5xl md:leading-tight'>
+                <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-center md:text-left md:leading-tight'>
                   <span
                     className='text-[#b6b6b7] font-black tracking-widest'
                     style={{ fontFamily: 'DOCK11-Heavy' }}
@@ -121,26 +121,21 @@ const SectionConver = () => {
           </div>
         </div>
 
-<div
-  className="absolute bottom-0 left-0 right-0 h-[129px]"
-  style={{
-    backgroundImage: "url('/imgs/bg-inter1.png')",
-    backgroundSize: '100px',
-    backgroundRepeat: 'repeat',
-    backgroundPosition: 'top',
-    transform: 'scaleY(-1)',
-    opacity: '28%',
-    bottom: '-46px',
-    WebkitMaskRepeat: 'no-repeat',
-    maskRepeat: 'no-repeat',
-    maskSize: 'cover',
-  }}
-></div>
-
-
-
-
-
+        <div
+          className='absolute bottom-0 left-0 right-0 h-[129px]'
+          style={{
+            backgroundImage: "url('/imgs/bg-inter1.png')",
+            backgroundSize: '100px',
+            backgroundRepeat: 'repeat',
+            backgroundPosition: 'top',
+            transform: 'scaleY(-1)',
+            opacity: '28%',
+            bottom: '-46px',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            maskSize: 'cover',
+          }}
+        ></div>
       </section>
     )
 };

@@ -29,7 +29,7 @@ function CategorySection() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12">
       <div className="mb-12 text-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">La collection des porduits Intercocina.</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">La collection des porduits Intercocina.</h2>
         <p className="text-gray-600 max-w-4xl mx-auto">Que vous recherchiez le style, la fonctionnalité ou la qualité, notre gamme de produits a tout pour plaire. Explorez dès maintenant pour dénicher vos favoris.</p>
       </div>
       
