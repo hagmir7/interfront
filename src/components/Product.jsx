@@ -213,29 +213,34 @@ const Product = ({ product }) => {
         setSpinner(true);
         
         const cart = {
-            id: `${product.slug}${width}-${height}${dimension?.id}${color}${attribute?.id || ""}${special ? "special" : ""}`,
-            name: product.name,
-            price: price,
-            quantity: quantity,
-            attributes: {
-                color: color || null,
-                color_name: color && dimension 
-                    ? dimension.color 
-                    : color 
-                    ? colors.find(item => item.id === color)?.name 
-                    : null,
-                image: product.images[0],
-                height: height || null,
-                width: width || null,
-                dimension: height && width ? `${height} * ${width}` : null,
-                slug: data.slug,
-                attribute: attributes.length ? attribute : null,
-                product_id: data.id,
-                dimension_id: dimension?.id || null,
-                special: special
-            }
-        };
+          id: `${product.slug}${width}-${height}${dimension?.id}${color}${
+            attribute?.id || ''
+          }${special ? 'special' : ''}`,
+          name: product.name,
+          price: price,
+          quantity: quantity,
+          attributes: {
+            color: color || null,
+            color_name:
+              color && dimension
+                ? dimension.color
+                : color
+                ? colors.find((item) => item.id === color)?.name
+                : null,
+            image: product.images[0],
+            height: height || null,
+            width: width || null,
+            dimension: height && width ? `${height} * ${width}` : null,
+            slug: product.slug,
+            attribute: attributes.length ? attribute : null,
+            product_id: data.id,
+            dimension_id: dimension?.id || null,
+            special: special,
+          },
+        }
         addToCart(cart);
+        console.log(cart);
+        
 
         setTimeout(()=>{
             setSpinner(false);

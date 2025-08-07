@@ -14,6 +14,7 @@ const CartContext = createContext({
 export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
 
+
     useEffect(() => {
         // Add more detailed logging
         const savedCart = localStorage.getItem('cart')
@@ -65,7 +66,7 @@ export function CartProvider({ children }) {
     };
 
     const countItemsInCart = ()=>{
-        return cart.reduce((total, item) => total + item.quantity, 0);
+        return cart.length || 0;
     }
     
     return (
@@ -95,7 +96,7 @@ export function useCart() {
           removeFromCart: () => {},
           updateQuantity: () => {},
           clearCart: () => {},
-          countItemsInCart: () => 0
+          countItemsInCart: () => 0,
         };
     }
 
