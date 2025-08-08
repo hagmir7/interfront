@@ -79,7 +79,9 @@ const ShoppingCartSidebar = () => {
                               href={`/product/${item.attributes.slug}`}
                               className='hover:text-red-600 transition-colors'
                             >
-                              {item.name} {item.attributes?.dimension}{' '}
+                              {item.attributes.attribute}{' '}
+                              {item.name.replace('Façade', '')} {" "}
+                              {item.attributes?.dimension}{' '}
                               {item?.attributes?.color_name?.name}
                             </CLink>
                           </h6>
@@ -142,13 +144,16 @@ const ShoppingCartSidebar = () => {
                     <h5 className='font-bold'>{total.toFixed(2)} MAD</h5>
                   </div>
 
-                  <div className='space-y-3'>
-                    <button className='w-full py-3 px-6 text-base font-medium border border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-colors duration-300'>
+                  <div className='w-full'>
+                    <CLink
+                      href='checkout'
+                      className='py-3 inline-block text-center px-6 text-base font-semibold border border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-colors duration-300 w-full'
+                    >
                       Passer la commande
-                    </button>
-                    <button className='w-full py-3 px-6 text-base font-medium border border-red-600 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors duration-300'>
+                    </CLink>
+                    {/* <button className='w-full py-3 px-6 text-base font-medium border border-red-600 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors duration-300'>
                       Voir le panier
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               ) : (
