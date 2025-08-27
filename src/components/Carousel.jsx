@@ -117,10 +117,9 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
               key={`thumb-${image.image}-${index}`}
               style={{ width: '100px' }}
               onClick={() => {
-                // find index of this image inside filteredImages
                 const targetIndex = currentImages.findIndex(ci => ci.image === image.image);
                 if (targetIndex !== -1 && mainSwiper) {
-                  mainSwiper.slideToLoop(targetIndex); // go to that slide
+                  mainSwiper.slideToLoop(targetIndex); 
                 }
               }}
             >
@@ -129,9 +128,6 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
                 alt={`Thumbnail ${index + 1}`}
 
                 style={{
-                  // width: '100%',
-                  // height: '80px',
-                  // objectFit: 'cover',
                   borderRadius: '8px',
                   cursor: 'pointer',
                   border: currentImages.some(ci => ci.image === image.image)
