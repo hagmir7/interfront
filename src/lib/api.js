@@ -10,7 +10,7 @@ const getAuthToken = () => {
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://127.0.0.1:8000/api/'; // Use 127.0.0.1 instead of localhost
+    baseURL = 'https://interapi.facepy.com/api/'; // Use 127.0.0.1 instead of localhost
 } else {
     baseURL = 'https://interapi.facepy.com/api/';
 }

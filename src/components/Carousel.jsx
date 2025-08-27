@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, Thumbs } from 'swiper/modules';
 import 'swiper/css';
@@ -10,87 +10,145 @@ import 'swiper/css/thumbs';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, onImageChange, currentColor }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [mainSwiper, setMainSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentImages, setCurrentImages] = useState(images || []);
+
+  // Update images when color changes
+  useEffect(() => {
+    if (!images || images.length === 0) return;
+
+    let filteredImages = images;
+
+    if (currentColor) {
+      const colorImages = images.filter(img => img.color_id === currentColor);
+      filteredImages = colorImages.length > 0 ? colorImages : images;
+    }
+
+    setCurrentImages(filteredImages);
+    setActiveIndex(0);
+
+    if (mainSwiper?.slideTo) {
+      mainSwiper.slideTo(0);
+    }
+  }, [images, currentColor]);
 
   // Initialize PhotoSwipe
   useEffect(() => {
     const lightbox = new PhotoSwipeLightbox({
-      gallery: '#gallery', // Ensure this matches the container ID
+      gallery: '#gallery',
       children: 'a',
       pswpModule: () => import('photoswipe'),
     });
 
     lightbox.init();
-
-    return () => {
-      lightbox.destroy();
-    };
+    return () => lightbox.destroy();
   }, []);
 
   return (
     <div>
       {/* Main Carousel */}
-      <div id="gallery" style={{ userSelect: 'none' }}>
+      <div id="gallery" className='relative' style={{ userSelect: 'none' }}>
         <Swiper
           modules={[Navigation, Pagination, Autoplay, Thumbs]}
           spaceBetween={10}
           slidesPerView={1}
-          navigation
-          // autoplay={{ delay: 3000 }}
-          loop={true}
-          thumbs={{ swiper: thumbsSwiper }}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          loop={currentImages.length > 1}
+          onSwiper={setMainSwiper}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.realIndex);
+            if (onImageChange) {
+              onImageChange(swiper.realIndex);
+            }
+          }}
+          key={currentColor || 'all'}
         >
-          {images.map((image, index) => (
-            <SwiperSlide key={index}>
+          {currentImages.map((image, index) => (
+            <SwiperSlide key={`${image.image}-${index}`}>
               <a
-                href={image}
+                href={`https://intercocina.com/storage/public/${image.image}`}
                 data-pswp-width="1875"
                 data-pswp-height="2500"
-                key={'gallery' + '-' + index}
                 onClick={(e) => e.preventDefault()}
               >
                 <img
-                  src={`https://intercocina.com/storage/public/${image}`}
-                  className='lazy-image max-lg:mx-auto rounded-2xl m-auto max-h-[500px] mt-0 loaded'
+                  src={`https://intercocina.com/storage/public/${image.image}`}
+                  className="lazy-image max-lg:mx-auto rounded-2xl m-auto max-h-[500px] loaded transition-opacity duration-300"
                   alt={`Product ${index + 1}`}
+                  loading="lazy"
                 />
               </a>
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Custom Navigation */}
+        <div className="swiper-button-prev !text-blue-600 !bg-white !rounded-full !shadow-lg !w-10 !h-10 !mt-[-20px] after:!text-base"></div>
+        <div className="swiper-button-next !text-blue-600 !bg-white !rounded-full !shadow-lg !w-10 !h-10 !mt-[-20px] after:!text-base"></div>
       </div>
 
       {/* Thumbnails Carousel */}
-      <Swiper
-        modules={[Thumbs]}
-        spaceBetween={10}
-        slidesPerView={4}
-        onSwiper={setThumbsSwiper}
-        watchSlidesProgress
-        
-        style={{ padding: '10px' }}
-      >
-        {images.map((image, index) => (
-          <SwiperSlide key={index} style={{width: '100px'}}>
-            <img
-              src={`https://intercocina.com/storage/public/${image}`}
-              alt={`Thumbnail ${index + 1}`}
-              style={{
-                width: '100%',
-                height: 'auto',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                border: activeIndex === index ? '2px solid red' : '2px solid transparent',
-                boxSizing: 'border-box'
-
+      {images?.length > 1 && (
+        <Swiper
+          modules={[Thumbs]}
+          spaceBetween={10}
+          slidesPerView={Math.min(4, images.length)}
+          onSwiper={setThumbsSwiper}
+          watchSlidesProgress
+          style={{ padding: '10px' }}
+          breakpoints={{
+            320: { slidesPerView: 2 },
+            640: { slidesPerView: 3 },
+            768: { slidesPerView: 4 },
+          }}
+        >
+          {images.map((image, index) => (
+            <SwiperSlide
+              key={`thumb-${image.image}-${index}`}
+              style={{ width: '100px' }}
+              onClick={() => {
+                // find index of this image inside filteredImages
+                const targetIndex = currentImages.findIndex(ci => ci.image === image.image);
+                if (targetIndex !== -1 && mainSwiper) {
+                  mainSwiper.slideToLoop(targetIndex); // go to that slide
+                }
               }}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            >
+              <img
+                src={`https://intercocina.com/storage/public/${image.image}`}
+                alt={`Thumbnail ${index + 1}`}
+
+                style={{
+                  // width: '100%',
+                  // height: '80px',
+                  // objectFit: 'cover',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  border: currentImages.some(ci => ci.image === image.image)
+                    ? activeIndex === currentImages.findIndex(ci => ci.image === image.image)
+                      ? '3px solid #e4373a'
+                      : '2px solid #ccc'
+                    : '2px solid transparent',
+                  opacity: currentImages.some(ci => ci.image === image.image) ? 1 : 0.4,
+                  boxSizing: 'border-box',
+                  transition: 'all 0.3s ease'
+                }}
+                className="hover:opacity-80"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };
