@@ -27,10 +27,12 @@ const Product = ({ product, selectedColor, onColorChange }) => {
   const [color, setColor] = useState(null);
   const [height, setHeight] = useState(null);
   const [width, setWidth] = useState(null);
-  const [attribute, setAttribute] = useState('');
+  const [attribute, setAttribute] = useState(null);
   const [special, setSpecial] = useState(false);
 
   const [spinner, setSpinner] = useState(false);
+
+  const [isDirty, setIsDirty] = useState(false);
 
 
   const [price, setPrice] = useState();
@@ -65,36 +67,39 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       setDimensionMessage("Obligatoire de sélectionner la largeur");
       return false;
     }
+
+    if (dimensions.length > 0 && !width && !height) {
+      setDimensionMessage("Obligatoire de sélectionner la dimension");
+      return false;
+    }
+
+    if (attributes.length > 0 && !attribute) {
+      setDimensionMessage("Obligatoire de sélectionner la type de facad");
+      return false;
+    }
+
+
+    if (special && !width && !height) {
+      setDimensionMessage("Largeur et hauteur obligatoires");
+      return false;
+    }
+
     setDimensionMessage(null);
     return true
 
   }
 
 
+
   async function getData() {
-
-
     try {
       const response = await api.get(`products/dimensions/${product.slug}`)
       const data = response.data;
-
-
       setAttributes(data.attributes || []);
       setColors(data.colors || []);
       setDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
       setData(data);
       setPrice(product.price);
-
-
-
-      if (data.attributes?.length > 0) {
-        setAttribute(data.attributes[0]);
-      }
-
-      if (data.dimensions?.length > 0) {
-        setHeights([...new Set(data.dimensions.map(item => item?.height).filter(h => h != null))]);
-        setWidths([...new Set(data.dimensions.map(item => item?.width).filter(w => w != null))]);
-      }
 
       if (data.dimensions?.length === 0) {
         setCode(data.data?.code);
@@ -102,18 +107,10 @@ const Product = ({ product, selectedColor, onColorChange }) => {
 
     } catch (error) {
       console.error(error);
-
     }
   }
 
-
-
-
-  const [isDirty, setIsDirty] = useState(false);
-
   const findDimension = () => {
-    // console.log(attributes);
-
     const validDimensions = color
       ? dimensions.filter(
         (dim) =>
@@ -161,7 +158,6 @@ const Product = ({ product, selectedColor, onColorChange }) => {
     if (color) {
       setColorMessage(null);
     }
-
 
 
     // Helper function to update state with dimension details
@@ -238,7 +234,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
             : color
               ? colors.find((item) => item.id === color)?.name
               : null,
-        image: product.images[0],
+        image: product.images[0]?.image,
         height: height || null,
         width: width || null,
         dimension: height && width ? `${height} * ${width}` : null,
@@ -250,36 +246,29 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       },
     }
 
-
-
     addToCart(cart);
-
-
 
     setTimeout(() => {
       setSpinner(false);
     }, 1000)
-
-
   }
 
 
 
-  function changeAttribute(e) {
-    const selectedValue = parseInt(e.target.value, 10)
+   function changeAttribute(e) {
+        const selectedValue = parseInt(e.target.value, 10);
+   
 
-    if (isNaN(selectedValue)) return
 
-    const valide_dimensions = dimensions.filter(
-      (item) => item?.attribute_id === selectedValue
-    )
-    setAttribute(
-      attributes.find((attribute) => attribute.id === selectedValue)
-    )
+        // if (isNaN(selectedValue)) return;
+        
+        const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
+        
+        setAttribute(attributes.find((attribute) => attribute.id === selectedValue));
 
-    setHeights([...new Set(valide_dimensions.map((item) => item?.height))])
-    setWidths([...new Set(valide_dimensions.map((item) => item?.width))])
-  }
+        setHeights([...new Set(valide_dimensions.map(item => item?.height))]);
+        setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
+    }
 
 
   return (
@@ -359,6 +348,9 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               id='attribute'
               className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'
             >
+               <option>
+                    Select type
+                </option>
               {attributes.map((attribute, index) => {
                 return (
                   <option key={index} value={attribute.id}>
@@ -482,7 +474,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
             Hauteur {product.unit ? `(${product.unit})` : ''}
           </div>
           <ul className='flex flex-wrap w-full gap-3'>
-            {heights.sort().map((height) => (
+            {heights.sort((a, b) => a - b).map((height) => (
               <li
                 key={height}
                 onClick={() => {
@@ -519,7 +511,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
             Largeur {product.unit ? `(${product.unit})` : ''}
           </div>
           <ul className='flex flex-wrap w-full gap-3'>
-            {widths.sort().map((width) => (
+            {widths.sort((a, b) => a - b).map((width) => (
               <li
                 key={width}
                 onClick={() => {
