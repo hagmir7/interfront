@@ -105,6 +105,11 @@ const Product = ({ product, selectedColor, onColorChange }) => {
         setCode(data.data?.code);
       }
 
+      if (data.dimensions?.length > 0 && data.attributes?.length === 0) {
+        setHeights([...new Set(data.dimensions.map(item => item?.height).filter(h => h != null))]);
+        setWidths([...new Set(data.dimensions.map(item => item?.width).filter(w => w != null))]);
+      }
+
     } catch (error) {
       console.error(error);
     }
