@@ -260,20 +260,20 @@ const Product = ({ product, selectedColor, onColorChange }) => {
 
 
 
-   function changeAttribute(e) {
-        const selectedValue = parseInt(e.target.value, 10);
-   
+  function changeAttribute(e) {
+    const selectedValue = parseInt(e.target.value, 10);
 
 
-        // if (isNaN(selectedValue)) return;
-        
-        const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
-        
-        setAttribute(attributes.find((attribute) => attribute.id === selectedValue));
 
-        setHeights([...new Set(valide_dimensions.map(item => item?.height))]);
-        setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
-    }
+    // if (isNaN(selectedValue)) return;
+
+    const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
+
+    setAttribute(attributes.find((attribute) => attribute.id === selectedValue));
+
+    setHeights([...new Set(valide_dimensions.map(item => item?.height))]);
+    setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
+  }
 
 
   return (
@@ -353,9 +353,9 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               id='attribute'
               className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'
             >
-               <option>
-                    Select type
-                </option>
+              <option>
+                Select type
+              </option>
               {attributes.map((attribute, index) => {
                 return (
                   <option key={index} value={attribute.id}>
