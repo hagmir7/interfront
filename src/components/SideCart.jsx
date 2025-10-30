@@ -45,7 +45,7 @@ const ShoppingCartSidebar = () => {
           onClick={() => setIsCartOpen(false)}
         >
           <div
-            className='w-full max-w-md h-full bg-white shadow-2xl transform translate-x-0 flex flex-col'
+            className='w-full max-w-md h-full bg-white shadow-md transform translate-x-0 flex flex-col'
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -144,9 +144,9 @@ const ShoppingCartSidebar = () => {
                     <h5 className='font-bold'>{total.toFixed(2)} MAD</h5>
                   </div>
 
-                  <div className='w-full'>
+                  <div className='w-full' onClick={() => setIsCartOpen(false)}>
                     <CLink
-                      href='checkout'
+                      href='/checkout'
                       className='py-3 inline-block text-center px-6 text-base font-semibold border border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-colors duration-300 w-full'
                     >
                       Passer la commande

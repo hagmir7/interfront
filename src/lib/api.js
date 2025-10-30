@@ -10,9 +10,9 @@ const getAuthToken = () => {
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'https://interapi.facepy.com/api/'; // Use 127.0.0.1 instead of localhost
+    baseURL = 'http://localhost:8000/api/';
 } else {
-    baseURL = 'https://interapi.facepy.com/api/';
+    baseURL = 'http://localhost:8000/api/';
 }
 
 export const api = axios.create({

@@ -19,7 +19,7 @@ const LoginForm = () => {
     setIsLoading(true);
     
     try {
-      await login({ email, password, rememberMe });
+      await login({ login: email, password, rememberMe });
       router.push("/dashboard");
     } catch (err) {
       console.log(err);

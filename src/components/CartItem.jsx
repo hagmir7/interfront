@@ -13,7 +13,7 @@ export function CartItem({ name, dimensions, color, price, discount, href }) {
         <div className='flex items-center justify-between md:order-3 md:justify-end'>
           <div className='text-end md:order-4'>
             <p className='text-base font-bold text-gray-900 text-nowrap'>
-              1 &nbsp; x &nbsp; {price} | {discount}
+              1 &nbsp; x &nbsp; {price} MAD | {discount}
             </p>
           </div>
         </div>

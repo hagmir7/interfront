@@ -5,6 +5,7 @@ import { PaymentMethodSelect } from './PaymentMethodSelect'
 import { ShippingMethodSelect } from './ShippingMethodSelect'
 import { AddressSelection } from './AddressSelection'
 import { OrderSummary } from './OrderSummary'
+import { useCart } from '@/context/CartContext'
 
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('')
@@ -30,23 +31,35 @@ export default function CheckoutPage() {
     }, 2000)
   }
 
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  console.log(cart);
+  
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
+  
+    // Calculate total price
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
   return (
     <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
-      <h2 className='text-xl font-semibold text-gray-900 sm:text-2xl'>
+      <h2 className='text-xl mt-4 font-semibold text-gray-900 sm:text-2xl'>
         Votre panier
       </h2>
 
-      <div className='mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8'>
+      <div className='mt-2 md:gap-6 lg:flex lg:items-start xl:gap-8'>
         <div className='mx-auto w-full flex-none lg:max-w-1xl xl:max-w-3xl'>
           <div className='space-y-3'>
-            <CartItem
-              name='Caisson Bas Sous-Evier'
-              dimensions='700 * 1000mm'
-              color='Blanc'
-              price='227.376 MAD'
-              discount='-20%'
-              href='https://intercocina.com/product/caisson-bas-sous-evier'
-            />
+            {
+              cart.map(item => <CartItem
+                key={item.id}
+                name={item.name}
+                dimensions={item.attributes.dimension}
+                color={item.attributes?.color_name?.name}
+                price={item.price}
+                discount='-20%'
+                href={`/product/${item.attributes.slug}`}
+              />)
+            }
+           
           </div>
         </div>
 

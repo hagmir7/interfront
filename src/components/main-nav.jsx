@@ -18,9 +18,12 @@ import CartCounter from "./CartCounter";
 import CLink from "./CLink";
 import SideCart from "./SideCart";
 import Search from "./Search";
+import { User } from "@/services/auth";
 // import { getCurrentUser } from "@/services/auth";
 
 const MainNav = () => {
+
+  
     return (
       <nav className='bg-[#fef6f6] border-b-2 border-red-500'>
         {/* <TopNav /> */}

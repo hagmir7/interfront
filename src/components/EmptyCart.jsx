@@ -12,7 +12,7 @@ const EmptyCart = () => {
             <div className='absolute inset-0 bg-gradient-to-r from-purple-200 to-blue-200 rounded-full animate-pulse opacity-20 scale-110'></div>
 
             {/* Main cart container */}
-            <div className='relative bg-white rounded-full p-8 shadow-2xl border border-gray-100 hover:shadow-3xl transition-all duration-500 hover:scale-105'>
+            <div className='relative bg-white rounded-full p-8 shadow-xl border border-gray-100 hover:shadow-3xl transition-all duration-500 hover:scale-105'>
               <ShoppingCart
                 className='w-14 h-14 text-gray-400 mx-auto animate-bounce'
                 strokeWidth={1.5}
@@ -29,7 +29,7 @@ const EmptyCart = () => {
         <div className='text-center space-y-6'>
           {/* Main heading */}
           <div className='space-y-2'>
-            <h2 className='text-3xl font-bold text-gray-800 tracking-tight'>
+            <h2 className='text-xl font-bold text-gray-800 tracking-tight'>
               Votre panier est vide
             </h2>
             <p className='text-gray-500 text-lg leading-relaxed'>
