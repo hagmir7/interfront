@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const MainSection = () => {
@@ -89,11 +90,11 @@ const MainSection = () => {
                                     data-swiper-slide-index="3"
                                     style={{ width: "560px", marginRight: "30px" }}
                                 >
-                                    <img
+                                    <Image
                                         src="https://intercocina.com/storage/public/01JJ6WJ2KACAM10XKRPSGX4D9D.webp"
                                         className="rounded-3xl border-2"
-                                        width="550"
-                                        height="300"
+                                        width={550}
+                                        height={300}
                                         alt=""
                                     />
                                 </div>

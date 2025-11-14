@@ -84,11 +84,11 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
               >
                 <Image
                   src={`https://intercocina.com/storage/public/${image.image}`}
-                  className="lazy-image max-lg:mx-auto rounded-2xl m-auto max-h-[500px] loaded transition-opacity duration-300"
+                  className="lazy-image w-auto max-lg:mx-auto rounded-2xl m-auto max-h-[500px] loaded transition-opacity duration-300"
                   alt={`Product ${index + 1}`}
-                  loading="lazy"
-                  width={100}
-                  height={100}
+                  // loading="lazy"
+                  width={300}
+                  height={500}
                 />
               </a>
             </SwiperSlide>
@@ -130,13 +130,15 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
               <Image
                 src={`https://intercocina.com/storage/public/${image.image}`}
                 alt={`Thumbnail ${index + 1}`}
-                width={100}
-                height={100}
+                
+                width={400}
+                height={200}
 
                 style={{
                   // width: '100%',
                   height: '80px',
                   // objectFit: 'cover',
+                  width: 'auto',
                   borderRadius: '8px',
                   cursor: 'pointer',
                   border: currentImages.some(ci => ci.image === image.image)
@@ -148,7 +150,7 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
                   boxSizing: 'border-box',
                   transition: 'all 0.3s ease'
                 }}
-                className="hover:opacity-80"
+                className="hover:opacity-80 w-auto h-auto"
               />
             </SwiperSlide>
           ))}
