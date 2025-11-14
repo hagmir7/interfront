@@ -20,7 +20,7 @@ const LoginForm = () => {
     
     try {
       await login({ login: email, password, rememberMe });
-      router.push("/dashboard");
+      router.push("/profile");
     } catch (err) {
       console.log(err);
       

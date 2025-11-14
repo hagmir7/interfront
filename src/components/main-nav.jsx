@@ -19,10 +19,10 @@ import CLink from "./CLink";
 import SideCart from "./SideCart";
 import Search from "./Search";
 import { User } from "@/services/auth";
+import AuthActions from "./AuthActions";
 // import { getCurrentUser } from "@/services/auth";
 
 const MainNav = () => {
-
   
     return (
       <nav className='bg-[#fef6f6] border-b-2 border-red-500'>
@@ -169,28 +169,7 @@ const MainNav = () => {
               </svg>
             </CLink>
 
-            <CLink
-              href='/profile'
-              className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb]'
-            >
-              {/* {getCurrentUser() } */}
-              <svg
-                className='w-6 h-6'
-                xmlns='http://www.w3.org/2000/svg'
-                width='32'
-                height='32'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  fill='none'
-                  stroke='currentColor'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='1.5'
-                  d='M15 7.5a3 3 0 1 1-6 0a3 3 0 0 1 6 0m4.5 13c-.475-9.333-14.525-9.333-15 0'
-                ></path>
-              </svg>
-            </CLink>
+            <AuthActions />
 
             <SideCart />
             {/* Cart side */}

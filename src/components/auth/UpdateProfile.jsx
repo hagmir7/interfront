@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Loader2, User, Mail, Phone, MapPin, Building2, Image } from "lucide-react";
+import { Loader2, User, Mail, Phone, MapPin, Building2, Image, User2 } from "lucide-react";
 
 export default function UpdateProfile({user}) {
   const [loading, setLoading] = useState(false);
@@ -8,15 +8,7 @@ export default function UpdateProfile({user}) {
 
   const handleChange = (e) => {
     const { id, value, files } = e.target;
-    if (id === "image" && files?.[0]) {
-      setForm({
-        ...form,
-        image: files[0],
-        imagePreview: URL.createObjectURL(files[0]),
-      });
-    } else {
       setForm({ ...form, [id]: value });
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -24,7 +16,7 @@ export default function UpdateProfile({user}) {
     setLoading(true);
     try {
       console.log("Submitting form:", form);
-      await new Promise((r) => setTimeout(r, 1500)); // simulate API call
+      
       alert("Profil mis à jour avec succès !");
     } catch (err) {
       alert("Une erreur est survenue.");
@@ -35,6 +27,10 @@ export default function UpdateProfile({user}) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <User2 className="w-5 h-5 text-blue-600" />
+        Modifier le profil
+      </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* First Name */}
         <div>
@@ -139,7 +135,7 @@ export default function UpdateProfile({user}) {
           </label>
           <select
             id="shipping"
-            value={form.shipping}
+            value={form.shipping_id}
             onChange={handleChange}
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           >

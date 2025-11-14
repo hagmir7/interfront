@@ -21,7 +21,7 @@ export const forgotPassword = async (email) => {
 
 
 export const logout = async () => {
-    const access_token = localStorage.getItem("access_access_token");
+    const access_token = localStorage.getItem("access_token");
     if (!access_token) return;
 
     await axios.post(`logout`, {}, {

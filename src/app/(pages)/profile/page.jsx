@@ -7,9 +7,11 @@ import UserOrder from "@/components/UserOrder";
 import UserAddress from "@/components/UserAddress";
 import ChangePassword from "@/components/auth/ChangePassword";
 import UpdateProfile from "@/components/auth/UpdateProfile";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
     const [user, setUser] = useState(null);
+    const router = useRouter();
 
    
 
@@ -64,11 +66,6 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-
-
-
-                        
-
                       
                     </div>
                     {/* Tabs Navigation */}
@@ -113,7 +110,7 @@ export default function Profile() {
                             onClick={() => {
                                 localStorage.removeItem("access_token");
                                 localStorage.removeItem("user");
-                                window.location.reload();
+                                router.push('/user/login')
                             }}
                             className="mt-8 w-full px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all"
                         >

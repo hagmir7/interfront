@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAuthToken = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
-        return localStorage.getItem('authToken') || '';
+        return localStorage.getItem('access_token') || '';
     }
     return '';
 };
