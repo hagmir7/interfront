@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -28,10 +29,12 @@ const ProductCategories = async () => {
                                 href={`/category/${category.slug}`}
                                 className="relative flex h-60 overflow-hidden rounded-t-xl bg-gray-200"
                             >
-                                <img
+                                <Image
                                     className="sm:object-cover object-contain w-full h-full bg-gray-200"
                                     src={`https://intercocina.com/storage/public/${category.image}`}
                                     alt={category.name}
+                                    width={500}
+                                    height={500}
                                 />
                             </Link>
                             <div className="mt-4 pb-5 px-2">

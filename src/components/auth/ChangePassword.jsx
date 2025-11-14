@@ -1,34 +1,61 @@
 "use client";
+import { api } from "@/lib/api";
 import { Lock, Loader2 } from "lucide-react";
 import React, { useState } from "react";
+import Alert from "../ui/Alert";
 
 export default function ChangePassword() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     current_password: "",
-    new_password: "",
+    password: "",
     confirm_password: "",
   });
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
+    if (form.password !== form.confirm_password) {
+      setError("Le mot de passe ne correspond pas.");
+      setLoading(false);
+      return; // Add this!
+    }
+
     try {
-      // Replace with your API call (e.g., fetch or axios)
-      console.log("Submitting password change:", form);
-      await new Promise((r) => setTimeout(r, 1500)); // simulate request
-      alert("Mot de passe mis à jour avec succès !");
-    } catch (error) {
-      alert("Une erreur est survenue.");
+      const response = await api.put("users/update-password", form);
+      setForm({
+        current_password: "",
+        password: "",
+        confirm_password: "",
+      })
+      setError("")
+      setSuccess("Mot de passe modifié avec succès")
+
+    } catch (err) {
+      setError(err.response.data.message)
+      console.error(err);
     } finally {
       setLoading(false);
+
     }
+
+    setTimeout(() => {
+      setError('')
+      setSuccess('')
+    }, 5000)
+
+
   };
+
 
   return (
     <div>
@@ -37,8 +64,12 @@ export default function ChangePassword() {
         Mot de passe
       </h3>
 
+
+
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Current Password */}
+        <Alert message={error} type="error" />
+        <Alert message={success} type="success" />
+
         <div>
           <label
             htmlFor="current_password"
@@ -59,13 +90,13 @@ export default function ChangePassword() {
 
         {/* New Password */}
         <div>
-          <label htmlFor="new_password" className="block text-md text-gray-700">
+          <label htmlFor="password" className="block text-md text-gray-700">
             Nouveau mot de passe
           </label>
           <input
             type="password"
-            id="new_password"
-            value={form.new_password}
+            id="password"
+            value={form.password}
             onChange={handleChange}
             placeholder="Entrez un nouveau mot de passe"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
@@ -93,14 +124,14 @@ export default function ChangePassword() {
         </div>
 
         <div className="flex justify-center">
-            <button
-          type="submit"
-          disabled={loading}
-          className="mt-3 px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all"
-        >
-          {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-          Changer le mot de passe
-        </button>
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-3 px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all flex gap-2 items-center"
+          >
+            {loading && (<Loader2 className="w-4 h-4 animate-spin" />)}
+            <span>Changer le mot de passe</span>
+          </button>
         </div>
       </form>
     </div>

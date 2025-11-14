@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Maximize2, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import CLink from '@/components/CLink';
+import Image from 'next/image';
 
 const page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -72,9 +73,11 @@ const page = () => {
                                     key={image.id}
                                     className={`relative group cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02]`}
                                 >
-                                    <img
+                                    <Image
                                         src={image.src}
                                         alt={image.alt}
+                                        width={100}
+                                        height={100}
                                         className="w-full min-h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
@@ -104,9 +107,11 @@ const page = () => {
                         >
                             <X size={24} />
                         </button>
-                        <img
+                        <Image
                             src={selectedImage.src}
                             alt={selectedImage.alt}
+                            width={100}
+                            height={100}
                             className="w-full h-full object-contain rounded-2xl"
                         />
                     </div>

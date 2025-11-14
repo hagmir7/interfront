@@ -97,7 +97,7 @@ const Search = () => {
                   className='flex items-center gap-4 p-3 rounded-lg hover:bg-gray-100 transition'
                 >
                   <div className='relative w-16 h-16 flex-shrink-0'>
-                    <img
+                    <Image
                       src={imageUrl}
                       alt={item.name}
                       width={64}

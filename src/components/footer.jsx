@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -7,10 +8,11 @@ const Footer = () => {
       <section>
         <div className="grid grid-cols-2">
           <div className="space-y-4 xl:col-span-1 col-span-full">
-            <img
+            <Image
               className="w-[200px]"
-              width="200px"
-              height="200px"
+              width={200}
+              height={200}
+
               loading="lazy"
               src="https://intercocina.com/assets/imgs/intercocina-logo.png" // Make sure this path is correct
               alt="Intercocina Logo"
@@ -23,11 +25,11 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-stretch gap-10 my-10 md:flex-row md:justify-center md:py-24 md:my-0 xl:col-span-1 col-span-full">
             <div className="flex items-center gap-3 px-6 py-3 duration-500 shadow-lg bg-accent-red-500 rounded-3xl hover:scale-105 bg-red-500">
-              <img
+              <Image
                 className="w-[40px]"
                 loading="lazy"
-                width="40px"
-                height="40px"
+                width={100}
+                height={100}
                 src="https://intercocina.com/assets/icons/mail.png" // Make sure this path is correct
                 alt="Envoyez-nous un email"
                 title="Envoyez-nous un email"
@@ -38,10 +40,10 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex items-center gap-3 px-6 py-3 duration-500 bg-white shadow-lg rounded-3xl hover:scale-105">
-              <img
+              <Image
                 className="w-[40px]"
-                width="40px"
-                height="40px"
+                width={100}
+                height={100}
                 loading="lazy"
                 src="https://intercocina.com/assets/icons/phone.png" // Make sure this path is correct
                 title="Appelez-nous"
@@ -159,10 +161,10 @@ const Footer = () => {
                 target="__blank"
                 aria-label="Linkedin page link"
               >
-                <img
+                <Image
                   src="https://intercocina.com/assets/media-icons/linkedin.png"  // Make sure this path is correct
-                  width="30px"
-                  height="30px"
+                  width={30}
+                  height={30}
                   loading="lazy"
                   title="Linkedin page link"
                   alt="Linkedin page link"
@@ -175,10 +177,10 @@ const Footer = () => {
                 target="__blank"
                 aria-label="facebook page link"
               >
-                <img
+                <Image
                   src="https://intercocina.com/assets/media-icons/facebook.png" // Make sure this path is correct
-                  width="30px"
-                  height="30px"
+                  width={30}
+                  height={30}
                   loading="lazy"
                   title="Facebook page link"
                   alt="Facebook page link"
@@ -191,10 +193,10 @@ const Footer = () => {
                 target="__blank"
                 aria-label="Instagram page link"
               >
-                <img
+                <Image
                   src="https://intercocina.com/assets/media-icons/instagram.png" // Make sure this path is correct
-                  width="30px"
-                  height="30px"
+                  width={30}
+                  height={30}
                   loading="lazy"
                   title="Instagram page link"
                   alt="Instagram page link"

@@ -5,6 +5,7 @@ import { useCart } from '@/context/CartContext';
 import EmptyCart from './EmptyCart';
 import CLink from './CLink';
 import CartCounter from './CartCounter';
+import Image from 'next/image';
 
 const ShoppingCartSidebar = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
@@ -66,10 +67,12 @@ const ShoppingCartSidebar = () => {
                     <li key={item.id} className='py-3 border-b border-gray-200'>
                       <div className='flex items-center'>
                         <div className='w-20 h-20 rounded-3xl overflow-hidden mr-4 flex-shrink-0'>
-                          <img
+                          <Image
                             src={`https://intercocina.com/storage/public/${item.attributes.image}`}
                             alt={item.name}
                             className='w-full h-full object-cover'
+                            width={100}
+                            height={100}
                           />
                         </div>
 

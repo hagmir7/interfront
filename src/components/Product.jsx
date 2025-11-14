@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import DimentionLoading from './ui/dimention-loading';
 import { useCart } from '@/context/CartContext';
 import { api } from '@/lib/api';
+import Image from 'next/image';
 
 const Product = ({ product, selectedColor, onColorChange }) => {
 
@@ -434,8 +435,10 @@ const Product = ({ product, selectedColor, onColorChange }) => {
                   role='tooltip'
                 >
                   {color.name}
-                  <img
+                  <Image
                     className='w-full'
+                    width={100}
+                    height={100}
                     src={`https://intercocina.com/storage/public/${color.image}`}
                     alt={color.name}
                   />

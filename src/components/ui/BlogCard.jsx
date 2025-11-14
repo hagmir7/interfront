@@ -1,15 +1,16 @@
 import { format } from "date-fns";
+import Image from "next/image";
 import Link from "next/link";
 
 const BlogCard = ({ title, created_at, image, slug }) => {
     return (
       <div className='shadow-md bg-white rounded-xl px-4 sm:px-5 pt-5 pb-4'>
         <Link className='rounded-md overflow-hidden' href={`/blogs/${slug}`}>
-          <img
+          <Image
             alt={title}
             loading='lazy'
-            width='330'
-            height='210'
+            width={330}
+            height={210}
             decoding='async'
             className='rounded-md w-full h-[210px] object-cover'
             src={`https://intercocina.com/storage/public/${image}`}

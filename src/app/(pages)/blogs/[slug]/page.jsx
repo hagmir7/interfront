@@ -5,6 +5,7 @@ import { api } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
 import CLink from '@/components/CLink';
+import Image from 'next/image';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params
@@ -121,10 +122,12 @@ const BlogPage = async ({ params }) => {
               </div>
 
               <div className='mb-8'>
-                <img
+                <Image
                   src={`https://intercocina.com/storage/public/${article.image}`}
                   className='w-full rounded-2xl mb-3'
                   alt={article.title}
+                  width={100}
+                  height={100}
                 />
               </div>
               <article
@@ -196,10 +199,12 @@ const BlogPage = async ({ params }) => {
                     key={post.slug}
                     className='bg-white rounded-2xl overflow-hidden shadow-sm'
                   >
-                    <img
+                    <Image
                       src={`https://intercocina.com/storage/public/${post.image}`}
                       alt=''
                       className='w-full h-80 object-cover'
+                      width={100}
+                      height={100}
                     />
                     <div className='bg-gray-800 p-6 text-white'>
                       <div className='mb-3'>

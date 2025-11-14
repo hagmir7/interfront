@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Star, CheckCircle } from 'lucide-react'
 import CLink from './CLink';
+import Image from 'next/image';
 
 const CaissonSection = () => {
 
@@ -22,9 +23,11 @@ const CaissonSection = () => {
       <div className='flex flex-col lg:flex-row mb-7 bg-white shadow-sm rounded-xl p-4 md:p-6'>
         {/* Product Image */}
         <div className='w-full lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0 lg:mr-7'>
-          <img
+          <Image
             src='https://intercocina.com/storage/public/01JD542CJ2N520EJX56Y445YFF.png'
             alt='Caisson de cuisine Hydrofuge'
+            width={100}
+            height={100}
             className='w-full h-full'
           />
         </div>

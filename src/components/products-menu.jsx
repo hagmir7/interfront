@@ -14,6 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import Image from "next/image"
 
 const components = [
   {
@@ -71,7 +72,7 @@ export function ProductsMenu() {
                     href="/"
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
-                    <img src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
+                    <Image width={100} height={100} src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
                     <div className="mt-4 text-lg font-semibold leading-none">
                       Meuble Cuisine
                     </div>

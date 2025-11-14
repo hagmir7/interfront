@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, { useState } from 'react'
 
 const colors = [
@@ -125,7 +126,7 @@ const LacaColors = () => {
               role='tooltip'
             >
               {color.name}
-              <img className='w-full' alt={color.name} src={color.image} />
+              <Image width={100} height={100} className='w-full' alt={color.name} src={color.image} />
             </div>
           </li>
         ))}

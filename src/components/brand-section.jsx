@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const BrandsSection = () => {
@@ -59,12 +60,14 @@ const BrandsSection = () => {
               key={brand.id}
               className='px-4 py-6 space-y-2 text-lg duration-300 bg-white border shadow-lg text-slate-500 rounded-2xl hover:cursor-pointer hover:scale-105 transform transition-transform'
             >
-              <img
+              <Image
                 className='object-cover w-full'
                 src={brand.image}
                 alt={brand.name}
                 title={brand.name}
                 loading='lazy'
+                width={100}
+                height={100}
               />
               <h3 className='text-lg font-semibold text-black md:text-xl'>
                 {brand.name}

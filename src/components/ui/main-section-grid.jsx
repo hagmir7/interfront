@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import LacaColors from '../LacaColors';
 import CLink from '../CLink';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const MainSectionGrid = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -98,9 +99,11 @@ const MainSectionGrid = () => {
                     </div>
                   </div>
                   <div className='order-1 sm:order-2 mb-4 sm:mb-0'>
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
+                      width={200}
+                      height={200}
                       className='w-full h-auto object-contain max-h-[400px]'
                     />
                   </div>
@@ -134,9 +137,12 @@ const MainSectionGrid = () => {
                 </div>
               </div>
               <div className='ml-4 flex-shrink-0'>
-                <img
+                <Image
                   src={product.image}
                   alt={product.title}
+                  // fill
+                  width={200}
+                  height={200}
                   className='w-32 h-32 object-contain'
                 />
               </div>

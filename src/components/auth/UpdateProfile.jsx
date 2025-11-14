@@ -1,27 +1,49 @@
 "use client";
 import React, { useState } from "react";
-import { Loader2, User, Mail, Phone, MapPin, Building2, Image, User2 } from "lucide-react";
+import { Loader2, User2 } from "lucide-react";
+import { api } from "@/lib/api";
+import Alert from "../ui/Alert";
 
-export default function UpdateProfile({user}) {
+export default function UpdateProfile({ user }) {
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState(user);
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [form, setForm] = useState({
+    first_name: user.first_name ?? "",
+    last_name: user.last_name ?? "",
+    name: user.name ?? "",
+    email: user.email ?? "",
+    phone: user.phone ?? "",
+    address: user.address ?? "",
+    shipping_id: user.shipping_id ?? "",
+    gender: user.gender ?? "",
+  });
 
   const handleChange = (e) => {
-    const { id, value, files } = e.target;
-      setForm({ ...form, [id]: value });
+    const { id, value } = e.target;
+    setForm((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      console.log("Submitting form:", form);
-      
-      alert("Profil mis à jour avec succès !");
+      const response = await api.put("users/update", form);
+      localStorage.setItem('user', JSON.stringify(response.data));
+      setError("")
+      setSuccess("Profil modifié avec succès")
     } catch (err) {
-      alert("Une erreur est survenue.");
+      setError(err.response?.data?.message || "Une erreur s'est produite")
+      console.error(err);
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        setError("")  
+        setSuccess("")
+      }, 5000)
     }
   };
 
@@ -31,110 +53,108 @@ export default function UpdateProfile({user}) {
         <User2 className="w-5 h-5 text-blue-600" />
         Modifier le profil
       </h3>
+
+      <Alert message={error} type="error" />
+      <Alert message={success} type="success" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
         {/* First Name */}
         <div>
-          <label htmlFor="first_name" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="first_name" className="block text-md font-semibold text-gray-700">
             Prénom
           </label>
           <input
             type="text"
             id="first_name"
-            maxLength="100"
             value={form.first_name}
+            maxLength="100"
             onChange={handleChange}
-            placeholder="Entrez votre prénom"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Last Name */}
         <div>
-          <label htmlFor="last_name" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="last_name" className="block text-md font-semibold text-gray-700">
             Nom
           </label>
           <input
             type="text"
             id="last_name"
-            maxLength="100"
             value={form.last_name}
+            maxLength="100"
             onChange={handleChange}
-            placeholder="Entrez votre nom"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Company */}
         <div>
-          <label htmlFor="name" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="name" className="block text-md font-semibold text-gray-700">
             Entreprise
           </label>
           <input
             type="text"
             id="name"
-            maxLength="150"
             value={form.name}
+            maxLength="150"
             onChange={handleChange}
-            placeholder="Nom de l’entreprise"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="email" className="block text-md font-semibold text-gray-700">
             E-mail
           </label>
           <input
             type="email"
             id="email"
-            maxLength="155"
             value={form.email}
+            maxLength="155"
             onChange={handleChange}
-            placeholder="Entrez votre adresse e-mail"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Phone */}
         <div>
-          <label htmlFor="phone" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="phone" className="block text-md font-semibold text-gray-700">
             Téléphone
           </label>
           <input
             type="text"
             id="phone"
-            maxLength="50"
             value={form.phone}
+            maxLength="50"
             onChange={handleChange}
-            placeholder="Numéro de téléphone"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Address */}
         <div>
-          <label htmlFor="address" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="address" className="block text-md font-semibold text-gray-700">
             Adresse
           </label>
           <input
             type="text"
             id="address"
-            maxLength="155"
             value={form.address}
+            maxLength="155"
             onChange={handleChange}
-            placeholder="Adresse complète"
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
           />
         </div>
 
         {/* Shipping */}
         <div>
-          <label htmlFor="shipping" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="shipping_id" className="block text-md font-semibold text-gray-700">
             Expédition
           </label>
           <select
-            id="shipping"
+            id="shipping_id"
             value={form.shipping_id}
             onChange={handleChange}
             className="border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 p-2 rounded-xl w-full"
@@ -158,7 +178,7 @@ export default function UpdateProfile({user}) {
 
         {/* Gender */}
         <div>
-          <label htmlFor="gender" className="block text-dm font-semibold text-gray-700">
+          <label htmlFor="gender" className="block text-md font-semibold text-gray-700">
             Genre
           </label>
           <select
@@ -182,9 +202,9 @@ export default function UpdateProfile({user}) {
           disabled={loading}
           className="w-1/2 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200 flex items-center justify-center gap-2 disabled:opacity-70"
         >
-          {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-          Enregistrer
+          {loading ? "Saving..." : "Save"}
         </button>
+
       </div>
     </form>
   );

@@ -9,6 +9,7 @@ import 'swiper/css/thumbs';
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
+import Image from 'next/image';
 
 const Carousel = ({ images, onImageChange, currentColor }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -81,11 +82,13 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
                 data-pswp-height="2500"
                 onClick={(e) => e.preventDefault()}
               >
-                <img
+                <Image
                   src={`https://intercocina.com/storage/public/${image.image}`}
                   className="lazy-image max-lg:mx-auto rounded-2xl m-auto max-h-[500px] loaded transition-opacity duration-300"
                   alt={`Product ${index + 1}`}
                   loading="lazy"
+                  width={100}
+                  height={100}
                 />
               </a>
             </SwiperSlide>
@@ -124,9 +127,11 @@ const Carousel = ({ images, onImageChange, currentColor }) => {
                 }
               }}
             >
-              <img
+              <Image
                 src={`https://intercocina.com/storage/public/${image.image}`}
                 alt={`Thumbnail ${index + 1}`}
+                width={100}
+                height={100}
 
                 style={{
                   // width: '100%',

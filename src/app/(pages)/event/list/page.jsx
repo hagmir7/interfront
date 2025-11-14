@@ -1,5 +1,6 @@
 import CLink from '@/components/CLink'
 import { api } from '@/lib/api'
+import Image from 'next/image'
 import React from 'react'
 
 export const metadata = {
@@ -46,10 +47,12 @@ const EventsSection = async () => {
                   className='block relative h-64 overflow-hidden'
                 >
                   <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-                  <img
+                  <Image
                     src={event.image_url}
                     alt={event.title}
                     title={event.title}
+                    width={100}
+                    height={100}
                     loading='lazy'
                     className='w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110'
                   />

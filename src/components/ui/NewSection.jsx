@@ -5,6 +5,7 @@ import {
   ChevronRight,
   Play,
 } from 'lucide-react'
+import Image from 'next/image'
 
 const NewSection = () => {
   const [currentIndex, setCurrentIndex] = useState(1)
@@ -152,9 +153,11 @@ const NewSection = () => {
             >
               <div className='relative mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-purple-900 via-red-900 to-indigo-900 group hover:shadow-3xl transition-all duration-700 hover:-translate-y-2'>
                 <div className='relative overflow-hidden aspect-[4/3]'>
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
+                    width={100}
+                    height={100}
                     className='w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:rotate-1'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent'></div>

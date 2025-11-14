@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/lib/api";
-import { MapPin } from "lucide-react";
+import { MapPin, PlusCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 function UserAddress() {
@@ -26,10 +26,16 @@ function UserAddress() {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+     <div className="flex justify-between items-center mb-4">
+       <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
         <MapPin className="w-5 h-5 text-blue-600" />
         Mes Adresses
       </h3>
+      <button className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all flex gap-2 items-center">
+        <PlusCircle size={15} />
+        <span>Nouveau</span>
+      </button>
+     </div>
 
       {loading ? (
         <div className="text-center text-gray-500 py-10">Chargement...</div>
@@ -40,7 +46,7 @@ function UserAddress() {
       ) : (
         <div className="overflow-x-auto rounded-xl border border-gray-100">
           <table className="min-w-full text-sm text-gray-700">
-            <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
+            <thead className="bg-gray-100 text-gray-600 uppercase text-xs whitespace-nowrap">
               <tr>
                 <th className="py-3 px-4 text-left">Nom du contact</th>
                 <th className="py-3 px-4 text-left">Adresse</th>

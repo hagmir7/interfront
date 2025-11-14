@@ -1,17 +1,20 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { format } from "date-fns";
+import Image from "next/image";
 
 
 const ReviewCard = ({ review }) => (
   
   <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
     <div className="flex items-center mb-4">
-      <img
+      <Image
         src="http://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
         alt={`${review.full_name}`}
         className="w-12 h-12 rounded-full object-cover border"
         loading="lazy"
+        width={400}
+        height={400}
       />
       <div className="ml-4">
         <h3 className="font-semibold text-lg text-gray-800">{review.full_name}</h3>

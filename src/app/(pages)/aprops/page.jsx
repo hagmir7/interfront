@@ -1,4 +1,5 @@
 import BrandsSection from '@/components/brand-section';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -80,11 +81,11 @@ const AboutPage = () => {
                 {section.reversed ? (
                   <>
                     <div className="mt-12 md:mt-0 sm:order-first">
-                      <img 
+                      <Image 
                         src={section.image} 
                         alt={`Intercocina ${section.title}`} 
-                        width="auto" 
-                        height="auto" 
+                        width={100}
+                        height={100} 
                         className="object-cover rounded-lg shadow-sm border bg-gray-100" 
                       />
                     </div>
@@ -100,11 +101,11 @@ const AboutPage = () => {
                       <p className="mt-4 text-gray-600 text-lg">{section.description}</p>
                     </div>
                     <div className="sm:mt-12 mt-0 order-first sm:order-last">
-                      <img 
+                      <Image 
                         src={section.image} 
                         alt={`Intercocina ${section.title}`} 
-                        width="auto" 
-                        height="auto" 
+                        width={100}
+                        height={100} 
                         className="object-cover rounded-lg" 
                       />
                     </div>

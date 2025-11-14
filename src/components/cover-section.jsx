@@ -3,13 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import '@splidejs/splide/css';
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductCard = ({ product }) => {
   return (
     <section className="p-5 py-6 bg-white rounded-lg text-center shadow-sm transform duration-500 hover:-translate-y-2 cursor-pointer w-56 snap-center shrink-0 min-w-64">
       <Link href={`/product/${product.url}`} tabIndex={-1}>
         <div className="flex justify-center">
-          <img src={product.imageUrl} className="w-48 object-contain" alt={product.title} />
+          <Image width={100} height={100} src={product.imageUrl} className="w-48 object-contain" alt={product.title} />
         </div>
         <div className="space-x-1 flex justify-center mt-10">
           {[...Array(4)].map((_, i) => (

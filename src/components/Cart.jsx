@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { Trash } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -61,9 +62,11 @@ export default function Cart() {
             <div className="flex items-center gap-3 w-full sm:w-auto">
               {item.attributes.image && (
                 <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
-                  <img 
+                  <Image 
                     src={`https://intercocina.com/storage/public/${item.attributes.image}`} 
                     alt={item.name}
+                    width={100}
+                    height={100}
                     className="object-cover rounded w-full h-full"
                   />
                 </div>

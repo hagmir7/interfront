@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Star, Eye, ShoppingCart, Heart } from 'lucide-react';
+import Image from 'next/image';
 
 const ProductCard = ({ 
   name = "True Wireless Noise Cancelling Headphone", 
@@ -24,11 +25,11 @@ const ProductCard = ({
     <div className="group relative transition-all duration-300 shadow-sm hover:shadow-lg rounded-lg p-4 bg-white">
       <div className="relative overflow-hidden rounded-lg bg-gray-50 mb-4">
         <Link href={`/product/${slug}`} className="block">
-          <img
+          <Image
             alt={name}
             loading="lazy"
-            width="250"
-            height="250"
+            width={250}
+            height={250}
             src={`https://intercocina.com/storage/public/${images[0]?.image}`}
             className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
           />
