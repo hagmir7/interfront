@@ -137,10 +137,10 @@ const MainNav = () => {
           {/* End Mobile Menu */}
 
           <CLink href='/' className='flex items-center'>
-            <h1 className='text-xl inter md:text-2xl'>
+            <div className='text-xl inter md:text-2xl'>
               <span className='text-[#b6b6b7]'>INTER</span>
               <span className='text-[#ec2228]'>COCINA</span>
-            </h1>
+            </div>
             {/* <Image src="https://intercocina.com/assets/imgs/intercocina-logo.png" width={100} height={100} alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
           </CLink>
 
@@ -210,9 +210,9 @@ const MainNav = () => {
                 style={{ display: 'none' }}
               >
                 <div className='flex items-center justify-between p-4 border-b'>
-                  <h2 id='cart-title' className='text-lg'>
+                  <div id='cart-title' className='text-lg'>
                     Panier
-                  </h2>
+                  </div>
                   <button
                     className='text-gray-500 hover:text-gray-700'
                     aria-label='Close cart'

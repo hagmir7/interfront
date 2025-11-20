@@ -76,8 +76,8 @@ const page = () => {
                                     <Image
                                         src={image.src}
                                         alt={image.alt}
-                                        width={100}
-                                        height={100}
+                                        width={700}
+                                        height={700}
                                         className="w-full min-h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />

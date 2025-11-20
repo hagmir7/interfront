@@ -13,9 +13,9 @@ const BlogSection = async () => {
   return (
     <section className="py-12 overflow-x-hidden">
        <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">
-          <h1 className="pt-10 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
+          <h2 className="pt-10 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
               Nos Articles récents
-          </h1>
+          </h2>
           <p className="text-center text-slate-500 md:text-lg animate__animated animate__fadeInUp">
               Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
           </p>

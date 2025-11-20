@@ -50,9 +50,9 @@ const BlogPage = async ({ params }) => {
 
 
   // Related Artilces
-  const lastRespons = await api.get(`posts/last`)
+  const lastRespons = await api.get(`posts`)
 
-  const relatedPosts = await lastRespons.data
+  const relatedPosts = await lastRespons.data.data
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -63,7 +63,7 @@ const BlogPage = async ({ params }) => {
             <aside className='sticky top-8 space-y-8'>
               {/* Recherche */}
               <div className='bg-white rounded-2xl p-6 shadow-sm'>
-                <h5 className='text-lg font-semibold mb-4'>Recherche</h5>
+                <div className='text-lg font-semibold mb-4'>Recherche</div>
                 <div className='relative'>
                   <input
                     type='text'
@@ -78,7 +78,7 @@ const BlogPage = async ({ params }) => {
 
               {/* Catégories */}
               <div className='bg-white rounded-2xl p-6 shadow-sm'>
-                <h5 className='text-lg font-semibold mb-4'>Catégorie</h5>
+                <div className='text-lg font-semibold mb-4'>Catégorie</div>
                 <ul className='space-y-2'>
                   {categories.map((category, index) => (
                     <li
@@ -104,7 +104,7 @@ const BlogPage = async ({ params }) => {
           {/* Contenu principal */}
           <div className='lg:w-2/3 lg:order-2 order-1'>
             <article className='bg-white rounded-2xl p-2 md:p-6 shadow-sm mb-8'>
-              <h1 className='text-xl md:text-4xl font-bold mb-4 leading-tight'>
+              <h1 className='text-xl md:text-3xl font-bold mb-4 leading-tight'>
                 {article.title}
               </h1>
 
@@ -124,10 +124,10 @@ const BlogPage = async ({ params }) => {
               <div className='mb-8'>
                 <Image
                   src={`https://intercocina.com/storage/public/${article.image}`}
-                  className='w-full rounded-2xl mb-3'
+                  className='w-full rounded-2xl mb-3 '
                   alt={article.title}
-                  width={100}
-                  height={100}
+                  width={1000}
+                  height={1000}
                 />
               </div>
               <article
@@ -203,21 +203,21 @@ const BlogPage = async ({ params }) => {
                       src={`https://intercocina.com/storage/public/${post.image}`}
                       alt=''
                       className='w-full h-80 object-cover'
-                      width={100}
-                      height={100}
+                      width={500}
+                      height={500}
                     />
-                    <div className='bg-gray-800 p-6 text-white'>
+                    <div className='bg-red-500 p-3 text-white'>
                       <div className='mb-3'>
                         <span className='bg-white text-gray-800 px-3 py-1 rounded-lg text-xs'>
                           {format(post.created_at, 'MMM dd, yyyy')}
                         </span>
                       </div>
-                      <h4 className='text-lg font-semibold mb-4'>
+                      <h4 className='text-lg font-semibold mb-4 h-12'>
                         {post.title}
                       </h4>
                       <CLink
                         href={`/blogs/${post.slug}`}
-                        className='flex items-center gap-2 text-sm hover:text-blue-300'
+                        className='flex items-center gap-2 text-md hover:text-gray-50 justify-end'
                       >
                         Lire Plus <ChevronRight size={16} />
                       </CLink>

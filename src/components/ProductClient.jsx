@@ -30,7 +30,7 @@ const ProductClient = ({ product }) => {
         <div className="pro-detail w-full md:max-lg:max-w-[608px] lg:pl-8 xl:pl-12 max-lg:mx-auto max-lg:mt-6 px-3">
           <div className="sm:flex flex-initial items-center justify-between gap-6 mb-2">
             <div className="text-left">
-              <h1 className="font-manrope font-bold sm:text-3xl text-2xl leading-10 text-gray-900 mb-2">
+              <h1 className="font-manrope font-bold  text-xl  sm:text-2xl leading-10 text-gray-900 mb-2">
                 {product.name}
               </h1>
               <h2 className="font-normal text-base text-gray-500 text-left">

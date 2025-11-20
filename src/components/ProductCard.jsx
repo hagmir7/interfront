@@ -28,8 +28,8 @@ const ProductCard = ({
           <Image
             alt={name}
             loading="lazy"
-            width={250}
-            height={250}
+            width={600}
+            height={600}
             src={`https://intercocina.com/storage/public/${images[0]?.image}`}
             className="w-full h-64 object-contain transition-transform duration-300 group-hover:scale-105"
           />

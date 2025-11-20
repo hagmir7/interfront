@@ -115,8 +115,8 @@ const CaissonSectionLeft = () => {
           <Image
             src='https://intercocina.com/storage/public/01J96VEEPMQRW9VHPMR9NQJ8VB.png'
             alt='Caisson de Cuisine Hydrofuge'
-            width={100}
-            height={100}
+            width={700}
+            height={700}
             className='w-full h-full'
           />
         </div>

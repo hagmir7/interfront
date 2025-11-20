@@ -6,7 +6,7 @@ import React from 'react'
 export const metadata = {
   title: 'Événements et exposition - Intercocina',
   description:
-    'Intercocina est une entreprise spécialisée dans la fabrication de meubles de cuisine, meubles TV, placards et armoires, meubles de salle de bain, ainsi que de parquets, au Maroc.',
+    'Intercocina, la fabrication de meubles de cuisine, meubles TV, placards et armoires, meubles de salle de bain, ainsi que de parquets, au Maroc.',
 }
 
 const EventsSection = async () => {
@@ -48,7 +48,7 @@ const EventsSection = async () => {
                 >
                   <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                   <Image
-                    src={event.image_url}
+                    src={event.image_url || '/page/'}
                     alt={event.title}
                     title={event.title}
                     width={100}
