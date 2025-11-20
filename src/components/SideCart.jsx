@@ -64,7 +64,7 @@ const ShoppingCartSidebar = () => {
               <div className='flex-grow'>
                 <ul className='space-y-4'>
                   {cart.map((item) => (
-                    <li key={item.id} className='py-3 border-b border-gray-200'>
+                    <li key={item.id} className='py-2 border-b border-gray-200'>
                       <div className='flex items-center'>
                         <div className='w-20 h-20 rounded-3xl overflow-hidden mr-4 flex-shrink-0'>
                           <Image

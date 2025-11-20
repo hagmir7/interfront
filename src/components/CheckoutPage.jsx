@@ -47,20 +47,27 @@ export default function CheckoutPage() {
 
       <div className='mt-2 md:gap-6 lg:flex lg:items-start xl:gap-8'>
         <div className='mx-auto w-full flex-none lg:max-w-1xl xl:max-w-3xl'>
-          <div className='space-y-3'>
-            {
-              cart.map(item => <CartItem
+        <div className="space-y-3">
+          {cart.map((item) => {
+            const attribute = item?.attributes?.attribute ?? "";
+            let name = `${attribute} ${item?.name ?? ""}`.trim();
+            name = name.replace(/façade|facade/gi, "").trim();
+
+            return (
+              <CartItem
                 key={item.id}
-                name={item.name}
-                dimensions={item.attributes.dimension}
-                color={item.attributes?.color_name?.name}
+                name={name}
+                dimensions={item?.attributes?.dimension ?? ""}
+                color={item?.attributes?.color_name ?? ""}
                 price={item.price}
-                discount='-20%'
-                href={`/product/${item.attributes.slug}`}
-              />)
-            }
-           
-          </div>
+                discount="-20%"
+                href={`/product/${item?.attributes?.slug ?? ""}`}
+              />
+            );
+          })}
+        </div>
+
+
         </div>
 
         <div className='mx-auto mt-6 max-w-5xl flex-1 space-y-6 lg:mt-0 lg:w-full'>

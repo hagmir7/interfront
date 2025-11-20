@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { AddressForm } from './AddressForm'
+import { PlusCircle } from 'lucide-react'
 
 export function AddressSelection({
   selectedAddress,
@@ -16,7 +17,7 @@ export function AddressSelection({
 
   return (
     <div className='space-y-4 mt-5 rounded-lg border border-gray-200 bg-white p-4 shadow-sm'>
-      <p className='text-xl font-semibold text-gray-900'>
+      <p className='text-md font-semibold text-gray-900 mb-1'>
         Sélectionnez ou ajoutez une adresse
       </p>
 
@@ -64,32 +65,19 @@ export function AddressSelection({
 
         <li>
           <div className='flex items-center justify-center w-full'>
-            <button
-              type='button'
-              onClick={() => setShowModal(true)}
-              className='text-md flex flex-col mt-3 items-center justify-center w-full py-3 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 font-bold'
-            >
-              <div className='flex gap-3'>
-                <svg
-                  className='text-gray-600'
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                >
-                  <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-                  <path d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0' />
-                  <path d='M9 12h6' />
-                  <path d='M12 9v6' />
-                </svg>
-                <span className='text-gray-600'>Ajouter une adresse</span>
-              </div>
-            </button>
+           <button 
+           onClick={() => setShowModal(true)}
+            type="button"
+            className="group text-md cursor-pointer flex flex-col items-center justify-center w-full py-3 rounded-xl border-2 border-red-300 border-dashed bg-red-50 hover:bg-red-100 transition-all"
+        >
+            <div className="flex items-center gap-3">
+              <PlusCircle size={26} className="text-red-600 group-hover:text-red-700 transition-colors"  />
+                <span className="text-red-600 font-semibold group-hover:text-red-700 transition-colors">
+                    Ajouter une adresse
+                </span>
+            </div>
+        </button>
+
           </div>
         </li>
       </ul>

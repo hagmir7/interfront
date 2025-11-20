@@ -7,7 +7,7 @@ export function CartItem({ name, dimensions, color, price, discount, href }) {
             href={href}
             className='text-base font-bold text-gray-900 hover:underline'
           >
-            {name} - {dimensions} ({color})
+            {name} - {dimensions} {color && `(${color})`}
           </a>
         </div>
         <div className='flex items-center justify-between md:order-3 md:justify-end'>

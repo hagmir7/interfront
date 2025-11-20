@@ -3,10 +3,18 @@
 import { api } from "@/lib/api";
 import { MapPin, PlusCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { AddressForm } from "./AddressForm";
 
 function UserAddress() {
   const [addresses, setAddresses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleAddAddress = (addressData) => {
+    console.log("New address:", addressData);
+    setShowModal(false);
+    getData(); // recharge la liste après ajout
+  };
 
   const getData = async () => {
     setLoading(true);
@@ -26,19 +34,33 @@ function UserAddress() {
 
   return (
     <div>
-     <div className="flex justify-between items-center mb-4">
-       <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-        <MapPin className="w-5 h-5 text-blue-600" />
-        Mes Adresses
-      </h3>
-      <button className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all flex gap-2 items-center">
-        <PlusCircle size={15} />
-        <span>Nouveau</span>
-      </button>
-     </div>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+          <MapPin className="w-5 h-5 text-blue-600" />
+          Mes Adresses
+        </h3>
+
+        <button
+          onClick={() => setShowModal(true)}
+          className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all flex gap-2 items-center"
+        >
+          <PlusCircle size={15} />
+          <span>Nouveau</span>
+        </button>
+      </div>
+
+      {/* Modal d'ajout d'adresse */}
+      {showModal && (
+        <AddressForm
+          onSubmit={handleAddAddress}
+          onClose={() => setShowModal(false)}
+        />
+      )}
 
       {loading ? (
-        <div className="text-center text-gray-500 py-10">Chargement...</div>
+        <div className="text-center text-gray-500 py-10">
+          Chargement...
+        </div>
       ) : addresses.length === 0 ? (
         <div className="text-center text-gray-500 py-10">
           Aucune adresse trouvée.
@@ -57,10 +79,7 @@ function UserAddress() {
             </thead>
             <tbody>
               {addresses.map((addr) => (
-                <tr
-                  key={addr.id}
-                  className="border-t hover:bg-gray-50 transition"
-                >
+                <tr key={addr.id} className="border-t hover:bg-gray-50 transition">
                   <td className="py-3 px-4">
                     {addr.first_name} {addr.last_name}
                   </td>

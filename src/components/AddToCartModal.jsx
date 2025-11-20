@@ -14,8 +14,10 @@ import { Button } from "@/components/ui/button"
 import { api } from "@/lib/api"
 import Alert from "./ui/Alert"
 import AddToCartSketelon from "./ui/AddToCartSketelon"
+import { useCart } from "@/context/CartContext"
+import { AnimatedAlert } from "./ui/AnimatedAlert"
 
-export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
+export function AddToCartModal({ open, onOpenChange, product }) {
 
     const [selectedColor, setSelectedColor] = useState("")
     const [quantity, setQuantity] = useState(1);
@@ -33,13 +35,16 @@ export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
     const [isLoading, setIsLoading] = useState(true);
     const [dimension, setDimension] = useState('');
     const [error, setError] = useState('')
+    const [showAlert, setShowAlert] = useState(false);
+
+     const { addToCart } = useCart();
 
 
     const handleAddToCart = () => {
         if(!validation()){
             return;
         };
-        onAddToCart({
+        addToCart({
             quantity,
             id: `${product.name}-${product.id}-${selectedWidth || ''}-${selectedHieght || ''}-${selectedColor || ''}`,
             name: product.name,
@@ -58,6 +63,7 @@ export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
                 special: false
             }
         })
+        setShowAlert(true)
         
         // Reset state
         setSelectedWidth("")
@@ -65,12 +71,17 @@ export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
         setSelectedColor("")
         setQuantity(1)
         setDimension('')
-        // onOpenChange(false)
     }
 
 
     async function getData() {
         try {
+            setWidths([]);
+            setHeights([]);
+            setSelectedAttribute("")
+            setSelectedColor("");
+            setSelectedHieght("");
+            setSelectedWidth("");
             setIsLoading(true);
             const response = await api.get(`products/dimensions/${product.slug}`)
             const data = response.data;
@@ -98,6 +109,7 @@ export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
 
     useEffect(() => {
         if (open) {
+            
             getData();
         }
     }, [product, open]);
@@ -195,6 +207,16 @@ export function AddToCartModal({ open, onOpenChange, product, onAddToCart }) {
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <Alert message={error} type="error" />
+                 {showAlert && (
+                    <AnimatedAlert
+                    type="success"
+                    title="Operation Successful"
+                    // message="Your data has been saved successfully!"
+                    dismissible={true}
+                    autoClose={3000} // auto-close after 3 seconds
+                    onDismiss={() => setShowAlert(false)}
+                    />
+                )}
 
                 {isLoading ? (
                   <AddToCartSketelon />

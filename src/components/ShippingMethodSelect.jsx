@@ -17,18 +17,15 @@ export function ShippingMethodSelect({ value, onChange }) {
 
   return (
     <div>
-      <label
-        htmlFor='shipping'
-        className='block text-md font-semibold text-gray-700'
-      >
+      <p className='text-md font-semibold text-gray-900 mb-1'>
         Expédition
-      </label>
+      </p>
       <select
         id='shipping'
         value={value}
         onChange={(e) => onChange(e.target.value)}
         name='shipping'
-        className='w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600'
+        className='w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600'
       >
         <option value=''>Sélectionnez le mode d'expédition</option>
         {shippingMethods.map((method, index) => (
