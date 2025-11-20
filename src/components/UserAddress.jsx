@@ -13,7 +13,7 @@ function UserAddress() {
   const handleAddAddress = (addressData) => {
     console.log("New address:", addressData);
     setShowModal(false);
-    getData(); // recharge la liste après ajout
+    getData();
   };
 
   const getData = async () => {

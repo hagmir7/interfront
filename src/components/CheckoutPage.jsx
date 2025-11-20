@@ -1,40 +1,57 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CartItem } from './CartItem'
 import { PaymentMethodSelect } from './PaymentMethodSelect'
 import { ShippingMethodSelect } from './ShippingMethodSelect'
 import { AddressSelection } from './AddressSelection'
 import { OrderSummary } from './OrderSummary'
 import { useCart } from '@/context/CartContext'
+import { api } from '@/lib/api'
 
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('')
   const [shippingMethod, setShippingMethod] = useState('2')
   const [selectedAddress, setSelectedAddress] = useState('1')
   const [isLoading, setIsLoading] = useState(false)
+  const [addresses, setAddresses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
-  const addresses = [
-    {
-      id: '1',
-      name: 'Hassan Agmir',
-      phone: '0601462997',
-      address: 'Ait frigou guigou, Fès',
-    },
-  ]
+   const getData = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get("address");
+        setAddresses(response.data || []);
+        console.log(response.data);
+        
+      } catch (error) {
+        console.error("Erreur lors du chargement des adresses :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   const handleSubmitOrder = () => {
     setIsLoading(true)
-    // Simulate API call
+    console.log({
+      selectedAddress,
+      paymentMethod,
+      shippingMethod,
+      cart
+    });
+    
     setTimeout(() => {
       setIsLoading(false)
       console.log('Order submitted')
     }, 2000)
   }
 
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
-  console.log(cart);
-  
-    const [isCheckingOut, setIsCheckingOut] = useState(false);
+  useEffect(()=>{
+    getData();
+  }, [])
+
+
   
     // Calculate total price
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
