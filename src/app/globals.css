@@ -272,3 +272,22 @@ body {
 .pswp__img{
   width: auto!important;
 }
+
+
+
+@keyframes shakeXFastOnce {
+    0% { transform: translateX(0); }
+    2% { transform: translateX(-10px); }
+    4% { transform: translateX(10px); }
+    6% { transform: translateX(-8px); }
+    8% { transform: translateX(8px); }
+    10% { transform: translateX(0); }
+
+    /* 10%–100% → no movement (stay still) */
+    100% { transform: translateX(0); }
+}
+
+/* --> Duration = 15s (0.4s shaking + 14.6s pause) */
+.animate-shake {
+    animation: shakeXFastOnce 7s ease-in-out infinite;
+}

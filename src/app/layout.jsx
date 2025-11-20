@@ -1,11 +1,10 @@
 
 import "./globals.css";
-import "@fontsource/figtree"; // Defaults to weight 400
-import "@fontsource/figtree/400.css"; // Specify weight
-import "@fontsource/figtree/400-italic.css"; // Specify weight and style
+import "@fontsource/figtree";
+import "@fontsource/figtree/400.css";
+import "@fontsource/figtree/400-italic.css";
 import MainNav from "@/components/main-nav";
 import Footer from "@/components/footer";
-// import LoadingBar from "@/components/ui/LoadingBar";;
 import { CartProvider } from "@/context/CartContext";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 

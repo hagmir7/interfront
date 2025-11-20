@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import Image from "next/image"
+import CLink from "./CLink"
 
 const components = [
   {
@@ -67,9 +68,8 @@ export function ProductsMenu() {
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
-                  <a
+                  <CLink href='/groups/meuble-de-cuisine'
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
                     <Image width={100} height={100} src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
@@ -79,16 +79,16 @@ export function ProductsMenu() {
                     <p className="text-sm leading-tight text-muted-foreground">
                       Armoires de cuisine, façades, accessoires et plans de travail
                     </p>
-                  </a>
+                  </CLink>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="#" title="Revêtement et Sole">
+              <ListItem href="/groups/revetement-et-sole" title="Revêtement et Sole">
                 Parquet, Plinthe et Accessoires
               </ListItem>
-              <ListItem href="#" title="Placards et Dressings">
+              <ListItem href="/placards" title="Placards et Dressings">
                 Placards et Dressing sur mesure
               </ListItem>
-              <ListItem href="#" title="Salles de bain">
+              <ListItem href="" title="Salles de bain">
                 Meubles et Accessoires de Salle de bain
               </ListItem>
             </ul>

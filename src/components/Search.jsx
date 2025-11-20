@@ -86,7 +86,7 @@ const Search = () => {
       {/* Floating Results Grid */}
       {articles.length > 0 && (
         <div className='absolute left-0 w-full mt-2 bg-white border rounded-xl shadow-lg p-4 max-h-[400px] overflow-y-auto z-50'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {articles.map((item) => {
               const imageUrl = item.images?.[0]?.image ? `https://intercocina.com/storage/${item.images[0].image}` : '/placeholder.jpg' // fallback image
               return (
