@@ -6,10 +6,10 @@ const ContactPage = () => {
 
 
   return (
-    <section className="px-4 py-10 md:py-32 md:mx-auto relative overflow-hidden bg-red-500">
-      <div className="relative z-10 grid gap-16 px-4 md:grid-cols-2 md:max-w-7xl md:mx-auto">
+    <section className="px-3 py-5 md:py-32 md:mx-auto relative overflow-hidden bg-red-500">
+      <div className="relative z-10 grid gap-6 md:gap-16 md:grid-cols-2 md:max-w-7xl md:mx-auto">
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold text-left text-white md:text-4xl animate__animated animate__fadeInRight">
+          <h1 className="text-4xl font-bold text-left text-white md:text-4xl animate__animated animate__fadeInRight mb-2 md:mb-4">
             Contactez-nous
           </h1>
           <h2 className="text-xl font-bold text-left text-white md:text-2xl animate__animated animate__fadeInRight mb-0">

@@ -13,7 +13,7 @@ const ProductPage = async ({ params }) => {
     const { data: product } = await response.json();
 
     return (
-      <section className="py-6 mt-6">
+      <section className="py-2 md:py-6 mt-2 md:mt-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ProductClient product={product} />
 

@@ -18,6 +18,9 @@ export default function Profile() {
     useEffect(() => {
         (async () => {
             const data = await User();
+            if(!data){
+                router.push('/user/login');
+            }
             setUser(data);
         })();
     }, []);
@@ -31,9 +34,9 @@ export default function Profile() {
     }
 
     return (
-        <Tabs defaultValue="orders" className="max-w-7xl mx-auto mt-10 bg-white shadow-sm rounded-2xl border border-gray-100 overflow-hidden">
+        <Tabs defaultValue="orders" className="max-w-7xl mx-auto mt-4 md:mt-6 bg-white shadow-sm rounded-2xl border border-gray-100 overflow-hidden">
             {/* GRID WRAPPED INSIDE TABS */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6 px-6 pb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-1 px-1 md:pt-6 md:px-6 pb-10">
                 {/* LEFT SIDE */}
                 <div className="lg:col-span-1 ">
 

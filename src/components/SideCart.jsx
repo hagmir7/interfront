@@ -42,7 +42,7 @@ const ShoppingCartSidebar = () => {
 
       {isCartOpen && (
         <div
-          className='fixed inset-0 z-40 flex justify-end m-auto'
+          className='fixed inset-0 z-50 flex justify-end m-auto'
           onClick={() => setIsCartOpen(false)}
         >
           <div
