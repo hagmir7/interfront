@@ -6,7 +6,7 @@ export function PaymentMethodSelect({ value, onChange }) {
   ]
 
   return (
-    <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm'>
+    <div className=''>
       <p className='text-md font-semibold text-gray-900 mb-1'>Méthode de paiement</p>
       <select
         value={value}

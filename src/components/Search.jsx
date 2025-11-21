@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { api } from '@/lib/api'
+import { RotateCw, SearchIcon, } from 'lucide-react'
 
 const Search = () => {
   const [query, setQuery] = useState('')
@@ -14,20 +16,13 @@ const Search = () => {
       setArticles([])
       return
     }
-
     setLoading(true)
-
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/search?search=${encodeURIComponent(
-          searchTerm
-        )}`
-      )
-      if (!res.ok) throw new Error('Failed to fetch')
+      const response = await api.get(`search?search=${encodeURIComponent(searchTerm)}`)
 
-      const data = await res.json()
-      setArticles(data)
+      setArticles(response.data)
     } catch (error) {
+      // throw new Error('Failed to fetch', error)
       console.error('Search error:', error)
     } finally {
       setLoading(false)
@@ -37,7 +32,7 @@ const Search = () => {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       searchArticles(query)
-    }, 500) // debounce
+    }, 500)
 
     return () => clearTimeout(delayDebounce)
   }, [query])
@@ -47,30 +42,17 @@ const Search = () => {
       <div className='relative'>
         <button className='absolute left-3 top-1/2 -translate-y-1/2'>
           {loading ? (
-            <svg
-              aria-hidden='true'
-              className='w-6 h-6 mt-1 text-gray-500 animate-spin fill-blue-600'
-              viewBox='0 0 100 101'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path d='M100 50.5908C100 78.2051...' fill='currentColor'></path>
-              <path d='M93.9676 39.0409C96.393...' fill='currentFill'></path>
-            </svg>
+
+            <div role="status">
+              <RotateCw
+                className="w-5 h-5 text-gray-700 animate-spin"
+                style={{ animationDuration: "0.5s" }} // default is 1s
+              />
+              <span className="sr-only">Loading...</span>
+            </div>
+
           ) : (
-            <svg
-              className='w-5 h-5 text-gray-500'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-              ></path>
-            </svg>
+            <SearchIcon className='w-5 h-5 text-gray-500' />
           )}
         </button>
 
@@ -93,7 +75,7 @@ const Search = () => {
                 <Link
                   href={`/product/${item.slug}`}
                   key={item.id}
-                  onClick={()=> setArticles([])}
+                  onClick={() => setArticles([])}
                   className='flex items-center gap-4 p-3 rounded-lg hover:bg-gray-100 transition'
                 >
                   <div className='relative w-16 h-16 flex-shrink-0'>

@@ -7,6 +7,7 @@ export function AddressSelection({
   selectedAddress,
   onAddressChange,
   addresses,
+  addresseCreated
 }) {
   const [showModal, setShowModal] = useState(false)
 
@@ -18,12 +19,15 @@ export function AddressSelection({
   }, [addresses, selectedAddress, onAddressChange])
 
   const handleAddAddress = (addressData) => {
-    console.log("New address:", addressData)
-    setShowModal(false)
+    addresseCreated();
+    setTimeout(() => {
+      setShowModal(false)
+    }, 3000);
+  
   }
 
   return (
-    <div className="space-y-4 mt-5 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="space-y-4">
       <p className="text-md font-semibold text-gray-900 mb-1">
         Sélectionnez ou ajoutez une adresse
       </p>
