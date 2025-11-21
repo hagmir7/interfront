@@ -111,6 +111,7 @@ export default function CheckoutPage() {
                   price={item.price}
                   discount="-20%"
                   href={`/product/${item?.attributes?.slug ?? ""}`}
+                  quantity={item.quantity}
                 />
               );
             })}

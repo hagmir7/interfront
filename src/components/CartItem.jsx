@@ -1,4 +1,4 @@
-export function CartItem({ name, dimensions, color, price, discount, href }) {
+export function CartItem({ name, dimensions, color, price, discount, href, quantity }) {
   return (
     <div className='rounded-lg border border-gray-200 bg-white p-2 shadow-sm md:p-2'>
       <div className='md:flex md:items-center md:gap-6 md:space-y-0 md:justify-between'>
@@ -13,7 +13,7 @@ export function CartItem({ name, dimensions, color, price, discount, href }) {
         <div className='flex items-center justify-between md:order-3 md:justify-end'>
           <div className='text-end md:order-4'>
             <p className='text-base font-bold text-gray-900 text-nowrap'>
-              1 &nbsp; x &nbsp; {price} MAD 
+              {quantity} &nbsp; x &nbsp; {price} MAD 
               {/* | {discount} */}
             </p>
           </div>

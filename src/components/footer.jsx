@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import InterSpin from './ui/InterSpin';
+import Subscribe from './Subscribe';
 
 const Footer = () => {
   return (
@@ -98,55 +100,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="w-full max-w-lg bg-accent-red px-8 py-16 xl:ml-36 rounded-3xl relative overflow-hidden order-1 xl:order-2 md:flex md:justify-center bg-red-500">
-          <div className="w-40 aspect-square rounded-full bg-gray-50 opacity-45 absolute z-0 -bottom-10 -left-10 animate__animated animate__zoomIn"></div>
-          <div className="aspect-square rounded-full bg-gray-50 opacity-45 w-36 md:w-80 absolute z-0 -top-16 -right-16 md:-top-28 md:-right-28 animate__animated animate__zoomIn"></div>
-          <div className="w-full relative z-20 space-y-6">
-            <div className="space-y-2">
-              <h3 className="text-white text-4xl font-bold uppercase tracking-wide"> Newsletter </h3>
-              <p className="text-white text-lg">
-                Restez informés ! Abonnez-vous à notre newsletter.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="space-y-2">
-                <label htmlFor="newsletter_email" className="sr-only">
-                  Newsletter_email
-                </label>
-                <input
-                  type="text"
-                  id="newsletter_email"
-                  name="newsletter_email"
-                  placeholder="Email"
-                  className="w-full border-gray-200 p-4 text-sm rounded-xl bg-white"
-                />
-              </div>
-              <button className="flex items-center justify-center gap-2 text-accent-red bg-white px-6 py-3 rounded-xl font-semibold hover:bg-accent-red hover:bg-transparent border hover:border-white hover:text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path className="animate-rotate" d="M3 12a9 9 0 0 0 9 9a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9"></path>
-                  <path className="animate-rotate-reverse" d="M17 12a5 5 0 1 0 -5 5"></path>
-                </svg>
-                S'abonner
-              </button>
-              <div>
-                <p className="text-white text-sm">
-                  Nous respectons votre vie privée. Vous pouvez vous désinscrire à tout moment.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Subscribe />
       </section>
       <hr className="h-px bg-gray-200 border-0" />
       <div className="flex flex-col items-center gap-8 pt-8 md:justify-between lg:flex-row">
