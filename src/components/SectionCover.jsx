@@ -55,7 +55,7 @@ const SectionConver = () => {
                 </CLink>
 
                 <CLink
-                  href='/sho3'
+                  href='/shop'
                   className='bg-red-600 hover:bg-red-400 rounded-lg px-6 py-3 transition-all duration-300 flex items-center justify-center gap-3 text-white font-semibold shadow-lg'
                 >
                   <ShoppingCart size={20} />

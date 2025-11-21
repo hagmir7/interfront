@@ -47,7 +47,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
     if (attributes.length > 0) {
       changeAttribute({ target: { value: attributes[0].id } });
     }
-    setPrice(product.price);
+    setPrice(product.price_format);
   }, []);
 
 
@@ -100,7 +100,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       setColors(data.colors || []);
       setDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
       setData(data);
-      setPrice(product.price);
+      setPrice(product.price_format);
 
       if (data.dimensions?.length === 0) {
         setCode(data.data?.code);
@@ -276,15 +276,21 @@ const Product = ({ product, selectedColor, onColorChange }) => {
     setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
   }
 
+  function getStatus(value) {
+    const statuses = {
+        1: "En stock",
+        2: "Cacher",
+        3: "En rupture de stock",
+        4: "À venir",
+        5: "Sur demande",
+    };
+
+    return statuses[value] || "Inconnu";
+}
+
 
   return (
     <div>
-      {/* <ul>
-        <li>Attribute: {JSON.stringify(attribute.name)}</li>
-        <li>Color: {color}</li>
-        <li>width: {width}</li>
-        <li>hieght: {height}</li>
-      </ul> */}
       {!data ? (
         <DimentionLoading />
       ) : (
@@ -295,7 +301,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
             </div>
             <span className='ml-3 font-semibold text-lg text-green-600'>
               {' '}
-              {product.status}{' '}
+              {getStatus(product.status)}{' '}
             </span>
           </div>
 

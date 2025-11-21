@@ -20,8 +20,8 @@ const ProductClient = ({ product }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 bg-gray-50 py-3 md:py-6 rounded-xl border">
       <div className="w-full px-4" style={{ margin: '0 auto' }}>
-        <Carousel 
-          images={product.images} 
+        <Carousel
+          images={product.images}
           onImageChange={handleImageChange}
           currentColor={currentColor}
         />
@@ -50,9 +50,11 @@ const ProductClient = ({ product }) => {
             )}
           </div>
 
-          <p className="mb-3 text-left">{product?.description || "Aucune description disponible."}</p>
+          {
+            product?.description && <p className="mb-3 text-left">{product?.description}</p>
+          }
 
-          <Product 
+          <Product
             product={product}
             selectedColor={selectedColor}
             setColor={setSelectedColor}

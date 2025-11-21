@@ -72,7 +72,7 @@ export function AnimatedAlert({
 
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold leading-tight">{title}</h3>
-          <p className="text-sm opacity-90 leading-snug mt-0.5">{message}</p>
+          { message ??  <p className="text-sm opacity-90 leading-snug mt-0.5">{message}</p>}
         </div>
 
         {dismissible && (

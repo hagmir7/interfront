@@ -1,56 +1,62 @@
+import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
+import { notFound } from "next/navigation";
 
-const ProductPage = async ({ params }) => {
+const page = async ({ params }) => {
   const { slug } = await params;
+
+  const res = await fetch(`http://localhost:8000/api/products/${slug}`, {
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
   
-  try {
-    const response = await fetch(`https://interapi.facepy.com/api/products/${slug}`);
 
-    if (!response.ok) {
-      return <div>Erreur : Produit introuvable.</div>;
+  if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
     }
-
-    const { data: product } = await response.json();
-
-    return (
-      <section className="py-2 md:py-6 mt-2 md:mt-6">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ProductClient product={product} />
-
-          <div className="mt-6">
-            {(product?.options?.length > 0 || product?.content) && (
-              <div className="p-4 rounded-xl border bg-white">
-                <h2 className="text-lg md:text-xl font-bold">
-                  Détails du produit {product?.name}
-                </h2>
-
-                {product?.options && Object.keys(product.options).length > 0 && (
-                  <div className="relative overflow-x-auto border-t-1 border-x-1 sm:rounded-lg mt-4">
-                    <table className="w-full text-sm text-left rtl:text-right">
-                      <tbody>
-                        {Object.entries(product.options).map(([key, value]) => (
-                          <tr key={key} className="border-b-1 font-semibold hover:bg-gray-50 duration-500">
-                            <th className="px-6 py-4 text-gray-900 whitespace-nowrap">{key}</th>
-                            <td className="px-6 py-4">{value}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-
-                {product?.content && (
-                  <div className="mt-4 prose" dangerouslySetInnerHTML={{ __html: product.content }} />
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-    );
-  } catch (error) {
-    return <div>Erreur lors du chargement du produit.</div>;
+    throw new Error(`Failed to fetch product: ${res.status}`);
   }
+
+  const data = await res.json();
+  const product = data.data ?? data;
+
+  return (
+    <section className="py-2 md:py-6 mt-2 md:mt-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ProductClient product={product} />
+        {product?.related && product.related.length > 0 && (
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7.5 gap-y-9 mt-5'>
+            {product.related.map((relatedProduct, index) => (
+              <ProductCard key={relatedProduct.id || index} {...relatedProduct} />
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6">
+          {product?.options && product.options.length > 0 && (
+            <div className="relative overflow-x-auto border-t border-x sm:rounded-lg mt-4">
+              <table className="w-full text-sm text-left rtl:text-right">
+                <tbody>
+                  {product.options.map((option, index) => (
+                    <tr key={index} className="border-b font-semibold hover:bg-gray-50 duration-500">
+                      <th className="px-6 py-2 text-gray-900 whitespace-nowrap">{option.key || option.name}</th>
+                      <td className="px-6 py-3">{option.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
+
+      </div>
+    </section>
+  );
 };
 
-export default ProductPage;
+export default page;
