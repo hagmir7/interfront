@@ -94,8 +94,9 @@ export default function Tracking() {
 
   return (
 
-    <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-sm p-4 md:p-6">
-      {/* En-tête */}
+    <div className="max-w-7xl mx-auto px-2">
+     <div className='bg-white rounded-xl shadow-sm p-4 md:p-6'>
+       {/* En-tête */}
       <div className="text-center mb-8">
         <h2 className="text-xl sm:text-2xl font-semibold mb-2">
           Suivre votre commande
@@ -255,6 +256,7 @@ export default function Tracking() {
           </p>
         </div>
       )}
+     </div>
     </div>
   );
 }

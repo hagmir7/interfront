@@ -20,7 +20,7 @@ const BlogSection = async () => {
               Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
           </p>
       </div>
-      <div className="px-4 max-w-7xl mx-auto">
+      <div className="px-2 md:px-4 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-7.5">
           {articles.map(post => <BlogCard key={post.slug} {...post} />)}
         </div>

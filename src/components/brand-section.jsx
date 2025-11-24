@@ -54,7 +54,7 @@ const BrandsSection = () => {
           solutions de cuisine élégantes et précises.
         </p>
 
-        <ul className='grid gap-8 py-5 md:grid-cols-3 mx-3'>
+        <ul className='grid gap-8 py-5 md:grid-cols-3 mx-2 md:mx-3'>
           {brands.map((brand) => (
             <li
               key={brand.id}

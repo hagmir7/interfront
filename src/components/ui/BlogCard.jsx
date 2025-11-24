@@ -12,7 +12,7 @@ const BlogCard = ({ title, created_at, image, slug }) => {
             width={330}
             height={210}
             decoding='async'
-            className='rounded-md w-full h-[210px] object-cover'
+            className='rounded-md w-full h-[220px] object-cover'
             src={`https://intercocina.com/storage/public/${image}`}
             style={{ color: 'transparent' }}
           />

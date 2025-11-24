@@ -21,7 +21,7 @@ const ProductCategories = async () => {
                 </p>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 pb-20">
+            <div className="max-w-7xl mx-auto px-2 md:px-4 pb-6 md:pb-20">
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {categories.map((category, index) => (
                         <div key={index} className="rounded-xl bg-white shadow-sm">

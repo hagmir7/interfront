@@ -19,7 +19,7 @@ const CaissonSection = () => {
   ];
 
   return (
-    <div className='max-w-7xl mx-auto px-4 py-4 md:py-6'>
+    <div className='max-w-7xl mx-auto px-2 md:px-4 py-4 md:py-6'>
       <div className='flex flex-col lg:flex-row mb-7 bg-white shadow-sm rounded-xl p-4 md:p-6'>
         {/* Product Image */}
         <div className='w-full lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0 lg:mr-7'>

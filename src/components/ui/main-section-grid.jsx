@@ -52,7 +52,7 @@ const MainSectionGrid = () => {
   ];
 
   return (
-    <section className='max-w-7xl mx-auto px-4 py-8 md:py-12'>
+    <section className='max-w-7xl mx-auto px-2 md:px-4 py-8 md:py-12'>
       <div className='grid grid-cols-1 xl:grid-cols-[2fr,1fr] gap-6'>
         {/* Main Hero Carousel */}
         <div className='bg-white rounded-xl shadow-sm overflow-hidden'>
