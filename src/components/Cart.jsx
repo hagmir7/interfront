@@ -123,7 +123,7 @@ export default function Cart() {
       <div className='flex justify-center md:justify-end'>
         <CLink
           className="w-full text-center py-2 mt-4 md:w-60 md:py-3 px-4 rounded transition text-sm md:text-base bg-red-500 text-white hover:bg-red-700 "
-          href='/chekcout'
+          href='/checkout'
         >
           Passer à la confirmation
         </CLink>
