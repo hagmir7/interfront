@@ -23,8 +23,6 @@ export default function Cart() {
     );
   }
 
-
-
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-lg mt-3">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
@@ -54,9 +52,8 @@ export default function Cart() {
 
               {/* Product Details */}
               <div className="flex-grow">
-                <h2 className="text-base md:text-lg font-semibold">
+                <h2 className="text-sm md:text-lg font-semibold">
                   <Link href={`/product/${item.attributes.slug}`}>
-                    {/* {item.name.replace("Façade", item.attributes?.name)}  {item.attributes?.color_name?.name} */}
                     {item.attributes.attribute} {item.name.replace("Façade", '')} {item?.attributes?.dimension} {item.attributes?.color_name?.name}
                   </Link>
                 </h2>
@@ -117,12 +114,12 @@ export default function Cart() {
             <span className="text-base md:text-lg font-semibold">Total</span>
             <span className="text-lg md:text-xl font-bold">{total.toFixed(2)} MAD</span>
           </div>
-          
         </div>
       </div>
+
       <div className='flex justify-center md:justify-end'>
         <CLink
-          className="w-full text-center py-2 mt-4 md:w-60 md:py-3 px-4 rounded transition text-sm md:text-base bg-red-500 text-white hover:bg-red-700 "
+          className="w-full text-center py-2 mt-4 md:w-60 md:py-3 px-4 rounded transition text-sm md:text-base bg-red-500 text-white hover:bg-red-700"
           href='/checkout'
         >
           Passer à la confirmation
