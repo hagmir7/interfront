@@ -1,3 +1,4 @@
+
 import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
 import { notFound } from "next/navigation";
@@ -26,8 +27,8 @@ export default async function Page({ params }) {
   const product = data.data ?? data;
 
   return (
-    <section className="py-2 md:py-6 mt-2 md:mt-6">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="py-2 md:py-6 mt-5 md:mt-6">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <ProductClient product={product} />
 
         {/* Related Products */}

@@ -39,7 +39,7 @@ const ProductClient = ({ product }) => {
             </div>
 
             {product?.id && (
-              <a href={`/admin/products/${product.id}/edit`} className="group transition-all duration-500 p-0.5 sm:block hidden">
+              <a href={`/admin/products/${product.id}/edit`} className="group transition-all duration-500 p-0.5 hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                   <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
                     <path className="stroke-blue-600 transition-all duration-500 group-hover:stroke-blue-700" d="M9.533 11.15A1.82 1.82 0 0 0 9 12.438V15h2.578c.483 0 .947-.192 1.289-.534l7.6-7.604a1.82 1.82 0 0 0 0-2.577l-.751-.751a1.82 1.82 0 0 0-2.578 0z"></path>

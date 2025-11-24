@@ -12,7 +12,7 @@ export function CartItem({ name, dimensions, color, price, discount, href, quant
         </div>
         <div className='flex items-center justify-between md:order-3 md:justify-end'>
           <div className='text-end md:order-4'>
-            <p className='text-base font-bold text-gray-900 text-nowrap'>
+            <p className='text-base font-bold text-red-600 text-nowrap'>
               {quantity} &nbsp; x &nbsp; {price} MAD 
               {/* | {discount} */}
             </p>

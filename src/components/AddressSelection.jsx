@@ -29,7 +29,7 @@ export function AddressSelection({
   return (
     <div className="space-y-4">
       <p className="text-md font-semibold text-gray-900 mb-1">
-        Sélectionnez ou ajoutez une adresse
+        Sélectionnez une adresse
       </p>
 
       <ul className="grid w-full">
@@ -50,7 +50,7 @@ export function AddressSelection({
               className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 transition-all"
             >
               <div className="block">
-                <div className="w-full text-lg font-semibold">
+                <div className="w-full text-sm md:text-lg font-semibold">
                   {address.first_name} {address.last_name} ({address.phone})
                 </div>
                 <div className="w-full">

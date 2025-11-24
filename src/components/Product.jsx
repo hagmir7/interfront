@@ -304,7 +304,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
           </div>
 
           <svg
-            className='mx-5 max-[400px]:hidden'
+            className='mx-5 hidden md:block'
             xmlns='http://www.w3.org/2000/svg'
             width='2'
             height='36'
@@ -314,7 +314,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
             <path d='M1 0V36' stroke='#E5E7EB'></path>
           </svg>
 
-          <button className='flex items-center gap-1 rounded-lg bg-amber-400 py-1.5 px-2.5 w-max'>
+          <button className='hidden md:flex items-center gap-1 rounded-lg bg-amber-400 py-1.5 px-2.5 w-max'>
             <svg
               width='18'
               height='18'
@@ -356,7 +356,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               onChange={changeAttribute}
               name='attribute'
               id='attribute'
-              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'
+              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full md:w-64 border-2'
             >
               <option>
                 Select type
@@ -378,7 +378,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
           <div className='md:ms-4 text-left'>
             <div>
               <p className='font-bold text-gray-900'>Special</p>
-              <div className='text-black/70 mb-3 bg-white px-3 py-3 flex items-center font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'>
+              <div className='text-black/70 mb-3 bg-white px-3 py-3 flex items-center font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full md:w-64 border-2'>
                 <input
                   checked={special}
                   onChange={(e) => setSpecial(e.target.checked)}
@@ -405,7 +405,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       {colors.length > 0 && (
         <div className='text-left'>
           <p className='font-bold text-gray-900'>Couleur</p>
-          <ul className='flex flex-wrap gap-2 mb-4'>
+          <ul className='flex flex-wrap gap-0 md:gap-2 mb-4'>
             {colors.map((color, index) => (
               <li
                 key={index}
@@ -503,7 +503,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
                 />
                 <label
                   htmlFor={`height-${height}`}
-                  className='border-2 cursor-pointer inline-flex items-center justify-between p-2 px-3 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
+                  className='border-2 cursor-pointer inline-flex items-center justify-between p-1 px-2 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
                 >
                   <div className='block'>
                     <div className='w-full text-md font-semibold'>
@@ -518,7 +518,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       )}
 
       {!special && widths.length > 0 ? (
-        <div className='text-left'>
+        <div className='text-left mt-2'>
           <div className='font-bold'>
             Largeur {product.unit ? `(${product.unit})` : ''}
           </div>
@@ -540,7 +540,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
                 />
                 <label
                   htmlFor={`width-${width}`}
-                  className='border-2 cursor-pointer inline-flex items-center justify-between p-2 px-3 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
+                  className='border-2 cursor-pointer inline-flex items-center justify-between p-1 px-2 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
                 >
                   <div className='block'>
                     <div className='w-full text-md font-semibold'>
@@ -624,7 +624,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
         <div className='flex items-center justify-center border border-gray-400 rounded-full'>
           <button
             onClick={() => setQuantity((prev) => Math.max(0, prev - 1))}
-            className='group cursor-pointer text-3xl py-2 px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300'
+            className='group cursor-pointer text-3xl py-1 md:py-2 px-2 md:px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300'
           >
             -
           </button>
@@ -645,14 +645,14 @@ const Product = ({ product, selectedColor, onColorChange }) => {
 
           <button
             onClick={() => setQuantity((prev) => prev + 1)}
-            className='group text-3xl py-2 px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300 cursor-pointer'
+            className='group text-3xl py-1 md:py-2 px-2 md:px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300 cursor-pointer'
           >
             +
           </button>
         </div>
         <button
           onClick={handleAddToCart}
-          className='cursor-pointer group border-2 border-red-400 py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100'
+          className='cursor-pointer group border-2 border-red-400 py-2 md:py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100'
         >
           {spinner ? (
             <svg

@@ -1,0 +1,81 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import ProductCard from '@/components/ProductCard';
+import ShopFilter from '@/components/ShopFilter';
+import { api } from '@/lib/api';
+import InterSpin from './ui/InterSpin';
+
+export default function ShopCards() {
+  const [filters, setFilters] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const fetchProducts = async (reset = false) => {
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      const queryFilters = filters.length ? `&filters=${filters.join(',')}` : '';
+      const queryPage = `?page=${reset ? 1 : page}`;
+      const response = await api.get(`products${queryPage}${queryFilters}`);
+
+      const data = response.data;
+      const list = data?.data ?? [];
+
+      setProducts((prev) => (reset ? list : [...prev, ...list]));
+      setPage((data?.current_page || 1) + 1);
+      setLastPage(data?.last_page || 1);
+    } catch (err) {
+      console.error('Impossible de récupérer les produits :', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    setPage(1);
+    fetchProducts(true);
+  }, [filters]);
+
+  return (
+    <section className="px-2 py-4 md:flex gap-3">
+      {/* Filtres sur le côté */}
+      <ShopFilter onFilterChange={setFilters} />
+
+      {/* Grille de produits */}
+      <div className="w-full md:w-9/12">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-6 hidden">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Produits Intercocina</h1>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7.5 gap-y-9">
+            {products.length > 0 ? (
+              products.map((product) => <ProductCard key={product.id} {...product} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-500">
+                {/* Aucun produit trouvé */}
+              </p>
+            )}
+          </div>
+
+          {/* Bouton Charger Plus */}
+          {page <= lastPage && products.length > 0 && (
+            <div className="text-center mt-6">
+              <button
+                onClick={() => fetchProducts()}
+                disabled={loading}
+                className="px-6 py-2 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
+              >
+                {loading ? <div className='flex gap-2'><InterSpin /> <span> Chargement...</span></div> : 'Charger plus'}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -133,7 +133,7 @@ const ShoppingCartSidebar = () => {
             {cart.length > 0 && (
               <div className='flex-shrink-0 px-4 py-6 border-t bg-white'>
                 <div className='flex items-center justify-between p-4 mb-4 bg-gray-50 rounded-lg'>
-                  <h5 className='font-bold'>Sous-total :</h5>
+                  <h5 className='font-bold'>Total HT:</h5>
                   <h5 className='font-bold'>{total.toFixed(2)} MAD</h5>
                 </div>
 

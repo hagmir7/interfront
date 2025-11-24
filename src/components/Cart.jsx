@@ -12,7 +12,7 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-lg mt-3">
+      <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-none md:rounded-lg mt-3">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
           <div className="container mx-auto">
             <h1 className="text-2xl font-bold mb-4">Votre panier</h1>
@@ -24,7 +24,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-lg mt-3">
+    <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-none md:rounded-lg mt-3">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-xl md:text-2xl font-bold">Votre panier</h1>
       </div>
@@ -111,7 +111,7 @@ export default function Cart() {
       <div className="mt-6">
         <div className="w-full sm:max-w-md sm:ml-auto">
           <div className="flex justify-between mb-2">
-            <span className="text-base md:text-lg font-semibold">Total</span>
+            <span className="text-base md:text-lg font-semibold">Total HT</span>
             <span className="text-lg md:text-xl font-bold">{total.toFixed(2)} MAD</span>
           </div>
         </div>

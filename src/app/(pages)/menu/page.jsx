@@ -6,14 +6,14 @@ import React from 'react';
 function MenuPage() {
   const menuItems = [
     { href: "/", label: "Accueil", icon: <Home size={18} /> },
-    { href: "/produit", label: "Produits", icon: <ShoppingBag size={18} /> },
+    { href: "/shop", label: "Produits", icon: <ShoppingBag size={18} /> },
     { href: "/event/list", label: "Événements", icon: <Calendar size={18} /> },
-    { href: "/about", label: "À propos", icon: <InfoIcon size={18} /> },
+    { href: "/aprops", label: "À propos", icon: <InfoIcon size={18} /> },
     { href: "/profile", label: "Commandes", icon: <ShoppingBag size={18} /> }
   ];
 
   return (
-    <div className="mx-auto max-w-2xl py-6 bg-white rounded-lg shadow-sm">
+    <div className="mx-auto max-w-2xl py-6 bg-white rounded-none md:rounded-lg shadow-sm">
       {/* User Profile Section */}
       <div className="px-4 pb-4 mb-2 border-b border-gray-200 dark:border-gray-700">
         <CLink href='/profile'>
