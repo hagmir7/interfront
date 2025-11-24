@@ -47,12 +47,12 @@ export default function ShopCards() {
 
       {/* Grille de produits */}
       <div className="w-full md:w-9/12">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto md:px-4">
           <div className="text-center mb-6 hidden">
             <h1 className="text-xl md:text-2xl font-bold text-gray-900">Produits Intercocina</h1>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7.5 gap-y-9">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-x-7.5 gap-y-9">
             {products.length > 0 ? (
               products.map((product) => <ProductCard key={product.id} {...product} />)
             ) : (

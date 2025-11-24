@@ -557,7 +557,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       )}
 
       {special ? (
-        <div className='text-left md:flex gap-3'>
+        <div className='text-left flex gap-2'>
           <div>
             <label htmlFor='height-input'>Hauteur</label>
             <br />
