@@ -71,7 +71,7 @@ const MainSectionGrid = () => {
           >
             {heroCarouselData.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className='grid grid-cols-1 md:grid-cols-2 items-center py-9 p-6 md:p-8'>
+                <div className='grid grid-cols-1 md:grid-cols-2 items-center py-3 md:py-9 px-3 md:p-8'>
                   <div className='order-2 sm:order-1 space-y-4'>
                     <div className='flex items-center gap-4'>
                       <span className='text-lg md:text-2xl sm:text-4xl font-bold text-red-600'>
@@ -83,7 +83,7 @@ const MainSectionGrid = () => {
                         De
                       </span>
                     </div>
-                    <h2 className='text-md sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition'>
+                    <h2 className='text-lg sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition mb-2'>
                       <CLink href={item.link}>{item.title}</CLink>
                     </h2>
                     <LacaColors />

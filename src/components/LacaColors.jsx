@@ -110,7 +110,7 @@ const LacaColors = () => {
 
   return (
     <div className='text-left'>
-      <p className='font-bold text-gray-900 mb-3 text-sm md:text-base'>Couleurs disponibles</p>
+      <p className='font-bold text-gray-700 mb-3 text-sm md:text-base'>Couleurs disponibles</p>
       <ul className='flex flex-wrap gap-1 md:gap-2 mb-4'>
         {colors.map((color) => (
           <li
