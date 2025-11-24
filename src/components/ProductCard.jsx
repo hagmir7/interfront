@@ -6,16 +6,7 @@ import { Star, Eye, ShoppingCart, Heart } from "lucide-react"
 import Image from "next/image"
 import { AddToCartModal } from "./AddToCartModal"
 
-const ProductCard = ({
-  name = "True Wireless Noise Cancelling Headphone",
-  images = [],
-  price = 899,
-  price_format = 930,
-  rating = 4,
-  id = 0,
-  reviewCount = 0,
-  slug = "/products/true-wireless-noise-cancelling-headphone",
-}) => {
+const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug}) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const renderStars = () => {
@@ -29,10 +20,6 @@ const ProductCard = ({
       ))
   }
 
-  const handleAddToCart = (options) => {
-    console.log(options);
-    
-  }
 
   const imageUrl =
     images && images.length > 0
@@ -50,7 +37,7 @@ const ProductCard = ({
               width={600}
               height={600}
               src={imageUrl || "/placeholder.svg"}
-              className="w-full h-56 md:h-64 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-56 xl:h-64 object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
@@ -87,9 +74,7 @@ const ProductCard = ({
               <span className="text-xs md:text-sm text-gray-500 ml-2">({reviewCount})</span>
             </div>
           </div>
-
           <h3 className="font-semibold text-gray-800 hover:text-blue-600 transition-colors mb-2 text-sm md:text-base">{name}</h3>
-
           <div className="flex items-center space-x-2">
             <span className="text-sm md:text-lg font-bold text-red-600">{price_format ? price_format : price} MAD</span>
           </div>
@@ -107,7 +92,7 @@ const ProductCard = ({
           slug,
           id
         }}
-        onAddToCart={handleAddToCart}
+
       />
     </>
   )

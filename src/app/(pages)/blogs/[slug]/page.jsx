@@ -56,7 +56,7 @@ const BlogPage = async ({ params }) => {
 
   return (
     <div className='min-h-screen bg-gray-50'>
-      <div className='container mx-auto px-4 py-8'>
+      <div className='container mx-auto md:px-4 md:py-8'>
         <div className='flex flex-col lg:flex-row gap-8 justify-center'>
           {/* Barre latérale */}
           <div className='lg:w-1/3 lg:order-1 order-2'>
@@ -103,7 +103,7 @@ const BlogPage = async ({ params }) => {
 
           {/* Contenu principal */}
           <div className='lg:w-2/3 lg:order-2 order-1'>
-            <article className='bg-white rounded-2xl p-2 md:p-6 shadow-sm mb-8'>
+            <article className='bg-white md:rounded-2xl p-2 md:p-6 shadow-sm mb-8'>
               <h1 className='text-xl md:text-3xl font-bold mb-4 leading-tight'>
                 {article.title}
               </h1>
@@ -182,22 +182,22 @@ const BlogPage = async ({ params }) => {
               </div>
             </article>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7.5 gap-y-9 mt-5'>
+            <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-x-7.5 lg:gap-y-9 mt-5 p-2 md:p-0'>
               {article.products.map((product, index) => (
                 <ProductCard key={index} {...product} />
               ))}
             </div>
 
             {/* Articles similaires */}
-            <div className='my-8'>
-              <h4 className='text-2xl font-semibold mb-6'>
+            <div className='my-8 p-2 md:p-0'>
+              <h4 className='text-lg md:text-2xl font-semibold mb-2 md:mb-6'>
                 Articles Similaires
               </h4>
-              <div className='grid md:grid-cols-2 gap-6'>
+              <div className='grid md:grid-cols-2 gap-6 '>
                 {relatedPosts.map((post) => (
                   <div
                     key={post.slug}
-                    className='bg-white rounded-2xl overflow-hidden shadow-sm'
+                    className='bg-white rounded-2xl overflow-hidden md:shadow-sm'
                   >
                     <Image
                       src={`https://intercocina.com/storage/public/${post.image}`}
@@ -212,7 +212,7 @@ const BlogPage = async ({ params }) => {
                           {format(post.created_at, 'MMM dd, yyyy')}
                         </span>
                       </div>
-                      <h4 className='text-lg font-semibold mb-4 h-12'>
+                      <h4 className='text-md md:text-lg font-semibold mb-4 h-8 md:h-12'>
                         {post.title}
                       </h4>
                       <CLink

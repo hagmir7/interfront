@@ -8,9 +8,9 @@ const Blogs = async () => {
 
     return (
       <main className='bg-gray-50'>
-        <div className='max-w-7xl mx-auto px-4 py-10 overflow-x-hidden md:overflow-visible'>
+        <div className='max-w-7xl mx-auto px-4 py-4 md:py-10 overflow-x-hidden md:overflow-visible'>
           <div className='px-4 mx-auto max-w-screen-xl'>
-            <h1 className='mb-8 text-2xl font-bold text-gray-900'>
+            <h1 className=' mb-2 md:mb-8 text-lg md:text-2xl font-bold text-gray-900'>
               Derniers blog articles
             </h1>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-7.5'>

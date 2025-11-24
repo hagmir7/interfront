@@ -26,7 +26,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex flex-col items-stretch gap-10 my-10 md:flex-row md:justify-center md:py-24 md:my-0 xl:col-span-1 col-span-full">
-            <div className="flex items-center gap-3 px-6 py-3 duration-500 shadow-lg bg-accent-red-500 rounded-3xl hover:scale-105 bg-red-500">
+            <div className="flex items-center gap-3 px-6 py-3 duration-500 md:shadow-lg bg-accent-red-500 rounded-3xl hover:scale-105 bg-red-500">
               <Image
                 className="w-[40px]"
                 loading="lazy"
@@ -41,7 +41,7 @@ const Footer = () => {
                 <p className="text-white">contact@intercocina.com</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-6 py-3 duration-500 bg-white shadow-lg rounded-3xl hover:scale-105">
+            <div className="flex items-center gap-3 px-6 py-3 duration-500 bg-white border md:border-0 md:shadow-lg rounded-3xl hover:scale-105">
               <Image
                 className="w-[40px]"
                 width={100}

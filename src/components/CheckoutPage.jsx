@@ -69,7 +69,7 @@ export default function CheckoutPage() {
 
   return (
     <div className='mx-auto max-w-screen-xl px-2 md:px-4 2xl:px-0'>
-      <h2 className='text-xl mt-4 font-semibold text-gray-900 sm:text-2xl'>
+      <h2 className='text-md md:text-xl mt-4 font-semibold text-gray-900 '>
         Confirmation de commande
       </h2>
 

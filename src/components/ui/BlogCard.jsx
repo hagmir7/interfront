@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const BlogCard = ({ title, created_at, image, slug }) => {
     return (
-      <div className='shadow-md bg-white rounded-xl px-4 sm:px-5 pt-5 pb-4'>
+      <div className='shadow-xs md:shadow-md bg-white rounded-xl px-4 sm:px-5 pt-5 pb-4 border'>
         <Link className='rounded-md overflow-hidden' href={`/blogs/${slug}`}>
           <Image
             alt={title}
@@ -33,11 +33,11 @@ const BlogCard = ({ title, created_at, image, slug }) => {
               INTERCOCINA
             </a>
           </span>
-          <h3 className='font-bold text-dark text-lg sm:text-xl ease-out duration-200 mb-4 hover:text-blue'>
+          <h3 className='font-bold text-dark text-md sm:text-xl ease-out duration-200 mb-4 hover:text-blue'>
             <a href={`/blogs/${slug}`}>{title}</a>
           </h3>
           <Link
-            className='text-custom-sm inline-flex items-center gap-2 py-2 ease-out duration-200 hover:text-blue'
+            className='text-custom-sm text-sm md:text-base inline-flex items-center gap-2 py-2 ease-out duration-200 hover:text-blue'
             href={`/blogs/${slug}`}
           >
             Voir plus

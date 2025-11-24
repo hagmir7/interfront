@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const ReviewCard = ({ review }) => (
   
-  <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+  <div className="bg-white rounded-xl md:shadow-lg p-6 border md:border-0 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
     <div className="flex items-center mb-4">
       <Image
         src="http://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
@@ -52,7 +52,7 @@ const ReviewsSection = async () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-2 md:p-0">
         {reviews.map((review, index) => <ReviewCard key={index} review={review} />)}
       </div>
     </div>

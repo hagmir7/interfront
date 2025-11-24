@@ -55,17 +55,17 @@ export default async function CategoryPage({ params, searchParams }) {
         <section className='px-4 py-4 md:flex gap-3 md:max-w-7xl md:mx-auto bg-gray-100'>
             <ProductFilter />
             <div className="w-full md:w-9/12">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-0  md:px-4">
                     <div className="text-center mb-3">
                         <h1 className="text-xl md:text-2xl font-bold text-gray-900 flex items-center justify-center gap-2">
                             <span className="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">{productType.name}</span>
                         </h1>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center gap-4">
+                    <div className="flex flex-wrap md:justify-center items-center gap-2 md:gap-4">
                         {Array.isArray(category.types) && category.types.map((product_type, index) => (
                             <Link key={index} href={`/category/${slug}?type=${product_type.slug}`} 
                                 aria-label={`Filter products by type: ${type}`}
-                                className={`flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-full shadow-sm ${product_type.slug === type ? "bg-red-500 text-white border border-red-200" : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"} hover:border-gray-300`}>
+                                className={`flex items-center gap-1.5 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-semibold transition-all duration-200 rounded-full shadow-sm ${product_type.slug === type ? "bg-red-500 text-white border border-red-200" : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"} hover:border-gray-300`}>
                                 {product_type.name}
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -74,7 +74,7 @@ export default async function CategoryPage({ params, searchParams }) {
                         ))}
                     </div>
                 </div>
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7.5 gap-y-9 mt-5'>
+                <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-x-7.5 lg:gap-y-9 mt-5'>
                     {
                         productType.products.map((product, index) => (
                             <ProductCard key={index} {...product} />

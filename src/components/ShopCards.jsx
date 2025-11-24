@@ -5,6 +5,7 @@ import ProductCard from '@/components/ProductCard';
 import ShopFilter from '@/components/ShopFilter';
 import { api } from '@/lib/api';
 import InterSpin from './ui/InterSpin';
+import ProductCardSkeleton from './ui/ProductCardSkeleton';
 
 export default function ShopCards() {
   const [filters, setFilters] = useState([]);
@@ -56,9 +57,8 @@ export default function ShopCards() {
             {products.length > 0 ? (
               products.map((product) => <ProductCard key={product.id} {...product} />)
             ) : (
-              <p className="col-span-full text-center text-gray-500">
-                {/* Aucun produit trouvé */}
-              </p>
+              <>
+                <ProductCardSkeleton /><ProductCardSkeleton /><ProductCardSkeleton /><ProductCardSkeleton /></>
             )}
           </div>
 
