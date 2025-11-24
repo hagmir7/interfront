@@ -58,7 +58,7 @@ const BrandsSection = () => {
           {brands.map((brand) => (
             <li
               key={brand.id}
-              className='px-4 py-6 space-y-2 text-lg duration-300 bg-white border shadow-lg text-slate-500 rounded-2xl hover:cursor-pointer hover:scale-105 transform transition-transform'
+              className='px-4 py-6 space-y-2 text-lg duration-300 bg-white border shadow-none md:shadow-lg text-slate-500 rounded-2xl hover:cursor-pointer hover:scale-105 transform transition-transform'
             >
               <Image
                 className='object-cover w-full'

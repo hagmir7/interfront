@@ -74,7 +74,7 @@ const MainSectionGrid = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center py-9 p-6 md:p-8'>
                   <div className='order-2 sm:order-1 space-y-4'>
                     <div className='flex items-center gap-4'>
-                      <span className='text-2xl sm:text-4xl font-bold text-red-600'>
+                      <span className='text-lg md:text-2xl sm:text-4xl font-bold text-red-600'>
                         {item.discount}
                       </span>
                       <span className='text-sm text-gray-700 uppercase tracking-wider'>
@@ -83,18 +83,18 @@ const MainSectionGrid = () => {
                         De
                       </span>
                     </div>
-                    <h2 className='text-xl sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition'>
+                    <h2 className='text-md sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition'>
                       <CLink href={item.link}>{item.title}</CLink>
                     </h2>
                     <LacaColors />
-                    <p className='text-gray-600 mb-7'>{item.description}</p>
+                    <p className='text-gray-600 mb-7 text-sm md:text-base'>{item.description}</p>
                     <div className='flex justify-end md:justify-start w-full'>
                       <CLink
                         href={item.link}
-                        className='rounded-lg flex gap-2  text-white bg-[#da3036] hover:bg-red-600 py-3 px-5 text-[17px] text-sm hover:text-white'
+                        className='rounded-lg flex gap-2  text-white bg-[#da3036] hover:bg-red-600 py-1.5 md:py-3 px-3 md:px-5 text-sm md:text-[17px] hover:text-white'
                       >
                         <span> Voir Plus</span>
-                        <ArrowRight />
+                        <ArrowRight className='h-5 md:h-6' />
                       </CLink>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ const MainSectionGrid = () => {
                       alt={item.title}
                       width={200}
                       height={200}
-                      className='w-full h-auto object-contain max-h-[400px]'
+                      className='w-full h-auto object-contain max-h-[300px] md:max-h-[400px]'
                     />
                   </div>
                 </div>
@@ -121,7 +121,7 @@ const MainSectionGrid = () => {
               className='bg-white rounded-xl shadow-sm p-3 md:p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
             >
               <div className='space-y-4 flex-1'>
-                <h3 className='text-xl font-semibold text-gray-900 hover:text-red-600 transition'>
+                <h3 className='text-base md:text-xl font-semibold text-gray-900 hover:text-red-600 transition'>
                   <CLink href={product.link}>{product.title}</CLink>
                 </h3>
                 <div>
@@ -137,6 +137,7 @@ const MainSectionGrid = () => {
                 </div>
               </div>
               <div className='ml-4 flex-shrink-0'>
+                <CLink href={product.link}>
                 <Image
                   src={product.image}
                   alt={product.title}
@@ -145,6 +146,7 @@ const MainSectionGrid = () => {
                   height={200}
                   className='w-32 h-32 object-contain'
                 />
+                </CLink>
               </div>
             </div>
           ))}

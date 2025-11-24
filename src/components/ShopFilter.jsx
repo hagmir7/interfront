@@ -5,10 +5,10 @@ import { CheckCircle } from "lucide-react";
 const SidebarSection = ({ title, items, selected, onChange }) => {
     return (
         <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <div className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-600" />
                 {title}
-            </h3>
+            </div>
 
             <div className="space-y-2 pl-1">
                 {items.map((item, idx) => {

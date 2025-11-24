@@ -86,25 +86,25 @@ const CaissonSection = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
               <CLink
                 href="/category/caisson-hydrofuge?type=hydrofuge-haut"
-                className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
+                className="py-2 px-2 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Haut
               </CLink>
               <CLink
                 href="/category/caisson-hydrofuge?type=hydrofuge-bas"
-                className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
+                className="py-2 px-2 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Bas
               </CLink>
               <CLink
                 href="/category/caisson-hydrofuge?type=hydrofuge-colonne"
-                className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
+                className="py-2 px-2 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Meuble Colonne
               </CLink>
               <CLink
                 href="/category/accessoiriser?type=racrocheurs"
-                className="py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
+                className="py-2 px-2 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center"
               >
                 Accessoires
               </CLink>

@@ -66,7 +66,7 @@ const SectionConver = () => {
           </div>
 
           {/* Right Side: Features */}
-          <div className='w-full md:w-1/2 md:pl-12'>
+          <div className='w-full hidden md:block md:w-1/2 md:pl-12'>
             <Swiper
               modules={[Pagination]}
               spaceBetween={30}

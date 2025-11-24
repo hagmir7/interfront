@@ -110,15 +110,15 @@ const LacaColors = () => {
 
   return (
     <div className='text-left'>
-      <p className='font-bold text-gray-900 mb-3'>Couleurs disponibles</p>
-      <ul className='flex flex-wrap gap-2 mb-4'>
+      <p className='font-bold text-gray-900 mb-3 text-sm md:text-base'>Couleurs disponibles</p>
+      <ul className='flex flex-wrap gap-1 md:gap-2 mb-4'>
         {colors.map((color) => (
           <li
             key={color.id}
-            className='color-box group text-center me-3 relative'
+            className='color-box group text-center me-1 md:me-3 relative'
           >
             <div
-              className='inline-flex items-center justify-between w-full p-4 text-gray-500 border-gray-500 rounded-lg cursor-pointer border-2 hover:text-gray-600 hover:bg-gray-100 '
+              className='inline-flex items-center justify-between w-full p-4 text-gray-500 border-gray-500 rounded-lg cursor-pointer border md:border-2 hover:text-gray-600 hover:bg-gray-100 '
               style={{ backgroundImage: `url(${color.image})` }}
             ></div>
             <div

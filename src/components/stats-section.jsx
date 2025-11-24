@@ -25,13 +25,13 @@ const StatsSection = () => {
           </div>
           <div className="grid col-start-1 row-start-1 gap-6 md:grid-cols-2">
             <div className="space-y-6">
-              <div className="px-6 py-8 space-y-4 bg-white border shadow-xl rounded-3xl">
+              <div className="px-6 py-8 space-y-4 bg-white border shadow-none md:shadow-xl rounded-3xl">
                 <h3 className="text-4xl font-semibold md:text-7xl">
                   <span className="text-gray-500">+</span>700
                   <span className="block mt-2 text-lg font-semibold md:text-xl">Client fidèle</span>
                 </h3>
               </div>
-              <div className="px-6 py-8 space-y-4 bg-white border shadow-xl rounded-3xl">
+              <div className="px-6 py-8 space-y-4 bg-white border shadow-none md:shadow-xl rounded-3xl">
                 <h3 className="text-4xl font-semibold md:text-7xl">
                   <span className="text-gray-500">+</span>500
                   <span className="block mt-2 text-lg font-semibold md:text-xl">Commandes en préparation</span>
@@ -40,13 +40,13 @@ const StatsSection = () => {
             </div>
             <div className="space-y-6">
               <div className="hidden md:block min-h-8"></div>
-              <div className="px-6 py-8 space-y-4 bg-white border shadow-xl rounded-3xl">
+              <div className="px-6 py-8 space-y-4 bg-white border shadow-none md:shadow-xl rounded-3xl">
                 <h3 className="text-4xl font-semibold md:text-7xl">
                   <span className="text-gray-500">+</span>1M
                   <span className="block mt-2 text-lg font-semibold md:text-xl">Commandes livrées</span>
                 </h3>
               </div>
-              <div className="px-6 py-8 space-y-4 bg-white border shadow-xl rounded-3xl">
+              <div className="px-6 py-8 space-y-4 bg-white border shadow-none md:shadow-xl rounded-3xl">
                 <h3 className="text-4xl font-semibold md:text-7xl">
                   <span className="text-gray-500">+</span>98
                   <span className="text-gray-500">%</span>
