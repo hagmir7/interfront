@@ -45,6 +45,8 @@ export default function CheckoutPage() {
         shipping_id: shippingMethod,
         cart
       })
+
+      
       setOrderCode(response?.data?.order?.code)
       setMessage({
         content: response.data.message,

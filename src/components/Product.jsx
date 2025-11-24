@@ -227,6 +227,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
 
     setSpinner(true);
 
+    
     const cart = {
       id: `${product.slug}${width}-${height}${dimension?.id}${color}${attribute?.id || ''}${special ? 'special' : ''}`,
       name: product.name,
@@ -234,23 +235,20 @@ const Product = ({ product, selectedColor, onColorChange }) => {
       quantity: quantity,
       attributes: {
         color: color || null,
-        color_name:
-          color && dimension
-            ? dimension.color
-            : color
-              ? colors.find((item) => item.id === color)?.name
-              : null,
+        color_name: color && dimension ? dimension.color.name : color ? colors.find((item) => item.id === color)?.name : null,
         image: product.images[0]?.image,
         height: height || null,
         width: width || null,
         dimension: height && width ? `${height} * ${width}` : null,
         slug: product.slug,
         attribute: attributes.length > 0 ? attribute.name : null,
-        product_id: data.id,
+        product_id: product.id,
         dimension_id: dimension?.id || null,
         special: special,
       },
     }
+
+    
 
     addToCart(cart);
 
