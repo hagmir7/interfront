@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 const page = async ({ params }) => {
   const { slug } = await params;
 
-  const res = await fetch(`http://localhost:8000/api/products/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${slug}`, {
     cache: "no-store",
     headers: {
       Accept: "application/json",
