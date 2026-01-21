@@ -5,7 +5,6 @@ import Image from "next/image";
 
 export default async function page({ params }) {
 
-
     const { slug } = await params
 
     const response = await api.get(`groups/${slug}`);
@@ -23,7 +22,7 @@ export default async function page({ params }) {
             </div>
 
             {/* Products Grid */}
-            <section className="px-4 py-12 max-w-7xl mx-auto">
+            <section className="px-4 py-4 md:py-10 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {group.types.map(type => (
                         <div

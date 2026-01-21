@@ -34,11 +34,11 @@ const EventsSection = async () => {
           </p>
         </div>
 
-        <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6'>
           {events.map((event, index) => (
             <div
               key={index}
-              className='group relative bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-gray-200 hover:-translate-y-2'
+              className='group relative bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 '
             >
               {/* Image container with overlay effect */}
               <div className='relative overflow-hidden'>
@@ -46,18 +46,18 @@ const EventsSection = async () => {
                   href={`/event/${event.slug}`}
                   className='block relative h-64 overflow-hidden'
                 >
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+                  <div className='absolute inset-0 '></div>
                   <Image
-                    src={event.image_url || '/page/'}
+                    src={event.image || '/page/'}
                     alt={event.title}
                     title={event.title}
                     width={100}
                     height={100}
                     loading='lazy'
-                    className='w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110'
+                    className='w-full h-80 object-cover'
                   />
                   {/* Hover overlay with icon */}
-                  <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20'>
+                  <div className='absolute inset-0 flex items-center justify-center z-20'>
                     <div className='w-12 h-12 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm'>
                       <svg
                         className='w-5 h-5 text-gray-800'
@@ -118,8 +118,6 @@ const EventsSection = async () => {
                 </div>
               </div>
 
-              {/* Subtle gradient border effect */}
-              <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none'></div>
             </div>
           ))}
         </div>

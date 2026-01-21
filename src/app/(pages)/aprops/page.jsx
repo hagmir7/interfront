@@ -51,7 +51,7 @@ const AboutPage = () => {
               <span className="leading-none relative text-base tracking-wider text-white">Contact</span>
             </Link>
             <Link 
-              href="/produits" 
+              href="/shop" 
               className="group flex items-center gap-1 tracking-wide text-gray-500"
             >
               <span className="duration-300 group-hover:tracking-wider group-hover:underline group-hover:underline-offset-2">
@@ -84,8 +84,8 @@ const AboutPage = () => {
                       <Image 
                         src={section.image} 
                         alt={`Intercocina ${section.title}`} 
-                        width={100}
-                        height={100} 
+                        width={600}
+                        height={600} 
                         className="object-cover rounded-lg shadow-sm border bg-gray-100" 
                       />
                     </div>
@@ -104,8 +104,8 @@ const AboutPage = () => {
                       <Image 
                         src={section.image} 
                         alt={`Intercocina ${section.title}`} 
-                        width={100}
-                        height={100} 
+                        width={600}
+                        height={600} 
                         className="object-cover rounded-lg" 
                       />
                     </div>

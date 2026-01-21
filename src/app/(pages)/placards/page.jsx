@@ -4,14 +4,19 @@ import { Maximize2, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import CLink from '@/components/CLink';
 import Image from 'next/image';
+import PlacardCards from '@/components/PlacardCards';
+import { motion, AnimatePresence } from "framer-motion";
 
 const page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const projectImages = [
-        { id: 1, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-12.webp', alt: 'Project Image 1' },
+        { id: 1, src: '/imgs/placard/placard-sub.jpg', alt: 'Project Image 1' },
         { id: 2, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-9.webp', alt: 'Project Image 2' },
-        { id: 3, src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-11.webp', alt: 'Project Image 3' },
+        { id: 3, src: '/imgs/placard/DSC_0373.jpg', alt: 'Project Image 3' },
+        { id: 4, src: '/imgs/placard/placard-4.jpeg', alt: 'Project Image 4' },
+        { id: 5, src: '/imgs/placard/placard-2.jpeg', alt: 'Project Image 4' },
+        { id: 6, src: '/imgs/placard/placard-3.jpeg', alt: 'Project Image 4' },
     ];
 
     const openLightbox = (image) => {
@@ -59,11 +64,10 @@ const page = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
-            <div className="max-w-7xl mx-auto py-12 px-4">
+            <div className="max-w-7xl mx-auto py-12 px-4 hidden lg:block">
                 <div className=" gap-8">
                     <div className="lg:col-span-2 space-y-6">
                         {/* Image Grid */}
@@ -78,7 +82,7 @@ const page = () => {
                                         alt={image.alt}
                                         width={700}
                                         height={700}
-                                        className="w-full min-h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="w-full min-h-full max-h-96 object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                                     <button
@@ -95,28 +99,50 @@ const page = () => {
             </div>
 
             {/* Lightbox Modal */}
+        <AnimatePresence>
             {selectedImage && (
-                <div
+                <motion.div
+                    key="backdrop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
                     className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                     onClick={closeLightbox}
                 >
-                    <div className="relative max-w-4xl max-h-[90vh] w-full">
+                    <motion.div
+                        key="modal"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        className="relative max-w-4xl max-h-[90vh] w-full"
+                        onClick={(e) => e.stopPropagation()} // prevent closing when clicking image
+                    >
                         <button
                             onClick={closeLightbox}
-                            className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
+                            className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm 
+                            rounded-full flex items-center justify-center text-white hover:bg-white/30 
+                            transition-colors z-10"
                         >
                             <X size={24} />
                         </button>
+
                         <Image
                             src={selectedImage.src}
                             alt={selectedImage.alt}
-                            width={100}
-                            height={100}
-                            className="w-full h-full object-contain rounded-2xl"
+                            width={1000}
+                            height={1000}
+                            className="w-full h-full object-contain rounded-2xl max-h-[600px]"
                         />
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             )}
+        </AnimatePresence>
+
+
+
+            <PlacardCards />
         </div>
     );
 };
