@@ -21,12 +21,12 @@ import Search from "./Search";
 import { User } from "@/services/auth";
 import AuthActions from "./AuthActions";
 import Image from "next/image";
-// import { getCurrentUser } from "@/services/auth";
+
 
 const MainNav = () => {
   
     return (
-      <nav className='bg-[#fef6f6] border-b-2 border-red-500'>
+      <nav className='border-b-2 border-red-500'>
         {/* <TopNav /> */}
         <div className='container mx-auto flex flex-wrap items-center justify-between px-4 py-4'>
           {/* Mobile menu */}

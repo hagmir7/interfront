@@ -13,19 +13,21 @@ import MainSectionGrid from "@/components/ui/main-section-grid";
 import CaissonSection from "@/components/CaissonSection";
 import CaissonSectionLeft from "@/components/CaissonSectionLeft";
 import Colors from "@/components/Colors";
+import FeaturesSection from "@/components/FeaturesSection";
 
 export default function Home() {
   return (
     <div className="bg-[#f2f2f2]">
       <SectionConver />
       {/* <MainSection /> */}
+      <FeaturesSection />
       <MainSectionGrid />
       {/* <NewSection /> */}
      
       <CategorySection />
       <CaissonSection />
       <CaissonSectionLeft />
-       <Colors />
+      <Colors />
      
       <ProductCategories />
        <Tracking />

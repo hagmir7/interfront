@@ -11,8 +11,8 @@ function CategorySection() {
       badge: 'Nouvelle arrivée'
     },
     {
-      imageUrl: 'https://laca.ma/storage/01JMDBFZ8EQZHST1Z8VBN5T9HD.jpg',
-      title: 'Revêtement et Sole',
+      imageUrl: '/imgs/placard/parquet.png',
+      title: 'Revêtement et Sol',
       description: 'Revêtement de sol stratifié, Parquet, Plinthe et Accessoires...',
       link: '/groups/revetement-et-sole',
       badge: 'Populaire'

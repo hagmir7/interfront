@@ -20,11 +20,10 @@ const MainSection = () => {
                         >
                             COCINA
                         </span>{" "}<br />
-                        Leader des cuisines modernes au Maroc
+                        Leader de la fabrication de meubles de cuisine au Maroc
                     </h1>
                     <p className="text-center text-slate-700 md:text-left text-lg font-semibold animate__delay-200ms animate__animated animate__fadeInUp">
-                        Notre collection de meubles de cuisine est conçue pour transformer votre
-                        espace en un lieu d'inspiration gastronomique, où chaque détail compte.
+                        De la cuisine à les placards, en passant par les salles de bain et le parquet, nos créations transforment chaque espace en une source d’inspiration, où chaque détail compte.
                     </p>
                     <div className="flex justify-center md:justify-start gap-4">
                         <a

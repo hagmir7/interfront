@@ -40,7 +40,7 @@ const page = () => {
                             <nav>
                                 <ul className="text-white mb-6">
                                     <li className="pl-4 inline-block text-lg font-medium relative before:content-['›'] before:absolute before:left-0 before:font-bold before:text-white">
-                                        Optimisez votre espace avec nos solutions de rangement élégantes et fonctionnelles
+                                        Des solutions de rangement élégantes pour un espace optimisé.
                                     </li>
                                 </ul>
                             </nav>

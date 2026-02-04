@@ -92,19 +92,19 @@ export default function PlacardCards() {
     {
       title: 'Placard Coulissants',
       description: 'Personnalisez votre placard sur-mesure selon vos envies, nous vous proposons des portes coulissantes qui s’adaptent parfaitement à votre intérieur.',
-      imageSrc: 'https://intercocina.com/assets/placards/ABT%20GARD%2002.jpg',
+      imageSrc: '/imgs/placard/placard-colise.png',
       imagePosition: 'left'
     },
     {
       title: 'Placards Battants',
       description: 'Placards à portes battantes personnalisables avec charnières de qualité supérieure et une multitude de styles et de couleurs.',
-      imageSrc: 'https://intercocina.com/assets/placards/ABT%20GARD%2002.jpg',
+      imageSrc: '/imgs/placard/placard-abatible.png',
       imagePosition: 'right'
     },
     {
-      title: 'Placard Encastré',
+      title: 'Dresing',
       description: 'Créez un placard sur-mesure qui s’intègre parfaitement à votre espace, adapté à tous les styles d’intérieur.',
-      imageSrc: 'https://intercocina.com/assets/placards/ABT%20GARD%2002.jpg',
+      imageSrc: '/imgs/placard/placard-drissing.png',
       imagePosition: 'left'
     }
   ];
@@ -118,7 +118,7 @@ export default function PlacardCards() {
             Nos Collections de Placards
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Des solutions sur-mesure pour optimiser votre espace avec élégance
+            Des solutions sur-mesure pour optimiser votre espace élégance
           </p>
         </div>
 

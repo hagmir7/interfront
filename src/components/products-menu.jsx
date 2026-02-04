@@ -58,12 +58,11 @@ const components = [
 export function ProductsMenu() {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="bg-[#fef6f6] hover:bg-[#fef6f6]">
-        <NavigationMenuItem className="bg-[#fef6f6] hover:bg-[#fef6f6]">
-          <NavigationMenuTrigger className="bg-[#fef6f6] hover:bg-[#fef6f6]">
-            <p className="inline-flex cursor-pointer py-2 gap-2 items-center text-[17px] bg-[#fef6f6] hover:bg-[#fef6f6]">Produits</p>
+      <NavigationMenuList className="bg-[#f2f2f2] hover:bg-[#f2f2f2]">
+        <NavigationMenuItem className="bg-[#f2f2f2] hover:bg-[#f2f2f2]">
+          <NavigationMenuTrigger className="bg-[#f2f2f2] hover:bg-[#f2f2f2]">
+            <p className="inline-flex cursor-pointer py-2 gap-2 items-center text-[17px] bg-[#f2f2f2] hover:bg-[#f2f2f2]">Produits</p>
           </NavigationMenuTrigger>
-          
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">

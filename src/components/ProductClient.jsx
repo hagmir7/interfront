@@ -34,7 +34,7 @@ const ProductClient = ({ product }) => {
                 {product.name}
               </h1>
               <h2 className="font-normal text-base text-gray-500 text-left">
-                {product.type}
+                {product?.type?.name}
               </h2>
             </div>
 

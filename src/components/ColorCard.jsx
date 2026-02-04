@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 export function ColorCard({ color }) {
   const [isHovered, setIsHovered] = useState(false);
+  
 
   return (
     <div
@@ -32,7 +33,7 @@ export function ColorCard({ color }) {
           />
 
           <span className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full bg-red-500 shadow-lg">
-            Mate
+            {color?.code}
           </span>
 
           {isHovered && (
