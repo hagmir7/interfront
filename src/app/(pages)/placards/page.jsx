@@ -6,6 +6,7 @@ import CLink from '@/components/CLink';
 import Image from 'next/image';
 import PlacardCards from '@/components/PlacardCards';
 import { motion, AnimatePresence } from "framer-motion";
+import Colors from '@/components/Colors';
 
 const page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -67,6 +68,22 @@ const page = () => {
                 </div>
 
             </div>
+
+
+             <PlacardCards />
+
+             <Colors />
+
+
+            <div className="text-center mb-6 md:mb-10 ">
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                    Retours Clients
+                </h1>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement
+                </p>
+            </div>
+
             <div className="max-w-7xl mx-auto py-12 px-4 hidden lg:block">
                 <div className=" gap-8">
                     <div className="lg:col-span-2 space-y-6">
@@ -142,7 +159,7 @@ const page = () => {
 
 
 
-            <PlacardCards />
+           
         </div>
     );
 };

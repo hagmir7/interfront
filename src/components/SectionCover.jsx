@@ -42,7 +42,7 @@ const SectionConver = () => {
                 Leader de la fabrication de meubles de cuisine au Maroc
               </h1>
               <p className='text-center text-white md:text-left text-lg font-semibold'>
-                De la cuisine à les placards, en passant par les salles de bain et le parquet, nos créations transforment chaque espace en une source d’inspiration, où chaque détail compte.
+                De la cuisine aux placards, en passant par les salles de bain et le parquet, nos créations transforment chaque espace en une source d’inspiration, où chaque détail compte.
               </p>
               <div className='flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-4'>
                 <CLink

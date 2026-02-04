@@ -32,9 +32,9 @@ const features = [
   {
     title: (
       <>
-        N°1  au Maroc dans la fabrication de meubles
+        N°1  au Maroc dans la fabrication 
         <br />
-         de cuisine sur mesure
+         de meubles cuisine sur mesure
       </>
     ),
     icon: <Award className="h-7 w-7 text-rose-400" />,
@@ -42,7 +42,7 @@ const features = [
   {
     title: (
       <>
-        Plus de 16 années d’expertise reconnue
+        +16 années d’expertise reconnue
         <br />
         et de savoir-faire industriel maîtrisé
       </>
@@ -68,17 +68,7 @@ const features = [
       </>
     ),
     icon: <Factory className="h-7 w-7 text-rose-400" />,
-  },
-  {
-    title: (
-      <>
-        Innovation constante et design personnalisé
-        <br />
-        adaptés aux besoins de chaque client
-      </>
-    ),
-    icon: <Sparkles className="h-7 w-7 text-rose-400" />,
-  },
+  }
 ]
 
 
@@ -86,7 +76,7 @@ const features = [
 const FeaturesSection = () => {
   return (
     <section className="relative mx-auto w-full px-6 sm:px-8 lg:px-8 pt-6 lg:pt-10">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5 lg:gap-x-12">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-12">
         {features.map((feature, index) => (
           <div key={index} className="flex flex-col">
             <div className="mb-4 flex flex-col gap-6 sm:flex-row sm:items-center

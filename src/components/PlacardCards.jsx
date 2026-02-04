@@ -4,11 +4,11 @@ import CLink from './CLink';
 
 const WardrobeCard = ({ title, description, imageSrc, imagePosition = 'left' }) => {
   const features = [
-    'Épaisseur de votre choix (16, 18, 22) mm',
+    'Épaisseur au choix (16, 18, 22) mm',
     'Préparation rapide',
-    'Plus de +50 couleurs disponibles',
+    '+50 couleurs disponibles',
     '100% fabriqué sur mesure',
-    'Plus de +20 poignées disponibles'
+    '+20 poignées disponibles'
   ];
 
   const content = (
@@ -103,7 +103,7 @@ export default function PlacardCards() {
     },
     {
       title: 'Dresing',
-      description: 'Créez un placard sur-mesure qui s’intègre parfaitement à votre espace, adapté à tous les styles d’intérieur.',
+      description: 'Créez un placard sur mesure qui s’intègre parfaitement à votre espace, adapté à tous les styles d’intérieur.',
       imageSrc: '/imgs/placard/placard-drissing.png',
       imagePosition: 'left'
     }
@@ -112,16 +112,6 @@ export default function PlacardCards() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 py-12 px-2 md:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-
-        <div className="text-center mb-6 md:mb-16 ">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-            Nos Collections de Placards
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Des solutions sur-mesure pour optimiser votre espace élégance
-          </p>
-        </div>
-
         <div className="space-y-24">
           {wardrobes.map((wardrobe, index) => (
             <div 
