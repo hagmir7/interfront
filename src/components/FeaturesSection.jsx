@@ -31,9 +31,7 @@ const features = [
   {
     title: (
       <>
-        N°1  au Maroc dans la fabrication 
-        <br />
-         de meubles cuisine sur mesure
+        N°1  au Maroc dans la fabrication de meubles cuisine sur mesure
       </>
     ),
     icon: <Award className="h-7 w-7 text-rose-400" />,
@@ -41,9 +39,7 @@ const features = [
   {
     title: (
       <>
-        +16 années d’expertise reconnue
-        <br />
-        et de savoir-faire industriel maîtrisé
+        +16 années d’expertise reconnue et de savoir-faire industriel maîtrisé
       </>
     ),
     icon: <History className="h-7 w-7 text-rose-400" />,
@@ -51,9 +47,7 @@ const features = [
   {
     title: (
       <>
-        Qualité premium certifiée
-        <br />
-        conforme aux normes internationales
+        Qualité premium certifiée conforme aux normes internationales
       </>
     ),
     icon: <BadgeCheck className="h-7 w-7 text-rose-400" />,
@@ -61,9 +55,7 @@ const features = [
   {
     title: (
       <>
-        Grande capacité industrielle assurant
-        <br />
-        une production fiable et continue
+        Grande capacité industrielle assurant une production fiable et continue
       </>
     ),
     icon: <Factory className="h-7 w-7 text-rose-400" />,
