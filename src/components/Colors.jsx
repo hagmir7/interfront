@@ -9,8 +9,10 @@ async function getColors() {
     process.env.NODE_ENV === "development"
       ? "http://localhost:8000"
       : "https://interapi.facepy.com";
-    const response = await fetch(`${baseURL}/api/view-colors?per_page=10`,);
-    
+   const response = await fetch(
+  `${baseURL}/api/view-colors?per_page=10`,
+  { next: { revalidate: 3600 } }
+);
     if (!response.ok) {
       throw new Error('Failed to fetch colors');
     }

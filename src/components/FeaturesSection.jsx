@@ -3,7 +3,6 @@ import {
   History,
   BadgeCheck,
   Factory,
-  Sparkles,
 } from 'lucide-react'
 
 
