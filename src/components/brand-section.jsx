@@ -66,8 +66,8 @@ const BrandsSection = () => {
                 alt={brand.name}
                 title={brand.name}
                 loading='lazy'
-                width={100}
-                height={100}
+                width={400}
+                height={400}
               />
               <h3 className='text-lg font-semibold text-black md:text-xl'>
                 {brand.name}
