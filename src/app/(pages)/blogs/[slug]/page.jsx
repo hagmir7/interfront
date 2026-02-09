@@ -123,7 +123,7 @@ const BlogPage = async ({ params }) => {
 
               <div className='mb-8'>
                 <Image
-                  src={`https://intercocina.com/storage/public/${article.image}`}
+                  src={`https://interapi.facepy.com/storage/${article.image}`}
                   className='w-full rounded-2xl mb-3 '
                   alt={article.title}
                   width={1000}
@@ -200,7 +200,7 @@ const BlogPage = async ({ params }) => {
                     className='bg-white rounded-2xl overflow-hidden md:shadow-sm'
                   >
                     <Image
-                      src={`https://intercocina.com/storage/public/${post.image}`}
+                      src={`https://interapi.facepy.com/storage/${post.image}`}
                       alt=''
                       className='w-full h-80 object-cover'
                       width={500}

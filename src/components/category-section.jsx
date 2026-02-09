@@ -14,7 +14,7 @@ function CategorySection() {
       imageUrl: '/imgs/placard/parquet.png',
       title: 'Revêtement et Sol',
       description: 'Revêtement de sol stratifié, Parquet, Plinthe et Accessoires...',
-      link: '/groups/revetement-et-sole',
+      link: '/groups/revetement-et-sol',
       badge: 'Populaire'
     },
     {

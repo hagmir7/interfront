@@ -27,7 +27,7 @@ const MainSection = () => {
                     </p>
                     <div className="flex justify-center md:justify-start gap-4">
                         <a
-                            href="https://intercocina.com/contact"
+                            href="https://interapi.facepy.com/contact"
                             className="btn btn-accent-gray animate__animated animate__fadeInUp flex items-center justify-center gap-2"
                         >
                             <svg
@@ -49,7 +49,7 @@ const MainSection = () => {
                         </a>
 
                         <a
-                            href="https://intercocina.com/shop"
+                            href="https://interapi.facepy.com/shop"
                             className="btn btn-primary animate__animated animate__fadeInUp flex items-center justify-center gap-2"
                         >
                             <svg
@@ -90,7 +90,7 @@ const MainSection = () => {
                                     style={{ width: "560px", marginRight: "30px" }}
                                 >
                                     <Image
-                                        src="https://intercocina.com/storage/public/01JJ6WJ2KACAM10XKRPSGX4D9D.webp"
+                                        src="https://interapi.facepy.com/storage/01JJ6WJ2KACAM10XKRPSGX4D9D.webp"
                                         className="rounded-3xl border-2"
                                         width={550}
                                         height={300}
@@ -105,7 +105,7 @@ const MainSection = () => {
                                     style={{ width: "560px", marginRight: "30px" }}
                                 >
                                     <img
-                                        src="https://intercocina.com/storage/public/01JJ6WE60R9FW4223BE2ZGEZT8.webp"
+                                        src="https://interapi.facepy.com/storage/01JJ6WE60R9FW4223BE2ZGEZT8.webp"
                                         className="rounded-3xl border-2"
                                         width="550"
                                         height="300"
@@ -120,7 +120,7 @@ const MainSection = () => {
                                     style={{ width: "560px", marginRight: "30px" }}
                                 >
                                     <img
-                                        src="https://intercocina.com/storage/public/01JJ6WG4STX8K98EDH1M4CE8H4.webp"
+                                        src="https://interapi.facepy.com/storage/01JJ6WG4STX8K98EDH1M4CE8H4.webp"
                                         className="rounded-3xl border-2"
                                         width="550"
                                         height="300"
@@ -135,7 +135,7 @@ const MainSection = () => {
                                     style={{ width: "560px", marginRight: "30px" }}
                                 >
                                     <img
-                                        src="https://intercocina.com/storage/public/01JJ6WH6RE41ZMGQPC22FMN4T2.webp"
+                                        src="https://interapi.facepy.com/storage/01JJ6WH6RE41ZMGQPC22FMN4T2.webp"
                                         className="rounded-3xl border-2"
                                         width="550"
                                         height="300"

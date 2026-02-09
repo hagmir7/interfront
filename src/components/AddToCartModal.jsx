@@ -311,7 +311,7 @@ export function AddToCartModal({ open, onOpenChange, product }) {
                                                             : "border-gray-100 hover:border-gray-500 hover:scale-105"}
                                             `}
                                                     style={{
-                                                        backgroundImage: `url(https://intercocina.com/storage/public/${color.image})`,
+                                                        backgroundImage: `url(https://interapi.facepy.com/storage/${color.image})`,
                                                     }}
                                                     title={color.name}
                                                     aria-label={`Select ${color.name} color`}

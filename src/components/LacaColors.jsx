@@ -6,103 +6,103 @@ const colors = [
     id: 4,
     name: 'Yellow ground',
     image:
-      'https://intercocina.com/storage/public/01J9B8A0T1EEYPH3ZB2EBYBZ7W.png',
+      'https://interapi.facepy.com/storage/01J9B8A0T1EEYPH3ZB2EBYBZ7W.png',
   },
   {
     id: 5,
     name: 'Off white',
     image:
-      'https://intercocina.com/storage/public/01J9B7V141GPRBMX5NC171ZTFX.png',
+      'https://interapi.facepy.com/storage/01J9B7V141GPRBMX5NC171ZTFX.png',
   },
   {
     id: 6,
     name: 'Sitting plaster',
     image:
-      'https://intercocina.com/storage/public/01J9B82YH9D9GF43612R07Z5YM.png',
+      'https://interapi.facepy.com/storage/01J9B82YH9D9GF43612R07Z5YM.png',
   },
   {
     id: 7,
     name: 'Gris basalto',
     image:
-      'https://intercocina.com/storage/public/01J9XX9DX8TBDSX74J1SV4214S.jpg',
+      'https://interapi.facepy.com/storage/01J9XX9DX8TBDSX74J1SV4214S.jpg',
   },
   {
     id: 8,
     name: 'Vison oscuro',
     image:
-      'https://intercocina.com/storage/public/01J9B88DCXBCG09AWRH7QAQ5KH.png',
+      'https://interapi.facepy.com/storage/01J9B88DCXBCG09AWRH7QAQ5KH.png',
   },
   {
     id: 9,
     name: 'Piedra claro',
     image:
-      'https://intercocina.com/storage/public/01J9B7ZTM1B1832ZPWJTECN767.png',
+      'https://interapi.facepy.com/storage/01J9B7ZTM1B1832ZPWJTECN767.png',
   },
   {
     id: 10,
     name: "Teresa's green",
     image:
-      'https://intercocina.com/storage/public/01J9B86BXTRKKE5AH5MD3X6PC2.png',
+      'https://interapi.facepy.com/storage/01J9B86BXTRKKE5AH5MD3X6PC2.png',
   },
   {
     id: 11,
     name: 'Oval room',
     image:
-      'https://intercocina.com/storage/public/01J9B7X0E5C632MDPM9CP8ATRD.png',
+      'https://interapi.facepy.com/storage/01J9B7X0E5C632MDPM9CP8ATRD.png',
   },
   {
     id: 12,
     name: 'All white',
     image:
-      'https://intercocina.com/storage/public/01J9B7RVFN7B3RT4Q8M32Q4KEG.png',
+      'https://interapi.facepy.com/storage/01J9B7RVFN7B3RT4Q8M32Q4KEG.png',
   },
   {
     id: 13,
     name: 'Jaspermat noche',
     image:
-      'https://intercocina.com/storage/public/01JDRV5PR80C18CFSJR4E460ZQ.png',
+      'https://interapi.facepy.com/storage/01JDRV5PR80C18CFSJR4E460ZQ.png',
   },
   {
     id: 14,
     name: 'Lunar sand',
     image:
-      'https://intercocina.com/storage/public/01JDRV7QJ3NSV7ZFZA48V08JFM.png',
+      'https://interapi.facepy.com/storage/01JDRV7QJ3NSV7ZFZA48V08JFM.png',
   },
   {
     id: 15,
     name: 'Metalizado bronze',
     image:
-      'https://intercocina.com/storage/public/01JDRVCMDS6WW8MK9GBP87VBQD.png',
+      'https://interapi.facepy.com/storage/01JDRVCMDS6WW8MK9GBP87VBQD.png',
   },
   {
     id: 30,
     name: 'Celadone',
     image:
-      'https://intercocina.com/storage/public/01JKGCKFW33571MYSAY0KN0BX2.png',
+      'https://interapi.facepy.com/storage/01JKGCKFW33571MYSAY0KN0BX2.png',
   },
   {
     id: 31,
     name: 'Red Eart',
     image:
-      'https://intercocina.com/storage/public/01JKGCRX21AVE1YR106EKP7J9G.png',
+      'https://interapi.facepy.com/storage/01JKGCRX21AVE1YR106EKP7J9G.png',
   },
   {
     id: 32,
     name: 'Grigio Londra',
     image:
-      'https://intercocina.com/storage/public/01JKGCP15KEAC2JPAW4FBMN3SP.png',
+      'https://interapi.facepy.com/storage/01JKGCP15KEAC2JPAW4FBMN3SP.png',
   },
   {
     id: 33,
     name: 'Rosso Jaipur',
     image:
-      'https://intercocina.com/storage/public/01JKGCQ4SJYFPX2RXCZZXQG98Z.jpg',
+      'https://interapi.facepy.com/storage/01JKGCQ4SJYFPX2RXCZZXQG98Z.jpg',
   },
   {
     id: 34,
     name: 'Verde Comodoro',
     image:
-      'https://intercocina.com/storage/public/01JKGCJAP4HCWREZWA7YN470ZG.png',
+      'https://interapi.facepy.com/storage/01JKGCJAP4HCWREZWA7YN470ZG.png',
   },
 ]
 
