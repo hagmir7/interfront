@@ -44,17 +44,17 @@ const EventsSection = async () => {
               <div className='relative overflow-hidden'>
                 <CLink
                   href={`/event/${event.slug}`}
-                  className='block relative h-64 overflow-hidden'
+                  className='block relative overflow-hidden'
                 >
                   <div className='absolute inset-0 '></div>
                   <Image
                     src={event.image || '/page/'}
                     alt={event.title}
                     title={event.title}
-                    width={100}
-                    height={100}
+                    width={500}
+                    height={600}
                     loading='lazy'
-                    className='w-full h-80 object-cover'
+                    className='w-full h-[480px] object-cover'
                   />
                   {/* Hover overlay with icon */}
                   <div className='absolute inset-0 flex items-center justify-center z-20'>
