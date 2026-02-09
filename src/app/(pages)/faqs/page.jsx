@@ -40,7 +40,7 @@ export default function FAQ() {
                     <a href="#">
                         <Image
                             className="w-48"
-                            src="https://intercocina.com/assets/imgs/intercocina-logo.png"
+                            src="https://interapi.facepy.com/assets/imgs/intercocina-logo.png"
                             width={192}
                             height={80}
                             alt="Intercocina faq"

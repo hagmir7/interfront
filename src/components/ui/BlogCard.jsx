@@ -13,7 +13,7 @@ const BlogCard = ({ title, created_at, image, slug }) => {
             height={210}
             decoding='async'
             className='rounded-md w-full h-[220px] object-cover'
-            src={`https://intercocina.com/storage/public/${image}`}
+            src={`https://interapi.facepy.com/storage/${image}`}
             style={{ color: 'transparent' }}
           />
         </Link>

@@ -17,21 +17,21 @@ const MainSectionGrid = () => {
       discount: '50 MAD',
       title: 'Vittoria - Laca Group 3',
       description: 'Vittoria : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://intercocina.com/storage/public/01JJ9S1JJHSJZ9S8143SGR6MAT.png',
+      image: 'https://interapi.facepy.com/storage/01JJ9S1JJHSJZ9S8143SGR6MAT.png',
       link: '/product/facade-laca-g3-vittoria'
     },
     {
       discount: '50 MAD',
       title: 'Foggia - Laca Group 3',
       description: 'Foggia : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://intercocina.com/storage/public/01JJ9JPT9EY7NCA37RW72P7PF7.png',
+      image: 'https://interapi.facepy.com/storage/01JJ9JPT9EY7NCA37RW72P7PF7.png',
       link: '/product/facade-laca-g1-atania'
     },
     {
       discount: '50 MAD',
       title: 'Foggia - Laca Group 3',
       description: 'Catania : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://intercocina.com/storage/public/01JJ9M513KM8P5MKBGMRCD412S.png',
+      image: 'https://interapi.facepy.com/storage/01JJ9M513KM8P5MKBGMRCD412S.png',
       link: '/product/facade-laca-g2-foggia'
     }
   ];
@@ -40,13 +40,13 @@ const MainSectionGrid = () => {
     {
       title: 'Mesina - Laca Group 2',
       salePrice: 50,
-      image: 'https://intercocina.com/storage/public/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png',
+      image: 'https://interapi.facepy.com/storage/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png',
       link: '/product/facade-laca-g2-mesina'
     },
     {
       title: 'Sicilia - Laca Group 1',
       salePrice: 50,
-      image: 'https://intercocina.com/storage/public/01JJ9KA7NPCD7DPG3EK973D2HK.png',
+      image: 'https://interapi.facepy.com/storage/01JJ9KA7NPCD7DPG3EK973D2HK.png',
       link: '/product/facade-laca-g1-sicilia'
     }
   ];

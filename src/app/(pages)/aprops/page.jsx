@@ -9,25 +9,25 @@ const AboutPage = () => {
     {
       title: 'Leader des cuisines modernes',
       description: 'Nous sommes profondément honorés de vous présenter notre société, qui se distingue en tant que leader incontesté dans le domaine de la fabrication sur mesure d\'éléments de cuisine. Notre expertise se fonde sur l\'exploitation de technologies de pointe, permettant ainsi la conception de cuisines d\'exception',
-      image: 'https://intercocina.com/assets/imgs/intercocina.png',
+      image: 'https://interapi.facepy.com/assets/imgs/intercocina.png',
       reversed: false
     },
     {
       title: 'Fabrication de meubles de cuisine',
       description: 'Depuis plus de 10 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés, hommes et femmes, met en œuvre son savoir-faire artisanal pour créer des meubles de cuisine d\'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.',
-      image: 'https://intercocina.com/assets/imgs/fabrication.jpg',
+      image: 'https://interapi.facepy.com/assets/imgs/fabrication.jpg',
       reversed: true
     },
     {
       title: 'Produit de qualité',
       description: 'La sélection minutieuse des matériaux dans la confection de nos meubles et la rigueur de notre processus de création sont au cœur de notre engagement envers la qualité et la durabilité de nos produits. Depuis 2017, chacun de nos meubles est accompagné d\'une certification et d\'un certificat de catégorisation, offrant ainsi à nos clients l\'assurance d\'acquérir des pièces de mobilier exceptionnelles répondant aux normes de qualité les plus élevées.',
-      image: 'https://intercocina.com/assets/imgs/qualite.jpg',
+      image: 'https://interapi.facepy.com/assets/imgs/qualite.jpg',
       reversed: false
     },
     {
       title: 'Une innovation renouvelée',
       description: 'Fort d\'une expérience de plus d\'une décennie, INTERCOCINA, leader en tant que fabricant de cuisines de renom, a toujours placé l\'innovation au cœur de sa stratégie de développement. Notre engagement envers l\'innovation vise à façonner des solutions qui transforment votre vie en rendant chaque aspect plus pratique, fonctionnel, et harmonieux, tout en répondant à vos besoins culinaires et esthétiques les plus exigeants.',
-      image: 'https://intercocina.com/assets/imgs/innovation.jpg',
+      image: 'https://interapi.facepy.com/assets/imgs/innovation.jpg',
       reversed: true
     }
   ];

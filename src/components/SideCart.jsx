@@ -58,7 +58,7 @@ const ShoppingCartSidebar = () => {
                     <div className='flex items-center'>
                       <div className='w-20 h-20 rounded-3xl overflow-hidden mr-4 flex-shrink-0'>
                         <Image
-                          src={`https://intercocina.com/storage/public/${item.attributes.image}`}
+                          src={`https://interapi.facepy.com/storage/${item.attributes.image}`}
                           alt={item.name}
                           className='w-full h-full object-cover'
                           width={100}

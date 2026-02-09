@@ -34,7 +34,7 @@ export default async function page({ params }) {
                              <div className="relative h-60 bg-white border-b flex items-center justify-center overflow-hidden group">
                                 <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-100 flex items-center justify-center">
                                     <Image
-                                        src={`https://intercocina.com/storage/public/${type.image}`}
+                                        src={`https://interapi.facepy.com/storage/${type.image}`}
                                         width={220}
                                         height={420}
                                         alt={group.name}

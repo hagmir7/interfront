@@ -79,7 +79,7 @@ const SectionConver = () => {
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
                   <Image
-                    src='https://intercocina.com/storage/public/01JJ9S1JJHSJZ9S8143SGR6MAT.png'
+                    src='https://interapi.facepy.com/storage/01JJ9S1JJHSJZ9S8143SGR6MAT.png'
                     className='h-96 w-auto object-center'
                     alt="Porte intercocina 1"
                     width={300}
@@ -90,7 +90,7 @@ const SectionConver = () => {
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
                   <Image
-                    src='https://intercocina.com/storage/public/01JJ9JPT9EY7NCA37RW72P7PF7.png'
+                    src='https://interapi.facepy.com/storage/01JJ9JPT9EY7NCA37RW72P7PF7.png'
                     className='h-96 w-auto object-center'
                     width={400}
                     height={500}
@@ -101,7 +101,7 @@ const SectionConver = () => {
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
                   <Image
-                    src='https://intercocina.com/storage/public/01JJ9KRKCBEXK6V03HA4V8R74Y.png'
+                    src='https://interapi.facepy.com/storage/01JJ9KRKCBEXK6V03HA4V8R74Y.png'
                     className='h-96 w-auto object-center'
                     alt="Porte intercocina 3"
                     width={300}
@@ -112,7 +112,7 @@ const SectionConver = () => {
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
                   <Image
-                    src='https://intercocina.com/storage/public/01JJ9M513KM8P5MKBGMRCD412S.png'
+                    src='https://interapi.facepy.com/storage/01JJ9M513KM8P5MKBGMRCD412S.png'
                     className='h-96 w-auto object-center'
                     alt="Porte intercocina 4"
                     width={300}
@@ -123,7 +123,7 @@ const SectionConver = () => {
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
                   <Image
-                    src='https://intercocina.com/storage/public/01JJ9RNXMMA92VV2PMMFH307XC.png'
+                    src='https://interapi.facepy.com/storage/01JJ9RNXMMA92VV2PMMFH307XC.png'
                     className='h-96 w-auto object-center'
                     alt="Porte intercocina 5"
                     width={300}

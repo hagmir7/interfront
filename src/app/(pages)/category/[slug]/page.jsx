@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export async function generateMetadata({ params, searchParams }) {
     const { slug } = await params;
-    const baseUrl = "https://intercocina.com";
+    const baseUrl = "https://interapi.facepy.com";
 
     // Fetch category
     const response = await fetch(`https://interapi.facepy.com/api/categories/${slug}`);

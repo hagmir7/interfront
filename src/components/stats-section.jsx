@@ -14,7 +14,7 @@ const StatsSection = () => {
             inébranlable envers l'excellence en fabrication.
           </p>
           <div className="flex justify-center md:justify-start">
-            <a href="https://intercocina.com/shop" className="btn btn-primary">
+            <a href="https://interapi.facepy.com/shop" className="btn btn-primary">
               Nos produits
             </a>
           </div>

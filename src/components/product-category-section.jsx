@@ -31,7 +31,7 @@ const ProductCategories = async () => {
                             >
                                 <Image
                                     className="sm:object-cover object-contain w-full h-full bg-gray-200"
-                                    src={`https://intercocina.com/storage/public/${category.image}`}
+                                    src={`https://interapi.facepy.com/storage/${category.image}`}
                                     alt={category.name}
                                     width={500}
                                     height={500}

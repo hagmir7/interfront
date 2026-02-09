@@ -18,7 +18,7 @@ export function ColorCard({ color }) {
       <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-2">
         <div className="relative w-full aspect-[205/200] overflow-hidden">
           <Image
-            src={`https://intercocina.com/storage/public/${color.image}`}
+            src={`https://interapi.facepy.com/storage/${color.image}`}
             alt={color.name}
             width={200}
             height={300}

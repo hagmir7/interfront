@@ -24,7 +24,7 @@ const CaissonSection = () => {
         {/* Product Image */}
         <div className='w-full lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0 lg:mr-7'>
           <Image
-            src='https://intercocina.com/storage/public/01JD542CJ2N520EJX56Y445YFF.png'
+            src='https://interapi.facepy.com/storage/01JD542CJ2N520EJX56Y445YFF.png'
             alt='Caisson de cuisine Hydrofuge'
             width={700}
             height={700}

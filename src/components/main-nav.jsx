@@ -141,7 +141,7 @@ const MainNav = () => {
               <span className='text-[#b6b6b7]'>INTER</span>
               <span className='text-[#ec2228]'>COCINA</span>
             </div>
-            {/* <Image src="https://intercocina.com/assets/imgs/intercocina-logo.png" width={100} height={100} alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
+            {/* <Image src="https://interapi.facepy.com/assets/imgs/intercocina-logo.png" width={100} height={100} alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
           </CLink>
 
           {/* Search */}

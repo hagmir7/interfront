@@ -75,13 +75,13 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
           {currentImages.map((img, i) => (
             <SwiperSlide key={i}>
               <a
-                  href={`https://intercocina.com/storage/public/${img.image}`}
+                  href={`https://interapi.facepy.com/storage/${img.image}`}
                   // data-pswp-width="1600"
                   data-pswp-height="1200"
-                  data-pswp-src={`https://intercocina.com/storage/public/${img.image}`}
+                  data-pswp-src={`https://interapi.facepy.com/storage/${img.image}`}
                 >
                   <Image
-                    src={`https://intercocina.com/storage/public/${img.image}`}
+                    src={`https://interapi.facepy.com/storage/${img.image}`}
                     width={600}
                     height={600}
                     alt=""
@@ -133,7 +133,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
                     hover:border-gray-400`}
                 >
                   <Image
-                    src={`https://intercocina.com/storage/public/${img.image}`}
+                    src={`https://interapi.facepy.com/storage/${img.image}`}
                     width={120}
                     height={80}
                     alt=""
