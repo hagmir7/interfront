@@ -1,124 +1,114 @@
-"use client"
-import React, { useState } from 'react'
-import { Star, CheckCircle } from 'lucide-react'
-import CLink from './CLink';
-import Image from 'next/image';
+'use client'
+
+import React from 'react'
+import { Star } from 'lucide-react'
+import Image from 'next/image'
+import CLink from './CLink'
 
 const CaissonSectionLeft = () => {
-
-  const features = [
-    'Recyclable',
-    'Épaisseur 16mm',
-    'Durabilité & Longévité',
-    'Haute résistance',
-    'Densité élevée',
-    'Écologique',
-    "Résistant à l'humidité",
-    'Résistant à la chaleur',
-    'Finition blanc mate',
-  ];
-
   return (
     <div className='max-w-7xl mx-auto px-2'>
       <div className='flex flex-col lg:flex-row mb-7 bg-white shadow-sm rounded-xl p-4 md:p-6'>
-        {/* Product Details */}
-        <div className='flex-1 lg:mr-7 order-2 lg:order-1'>
-          {/* Header with Title and Rating */}
-          <div className=' gap-4 mb-4'>
-            <div className='flex-1'>
-              <h4 className='text-xl sm:text-2xl font-semibold mb-2'>
-                <a
-                  href='/category/caissons'
-                  className='text-gray-900 hover:text-red-600 transition-colors'
-                >
-                  Caisson de Cuisine Blanc
-                </a>
-              </h4>
-            </div>
-
-            {/* Rating Section */}
-            <div className='flex flex-col min-w-fit'>
-              <ul className='flex gap-0.5 mb-1'>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <li key={star}>
-                    <Star
-                      className={`w-4 h-4 ${
-                        star <= 5
-                          ? 'text-yellow-400 fill-current'
-                          : 'text-gray-300'
-                      }`}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Product Description */}
-          <div className='mb-6'>
-            <p className='text-gray-600 text-sm font-light leading-7 mb-4 hidden md:block'>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout.
-            </p>
-
-            {/* Features Grid */}
-            <div className='w-full hidden lg:block'>
-              <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3'>
-                {features.map((feature, index) => (
-                  <li
-                    key={index}
-                    className='flex items-start gap-2 p-2 sm:p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors'
-                  >
-                    <CheckCircle className='text-green-500 w-4 h-4 mt-0.5 flex-shrink-0' />
-                    <span className='text-gray-700 text-xs sm:text-sm'>
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Category Tags Section */}
-          <div className='mt-6'>
-            <div className='grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3'>
-              <CLink
-                href='/category/caissons?type=caisson-haut'
-                className='py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center'
-              >
-                Meuble Haut
-              </CLink>
-              <CLink
-                href='/category/caissons?type=caisson-bas'
-                className='py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center'
-              >
-                Meuble Bas
-              </CLink>
-              <CLink
-                href='/category/caissons?type=caisson-colonne'
-                className='py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center'
-              >
-                Meuble Colonne
-              </CLink>
-              <CLink
-                href='/category/accessoiriser?type=racrocheurs'
-                className='py-2 px-3 sm:px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center'
-              >
-                Accessoires
-              </CLink>
-            </div>
-          </div>
+        
+        {/* Product Image */}
+        <div className='w-full order-1 lg:order-1 lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0'>
+          <CLink href='/product/caisse-tournant-pour-caisson-coin-antracite'>
+            <Image
+              src='https://interapi.facepy.com/storage/01JMA4TEWC1VRMJPB9KQYX9PVA.png'
+              alt='Caisse tournant pour caisson coin'
+              width={700}
+              height={700}
+              className='w-full h-full object-contain'
+            />
+          </CLink>
         </div>
 
-        {/* Product Image */}
-        <div className='w-full order-1 lg:order-2 lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0'>
-          <Image
-            src='https://interapi.facepy.com/storage/01J96VEEPMQRW9VHPMR9NQJ8VB.png'
-            alt='Caisson de Cuisine Hydrofuge'
-            width={700}
-            height={700}
-            className='w-full h-full'
-          />
+        {/* Product Details */}
+        <div className='flex-1 lg:ml-7 order-2 lg:order-2'>
+          
+          {/* Header */}
+          <div className='mb-2'>
+            <h4 className='text-xl sm:text-2xl font-semibold mb-2'>
+              <CLink
+                href='/category/accessoiriser'
+                className='text-gray-900 hover:text-red-600 transition-colors'
+              >
+                Accessoires de cuisine
+              </CLink>
+            </h4>
+
+            {/* Rating */}
+            <ul className='flex gap-0.5'>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <li key={star}>
+                  <Star className='w-4 h-4 text-yellow-400 fill-current' />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Description */}
+          <p className='text-gray-600 text-sm font-light leading-7 mb-6 hidden md:block'>
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout.
+          </p>
+
+          {/* Gallery */}
+          <div className='hidden lg:block mb-6'>
+            <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
+              {[{
+                path: '01JNJZ057XJK7M854GB4P3CBM0.png',
+                alt: "tiroirs",
+                link: "/category/accessoiriser?type=tiroir"
+              },
+
+              {
+                path: '01JMEMTJ4ZWB5QG9XQTP5CBCDE.png',
+                alt: "Egoutoire",
+                link: "/product/etagere-a-assiettesverre-600-mm-avec-plateau"
+              },
+
+              {
+                path: '01JM1YA6DGGY9YBAJTB9X59YA0.png',
+                alt: "ecological",
+                link: "/category/accessoiriser?type=ecological"
+              }
+              ].map((img) => (
+                <li key={img.path}>
+                  <CLink href={img.link}>
+                    <Image
+                      src={`https://interapi.facepy.com/storage/${img.path}`}
+                      width={700}
+                      height={700}
+                      alt='inter'
+                      className='border rounded-2xl'
+                    />
+                  </CLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div className='mt-6'>
+            <div className='grid grid-cols-2 sm:grid-cols-4 gap-3'>
+              {[
+                { label: 'Tiroir', type: 'tiroir' },
+                { label: 'Egoutoire', type: 'egoutoire' },
+                { label: 'Charnières', type: 'charneir' },
+                { label: 'Placard', type: 'placard' },
+              ].map(({ label, type }) => (
+                <CLink
+                  key={type}
+                  href={`/category/accessoiriser?type=${type}`}
+                  className='py-2 px-4 border border-red-500 text-red-600 rounded-2xl uppercase flex items-center justify-center text-xs font-bold hover:bg-red-500 hover:text-white transition-colors duration-200 text-center'
+                >
+                  {label}
+                </CLink>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
