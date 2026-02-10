@@ -46,10 +46,10 @@ const BrandsSection = () => {
     <section className='py-3 md:py-16 overflow-hidden'>
       <div className='max-w-7xl md:mx-auto'>
         <h2 className='py-5 text-2xl font-bold text-center md:text-4xl'>
-          Nos marques
+          Nos Gamme
         </h2>
         <p className='text-xl text-center my-3 md:my-5 mx-3'>
-          Nos marques se distinguent par leur qualité, leur design innovant et
+          Nos Gamme se distinguent par leur qualité, leur design innovant et
           un parfait équilibre entre style et fonctionnalité, offrant des
           solutions de cuisine élégantes et précises.
         </p>

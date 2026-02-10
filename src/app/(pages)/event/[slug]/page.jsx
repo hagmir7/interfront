@@ -36,8 +36,8 @@ const BlogPage = async ({ params }) => {
     { name: 'Placards', count: 6 },
     { name: 'Accessoires de cuisine', count: 17 },
     { name: 'Plant de travail', count: 13 },
-    { name: 'Veste', count: 6 },
-    { name: 'Manteau', count: 22 },
+    // { name: 'Veste', count: 6 },
+    // { name: 'Manteau', count: 22 },
   ]
 
 
