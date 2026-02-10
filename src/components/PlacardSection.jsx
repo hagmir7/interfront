@@ -14,16 +14,9 @@ const PlacarColors = () => {
   const [colors, setColors] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const baseImageUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:8000/storage/'
-      : 'https://interapi.facepy.com/storage/';
+  const baseImageUrl = 'https://interapi.facepy.com/storage/';
 
   const getImageUrl = (color) => {
-    if (color.images?.length > 0) {
-      return `${baseImageUrl}${color.images[0].path}`;
-    }
-
     if (color.image) {
       return `${baseImageUrl}${color.image}`;
     }
@@ -39,7 +32,7 @@ const PlacarColors = () => {
           : 'https://interapi.facepy.com';
 
       const response = await api.get(
-        `${baseURL}/api/view-colors?per_page=10`
+        `${baseURL}/api/view-colors?per_page=12`
       );
 
       setColors(response.data.data || []);
@@ -61,7 +54,7 @@ const PlacarColors = () => {
   return (
     <div className='text-left'>
       <p className='font-bold text-gray-700 mb-3 text-sm md:text-base'>
-        Couleurs disponibles
+        +50 Couleurs disponibles
       </p>
 
       <ul className='flex flex-wrap gap-1 md:gap-2 mb-4'>
@@ -85,9 +78,7 @@ const PlacarColors = () => {
 
               {/* Tooltip */}
               <div
-                className='absolute -top-60 left-1/2 hidden group-hover:block -translate-x-1/2
-                           bg-neutral-950 border-2 border-black rounded text-sm text-white
-                           w-44 z-10 overflow-hidden'
+                className='absolute -top-60 left-1/2 hidden group-hover:block -translate-x-1/2 bg-neutral-950 border-2 border-black rounded text-sm text-white w-44 z-10 overflow-hidden'
                 role='tooltip'
               >
                 <p className='p-2 text-center font-medium'>
@@ -118,42 +109,29 @@ const PlacarSection = () => {
 
   const heroCarouselData = [
     {
-      discount: '50 MAD',
-      title: 'Vittoria - Laca Group 3',
-      description: 'Vittoria : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
+      title: 'Dressing – Sur mesure',
+      description:
+        'Fabrication de dressings sur mesure adaptés à votre espace et à votre mode de vie. Large choix de plus de 40 coloris et plus de 20 modèles de poignées pour une finition élégante, durable et personnalisée.',
+      image: '/imgs/placard/placard-dressing.png',
+      link: '/placards'
+    },
+    {
+      title: 'Placards Coulissants – Sur mesure',
+      description:
+        'Fabrication de placards coulissants sur mesure, idéals pour optimiser l’espace avec un design moderne. Personnalisez votre placard avec plus de 40 couleurs et plus de 20 poignées au choix.',
       image: '/imgs/placard/placard-colise.png',
-      link: '/product/facade-laca-g3-vittoria'
+      link: '/placards'
     },
     {
       discount: '50 MAD',
-      title: 'Foggia - Laca Group 3',
-      description: 'Foggia : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: '/imgs/placard/placard-colise.png',
-      link: '/product/facade-laca-g1-atania'
-    },
-    {
-      discount: '50 MAD',
-      title: 'Foggia - Laca Group 3',
-      description: 'Catania : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: '/imgs/placard/placard-colise.png',
-      link: '/product/facade-laca-g2-foggia'
+      title: 'Placards Battants – Sur mesure',
+      description:
+        'Fabrication de placards battants sur mesure alliant solidité, esthétique et fonctionnalité. Choisissez parmi plus de 40 coloris et plus de 20 poignées pour un placard parfaitement adapté à votre intérieur.',
+      image: '/imgs/placard/placard-abatible.png',
+      link: '/placards'
     }
   ];
 
-  const sideProductsData = [
-    {
-      title: 'Mesina - Laca Group 2',
-      salePrice: 50,
-      image: 'https://interapi.facepy.com/storage/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png',
-      link: '/product/facade-laca-g2-mesina'
-    },
-    {
-      title: 'Sicilia - Laca Group 1',
-      salePrice: 50,
-      image: 'https://interapi.facepy.com/storage/01JJ9KA7NPCD7DPG3EK973D2HK.png',
-      link: '/product/facade-laca-g1-sicilia'
-    }
-  ];
 
   return (
     <section className='max-w-7xl mx-auto px-2 md:px-4 py-8 md:py-12'>
@@ -178,7 +156,7 @@ const PlacarSection = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center py-3 md:py-9 px-3 md:p-8'>
                   <div className='order-2 sm:order-1 space-y-4'>
                     <div className='flex items-center gap-4'>
-                      <span className='text-sm text-gray-700 uppercase tracking-wider'>
+                      <span className='text-sm text-[#da3036] font-bold text-md  uppercase tracking-wider'>
                         Devis Gratuite
                       </span>
                     </div>
@@ -203,52 +181,13 @@ const PlacarSection = () => {
                       alt={item.title}
                       width={700}
                       height={700}
-                      className='w-full h-auto object-contain max-h-[300px] md:max-h-[400px]'
+                      className='w-full h-auto object-contain rounded-2xl max-h-[300px] md:max-h-[450px]'
                     />
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-
-        {/* Side Products */}
-        <div className='grid sm:grid-cols-2 xl:grid-cols-2 gap-6'>
-          {sideProductsData.map((product, index) => (
-            <div
-              key={index}
-              className='bg-white rounded-xl shadow-sm p-3 md:p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
-            >
-              <div className='space-y-4 flex-1'>
-                <h3 className='text-base md:text-xl font-semibold text-gray-900 hover:text-red-600 transition'>
-                  <CLink href={product.link}>{product.title}</CLink>
-                </h3>
-                <div>
-                  <p className='text-xs text-gray-500 uppercase mb-2'>
-                    Matte et brillant
-                  </p>
-                  <div className='flex items-center gap-3'>
-                    <span className='text-gray-400'>À partir</span>
-                    <span className='text-lg font-bold text-red-600'>
-                      {product.salePrice} MAD
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className='ml-4 flex-shrink-0'>
-                <CLink href={product.link}>
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    // fill
-                    width={200}
-                    height={200}
-                    className='w-32 h-32 object-contain'
-                  />
-                </CLink>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
