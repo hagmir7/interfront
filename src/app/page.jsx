@@ -14,6 +14,7 @@ import CaissonSection from "@/components/CaissonSection";
 import CaissonSectionLeft from "@/components/CaissonSectionLeft";
 import Colors from "@/components/Colors";
 import FeaturesSection from "@/components/FeaturesSection";
+import PlacarSection from "@/components/PlacardSection";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
      
       <CategorySection />
       <CaissonSection />
+      <PlacarSection />
       <CaissonSectionLeft />
       <Colors />
      
