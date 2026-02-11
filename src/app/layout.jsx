@@ -7,6 +7,7 @@ import MainNav from "@/components/main-nav";
 import Footer from "@/components/footer";
 import { CartProvider } from "@/context/CartContext";
 import { LoadingBar } from "@/components/ui/LoadingBar";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export const metadata = {
   metadataBase: new URL("https://interapi.facepy.com"),
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
           {children}
         </CartProvider>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

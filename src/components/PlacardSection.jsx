@@ -110,23 +110,19 @@ const PlacarSection = () => {
   const heroCarouselData = [
     {
       title: 'Dressing – Sur mesure',
-      description:
-        'Fabrication de dressings sur mesure adaptés à votre espace et à votre mode de vie. Large choix de plus de 40 coloris et plus de 20 modèles de poignées pour une finition élégante, durable et personnalisée.',
+      description: 'Dressings sur mesure, avec un large choix de couleurs et de poignées pour une finition élégante et personnalisée.',
       image: '/imgs/placard/placard-dressing.png',
       link: '/placards'
     },
     {
       title: 'Placards Coulissants – Sur mesure',
-      description:
-        'Fabrication de placards coulissants sur mesure, idéals pour optimiser l’espace avec un design moderne. Personnalisez votre placard avec plus de 40 couleurs et plus de 20 poignées au choix.',
+      description: 'Placards coulissants sur mesure, modernes et fonctionnels, avec de nombreuses options de couleurs et de poignées.',
       image: '/imgs/placard/placard-colise.png',
       link: '/placards'
     },
     {
-      discount: '50 MAD',
       title: 'Placards Battants – Sur mesure',
-      description:
-        'Fabrication de placards battants sur mesure alliant solidité, esthétique et fonctionnalité. Choisissez parmi plus de 40 coloris et plus de 20 poignées pour un placard parfaitement adapté à votre intérieur.',
+      description: 'Placards battants sur mesure, robustes et esthétiques, avec un large choix de couleurs et de poignées pour s’adapter parfaitement à votre intérieur.',
       image: '/imgs/placard/placard-abatible.png',
       link: '/placards'
     }
@@ -157,7 +153,7 @@ const PlacarSection = () => {
                   <div className='order-2 sm:order-1 space-y-4'>
                     <div className='flex items-center gap-4'>
                       <span className='text-sm text-[#da3036] font-bold text-md  uppercase tracking-wider'>
-                        Devis Gratuite
+                        Devis Gratuit
                       </span>
                     </div>
                     <h2 className='text-lg sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition mb-2'>
