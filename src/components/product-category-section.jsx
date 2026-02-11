@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import CLink from './CLink';
 
 const ProductCategories = async () => {
 
@@ -76,9 +77,9 @@ const ProductCategories = async () => {
                 </div>
 
                 <div className="flex justify-center md:max-w-6xl md:mx-auto gap-4 mt-8">
-                    <a href="/shop" className="btn btn-primary flex items-center justify-center gap-2" >
+                    <CLink href="/shop" className="btn btn-primary flex items-center justify-center gap-2" >
                         Voir Plus
-                    </a>
+                    </CLink>
                 </div>
             </div>
         </section>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import CLink from './CLink';
 
 const BrandsSection = () => {
   // Brand data
@@ -78,9 +79,9 @@ const BrandsSection = () => {
         </ul>
 
         <div className='flex flex-col justify-center gap-10 px-4 py-18 md:flex-row'>
-          <a href='/contact' className='btn btn-primary text-center'>
+          <CLink href='/contact' className='btn btn-primary text-center'>
             Travaillez avec nous
-          </a>
+          </CLink>
         </div>
       </div>
     </section>

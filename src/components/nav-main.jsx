@@ -17,6 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import CLink from "./CLink";
 
 export function NavMain({
   items
@@ -45,9 +46,9 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <CLink href={subItem.url}>
                           <span>{subItem.title}</span>
-                        </a>
+                        </CLink>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

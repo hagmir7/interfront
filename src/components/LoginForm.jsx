@@ -4,6 +4,7 @@ import { useState } from "react";
 import { login } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import CLink from "./CLink";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -65,9 +66,9 @@ const LoginForm = () => {
             <label htmlFor="password" className="text-md font-medium text-gray-700">
               Mot de passe
             </label>
-            <a href="/user/forgot-password" className="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">
+            <CLink href="/user/forgot-password" className="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">
               Mot de passe oublié ?
-            </a>
+            </CLink>
           </div>
           <input
             type="password"
@@ -113,9 +114,9 @@ const LoginForm = () => {
         <div className="text-center mt-6">
           <p className="text-md text-gray-600">
             Pas encore de compte ?{" "}
-            <a href="/user/register" className="font-medium text-red-600 hover:text-red-800 transition-colors">
+            <CLink href="/user/register" className="font-medium text-red-600 hover:text-red-800 transition-colors">
               Créer un nouveau compte
-            </a>
+            </CLink>
           </p>
         </div>
       </form>

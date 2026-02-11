@@ -1,5 +1,6 @@
 "use client";
 
+import CLink from "@/components/CLink";
 import { api } from "@/lib/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -37,7 +38,7 @@ export default function FAQ() {
         <div className="max-w-7xl mx-auto p-4">
             <div className="px-4 text-center lg:px-12">
                 <div className="w-full flex justify-center py-6">
-                    <a href="#">
+                    <CLink href="#">
                         <Image
                             className="w-48"
                             src="https://interapi.facepy.com/assets/imgs/intercocina-logo.png"
@@ -46,7 +47,7 @@ export default function FAQ() {
                             alt="Intercocina faq"
                             title="Intercocina FAQs"
                         />
-                    </a>
+                    </CLink>
                 </div>
 
                 <h1 className="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl">
