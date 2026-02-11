@@ -36,8 +36,11 @@ const CaissonSectionLeft = () => {
                 Accessoires de cuisine
               </CLink>
             </h4>
-
-            {/* Rating */}
+          {/* Description */}
+          <p className='text-gray-600 text-sm font-light leading-7 mb-2 hidden md:block'>
+            Optimisez votre cuisine avec nos accessoires sur mesure, alliant design, confort et performance.
+          </p>
+             {/* Rating */}
             <ul className='flex gap-0.5'>
               {[1, 2, 3, 4, 5].map((star) => (
                 <li key={star}>
@@ -47,14 +50,8 @@ const CaissonSectionLeft = () => {
             </ul>
           </div>
 
-          {/* Description */}
-          <p className='text-gray-600 text-sm font-light leading-7 mb-6 hidden md:block'>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </p>
-
           {/* Gallery */}
-          <div className='hidden lg:block mb-6'>
+          <div className='hidden lg:block mb-6 mt-5'>
             <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
               {[{
                 path: '01JNJZ057XJK7M854GB4P3CBM0.png',

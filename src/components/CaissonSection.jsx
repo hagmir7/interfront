@@ -40,15 +40,31 @@ const CaissonSection = () => {
   ]
 
   const features = [
-    'Recyclable',
-    'Épaisseur 18mm',
-    'Durabilité & Longévité',
-    'Haute résistance',
-    'Densité élevée',
-    'Écologique',
-    "Résistant à l'humidité",
-    'Résistant à la chaleur',
-    'Finition Stone',
+    {
+      title: 'Recyclable',
+      icon: '/icons/caisson-icon-1.svg'
+    },
+    {
+      title: "Résistant à l'humidité",
+      icon: '/icons/caisson-icon-2.svg'
+    },
+    {
+      title: 'Densité élevée',
+      icon: '/icons/caisson-icon-3.svg'
+    },
+    {
+      title: 'Écologique',
+      icon: '/icons/caisson-icon-4.svg'
+    },
+    {
+      title: 'Résistant à la chaleur',
+      icon: '/icons/caisson-icon-5.svg'
+    },
+    {
+      title: 'Épaisseur 18mm',
+      icon: '/icons/caisson-icon-6.svg'
+    },
+
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -58,7 +74,7 @@ const CaissonSection = () => {
       <div className="flex flex-col lg:flex-row bg-white shadow-sm rounded-xl p-4 md:p-6">
 
         {/* Image Swiper */}
-        <div className="w-full lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0 lg:mr-7">
+        <div className="w-full lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0 lg:mr-7 flex items-center">
           <Swiper
             modules={[Pagination, Autoplay]}
             pagination={{ clickable: true }}
@@ -85,7 +101,7 @@ const CaissonSection = () => {
         <div className="flex-1">
 
           {/* Dynamic title ONLY */}
-          <div className="mb-4">
+          <div className="mb-2">
             <h4 className="text-xl sm:text-2xl font-semibold mb-2">
               <a
                 href={images[activeIndex].link}
@@ -94,6 +110,10 @@ const CaissonSection = () => {
                 {images[activeIndex].title}
               </a>
             </h4>
+             {/* Description */}
+          <p className="text-gray-600 text-sm font-light leading-7 mb-2 hidden md:block">
+            Explorez notre gamme de caissons, la base d’un aménagement fiable et performant.
+          </p>
 
             {/* Rating */}
             <ul className="flex gap-0.5">
@@ -105,11 +125,7 @@ const CaissonSection = () => {
             </ul>
           </div>
 
-          {/* Description */}
-          <p className="text-gray-600 text-sm font-light leading-7 mb-6 hidden md:block">
-            It is a long established fact that a reader will be distracted
-            by the readable content of a page when looking at its layout.
-          </p>
+         
 
           {/* Features */}
           <div className="hidden lg:block mb-6">
@@ -117,11 +133,11 @@ const CaissonSection = () => {
               {features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition"
+                  className="text-center p-3 bg-gray-50 rounded-xl transition"
                 >
-                  <CheckCircle className="text-green-500 w-4 h-4 mt-0.5" />
-                  <span className="text-gray-700 text-xs sm:text-sm">
-                    {feature}
+                  <Image src={feature.icon} alt={feature.title} width={55} height={55} className=" mt-0.5 m-auto" />
+                  <span className="text-gray-700 text-sm sm:text-md font-bold">
+                    {feature.title}
                   </span>
                 </li>
               ))}
