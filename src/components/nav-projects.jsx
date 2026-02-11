@@ -18,6 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import CLink from "./CLink";
 
 export function NavProjects({
   projects
@@ -31,10 +32,10 @@ export function NavProjects({
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <CLink href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
-              </a>
+              </CLink>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

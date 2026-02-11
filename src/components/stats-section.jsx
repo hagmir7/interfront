@@ -1,5 +1,6 @@
 
 import React from 'react';
+import CLink from './CLink';
 
 const StatsSection = () => {
   return (
@@ -14,9 +15,9 @@ const StatsSection = () => {
             inébranlable envers l'excellence en fabrication.
           </p>
           <div className="flex justify-center md:justify-start">
-            <a href="https://interapi.facepy.com/shop" className="btn btn-primary">
+            <CLink href="https://interapi.facepy.com/shop" className="btn btn-primary">
               Nos produits
-            </a>
+            </CLink>
           </div>
         </div>
         <div className="grid">

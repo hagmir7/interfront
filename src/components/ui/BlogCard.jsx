@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import CLink from "../CLink";
 
 const BlogCard = ({ title, created_at, image, slug }) => {
     return (
@@ -34,7 +35,7 @@ const BlogCard = ({ title, created_at, image, slug }) => {
             </a>
           </span>
           <h3 className='font-bold text-dark text-md sm:text-xl ease-out duration-200 mb-4 hover:text-blue'>
-            <a href={`/blogs/${slug}`}>{title}</a>
+            <CLink href={`/blogs/${slug}`}>{title}</CLink>
           </h3>
           <Link
             className='text-custom-sm text-sm md:text-base inline-flex items-center gap-2 py-2 ease-out duration-200 hover:text-blue'
