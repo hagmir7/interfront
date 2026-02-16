@@ -7,6 +7,10 @@ import Image from 'next/image';
 
 export function ColorCard({ color }) {
   const [isHovered, setIsHovered] = useState(false);
+
+    const IMAGE_BASE_URL = isProduction
+      ? 'https://https://interapi.facepy.com//storage/'
+      : 'http://localhost:8000/storage/';
   
 
   return (

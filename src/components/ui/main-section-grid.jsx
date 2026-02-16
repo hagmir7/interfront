@@ -26,35 +26,16 @@ const MainSectionGrid = () => {
 
     }
   }
+
+    const IMAGE_BASE_URL = isProduction
+      ? 'https://https://interapi.facepy.com//storage/'
+      : 'http://localhost:8000/storage/';
   
   
     useEffect(() =>{
       getData()
     }, [])
 
-  const heroCarouselData = [
-    {
-      discount: '50 MAD',
-      title: 'Vittoria - Laca Group 3',
-      description: 'Vittoria : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://interapi.facepy.com/storage/01JJ9S1JJHSJZ9S8143SGR6MAT.png',
-      link: '/product/facade-laca-g3-vittoria'
-    },
-    {
-      discount: '50 MAD',
-      title: 'Foggia - Laca Group 3',
-      description: 'Foggia : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://interapi.facepy.com/storage/01JJ9JPT9EY7NCA37RW72P7PF7.png',
-      link: '/product/facade-laca-g1-atania'
-    },
-    {
-      discount: '50 MAD',
-      title: 'Foggia - Laca Group 3',
-      description: 'Catania : une pièce d’exception en panneaux MDF à double face, sublimée par une peinture haut de gamme. Disponible dans nos finitions Port, Cassroliers et Tiroir pour s’adapter à tous vos projets design.',
-      image: 'https://interapi.facepy.com/storage/01JJ9M513KM8P5MKBGMRCD412S.png',
-      link: '/product/facade-laca-g2-foggia'
-    }
-  ];
 
   const sideProductsData = [
     {
@@ -135,7 +116,7 @@ const MainSectionGrid = () => {
         </span>
 
         <Image
-          src={'http://localhost:8000/storage/' + item.image}
+          src={IMAGE_BASE_URL + item.image}
           alt={item.title}
           width={1000}
           height={1000}

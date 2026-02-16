@@ -5,8 +5,12 @@ import React from "react";
 
 export default function ColorCards({ colors }) {
 
-  const IMAGE_BASE_URL = "http://localhost:8000/storage/colors/"; 
-  // 🔁 change to your Laravel storage path
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  const IMAGE_BASE_URL = isProduction
+      ? 'https://https://interapi.facepy.com//storage/'
+      : 'http://localhost:8000/storage/';
+
 
   return (
     <div className='text-left'>
