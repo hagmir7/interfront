@@ -25,11 +25,7 @@ export function ColorCard({ color }) {
               isHovered ? 'scale-110' : 'scale-100'
             }`}
           />
-          <div
-            className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${
-              isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}/>
 
           <span className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full bg-red-500 shadow-lg">
             {color?.code}

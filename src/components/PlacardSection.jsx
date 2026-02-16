@@ -26,14 +26,9 @@ const PlacarColors = () => {
 
   const fetchColors = async () => {
     try {
-      const baseURL =
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:8000'
-          : 'https://interapi.facepy.com';
+      const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://interapi.facepy.com';
 
-      const response = await api.get(
-        `${baseURL}/api/view-colors?per_page=12`
-      );
+      const response = await api.get(`${baseURL}/api/view-colors?per_page=12`);
 
       setColors(response.data.data || []);
     } catch (error) {

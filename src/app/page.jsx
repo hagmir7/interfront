@@ -12,9 +12,10 @@ import Tracking from "@/components/Tracking";
 import MainSectionGrid from "@/components/ui/main-section-grid";
 import CaissonSection from "@/components/CaissonSection";
 import CaissonSectionLeft from "@/components/CaissonSectionLeft";
-import Colors from "@/components/Colors";
+
 import FeaturesSection from "@/components/FeaturesSection";
 import PlacarSection from "@/components/PlacardSection";
+import Colors from "@/components/Colors";
 
 export default function Home() {
   return (
