@@ -34,6 +34,8 @@ const MainSectionGrid = () => {
     : 'http://localhost:8000/storage/';
 
 
+
+    
   useEffect(() => {
     getData()
   }, [])
