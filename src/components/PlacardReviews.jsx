@@ -71,38 +71,34 @@ export default function PlacardReviews({ type }) {
         {
             id: 1,
             src: '/imgs/salle-de-bein/image-1.png',
-            alt: 'Placard 1',
-            review: {
-                name: "Mounia",
-                text: "Travail soigné et finitions de qualité."
-            }
+            alt: 'Salle de bain 1',
         },
         {
             id: 2,
             src: '/imgs/salle-de-bein/image-2.png',
-            alt: 'Placard 2',
+            alt: 'Salle de bain 2',
 
         },
         {
             id: 3,
             src: '/imgs/salle-de-bein/image-3.png',
-            alt: 'Placard 3',
+            alt: 'Salle de bain 3',
         },
         {
             id: 4,
             src: '/imgs/salle-de-bein/image-4.png',
-            alt: 'Placard 4',
+            alt: 'Salle de bain 4',
 
         },
         {
             id: 5,
             src: '/imgs/salle-de-bein/image-5.png',
-            alt: 'Placard 5',
+            alt: 'Salle de bain 5',
         },
         {
             id: 6,
             src: '/imgs/salle-de-bein/image-6.png',
-            alt: 'Placard 6',
+            alt: 'Salle de bain 6',
 
         },
     ];
@@ -119,15 +115,15 @@ export default function PlacardReviews({ type }) {
                     {type === 'placards' ? "Retours Clients" : 'Galerie d’inspirations'}
                 </h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                     {type === 'placards' ? "Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement" 
-                     : 'Galerie d’inspirations'}
+                    {type === 'placards' ? "Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement"
+                        : 'Galerie d’inspirations'}
                 </p>
             </div>
 
             {/* Image Grid with Reviews */}
             <div className="max-w-7xl mx-auto py-12 px-4 hidden lg:block">
                 <div className="grid grid-cols-3 gap-8">
-                    {(type == 'placrds' ? projects : projects_sale_de_bain).map((project) => (
+                    {(type == 'placards' ? projects : projects_sale_de_bain).map((project) => (
                         <div key={project.id} className="space-y-4">
                             {/* Image */}
                             <div className="relative group cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
@@ -161,7 +157,7 @@ export default function PlacardReviews({ type }) {
                                     </div>
                                 </div>
                             }
-                           
+
                         </div>
                     ))}
                 </div>

@@ -1,9 +1,7 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import CLink from '@/components/CLink';
-import PlacardCards from '@/components/PlacardCards';
 import Colors from '@/components/Colors';
 import PlacardReviews from '@/components/PlacardReviews';
-import SallesDeBainCards from '@/components/salles-de-bain-cards';
 import Image from 'next/image';
 
 const FeatureItem = ({ icon, alt, text }) => (
