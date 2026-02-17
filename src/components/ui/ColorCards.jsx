@@ -41,7 +41,7 @@ export default function ColorCards({ colors }) {
               ></div>
 
               <div
-                className='-top-56 hidden absolute overflow-hidden bg-neutral-950 ease-out left-1/2 p-0 border-black border-2 group-hover:block rounded text-center text-sm text-white transition-all w-40 whitespace-nowrap z-10'
+                className='-top-35 hidden absolute overflow-hidden bg-neutral-950 ease-out left-1/2 p-0 border-black border-2 group-hover:block rounded text-center text-sm text-white transition-all w-40 whitespace-nowrap z-10'
                 role='tooltip'
               >
                 {color.name}

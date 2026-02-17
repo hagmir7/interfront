@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
 import { Maximize2, X, User } from 'lucide-react';
 
-export default function PlacardReviews() {
+export default function PlacardReviews({ type }) {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const projects = [
@@ -64,6 +64,50 @@ export default function PlacardReviews() {
         },
     ];
 
+
+
+
+    const projects_sale_de_bain = [
+        {
+            id: 1,
+            src: '/imgs/salle-de-bein/image-1.png',
+            alt: 'Placard 1',
+            review: {
+                name: "Mounia",
+                text: "Travail soigné et finitions de qualité."
+            }
+        },
+        {
+            id: 2,
+            src: '/imgs/salle-de-bein/image-2.png',
+            alt: 'Placard 2',
+
+        },
+        {
+            id: 3,
+            src: '/imgs/salle-de-bein/image-3.png',
+            alt: 'Placard 3',
+        },
+        {
+            id: 4,
+            src: '/imgs/salle-de-bein/image-4.png',
+            alt: 'Placard 4',
+
+        },
+        {
+            id: 5,
+            src: '/imgs/salle-de-bein/image-5.png',
+            alt: 'Placard 5',
+        },
+        {
+            id: 6,
+            src: '/imgs/salle-de-bein/image-6.png',
+            alt: 'Placard 6',
+
+        },
+    ];
+
+
     const openLightbox = (image) => setSelectedImage(image);
     const closeLightbox = () => setSelectedImage(null);
 
@@ -72,17 +116,18 @@ export default function PlacardReviews() {
             {/* Header */}
             <div className="text-center mb-6 md:mb-10 mt-6">
                 <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                    Retours Clients
+                    {type === 'placards' ? "Retours Clients" : 'Galerie d’inspirations'}
                 </h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement
+                     {type === 'placards' ? "Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement" 
+                     : 'Galerie d’inspirations'}
                 </p>
             </div>
 
             {/* Image Grid with Reviews */}
             <div className="max-w-7xl mx-auto py-12 px-4 hidden lg:block">
                 <div className="grid grid-cols-3 gap-8">
-                    {projects.map((project) => (
+                    {(type == 'placrds' ? projects : projects_sale_de_bain).map((project) => (
                         <div key={project.id} className="space-y-4">
                             {/* Image */}
                             <div className="relative group cursor-pointer overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
@@ -103,17 +148,20 @@ export default function PlacardReviews() {
                             </div>
 
                             {/* Review */}
-                            <div className="flex items-start gap-4 bg-gray-50 rounded-xl p-4 shadow-sm">
-                                <div className="flex-shrink-0">
-                                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                                        <User size={24} className="text-gray-500" />
+                            {
+                                type === 'placards' && <div className="flex items-start gap-4 bg-gray-50 rounded-xl p-4 shadow-sm">
+                                    <div className="flex-shrink-0">
+                                        <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                            <User size={24} className="text-gray-500" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold text-gray-900">{project.review.name}</p>
+                                        <p className="text-gray-700 mt-1">{project.review.text}</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <p className="font-semibold text-gray-900">{project.review.name}</p>
-                                    <p className="text-gray-700 mt-1">{project.review.text}</p>
-                                </div>
-                            </div>
+                            }
+                           
                         </div>
                     ))}
                 </div>

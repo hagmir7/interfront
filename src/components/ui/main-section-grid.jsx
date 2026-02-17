@@ -20,8 +20,6 @@ const MainSectionGrid = () => {
     try {
       const response = await api.get('covers');
       setData(response.data);
-      console.log(response.data);
-
     } catch (error) {
 
     }
@@ -41,21 +39,6 @@ const MainSectionGrid = () => {
   }, [])
 
 
-  const sideProductsData = [
-    {
-      title: 'Mesina - Laca Group 2',
-      salePrice: 50,
-      image: 'https://interapi.facepy.com/storage/01JJ9MCKJRG0S9EG8Q2MD8NC6H.png',
-      link: '/product/facade-laca-g2-mesina'
-    },
-    {
-      title: 'Sicilia - Laca Group 1',
-      salePrice: 50,
-      image: 'https://interapi.facepy.com/storage/01JJ9KA7NPCD7DPG3EK973D2HK.png',
-      link: '/product/facade-laca-g1-sicilia'
-    }
-  ];
-
   return (
     <section className='max-w-7xl mx-auto px-2 md:px-4 py-8 md:py-12'>
       <div className='grid grid-cols-1 xl:grid-cols-[2fr,1fr] gap-6'>
@@ -74,20 +57,23 @@ const MainSectionGrid = () => {
             onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
             className='hero-swiper'
           >
-            {data.map((item, index) => (
+            {data.filter((slide) => parseInt(slide.is_main) === 1).map((item, index) => (
               <SwiperSlide key={index}>
                 <div className='grid grid-cols-1 md:grid-cols-2 items-center py-3 md:py-9 px-3 md:p-8'>
                   <div className='order-2 sm:order-1 space-y-4'>
-                    <div className='flex items-center gap-4'>
-                      <span className='text-lg md:text-2xl sm:text-4xl font-bold text-red-600'>
-                        {item.price}
-                      </span>
-                      <span className='text-sm text-gray-700 uppercase tracking-wider'>
-                        À partir
-                        <br />
-                        De
-                      </span>
-                    </div>
+                    {
+                      item.price && (<div className='flex items-center gap-4'>
+                        <span className='text-lg md:text-2xl sm:text-4xl font-bold text-red-600'>
+                          {item.price}
+                        </span>
+                        <span className='text-sm text-gray-700 uppercase tracking-wider'>
+                          À partir
+                          <br />
+                          De
+                        </span>
+                      </div>)
+                    }
+                    
 
                     <h2 className='text-lg sm:text-3xl font-semibold text-gray-900 hover:text-red-600 transition mb-2'>
                       {
@@ -97,8 +83,16 @@ const MainSectionGrid = () => {
                       }
                     </h2>
 
-                    <ColorCards colors={item.colors} />
-
+                    {
+                      (item?.colors?.length > 0 || item?.color_views?.length > 0) && (
+                        <ColorCards
+                          colors={[
+                            ...(item?.colors || []),
+                            ...(item?.color_views || [])
+                          ]}
+                        />
+                      )
+                    }
                     <p className='text-gray-600 mb-7 text-sm md:text-base'>
                       {item.description}
                     </p>
@@ -136,31 +130,35 @@ const MainSectionGrid = () => {
 
         {/* Side Products */}
         <div className='grid sm:grid-cols-2 xl:grid-cols-2 gap-6'>
-          {sideProductsData.map((product, index) => (
+
+          {data.filter((slide) => parseInt(slide.is_main) === 0).map((product, index) => (
             <div
               key={index}
-              className='bg-white rounded-xl shadow-sm p-3 md:p-6 flex items-center justify-between hover:shadow-sm transition-shadow'
+              className='bg-white rounded-xl shadow-sm p-3 md:p-4 flex items-center justify-between hover:shadow-sm transition-shadow'
             >
               <div className='space-y-4 flex-1'>
                 <h3 className='text-base md:text-xl font-semibold text-gray-900 hover:text-red-600 transition'>
-                  <CLink href={product.link}>{product.title}</CLink>
+                  <CLink href={product.url}>{product.title}</CLink>
                 </h3>
                 <div>
                   <p className='text-xs text-gray-500 uppercase mb-2'>
-                    Matte et brillant
+                    {product.subtitle}
                   </p>
-                  <div className='flex items-center gap-3'>
-                    <span className='text-gray-400'>À partir</span>
-                    <span className='text-lg font-bold text-red-600'>
-                      {product.salePrice} MAD
-                    </span>
-                  </div>
+                  {
+                    product.price && <div className='flex items-center gap-3'>
+                      <span className='text-gray-400'>À partir</span>
+                      <span className='text-lg font-bold text-red-600'>
+                        {product.price} MAD
+                      </span>
+                    </div>
+                  }
+                  
                 </div>
               </div>
               <div className='ml-4 flex-shrink-0'>
-                <CLink href={product.link}>
+                <CLink href={product.url}>
                   <Image
-                    src={product.image}
+                    src={IMAGE_BASE_URL + product.image}
                     alt={product.title}
                     // fill
                     width={200}
@@ -171,6 +169,7 @@ const MainSectionGrid = () => {
               </div>
             </div>
           ))}
+
         </div>
       </div>
     </section>
