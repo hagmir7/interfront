@@ -66,49 +66,43 @@ const page = () => {
                     </div>
                 </div>
 
-                   <div className="rounded-3xl bg-white p-8 shadow-sm border border-gray-100 text-center space-y-4 mt-3">
+                <div className="rounded-3xl bg-white p-8 shadow-sm border border-gray-100 text-center space-y-4 mt-3">
 
-                {/* Title */}
-                <h2 className="text-2xl font-bold text-gray-900">
-                    Demander un devis gratuit
-                </h2>
+                    {/* Title */}
+                    <h2 className="text-2xl font-bold text-gray-900">
+                        Demander un devis gratuit
+                    </h2>
 
-                {/* Small Description */}
-                <p className="text-gray-600 text-sm max-w-xl mx-auto">
-                    Obtenez une estimation rapide et personnalisée pour votre projet sur mesure.
-                    Notre équipe vous répond dans les plus brefs délais.
-                </p>
+                    {/* Small Description */}
+                    <p className="text-gray-600 text-sm max-w-xl mx-auto">
+                        Obtenez une estimation rapide et personnalisée pour votre projet sur mesure.
+                        Notre équipe vous répond dans les plus brefs délais.
+                    </p>
 
-                {/* Buttons */}
-                <div className="flex justify-center gap-4 flex-wrap pt-2">
+                    {/* Buttons */}
+                    <div className="flex justify-center gap-4 flex-wrap pt-2">
 
-                    <CLink
-                        href="/contact"
-                        className="bg-[#ec2228] text-white font-semibold py-3 px-6 rounded-full hover:bg-red-800 transition duration-300"
-                    >
-                        Contactez-nous
-                    </CLink>
+                        <CLink
+                            href="/contact"
+                            className="bg-[#ec2228] text-white font-semibold py-3 px-6 rounded-full hover:bg-red-800 transition duration-300"
+                        >
+                            Contactez-nous
+                        </CLink>
 
-                    <a
-                        href="https://wa.me/21266610759"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-green-500 flex gap-2 items-center text-white font-semibold py-3 px-6 rounded-full hover:bg-green-600 transition duration-300"
-                    >
-                        <FaWhatsapp size={20} />
-                        <span>WhatsApp</span>
-                    </a>
+                        <a
+                            href="https://wa.me/21266610759"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-green-500 flex gap-2 items-center text-white font-semibold py-3 px-6 rounded-full hover:bg-green-600 transition duration-300"
+                        >
+                            <FaWhatsapp size={20} />
+                            <span>WhatsApp</span>
+                        </a>
+
+                    </div>
 
                 </div>
-
             </div>
-            </div>
-
-         
-
-
-
-
             <Colors />
             <PlacardReviews type='placards' />
         </div>

@@ -263,9 +263,6 @@ const Product = ({ product, selectedColor, onColorChange }) => {
     const selectedValue = parseInt(e.target.value, 10);
 
 
-
-    // if (isNaN(selectedValue)) return;
-
     const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
 
     setAttribute(attributes.find((attribute) => attribute.id === selectedValue));

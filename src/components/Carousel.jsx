@@ -3,14 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs } from 'swiper/modules';
+import { Image as AntdImage } from 'antd';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
-
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
 
 import Image from 'next/image';
 
@@ -20,7 +18,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
   const [currentImages, setCurrentImages] = useState(images);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Filter images
+  // Filter images based on currentColor
   useEffect(() => {
     if (!images.length) return;
 
@@ -34,23 +32,11 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
     mainSwiper?.slideTo(0);
   }, [images, currentColor]);
 
-  // PhotoSwipe
-  useEffect(() => {
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: "#gallery",
-      children: "a",
-      pswpModule: () => import("photoswipe"),
-    });
-
-    lightbox.init();
-    return () => lightbox.destroy();
-  }, []);
-
   return (
     <div className="w-full flex flex-col items-center">
 
       {/* MAIN SLIDER */}
-      <div id="gallery" className="relative w-full max-w-[650px] select-none">
+      <div className="relative w-full max-w-[650px] select-none">
 
         <Swiper
           modules={[Navigation, Pagination, Thumbs]}
@@ -74,21 +60,13 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
         >
           {currentImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <a
-                  href={`https://interapi.facepy.com/storage/${img.image}`}
-                  // data-pswp-width="1600"
-                  data-pswp-height="1200"
-                  data-pswp-src={`https://interapi.facepy.com/storage/${img.image}`}
-                >
-                  <Image
-                    src={`https://interapi.facepy.com/storage/${img.image}`}
-                    width={600}
-                    height={600}
-                    alt=""
-                    className="rounded-xl mx-auto max-h-[450px] object-contain"
-                  />
-                </a>
-
+              <AntdImage
+                src={`https://interapi.facepy.com/storage/${img.image}`}
+                preview={{ mask: <div></div> }}
+                width={600}
+                height={450}
+                className="rounded-xl mx-auto object-contain max-h-[450px]"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
