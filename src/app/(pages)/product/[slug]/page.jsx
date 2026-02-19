@@ -46,7 +46,7 @@ export default async function Page({ params }) {
         )}
 
         {/* Options Table */}
-        <div className="rounded-2xl border shadow-2xs bg-white p-3 mt-3">
+        <div className={`rounded-2xl border shadow-2xs bg-white p-3 mt-3 ${Object.keys(options).length > 0  | product.content }`}>
           {Object.keys(options).length > 0 && (
           <div className="relative overflow-x-auto border rounded-lg mt-6">
             <table className="w-full text-sm text-left">
