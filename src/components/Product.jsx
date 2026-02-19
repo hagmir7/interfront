@@ -212,7 +212,6 @@ const Product = ({ product, selectedColor, onColorChange }) => {
     if (matchedDimension) {
       updateDimensionState(matchedDimension);
     } else if (height && width) {
-      // Set error message for unavailable dimension
       setDimensionMessage(`La dimension ${height} x ${width} n'est pas disponible`);
       setCode(null);
     }

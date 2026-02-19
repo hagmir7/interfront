@@ -18,7 +18,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
   const [currentImages, setCurrentImages] = useState(images);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Filter images based on currentColor
+
   useEffect(() => {
     if (!images.length) return;
 
@@ -62,13 +62,13 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
             <SwiperSlide key={i}>
               <AntdImage
                 src={`https://interapi.facepy.com/storage/${img.image}`}
-                preview={{ mask: <div></div> }}
                 width={600}
                 height={450}
                 className="rounded-xl mx-auto object-contain max-h-[450px]"
               />
             </SwiperSlide>
           ))}
+
         </Swiper>
 
         {/* ARROWS */}

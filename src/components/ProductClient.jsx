@@ -61,6 +61,9 @@ const ProductClient = ({ product }) => {
             setColor={setSelectedColor}
             onColorChange={handleColorChange}
           />
+
+
+          
         </div>
       </div>
     </div>
