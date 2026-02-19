@@ -17,8 +17,6 @@ export default function Cart() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
           <div className="container mx-auto">
             <h1 className="text-lg md:text-2xl font-bold mb-4">Votre panier</h1>
-
-
             <Empty
               image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
               styles={{ image: { height: 60 } }}
