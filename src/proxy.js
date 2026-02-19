@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware(req) {
+export function proxy(req) {
     const token = req.cookies.get("token");
 
     if (!token && req.nextUrl.pathname.startsWith("/dashboard")) {

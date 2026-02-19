@@ -554,7 +554,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
 
       {special ? (
         <div className='text-left flex gap-2'>
-          <div>
+          <div className='w-1/2'>
             <label htmlFor='height-input'>Hauteur</label>
             <br />
             <input
@@ -562,7 +562,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               type='number'
               min='70'
               max='2800'
-              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'
+              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full border-2'
               onChange={(e) => {
                 const newHeight = parseInt(e.target.value, 10)
                 setHeight(newHeight)
@@ -570,7 +570,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               }}
             />
           </div>
-          <div>
+          <div className='w-1/2'>  
             <label htmlFor='width-input'>Largeur</label>
             <br />
             <input
@@ -578,7 +578,7 @@ const Product = ({ product, selectedColor, onColorChange }) => {
               type='number'
               min='70'
               max='2100'
-              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-64 border-2'
+              className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full border-2'
               onChange={(e) => {
                 const newWidth = parseInt(e.target.value, 10)
                 setWidth(newWidth)

@@ -273,6 +273,11 @@ body {
   width: auto!important;
 }
 
+.ant-empty-image{
+  display: flex!important;
+  justify-content: center;
+}
+
 
 
 @keyframes shakeXFastOnce {

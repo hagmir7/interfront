@@ -62,43 +62,48 @@ const Footer = () => {
       </section>
       <hr className="h-px my-10 bg-gray-200 border-0" />
       <section className="flex flex-col gap-16 mb-8 lg:flex-row lg:justify-between">
-        <div className="flex justify-around order-2 gap-10 xl:order-1">
+        <div className="flex justify-around order-2  md:gap-10 xl:order-1">
+
           <div className="flex flex-col">
             <h3 className="py-6 text-lg text-accent-red font-semibold">Pages</h3>
             <div className="flex gap-10">
               <ul className="space-y-5">
-                <li className="text-slate-700 font-semibold hover:text-accent-red">
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="shop">Produits</Link>
                 </li>
-                <li className="text-slate-700 font-semibold hover:text-accent-red">
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/blogs">Blog</Link>
                 </li>
-                <li className="text-slate-700 font-semibold hover:text-accent-red">
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/event/list">Événements</Link>
                 </li>
-                <li className="text-slate-700 font-semibold hover:text-accent-red">
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="#">Politique de confidentialité</Link>
                 </li>
               </ul>
             </div>
           </div>
+
+
           <div className="flex flex-col">
             <h3 className="py-6 text-lg text-accent-red font-semibold">Ressources</h3>
             <ul className="space-y-5">
-              <li className="text-slate-700 font-semibold hover:text-accent-red">
+              <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="h/aprops">À propos</Link>
               </li>
-              <li className="text-slate-700 font-semibold hover:text-accent-red">
+              <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="/contact">Contactez-nous</Link>
               </li>
-              <li className="text-slate-700 font-semibold hover:text-accent-red">
+              <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="/faqs">FAQs</Link>
               </li>
-              <li className="text-slate-700 font-semibold hover:text-accent-red">
+              <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="/reclamation">Réclamation</Link>
               </li>
             </ul>
           </div>
+
+
         </div>
         <Subscribe />
       </section>

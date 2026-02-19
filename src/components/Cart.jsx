@@ -4,6 +4,7 @@ import { Trash } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import CLink from './CLink';
+import { Button, Empty, Typography } from 'antd';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity } = useCart();
@@ -12,11 +13,23 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 bg-white shadow-sm rounded-none md:rounded-lg mt-3">
+      <div className="max-w-6xl mx-auto px-4 py-2 md:py-8 bg-white shadow-sm rounded-none md:rounded-lg mt-3 h-[400px]">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
           <div className="container mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Votre panier</h1>
-            <p className="text-gray-600">Votre panier est vide</p>
+            <h1 className="text-lg md:text-2xl font-bold mb-4">Votre panier</h1>
+
+
+            <Empty
+              image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+              styles={{ image: { height: 60 } }}
+              description={
+                <Typography.Text>
+                  Votre panier est vide
+                </Typography.Text>
+              }
+            >
+              <Button variant='solid' color='red' href='/shop' type="primary">Nos Produits</Button>
+            </Empty>
           </div>
         </div>
       </div>
