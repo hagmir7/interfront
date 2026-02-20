@@ -19,11 +19,11 @@ function AuthActions() {
   return (
     <CLink
       href={isLoggedIn ? '/profile' : '/user/login'}
-      className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] flex items-center justify-center'
+      className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] flex items-center justify-center border-red-600 border'
       title={isLoggedIn ? `Profil de ${user?.full_name}` : 'Connexion'}
     >
       <svg
-        className='w-6 h-6'
+        className='w-6 h-6 text-red-600'
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'
       >

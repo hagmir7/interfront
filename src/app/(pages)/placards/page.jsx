@@ -66,7 +66,7 @@ const page = () => {
                     </div>
                 </div>
 
-                <div className="rounded-3xl bg-white p-8 shadow-sm border border-gray-100 text-center space-y-4 mt-3">
+                <div className="rounded-3xl bg-white p-8 shadow-xs border border-gray-100 text-center space-y-4 mt-3">
 
                     {/* Title */}
                     <h2 className="text-2xl font-bold text-gray-900">

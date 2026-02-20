@@ -1,5 +1,3 @@
-// 'use client'
-
 import { QRCode } from 'antd'
 import { Mail } from 'lucide-react'
 import React from 'react'
@@ -56,7 +54,7 @@ export default function ShareProduct({ product }) {
 
     return (
         <div className="w-full mt-5">
-            <div className="bg-white rounded-xl border shadow-sm text-center py-6 px-4 sm:px-6 md:py-10">
+            <div className="bg-white rounded-xl border shadow-sm text-center py-2 px-4 sm:px-6 md:py-4">
 
                 <h2 className="text-base sm:text-lg md:text-xl font-bold mb-5 text-gray-800">
                     Partager Via

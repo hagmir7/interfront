@@ -116,12 +116,12 @@ export default function PlacardReviews({ type }) {
                 </h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                     {type === 'placards' ? "Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement"
-                        : 'Galerie d’inspirations'}
+                        : 'Parcourez notre galerie d’inspirations et découvrez nos meubles de salle de bain dans différents styles et agencements.'}
                 </p>
             </div>
 
             {/* Image Grid with Reviews */}
-            <div className="max-w-7xl mx-auto py-12 px-4 hidden lg:block">
+            <div className="max-w-7xl mx-auto pb-12  px-4 hidden lg:block">
                 <div className="grid grid-cols-3 gap-8">
                     {(type == 'placards' ? projects : projects_sale_de_bain).map((project) => (
                         <div key={project.id} className="space-y-4">

@@ -150,10 +150,10 @@ const MainNav = () => {
           <div className='items-center space-x-4 hidden lg:flex'>
             <CLink
               href='#'
-              className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] me-3'
+              className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] me-3 border border-red-600'
             >
               <svg
-                className='w-6 h-6'
+                className='w-6 h-6 text-red-600'
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
                 height='32'

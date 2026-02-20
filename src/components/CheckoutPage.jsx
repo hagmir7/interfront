@@ -73,14 +73,7 @@ export default function CheckoutPage() {
         Confirmation de commande
       </h2>
 
-      {message?.type === 'error' && (
-        <AnimatedAlert
-          type={message?.type}
-          title={message?.content}
-          autoClose={5000}
-          onDismiss={() => setMessage(null)}
-        />
-      )}
+     
 
       {message?.type === 'success' && (
         <CheckoutMessage orderCode={orderCode} />
@@ -138,8 +131,17 @@ export default function CheckoutPage() {
               addresseCreated={getData}
             />
           </div>
-
+          
+           {message?.type === 'error' && (
+              <AnimatedAlert
+                type={message?.type}
+                title={message?.content}
+                autoClose={5000}
+                onDismiss={() => setMessage(null)}
+              />
+            )}
           <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-xs'>
+           
             <OrderSummary
               originalPrice={Number(total)}
               tax={Number(total) * 0.2}

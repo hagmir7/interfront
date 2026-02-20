@@ -278,6 +278,10 @@ body {
   justify-content: center;
 }
 
+.ant-image-css-var{
+  width: 100%!important;
+}
+
 
 
 @keyframes shakeXFastOnce {
