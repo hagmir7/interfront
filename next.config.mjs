@@ -1,7 +1,34 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['interapi.facepy.com', 'static.everypixel.com', 'cdn-icons-png.flaticon.com', 'boisetblanc.fr', 'readymadeui.com', 'localhost'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'interapi.facepy.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-icons-png.flaticon.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'boisetblanc.fr',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'readymadeui.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

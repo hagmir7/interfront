@@ -9,7 +9,7 @@ const ReviewCard = ({ review }) => (
   <div className="bg-white rounded-xl md:shadow-lg p-6 border md:border-0 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
     <div className="flex items-center mb-4">
       <Image
-        src="http://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
+        src="/imgs/3298099085884037069-head.png"
         alt={`${review.full_name}`}
         className="w-12 h-12 rounded-full object-cover border"
         loading="lazy"
