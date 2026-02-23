@@ -78,7 +78,6 @@ export default function CheckoutPage() {
     0
   );
 
-  // 🔥 Wait for auth state before rendering
   if (authLoading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -179,7 +178,6 @@ export default function CheckoutPage() {
               <LogIn className="h-5 w-5" />
             </CLink>
           )}
-
         </div>
       </div>
     </div>

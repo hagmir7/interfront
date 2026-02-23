@@ -25,16 +25,11 @@ const LoginForm = () => {
 
     try {
       await login({ login: email, password, rememberMe });
-
-      // Immediately fetch current user after login
       const user = await User();
       setUser(user);
-
-      // Redirect to next page or profile
       const next = searchParams.get("next");
       router.push(next || "/profile");
     } catch (err) {
-      console.error(err);
       setError("Identifiants invalides. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
