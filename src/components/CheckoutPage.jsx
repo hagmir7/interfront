@@ -68,9 +68,7 @@ export default function CheckoutPage() {
   }
 
   useEffect(() => {
-    if(user){
       getData()
-    }
   }, [])
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
