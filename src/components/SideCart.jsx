@@ -126,7 +126,7 @@ const ShoppingCartSidebar = () => {
                 ))}
               </ul>
 
-              {cart.length === 0 ? <EmptyCart /> : ''}
+              {cart.length === 0 ? <EmptyCart setIsCartOpen={setIsCartOpen} /> : ''}
             </div>
 
             {/* Fixed Footer */}

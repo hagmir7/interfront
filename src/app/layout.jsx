@@ -16,7 +16,7 @@ export const metadata = {
   description:
     "Intercocina, la fabrication de meubles de cuisine, meubles TV, placards et armoires, meubles de salle de bain, ainsi que de parquets, au Maroc.",
   alternates: {
-    canonical: "/", // homepage canonical
+    canonical: "/",
   },
 };
 
@@ -34,9 +34,9 @@ export default function RootLayout({ children }) {
       <body className="bg-[#f2f2f2]">
         <LoadingBar />
         <CartProvider>
-          <MainNav />
-          <AuthProvider >
-          {children}
+          <AuthProvider>
+            <MainNav />
+            {children}
           </AuthProvider>
         </CartProvider>
         <Footer />

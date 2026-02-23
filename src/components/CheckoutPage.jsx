@@ -13,10 +13,12 @@ import { AnimatedAlert } from "./ui/AnimatedAlert";
 import CheckoutMessage from "./CheckoutMessage";
 import CLink from "./CLink";
 import { LogIn } from "lucide-react";
+import { User } from "@/services/auth";
 
 export default function CheckoutPage() {
   const { cart } = useCart();
   const { user, authLoading } = useAuth();
+  const [login, setLogin] = useState();
 
   const [paymentMethod, setPaymentMethod] = useState("");
   const [shippingMethod, setShippingMethod] = useState("2");
@@ -26,9 +28,17 @@ export default function CheckoutPage() {
   const [message, setMessage] = useState(null);
   const [orderCode, setOrderCode] = useState(null);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await User()
+      setLogin(data)
+    }
+    fetchUser()
+  }, [])
+
 
   useEffect(() => {
-    if (!user) return;
+    if (!login) return;
 
     const loadAddresses = async () => {
       try {
@@ -40,7 +50,7 @@ export default function CheckoutPage() {
     };
 
     loadAddresses();
-  }, [user]);
+  }, [login]);
 
   const handleSubmitOrder = async () => {
     setIsLoading(true);
@@ -138,7 +148,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* ADDRESS SECTION */}
-          {user && (
+          {login && (
             <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
               <AddressSelection
                 selectedAddress={selectedAddress}
@@ -159,7 +169,7 @@ export default function CheckoutPage() {
           )}
 
           {/* ORDER SUMMARY OR LOGIN BUTTON */}
-          {user ? (
+          {login ? (
             <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
               <OrderSummary
                 originalPrice={Number(total)}

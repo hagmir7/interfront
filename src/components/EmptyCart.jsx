@@ -1,7 +1,8 @@
 import React from 'react'
 import { ShoppingCart, Heart, Sparkles, ArrowRight } from 'lucide-react'
+import CLink from './CLink'
 
-const EmptyCart = () => {
+const EmptyCart = ({setIsCartOpen}) => {
   return (
     <div className='min-h-screen bg-gradient-to-br rounded-lg from-purple-50 via-white to-blue-50 flex items-center justify-center p-4'>
       <div className='max-w-md w-full'>
@@ -39,15 +40,15 @@ const EmptyCart = () => {
 
           {/* Action buttons */}
           <div className='space-y-4 pt-4'>
-            <button className='group w-full bg-gradient-to-r from-red-600 to-red-400 hover:bg-red-800  text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2'>
+            <CLink onClick={()=> setIsCartOpen()} href='/shop' className='group w-full bg-gradient-to-r from-red-600 to-red-400 hover:bg-red-800  text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2'>
               <span>Commencer mes achats</span>
               <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
-            </button>
+            </CLink>
 
-            <button className='group w-full bg-white hover:bg-gray-50 text-gray-700 font-semibold py-4 px-8 rounded-2xl border-2 border-gray-200 hover:border-purple-300 transition-all duration-300 flex items-center justify-center space-x-2'>
+            <CLink onClick={()=> setIsCartOpen()} href='/' className='group w-full bg-white hover:bg-gray-50 text-gray-700 font-semibold py-4 px-8 rounded-2xl border-2 border-gray-200 hover:border-purple-300 transition-all duration-300 flex items-center justify-center space-x-2'>
               <Heart className='w-5 h-5 text-red-400 group-hover:text-red-500 transition-colors duration-300' />
               <span>Voir ma liste d'envies</span>
-            </button>
+            </CLink>
           </div>
         </div>
 
