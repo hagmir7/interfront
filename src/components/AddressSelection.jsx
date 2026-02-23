@@ -29,7 +29,7 @@ export function AddressSelection({
   return (
     <div className="space-y-4">
       <p className="text-md font-semibold text-gray-900 mb-1">
-        Sélectionnez une adresse
+        Sélectionnez une adresse <span className="text-red-600">*</span>
       </p>
 
       <ul className="grid w-full">
@@ -68,7 +68,7 @@ export function AddressSelection({
             <button
               onClick={() => setShowModal(true)}
               type="button"
-              className="group text-md cursor-pointer flex flex-col items-center justify-center w-full py-3 rounded-xl border-2 border-red-300 border-dashed bg-red-50 hover:bg-red-100 transition-all"
+              className="group text-md cursor-pointer flex flex-col items-center justify-center w-full py-2 md:py-3 rounded-xl border-2 border-red-300 border-dashed bg-red-50 hover:bg-red-100 transition-all"
             >
               <div className="flex items-center gap-3">
                 <PlusCircle

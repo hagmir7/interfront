@@ -1,13 +1,14 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import { User } from "@/services/auth";
-import { Mail, Phone, MapPin, User2, Package, Lock } from "lucide-react";
+import { Mail, Phone, MapPin, User2, Package, Lock, Percent } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserOrder from "@/components/UserOrder";
 import UserAddress from "@/components/UserAddress";
 import ChangePassword from "@/components/auth/ChangePassword";
 import UpdateProfile from "@/components/auth/UpdateProfile";
 import { useRouter } from "next/navigation";
+import UserDiscount from "@/components/UserDiscount";
 
 export default function Profile() {
     const [user, setUser] = useState(null);
@@ -61,20 +62,23 @@ export default function Profile() {
                                 </div>
                                 <div className="flex items-center gap-3 text-gray-700">
                                     <MapPin className="w-5 h-5 text-blue-600" />
-                                    <span>{user.address || "Adresse non définie"}</span>
+                                    <span>{user.address || <span className="italic text-gray-400">Adresse non définie</span>}</span>
                                 </div>
-                                <div className="flex items-center gap-3 text-gray-700">
-                                    <User2 className="w-5 h-5 text-blue-600" />
-                                    <span>{user.gender || "—"}</span>
-                                </div>
+                                {
+                                    user.gender && <div className="flex items-center gap-3 text-gray-700">
+                                        <User2 className="w-5 h-5 text-blue-600" />
+                                        <span>{user.gender || "—"}</span>
+                                    </div>
+                                }
+                                
                             </div>
                         </div>
                       
                     </div>
                     {/* Tabs Navigation */}
-                      <div className="py-20 mt-7 bg-gray-50 rounded-xl p-6 shadow-sm flex flex-col border border-gray-100">
+                      <div className="mt-7 bg-gray-50 rounded-xl p-4 shadow-sm flex flex-col border border-gray-100">
                         
-                            <TabsList className="flex flex-col gap-2 w-full bg-transparent p-0 shadow-none">
+                            <TabsList className="flex flex-col h-auto gap-2 w-full bg-transparent p-0 shadow-none">
                                 <TabsTrigger
                                     value="orders"
                                     className="w-full justify-start text-left text-lg cursor-pointer px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition-all"
@@ -89,6 +93,14 @@ export default function Profile() {
                                 >
                                     <MapPin className="w-7 h-7 text-blue-600" />
                                     Adresse
+                                </TabsTrigger>
+
+                                <TabsTrigger
+                                    value="discount"
+                                    className="w-full justify-start text-left text-lg px-4 py-2 cursor-pointer rounded-lg border border-gray-200 hover:bg-gray-100 transition-all"
+                                >
+                                    <Percent className="w-7 h-7 text-blue-600" />
+                                    Remises
                                 </TabsTrigger>
 
                                  <TabsTrigger
@@ -143,6 +155,10 @@ export default function Profile() {
                      {/* change Password */}
                     <TabsContent value="password">
                         <ChangePassword user_id={user.id} />
+                    </TabsContent>
+
+                     <TabsContent value="discount">
+                        <UserDiscount user_id={user.id} />
                     </TabsContent>
 
                   

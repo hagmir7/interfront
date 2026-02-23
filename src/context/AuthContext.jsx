@@ -1,7 +1,8 @@
 "use client"
 import { api } from "@/lib/api";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 const AuthContext = createContext(null);
 
@@ -12,7 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const navigate = useRouter();
 
 
   useEffect(()=>{
@@ -43,9 +45,9 @@ export const AuthProvider = ({ children }) => {
         await window.electron.login(response.data);
       } else {
         if(roles('admin')){
-          return navigate('/home')
+          return navigate.push('/home')
         }
-        return navigate('/');
+        return navigate.push('/');
       }
 
 

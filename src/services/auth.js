@@ -2,7 +2,7 @@ import { api } from '@/lib/api';
 import axios from 'axios';
 
 export const register = async (userData) => {
-    return axios.post(`register`, userData);
+    return await api.post(`register`, userData);
 };
 
 export const login = async (userData) => {
@@ -13,6 +13,7 @@ export const login = async (userData) => {
     }
     return response.data;
 };
+
 
 
 export const forgotPassword = async (email) => {

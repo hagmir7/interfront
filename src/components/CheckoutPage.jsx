@@ -9,6 +9,8 @@ import { useCart } from '@/context/CartContext'
 import { api } from '@/lib/api'
 import { AnimatedAlert } from './ui/AnimatedAlert'
 import CheckoutMessage from './CheckoutMessage'
+import { useAuth } from '@/context/AuthContext'
+
 
 export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('')
@@ -21,6 +23,8 @@ export default function CheckoutPage() {
   const [isCheckingOut, setIsCheckingOut] = useState(false)
   const [message, setMessage] = useState(null)
   const [orderCode, setOrderCode] = useState(null)
+
+  const { user } = useAuth();
 
   const getData = async () => {
     setLoading(true)
@@ -62,7 +66,10 @@ export default function CheckoutPage() {
   }
 
   useEffect(() => {
-    getData()
+    if(user){
+      getData()
+    }
+    
   }, [])
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
