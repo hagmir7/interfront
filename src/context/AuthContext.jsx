@@ -1,109 +1,32 @@
-"use client"
-import { api } from "@/lib/api";
-import { useRouter } from "next/navigation";
+"use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
-// import { useNavigate } from "react-router";
+import { User, logout as apiLogout } from "@/services/auth";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(false)
-
-  const [user, setUser] = useState(false);
-
-  // const navigate = useNavigate();
-  const navigate = useRouter();
-
-
-
-  useEffect(()=>{
-    getUser()
-    roles()
+  // Load current user on app mount
+  useEffect(() => {
+    User().then((u) => {
+      setUser(u);
+      setAuthLoading(false);
+    });
   }, []);
 
-
-
-  const login = async (userData) => {
-    setLoading(true)
-    setMessage('')
-
-    try {
-      const response = await api.post('login', userData);
-
-      const { access_token, user } = response.data;
-
-      localStorage.setItem('authToken', access_token);
-
-      localStorage.setItem('user', JSON.stringify(user));
-
-      const rolesResponse = await api.get('user/permissions');
-
-      localStorage.setItem('roles', JSON.stringify(rolesResponse.data));
-
-
-      const saved = JSON.parse(localStorage.getItem('usernames') || '[]');
-      if (!saved.includes(userData.login)) {
-        const updated = [...saved, userData.login];
-        localStorage.setItem('usernames', JSON.stringify(updated));
-      }
-
-  
-      if (roles('admin')) {
-        return navigate.push('/home')
-      } else {
-        return navigate.push('/');
-      }
-
-    } catch (error) {
-      console.error('Login failed:', error.response ? error.response.data : error.message)
-      setMessage("Nom d'utilisateur/e-mail ou mot de passe invalide.")
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const register = () => {
-    console.log("Register");
-  }
-
-  const getUser = () =>{
-    if(localStorage.getItem("user") && localStorage.getItem("user") !== "undefined" ){
-      const currentUser = JSON.parse(localStorage.getItem("user"));
-      setUser(currentUser);
-      
-    }
-  }
-
-  const roles = (role) => {
-    try {
-      const rolesData = JSON.parse(localStorage.getItem('roles'));
-      const permissions = rolesData?.roles || [];
-      return permissions.includes(role)
-    } catch (error) {
-      console.error("Error reading roles from localStorage:", error);
-      return false;
-    }
+  const logout = async () => {
+    await apiLogout();
+    setUser(null);
   };
 
-  const permissions = (permission) => {
-    try {
-      const rolesData = JSON.parse(localStorage.getItem('roles'))
-      const permissions = rolesData?.permissions || []
-      return permissions.includes(permission)
-    } catch (error) {
-      console.error('Error reading roles from localStorage:', error)
-      return false
-    }
-  }
-  
-
   return (
-    <AuthContext.Provider value={{ login, register, loading, message, user, roles, permissions }}>
+    <AuthContext.Provider value={{ user, setUser, logout, authLoading }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
 export const useAuth = () => useContext(AuthContext);
