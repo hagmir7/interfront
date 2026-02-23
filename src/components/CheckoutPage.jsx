@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { CartItem } from './CartItem'
 import { PaymentMethodSelect } from './PaymentMethodSelect'
 import { ShippingMethodSelect } from './ShippingMethodSelect'
@@ -10,6 +10,8 @@ import { api } from '@/lib/api'
 import { AnimatedAlert } from './ui/AnimatedAlert'
 import CheckoutMessage from './CheckoutMessage'
 import { useAuth } from '@/context/AuthContext'
+import { LogIn } from 'lucide-react'
+import CLink from './CLink'
 
 
 export default function CheckoutPage() {
@@ -69,7 +71,6 @@ export default function CheckoutPage() {
     if(user){
       getData()
     }
-    
   }, [])
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
@@ -130,14 +131,17 @@ export default function CheckoutPage() {
             />
           </div>
 
-          <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-xs'>
-            <AddressSelection
-              selectedAddress={selectedAddress}
-              onAddressChange={setSelectedAddress}
-              addresses={addresses}
-              addresseCreated={getData}
-            />
-          </div>
+          {
+            user && <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-xs'>
+              <AddressSelection
+                selectedAddress={selectedAddress}
+                onAddressChange={setSelectedAddress}
+                addresses={addresses}
+                addresseCreated={getData}
+              />
+            </div>
+          }
+          
           
            {message?.type === 'error' && (
               <AnimatedAlert
@@ -147,19 +151,29 @@ export default function CheckoutPage() {
                 onDismiss={() => setMessage(null)}
               />
             )}
-          <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-xs'>
-           
-            <OrderSummary
-              originalPrice={Number(total)}
-              tax={Number(total) * 0.2}
-              total={Number(total) * 1.2}
-              onSubmit={handleSubmitOrder}
-              isLoading={isLoading}
-            />
-          </div>
 
+          {
+            user ? <div className='rounded-lg border border-gray-200 bg-white p-3 shadow-xs'>
+
+              <OrderSummary
+                originalPrice={Number(total)}
+                tax={Number(total) * 0.2}
+                total={Number(total) * 1.2}
+                onSubmit={handleSubmitOrder}
+                isLoading={isLoading}
+              />
+            </div> : <CLink
+
+              href="/user/login?next=/checkout"
+              className="w-full justify-center flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-white bg-red-600 hover:bg-red-700 transition-all shadow-sm disabled:opacity-60"
+            >
+              <>
+                Se connecter
+                <LogIn className="h-5 w-5" />
+              </>
+            </CLink>
+          }
         </div>
-
       </div>
     </div>
   )

@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useRouter();
 
 
+
   useEffect(()=>{
     getUser()
     roles()
@@ -41,21 +42,18 @@ export const AuthProvider = ({ children }) => {
 
       localStorage.setItem('roles', JSON.stringify(rolesResponse.data));
 
-      if (window.electron) {
-        await window.electron.login(response.data);
-      } else {
-        if(roles('admin')){
-          return navigate.push('/home')
-        }
-        return navigate.push('/');
-      }
-
 
       const saved = JSON.parse(localStorage.getItem('usernames') || '[]');
       if (!saved.includes(userData.login)) {
         const updated = [...saved, userData.login];
         localStorage.setItem('usernames', JSON.stringify(updated));
-        // setUsernames(updated);
+      }
+
+  
+      if (roles('admin')) {
+        return navigate.push('/home')
+      } else {
+        return navigate.push('/');
       }
 
     } catch (error) {

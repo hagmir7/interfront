@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { login, register } from "@/services/auth";
 import CLink from "./CLink";
 
@@ -14,6 +14,7 @@ const RegisterForm = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +34,16 @@ const RegisterForm = () => {
         password,
       });
       await login({ login: email, password })
-      router.push('/profile')
+
+      if (searchParams?.get('next')) {
+        router.push(searchParams?.get('next'));
+      } else {
+        router.push('/profile')
+      }
+
+
+
+
 
 
     } catch (err) {

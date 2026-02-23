@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { login } from "@/services/auth";
-import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import CLink from "./CLink";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -12,16 +12,20 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const router = useRouter();
+  const router = useRouter()
+    const searchParams = useSearchParams(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
-    
     try {
       await login({ login: email, password, rememberMe });
-      router.push("/profile");
+      if(searchParams?.get('next')){
+        router.push(searchParams?.get('next'));
+      }else{
+        router.push("/profile");
+      }
     } catch (err) {
       console.log(err);
       
@@ -114,7 +118,15 @@ const LoginForm = () => {
         <div className="text-center mt-6">
           <p className="text-md text-gray-600">
             Pas encore de compte ?{" "}
-            <CLink href="/user/register" className="font-medium text-red-600 hover:text-red-800 transition-colors">
+            <CLink
+              href={
+                `/user/register` +
+                (searchParams?.get("next")
+                  ? `?next=${searchParams.get("next")}`
+                  : "")
+              }
+              className="font-medium text-red-600 hover:text-red-800 transition-colors"
+            >
               Créer un nouveau compte
             </CLink>
           </p>
