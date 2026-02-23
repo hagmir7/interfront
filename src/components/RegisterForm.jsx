@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { login, register } from "@/services/auth";
 import CLink from "./CLink";
@@ -52,7 +52,7 @@ const RegisterForm = () => {
   };
   return (
     <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-lg p-6 space-y-6">
-      <Suspense fallback={<div>Chargement...</div>}>
+     
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-800">Connexion</h2>
         <p className="text-gray-500 text-lg mt-1">Accédez à votre compte</p>
@@ -109,7 +109,6 @@ const RegisterForm = () => {
           </CLink>
         </div>
       </form>
-      </Suspense>
     </div>
   );
 };
