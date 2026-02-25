@@ -2,36 +2,94 @@ import ParqetCaracteristiques from "@/components/ParqetCaracteristiques";
 import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
 import ShareProduct from "@/components/ShareProduct";
+import { api } from "@/lib/api";
 import { notFound } from "next/navigation";
 
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  try {
+    const response = await api.get(`products/${slug}`);
+    const product = response.data?.data ?? response.data;
+
+    return {
+      title: `${product.name} - Nos Produits`,
+      description: `Découvrez notre sélection de ${product.name}. Qualité supérieure et design sur-mesure.`,
+      keywords: `${product.tags}, armoires, meubles sur-mesure, rangement`,
+      alternates: {
+        canonical: `/product/${slug}`,
+      },
+      openGraph: {
+        title: `${product.name} - Nos Produits`,
+        description: `Découvrez notre sélection de ${product.name}. Qualité supérieure et design sur-mesure.`,
+        images: 'https://interapi.facepy.com/storage/'+ product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
+      },
+    };
+  } catch {
+    return { title: 'Produit introuvable', description: 'Erreur lors du chargement du produit.' };
+  }
+}
+
+
 export default async function Page({ params, searchParams }) {
-  const resolvedParams = await params;
+  const { slug } = await params;
   const resolvedSearch = await searchParams;
-  const { slug } = resolvedParams;
   const code = resolvedSearch?.code ?? null;
 
-  const baseURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8000"
-      : "https://interapi.facepy.com";
+  let product;
 
-  const res = await fetch(`${baseURL}/api/products/${slug}`, {
-    cache: "no-store",
-    headers: { Accept: "application/json" },
-  });
-
-  if (!res.ok) {
-    if (res.status === 404) return notFound();
-    throw new Error(`Failed to fetch product: ${res.status}`);
+  try {
+    const response = await api.get(`products/${slug}`);
+    const data = response.data;
+    product = data?.data ?? data;
+  } catch {
+    notFound();
   }
 
-  const data = await res.json();
-  const product = data.data ?? data;
   const options = product?.options ?? {};
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: 'https://interapi.facepy.com/storage/'+ product.images?.[0]?.image ?? "",
+    brand: {
+      "@type": "Brand",
+      name: "INTERCOCINA",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://intercocina.com/product/${product.slug}`,
+      priceCurrency: "MAD",
+      price: product.price,
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+    manufacturer: {
+      "@type": "Organization",
+      name: "INTERCOCINA",
+    },
+    ...(product.aggregateRating && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.5",
+        reviewCount: "150",
+        bestRating: "100",
+        worstRating: "1",
+      },
+    }),
+  };
 
   return (
     <section className="py-2 md:py-6 mt-5 md:mt-6">
+
       <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ProductClient product={product} code={code} />
 
         {/* Related Products */}
