@@ -4,15 +4,16 @@ import ProductClient from "@/components/ProductClient";
 import ShareProduct from "@/components/ShareProduct";
 import { notFound } from "next/navigation";
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
   const resolvedParams = await params;
+  const resolvedSearch = await searchParams;
   const { slug } = resolvedParams;
+  const code = resolvedSearch?.code ?? null;
 
   const baseURL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8000"
       : "https://interapi.facepy.com";
-
 
   const res = await fetch(`${baseURL}/api/products/${slug}`, {
     cache: "no-store",
@@ -31,7 +32,7 @@ export default async function Page({ params }) {
   return (
     <section className="py-2 md:py-6 mt-5 md:mt-6">
       <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
-        <ProductClient product={product} />
+        <ProductClient product={product} code={code} />
 
         {/* Related Products */}
         {product?.related?.length > 0 && (

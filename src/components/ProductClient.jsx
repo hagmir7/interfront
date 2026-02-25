@@ -4,7 +4,7 @@ import Carousel from "@/components/Carousel";
 import Product from "@/components/Product";
 import CLink from "./CLink";
 
-const ProductClient = ({ product }) => {
+const ProductClient = ({ product, code }) => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentColor, setCurrentColor] = useState(null)
 
@@ -35,7 +35,7 @@ const ProductClient = ({ product }) => {
                 {product.name}
               </h1>
               <h2 className="font-normal text-base text-gray-500 text-left">
-                {product?.type?.name}
+                {product?.type?.name} { code && '| ' + code }
               </h2>
             </div>
 
@@ -60,6 +60,7 @@ const ProductClient = ({ product }) => {
             selectedColor={selectedColor}
             setColor={setSelectedColor}
             onColorChange={handleColorChange}
+            initialCode={code}
           />
 
 
