@@ -1,6 +1,7 @@
 import CLink from '@/components/CLink';
 import LogoutButton from '@/components/ui/LogoutButton';
 import { User } from '@/services/auth';
+import { getServerUser } from '@/services/auth.server';
 import { ArrowRight, User2Icon, Home, ShoppingBag, Calendar, InfoIcon, ChevronRight, LogOut, LogIn, Heart } from 'lucide-react';
 
 export const metadata = {
@@ -9,7 +10,7 @@ export const metadata = {
 };
 
 async function MenuPage() {
-  const user = await User();
+  const user = await getServerUser();
 
 
   console.log(user);

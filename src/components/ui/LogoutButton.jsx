@@ -1,22 +1,23 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import { useRouter } from 'next/navigation';
+import { logout } from '@/services/auth';
+import React from 'react';
 
 export default function LogoutButton({ children, className }) {
   const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user");
-    router.replace('/user/login');
+  const handleLogout = async () => {
+    try {
+      await logout(); 
+      router.replace('/user/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className={className}
-    >
+    <button onClick={handleLogout} className={className}>
       {children}
     </button>
   );

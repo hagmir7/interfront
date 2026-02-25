@@ -1,5 +1,6 @@
 import { api } from '@/lib/api';
-import axios from 'axios';
+import Cookies from 'js-cookie';
+
 
 export const register = async (userData) => {
     return await api.post(`register`, userData);
@@ -8,6 +9,8 @@ export const register = async (userData) => {
 export const login = async (userData) => {
     const response = await api.post(`login`, userData);
     if (response.data.access_token) {
+        Cookies.set('access_token', response.data.access_token, { expires: 30, path: '/' });
+        Cookies.set('user', JSON.stringify(response.data.user), { expires: 30, path: '/' });
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
     }
@@ -17,18 +20,16 @@ export const login = async (userData) => {
 
 
 export const forgotPassword = async (email) => {
-    return axios.post(`forgot-password`, { email });
+    return api.post(`forgot-password`, { email });
 };
 
 
 export const logout = async () => {
-    const access_token = localStorage.getItem("access_token");
+    const access_token = Cookies.get('access_token') || localStorage.getItem("access_token");
     if (!access_token) return;
 
-    await axios.post(`logout`, {}, {
-        headers: { Authorization: `Bearer ${access_token}` }
-    });
-
+    Cookies.remove('access_token', { path: '/' });
+    Cookies.remove('user', { path: '/' });
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
 };

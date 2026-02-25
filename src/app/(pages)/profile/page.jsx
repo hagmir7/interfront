@@ -9,6 +9,7 @@ import ChangePassword from "@/components/auth/ChangePassword";
 import UpdateProfile from "@/components/auth/UpdateProfile";
 import { useRouter } from "next/navigation";
 import UserDiscount from "@/components/UserDiscount";
+import LogoutButton from "@/components/ui/LogoutButton";
 
 export default function Profile() {
     const [user, setUser] = useState(null);
@@ -119,17 +120,9 @@ export default function Profile() {
                             </TabsList>
                         </div>
                         {/* Logout Button */}
-                        <button
-                            onClick={() => {
-                                localStorage.removeItem("access_token");
-                                localStorage.removeItem("user");
-                                router.push('/user/login')
-                            }}
-                            className="mt-8 hidden lg:block w-full px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all"
-                        >
+                        <LogoutButton className="mt-8 hidden lg:block w-full px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all">
                             Déconnexion
-                        </button>
-
+                        </LogoutButton>
                 </div>
 
                 {/* RIGHT SIDE */}
