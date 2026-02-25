@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const SidebarSection = ({ title, items }) => (
   <>
-    <h2 className="mb-2 text-lg font-semibold text-gray-900">{title}</h2>
+    <div className="mb-2 text-lg font-semibold text-gray-900">{title}</div>
     <ul className="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400 mb-6">
       {items.map((item, index) => (
         <li key={index}>

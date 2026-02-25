@@ -24,6 +24,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
   useEffect(() => {
     if (code) {
       router.push(`?code=${code}`);
+    }else{
+      router.push('')
     }
   }, [code])
 

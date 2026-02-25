@@ -2,6 +2,23 @@ import CLink from "@/components/CLink";
 import { api } from "@/lib/api";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  try {
+    const res = await api.get(`groups/${slug}`);
+    const post = res.data;
+
+    return {
+      title: post.name || "Untitled Group",
+      description: post.description || "",
+    };
+  } catch (err) {
+    console.error("Error fetching group metadata:", err);
+    return { title: "Group not found", description: "" };
+  }
+}
+
 
 export default async function page({ params }) {
 
@@ -47,11 +64,10 @@ export default async function page({ params }) {
                             {/* Content */}
                             <div className="p-3">
                                 <CLink href={`/category/${type?.category?.slug}?type=${type.slug}`}>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
+                                <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
                                     {type.name}
-                                </h3>
+                                </h2>
                                 </CLink>
-
                                 <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                                     {type.description || "Description non disponible"}
                                 </p>
