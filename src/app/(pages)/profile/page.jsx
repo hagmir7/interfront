@@ -14,8 +14,6 @@ export default function Profile() {
     const [user, setUser] = useState(null);
     const router = useRouter();
 
-   
-
     useEffect(() => {
         (async () => {
             const data = await User();
@@ -127,7 +125,7 @@ export default function Profile() {
                                 localStorage.removeItem("user");
                                 router.push('/user/login')
                             }}
-                            className="mt-8 w-full px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all"
+                            className="mt-8 hidden lg:block w-full px-5 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow transition-all"
                         >
                             Déconnexion
                         </button>

@@ -4,6 +4,15 @@ import Colors from '@/components/Colors';
 import PlacardReviews from '@/components/PlacardReviews';
 import Image from 'next/image';
 
+export const metadata = {
+  title: 'Salle de bain - Meubles et rangements sur mesure - Intercocina',
+  description: 'Découvrez nos solutions de meubles et rangements sur mesure pour votre salle de bain chez Intercocina. Alliez style, qualité et optimisation de l’espace.',
+  keywords: 'salle de bain sur mesure, meuble salle de bain, rangement salle de bain, mobilier pratique, rangement optimisé, meubles Intercocina, aménagement salle de bain, design salle de bain, mobilier fonctionnel',
+  alternates: {
+    canonical: '/salles-de-bain',
+  },
+};
+
 const FeatureItem = ({ icon, alt, text }) => (
     <div className="flex flex-col items-center text-center space-y-3 hover:scale-105 transition-transform duration-200">
         <Image src={icon} alt={alt} width={60} height={60} />

@@ -5,6 +5,18 @@ import Colors from '@/components/Colors';
 import PlacardReviews from '@/components/PlacardReviews';
 import Image from 'next/image';
 
+
+export const metadata = {
+    title: 'Armoires, dressings et penderies sur mesure - Intercocina',
+    description: 'Découvrez notre sélection d’armoires, dressings et penderies sur mesure chez Intercocina. Alliez qualité, style et rangement optimisé pour chaque espace.',
+    keywords: 'armoire sur mesure, dressing moderne, penderie design, rangement intérieur, meubles Intercocina, dressing pratique, armoire élégante, aménagement chambre, mobilier sur mesure, organisation espace',
+    alternates: {
+        canonical: '/placards',
+    },
+};
+
+
+
 const FeatureItem = ({ icon, alt, text }) => (
     <div className="flex flex-col items-center text-center space-y-3 hover:scale-105 transition-transform duration-200">
         <Image src={icon} alt={alt} width={60} height={60} />

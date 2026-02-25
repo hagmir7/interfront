@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
 import ShareProduct from "@/components/ShareProduct";
 import { api } from "@/lib/api";
+import { truncate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 
@@ -14,15 +15,15 @@ export async function generateMetadata({ params }) {
     const product = response.data?.data ?? response.data;
 
     return {
-      title: `${product.name} - Nos Produits`,
-      description: `Découvrez notre sélection de ${product.name}. Qualité supérieure et design sur-mesure.`,
+      title: `${product.name}`,
+      description: `${truncate(product.description)}`,
       keywords: `${product.tags}, armoires, meubles sur-mesure, rangement`,
       alternates: {
         canonical: `/product/${slug}`,
       },
       openGraph: {
-        title: `${product.name} - Nos Produits`,
-        description: `Découvrez notre sélection de ${product.name}. Qualité supérieure et design sur-mesure.`,
+        title: `${product.name}`,
+        description: `${truncate(product.description)}`,
         images: 'https://interapi.facepy.com/storage/'+ product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
       },
     };

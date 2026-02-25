@@ -1,6 +1,15 @@
 import BlogCard from '@/components/ui/BlogCard'
 import { api } from '@/lib/api'
 
+export const metadata = {
+  title: 'Blog Intercocina - Conseils, inspiration et astuces pour votre maison',
+  description: 'Découvrez le blog Intercocina : conseils, idées et astuces pour aménager votre salle de bain, dressing et placards sur mesure avec style et praticité.',
+  keywords: 'blog maison, conseils aménagement, inspiration décoration, astuces rangement, salle de bain, dressing, placards, mobilier sur mesure, Intercocina',
+  alternates: {
+    canonical: '/blogs',
+  },
+};
+
 const Blogs = async () => {
   try {
     const response = await api.get('posts')

@@ -15,6 +15,9 @@ import CLink from "./CLink";
 import { LogIn } from "lucide-react";
 import { User } from "@/services/auth";
 
+
+
+
 export default function CheckoutPage() {
   const { cart } = useCart();
   const { user, authLoading } = useAuth();

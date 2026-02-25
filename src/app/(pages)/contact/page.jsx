@@ -2,6 +2,16 @@
 import ContactForm from '@/components/ContactForm';
 import React from 'react';
 
+
+export const metadata = {
+  title: 'Contactez Intercocina - Meubles sur mesure et service client',
+  description: 'Contactez Intercocina pour toute demande d’information, devis ou assistance sur nos meubles sur mesure. Notre équipe est à votre écoute.',
+  keywords: 'contact Intercocina, service client, devis meubles sur mesure, assistance, informations meubles, support client, questions aménagement, meubles sur mesure',
+  alternates: {
+    canonical: '/contact',
+  },
+};
+
 const ContactPage = () => {
 
 

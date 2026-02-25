@@ -3,6 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+export const metadata = {
+   title: "À propos d'Intercocina - Expert en cuisines et rangements sur mesure",
+  description: "Découvrez Intercocina, spécialiste des cuisines, armoires et rangements sur mesure. Nous allions qualité, design et solutions personnalisées pour chaque espace.",
+  keywords: "Intercocina, à propos, cuisine sur mesure, armoires, dressings, rangements, mobilier personnalisé, expert en aménagement intérieur",
+    alternates: {
+        canonical: '/aprops',
+    },
+};
+
 const AboutPage = () => {
 
   const sections = [
