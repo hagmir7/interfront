@@ -28,18 +28,15 @@ export async function generateMetadata({ params }) {
 }
 
 const BlogPage = async ({ params }) => {
-  const categories = [
-    { name: 'Caissons Blanc 18', count: 10 },
-    { name: 'Caissons Hydrofuge 22', count: 5 },
-    { name: 'Facads et Portes', count: 17 },
-    { name: 'Parquet et Sols', count: 13 },
-    { name: 'Placards', count: 6 },
-    { name: 'Accessoires de cuisine', count: 17 },
-    { name: 'Plant de travail', count: 13 },
-    // { name: 'Veste', count: 6 },
-    // { name: 'Manteau', count: 22 },
-  ]
-
+   const categories = [
+    { name: 'Caissons Blanc 18', count: 10, url: '/category/caissons?type=caisson-bas' },
+    { name: 'Caissons Hydrofuge 22', count: 5, url: '/category/caisson-hydrofuge?type=hydrofuge-bas' },
+    { name: 'Facads et Portes', count: 17, url: '/category/facade' },
+    { name: 'Parquet et Sols', count: 13, url: '/groups/revetement-et-sol' },
+    { name: 'Placards', count: 6, url: '/placards' },
+    { name: 'Accessoires de cuisine', count: 17, url: '/category/accessoiriser' },
+    { name: 'Plant de travail', count: 13, url: '/category/accessoiriser?type=plan-de-travail' },
+  ];
 
   const { slug } = await params;
 
@@ -82,12 +79,12 @@ const BlogPage = async ({ params }) => {
                       key={index}
                       className='flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0'
                     >
-                      <a
-                        href='#'
+                      <CLink
+                        href={category.url}
                         className='text-gray-700 hover:text-red-600 transition-colors'
                       >
                         {category.name}
-                      </a>
+                      </CLink>
                       <span className='text-sm text-gray-500'>
                         ({category.count})
                       </span>

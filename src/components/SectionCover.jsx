@@ -39,10 +39,10 @@ const SectionConver = () => {
                   COCINA
                 </span>{' '}
                 <br />
-                Leader de la fabrication de meubles de cuisine au Maroc
+                Leader marocain de la fabrication de meubles de cuisine
               </h1>
               <p className='text-center text-white md:text-left text-lg font-semibold'>
-                De la cuisine aux placards, en passant par les salles de bain et le parquet, nos créations transforment chaque espace en une source d’inspiration, où chaque détail compte.
+                De la cuisine aux placards, des salles de bain au parquet, nous concevons et fabriquons des solutions d’aménagement sur mesure
               </p>
               <div className='flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-4'>
                 <CLink

@@ -21,15 +21,19 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left' 
   ];
 
   const content = (
-    <div className="space-y-6">
-      <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-4">
-        {title}
-      </h2>
+    <div className="space-y-10">
+
+      <div>
+        <p className='text-lg mb-3 text-red-600'>Un devis gratuit</p>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-4">
+          {title}
+        </h2>
+      </div>
 
       <p className="text-lg text-gray-600 leading-relaxed">
         {description}
       </p>
-
+{/* 
       <ul className="space-y-4">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
@@ -41,7 +45,7 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left' 
             </span>
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <CLink

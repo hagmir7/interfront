@@ -9,6 +9,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'dev.intercocina.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn-icons-png.flaticon.com',
         pathname: '/**',
       },
