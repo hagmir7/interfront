@@ -38,7 +38,7 @@ const Footer = () => {
               />
               <div>
                 <p className="text-lg font-bold text-white ">Envoyez-nous un email</p>
-                <p className="text-white">contact@app.intercocina.com</p>
+                <p className="text-white">contact@intercocina.com</p>
               </div>
             </div>
             <div className="flex items-center gap-3 px-4 py-3 duration-500 bg-white border md:border-0 md:shadow-lg rounded-3xl hover:scale-105">

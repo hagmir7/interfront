@@ -12,27 +12,18 @@ export default function UserOrder({ user_id }) {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const baseURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8000"
-      : "https://app.intercocina.com";
-
   async function fetchOrders(pageNumber = 1) {
     try {
-      const response = await api.get(
-        `${baseURL}/api/orders-list?page=${pageNumber}`
-      );
+      const response = await api.get(`orders-list?page=${pageNumber}`);
 
       const newOrders = response.data.data || [];
 
-      // Append instead of replace if loading more
       if (pageNumber === 1) {
         setOrders(newOrders);
       } else {
         setOrders((prev) => [...prev, ...newOrders]);
       }
 
-      // If no next page => stop Load More
       setHasMore(response.data.next_page_url !== null);
     } catch (error) {
       console.error("Error loading orders:", error);
@@ -49,7 +40,6 @@ export default function UserOrder({ user_id }) {
 
   function loadMore() {
     if (!hasMore) return;
-
     const nextPage = page + 1;
     setLoadingMore(true);
     setPage(nextPage);
@@ -95,15 +85,11 @@ export default function UserOrder({ user_id }) {
                 className="border-t hover:bg-gray-50 transition"
               >
                 <td className="py-3 px-4 font-medium">{order.code}</td>
-
                 <td className="py-3 px-4">
                   {new Date(order.created_at).toLocaleDateString("fr-FR")}
                 </td>
-
                 <td className="py-3 px-4">{order.items_count}</td>
-
                 <td className="py-3 px-4">{order.total_amount} MAD</td>
-
                 <td className="py-3 px-4">
                   <span
                     className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusInfo(order.status)?.color}`}
@@ -116,10 +102,7 @@ export default function UserOrder({ user_id }) {
 
             {orders.length === 0 && (
               <tr>
-                <td
-                  colSpan="5"
-                  className="text-center py-6 text-gray-500 italic"
-                >
+                <td colSpan="5" className="text-center py-6 text-gray-500 italic">
                   Aucune commande trouvée.
                 </td>
               </tr>
@@ -128,7 +111,6 @@ export default function UserOrder({ user_id }) {
         </table>
       </div>
 
-      {/* LOAD MORE BUTTON */}
       {hasMore && (
         <div className="text-center mt-4">
           <button
@@ -136,7 +118,13 @@ export default function UserOrder({ user_id }) {
             disabled={loadingMore}
             className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-red-300"
           >
-            {loadingMore ? <div className="flex gap-2"><InterSpin /> Chargement...</div> : "Charger plus"}
+            {loadingMore ? (
+              <div className="flex gap-2">
+                <InterSpin /> Chargement...
+              </div>
+            ) : (
+              "Charger plus"
+            )}
           </button>
         </div>
       )}

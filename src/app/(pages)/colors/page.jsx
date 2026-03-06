@@ -1,24 +1,13 @@
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 import { ColorCard } from "@/components/ColorCard";
+import { apiServer } from "@/lib/api-server";
 
 async function getColors() {
   try {
-    const baseURL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:8000"
-        : "https://app.intercocina.com";
-
-    const response = await fetch(`${baseURL}/api/view-colors`, {
-      // Only revalidate every hour
+    const data = await apiServer('view-colors', {
       next: { revalidate: 3600 },
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch colors");
-    }
-
-    const data = await response.json();
     return data.data || [];
   } catch (error) {
     console.error("Error fetching colors:", error);
@@ -32,7 +21,6 @@ export default async function Page() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-4 md:py-10 px-2 md:px-4 sm:px-6">
       <div className="mx-auto max-w-screen-xl">
-        {/* Title */}
         <div className="mb-12 text-center">
           <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-4">
             Une Grande Diversité de Couleurs Tendances
@@ -43,7 +31,6 @@ export default async function Page() {
           </p>
         </div>
 
-        {/* Colors Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
           {colors.map((color, index) => (
             <ColorCard key={color.id || index} color={color} />

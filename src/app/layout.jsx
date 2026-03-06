@@ -13,7 +13,7 @@ import { AuthProvider } from "@/context/AuthContext";
 export const metadata = {
   metadataBase: new URL(
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
+      ? "https://app.intercocina.com"
       : "https://app.intercocina.com"
   ),
   title: "Fabricant de meubles de cuisine de lux. - Intercocina",

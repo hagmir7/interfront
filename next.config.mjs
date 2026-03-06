@@ -17,6 +17,8 @@ const nextConfig = {
         hostname: 'cdn-icons-png.flaticon.com',
         pathname: '/**',
       },
+
+
       {
         protocol: 'https',
         hostname: 'boisetblanc.fr',

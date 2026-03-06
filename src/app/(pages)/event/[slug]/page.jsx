@@ -2,9 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import { Search, User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
-import ProductCard from '@/components/ProductCard';
 import CLink from '@/components/CLink';
-import Image from 'next/image';
 import EventImageSwiper from '@/components/EventImageSwiper';
 
 export async function generateMetadata({ params }) {

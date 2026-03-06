@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import { Search, User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
-import Link from 'next/link';
 import CLink from '@/components/CLink';
 import Image from 'next/image';
 

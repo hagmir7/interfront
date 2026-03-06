@@ -9,7 +9,7 @@ export default function ColorCards({ colors }) {
 
   const IMAGE_BASE_URL = isProduction
       ? 'https://app.intercocina.com/storage/'
-      : 'http://localhost:8000/storage/';
+      : 'https://app.intercocina.com/storage/';
 
 
   return (

@@ -78,6 +78,7 @@ const SectionConver = () => {
             >
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
+                  <CLink href='/category/facade?type=facade-laca'>
                   <Image
                     src='https://app.intercocina.com/storage/01JJ9S1JJHSJZ9S8143SGR6MAT.png'
                     className='h-96 w-auto object-center'
@@ -85,10 +86,12 @@ const SectionConver = () => {
                     width={300}
                     height={400}
                   />
+                  </CLink>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
+                  <CLink href='/category/facade?type=facade-laca'>
                   <Image
                     src='https://app.intercocina.com/storage/01JJ9JPT9EY7NCA37RW72P7PF7.png'
                     className='h-96 w-auto object-center'
@@ -96,10 +99,12 @@ const SectionConver = () => {
                     height={500}
                     alt="Porte intercocina 1"
                   />
+                  </CLink>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
+                  <CLink href='/category/facade?type=facade-laca'>
                   <Image
                     src='https://app.intercocina.com/storage/01JJ9KRKCBEXK6V03HA4V8R74Y.png'
                     className='h-96 w-auto object-center'
@@ -107,10 +112,12 @@ const SectionConver = () => {
                     width={300}
                     height={400}
                   />
+                  </CLink>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
                 <div className='swiper-zoom-container rounded-xl overflow-hidden flex items-center justify-center w-full'>
+                  <CLink href='/category/facade?type=facade-laca'>
                   <Image
                     src='https://app.intercocina.com/storage/01JJ9M513KM8P5MKBGMRCD412S.png'
                     className='h-96 w-auto object-center'
@@ -118,6 +125,7 @@ const SectionConver = () => {
                     width={300}
                     height={400}
                   />
+                  </CLink>
                 </div>
               </SwiperSlide>
               <SwiperSlide>

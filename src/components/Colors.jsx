@@ -1,21 +1,14 @@
 import { ChevronRight } from 'lucide-react';
 import CLink from './CLink';
 import { ColorCard } from './ColorCard';
+import { apiServer } from '@/lib/api-server';
 
 
 async function getColors() {
   try {
-
-    const baseURL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://app.intercocina.com";
-
-    
-    const response = await fetch(`${baseURL}/api/view-colors?per_page=10`, { next: { revalidate: 3600 } });
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch colors');
-    }
-    
-    const data = await response.json();
+    const data = await apiServer('view-colors?per_page=10', {
+      next: { revalidate: 3600 },
+    });
     return data.data || [];
   } catch (error) {
     console.error('Error fetching colors:', error);
