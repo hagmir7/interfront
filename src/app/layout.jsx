@@ -40,7 +40,9 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <AuthProvider>
             <MainNav />
+            
             {children}
+            
           </AuthProvider>
         </CartProvider>
         <Footer />
