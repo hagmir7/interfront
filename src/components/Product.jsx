@@ -395,7 +395,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
                   htmlFor={`color-${c.id}`}
                   className='inline-flex items-center justify-between w-full p-4 text-gray-500 border-gray-500 rounded-lg cursor-pointer peer-checked:border-red-600 peer-checked:border-2 border-2 peer-checked:text-red-600 hover:text-gray-600 hover:bg-gray-100'
                   style={{
-                    backgroundImage: `url('https://interapi.facepy.com/storage/${c.image}')`,
+                    backgroundImage: `url('https://app.intercocina.com/storage/${c.image}')`,
                   }}
                 />
                 <div
@@ -408,7 +408,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
                     className='w-full'
                     width={100}
                     height={100}
-                    src={`https://interapi.facepy.com/storage/${c.image}`}
+                    src={`https://app.intercocina.com/storage/${c.image}`}
                     alt={c.name}
                   />
                 </div>

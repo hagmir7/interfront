@@ -52,7 +52,7 @@ export default function Cart() {
               {item.attributes.image && (
                 <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
                   <Image
-                    src={`https://interapi.facepy.com/storage/${item.attributes.image}`}
+                    src={`https://app.intercocina.com/storage/${item.attributes.image}`}
                     alt={item.name}
                     width={100}
                     height={100}

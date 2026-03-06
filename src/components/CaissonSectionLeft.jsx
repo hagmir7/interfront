@@ -14,7 +14,7 @@ const CaissonSectionLeft = () => {
         <div className='w-full order-1 lg:order-1 lg:w-96 lg:max-w-[370px] rounded-3xl overflow-hidden mb-6 lg:mb-0'>
           <CLink href='/product/caisse-tournant-pour-caisson-coin-antracite'>
             <Image
-              src='https://interapi.facepy.com/storage/01JMA4TEWC1VRMJPB9KQYX9PVA.png'
+              src='https://app.intercocina.com/storage/01JMA4TEWC1VRMJPB9KQYX9PVA.png'
               alt='Caisse tournant pour caisson coin'
               width={700}
               height={700}
@@ -74,7 +74,7 @@ const CaissonSectionLeft = () => {
                 <li key={img.path}>
                   <CLink href={img.link}>
                     <Image
-                      src={`https://interapi.facepy.com/storage/${img.path}`}
+                      src={`https://app.intercocina.com/storage/${img.path}`}
                       width={700}
                       height={700}
                       alt='inter'

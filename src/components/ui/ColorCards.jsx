@@ -8,7 +8,7 @@ export default function ColorCards({ colors }) {
   const isProduction = process.env.NODE_ENV === 'production';
 
   const IMAGE_BASE_URL = isProduction
-      ? 'https://interapi.facepy.com/storage/'
+      ? 'https://app.intercocina.com/storage/'
       : 'http://localhost:8000/storage/';
 
 

@@ -17,7 +17,7 @@ export const metadata = {
 
 async function getFaqs() {
     try {
-        const res = await fetch("https://interapi.facepy.com/api/faqs", {
+        const res = await fetch("https://app.intercocina.com/api/faqs", {
             // Revalidate every hour, or use { cache: 'no-store' } for always-fresh
             next: { revalidate: 3600 },
         });
@@ -45,7 +45,7 @@ export default async function FAQPage() {
                     <CLink href="#">
                         <Image
                             className="w-48"
-                            src="https://interapi.facepy.com/assets/imgs/intercocina-logo.png"
+                            src="https://app.intercocina.com/assets/imgs/intercocina-logo.png"
                             width={192}
                             height={80}
                             alt="Intercocina faq"

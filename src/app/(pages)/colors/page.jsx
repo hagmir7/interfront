@@ -7,7 +7,7 @@ async function getColors() {
     const baseURL =
       process.env.NODE_ENV === "development"
         ? "http://localhost:8000"
-        : "https://interapi.facepy.com";
+        : "https://app.intercocina.com";
 
     const response = await fetch(`${baseURL}/api/view-colors`, {
       // Only revalidate every hour

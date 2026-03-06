@@ -15,7 +15,7 @@ export default function UserOrder({ user_id }) {
   const baseURL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8000"
-      : "https://interapi.facepy.com";
+      : "https://app.intercocina.com";
 
   async function fetchOrders(pageNumber = 1) {
     try {

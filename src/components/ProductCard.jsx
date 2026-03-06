@@ -23,7 +23,7 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
 
   const imageUrl =
     images && images.length > 0
-      ? `https://interapi.facepy.com/storage/${images[0]?.image}`
+      ? `https://app.intercocina.com/storage/${images[0]?.image}`
       : "/modern-tech-product.png"
 
   return (

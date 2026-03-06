@@ -15,25 +15,25 @@ const CaissonSection = () => {
 
   const images = [
      {
-      src: 'https://interapi.facepy.com/storage/01J96VEEPMQRW9VHPMR9NQJ8VB.png',
+      src: 'https://app.intercocina.com/storage/01J96VEEPMQRW9VHPMR9NQJ8VB.png',
       title: ' Caisson de Cuisine Blanc - Meuble bas',
       link: '/category/caisson-hydrofuge?type=hydrofuge-bas',
     },
 
     {
-      src: 'https://interapi.facepy.com/storage/01JD542CJ2N520EJX56Y445YFF.png',
+      src: 'https://app.intercocina.com/storage/01JD542CJ2N520EJX56Y445YFF.png',
       title: 'Caisson de Cuisine Hydrofuge - Meuble bas',
       link: '/category/caisson-hydrofuge?type=hydrofuge-haut',
     },
    
     {
-      src: 'https://interapi.facepy.com/storage/01J96TYBTJ8JD7VVS3MSW9QD5C.png',
+      src: 'https://app.intercocina.com/storage/01J96TYBTJ8JD7VVS3MSW9QD5C.png',
       title: 'Caisson de Cuisine Blanc – Meuble Haut',
       link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
     },
 
         {
-      src: 'https://interapi.facepy.com/storage/01JD7C9KAEDZVYXG1WJ59GT17A.png',
+      src: 'https://app.intercocina.com/storage/01JD7C9KAEDZVYXG1WJ59GT17A.png',
       title: 'Caisson de Cuisine Hydrofuge – Meuble Haut',
       link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
     },

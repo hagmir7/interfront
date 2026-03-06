@@ -16,7 +16,7 @@ const Footer = () => {
               height={200}
 
               loading="lazy"
-              src="https://interapi.facepy.com/assets/imgs/intercocina-logo.png" 
+              src="https://app.intercocina.com/assets/imgs/intercocina-logo.png" 
               alt="Intercocina Logo"
               title="Intercocina Logo"
             />
@@ -32,13 +32,13 @@ const Footer = () => {
                 loading="lazy"
                 width={100}
                 height={100}
-                src="https://interapi.facepy.com/assets/icons/mail.png"
+                src="https://app.intercocina.com/assets/icons/mail.png"
                 alt="Envoyez-nous un email"
                 title="Envoyez-nous un email"
               />
               <div>
                 <p className="text-lg font-bold text-white ">Envoyez-nous un email</p>
-                <p className="text-white">contact@interapi.facepy.com</p>
+                <p className="text-white">contact@app.intercocina.com</p>
               </div>
             </div>
             <div className="flex items-center gap-3 px-4 py-3 duration-500 bg-white border md:border-0 md:shadow-lg rounded-3xl hover:scale-105">
@@ -47,7 +47,7 @@ const Footer = () => {
                 width={80}
                 height={80}
                 loading="lazy"
-                src="https://interapi.facepy.com/assets/icons/phone.png"
+                src="https://app.intercocina.com/assets/icons/phone.png"
                 title="Appelez-nous"
                 alt="Appelez-nous"
               />
@@ -121,7 +121,7 @@ const Footer = () => {
                 aria-label="Linkedin page link"
               >
                 <Image
-                  src="https://interapi.facepy.com/assets/media-icons/linkedin.png"  // Make sure this path is correct
+                  src="https://app.intercocina.com/assets/media-icons/linkedin.png"  // Make sure this path is correct
                   width={30}
                   height={30}
                   loading="lazy"
@@ -137,7 +137,7 @@ const Footer = () => {
                 aria-label="facebook page link"
               >
                 <Image
-                  src="https://interapi.facepy.com/assets/media-icons/facebook.png" // Make sure this path is correct
+                  src="https://app.intercocina.com/assets/media-icons/facebook.png" // Make sure this path is correct
                   width={30}
                   height={30}
                   loading="lazy"
@@ -153,7 +153,7 @@ const Footer = () => {
                 aria-label="Instagram page link"
               >
                 <Image
-                  src="https://interapi.facepy.com/assets/media-icons/instagram.png" // Make sure this path is correct
+                  src="https://app.intercocina.com/assets/media-icons/instagram.png" // Make sure this path is correct
                   width={30}
                   height={30}
                   loading="lazy"

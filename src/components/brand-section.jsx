@@ -8,37 +8,37 @@ const BrandsSection = () => {
     {
       id: 1,
       name: "LACA",
-      image: "https://interapi.facepy.com/storage/01J9C2NKY8FNA5EDRJDDAJ45JJ.svg",
+      image: "https://app.intercocina.com/storage/01J9C2NKY8FNA5EDRJDDAJ45JJ.svg",
       description: ""
     },
     {
       id: 2,
       name: "AstiMP",
-      image: "https://interapi.facepy.com/storage/01J9C2SFZ72VZ287AQZ2D3J6JV.jpg",
+      image: "https://app.intercocina.com/storage/01J9C2SFZ72VZ287AQZ2D3J6JV.jpg",
       description: ""
     },
     {
       id: 3,
       name: "AsitPRO",
-      image: "https://interapi.facepy.com/storage/01J9C2W3WVVZ31FH0Z0NWTHF3M.jpg",
+      image: "https://app.intercocina.com/storage/01J9C2W3WVVZ31FH0Z0NWTHF3M.jpg",
       description: ""
     },
     {
       id: 4,
       name: "InterMate",
-      image: "https://interapi.facepy.com/storage/01J9C2YN9BAMCFQ338E8KPZT82.svg",
+      image: "https://app.intercocina.com/storage/01J9C2YN9BAMCFQ338E8KPZT82.svg",
       description: ""
     },
     {
       id: 5,
       name: "Lacado+",
-      image: "https://interapi.facepy.com/storage/01J9C30G1RVZW2ACN8ABQDF1P3.jpg",
+      image: "https://app.intercocina.com/storage/01J9C30G1RVZW2ACN8ABQDF1P3.jpg",
       description: ""
     },
     {
       id: 6,
       name: "Polilaminado",
-      image: "https://interapi.facepy.com/storage/01J9C322SHD412R4MTBP5FDHH7.jpg",
+      image: "https://app.intercocina.com/storage/01J9C322SHD412R4MTBP5FDHH7.jpg",
       description: ""
     }
   ];

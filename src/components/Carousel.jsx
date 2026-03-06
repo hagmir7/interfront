@@ -63,7 +63,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
             >
               <AntdImage.PreviewGroup>
                 <AntdImage
-                  src={`https://interapi.facepy.com/storage/${img.image}`}
+                  src={`https://app.intercocina.com/storage/${img.image}`}
                   alt=""
                   style={{
                     width: '100%',
@@ -118,7 +118,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
                     hover:border-gray-400`}
                 >
                   <Image
-                    src={`https://interapi.facepy.com/storage/${img.image}`}
+                    src={`https://app.intercocina.com/storage/${img.image}`}
                     width={120}
                     height={100}
                     alt=""

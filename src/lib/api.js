@@ -12,7 +12,7 @@ let baseURL;
 if (process.env.NODE_ENV === 'development') {
     baseURL = 'http://localhost:8000/api/';
 } else {
-    baseURL = 'https://interapi.facepy.com/api/';
+    baseURL = 'https://app.intercocina.com/api/';
 }
 
 export const api = axios.create({

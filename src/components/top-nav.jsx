@@ -11,7 +11,7 @@ export default function TopNav() {
                     </div>
                     <div className="flex items-center gap-4">
                         <a href="tel:+212 536358888">+212 5 36 35 88 88</a>
-                        <a href="mailto:contact@interapi.facepy.com">contact@interapi.facepy.com</a>
+                        <a href="mailto:contact@app.intercocina.com">contact@app.intercocina.com</a>
                     </div>
                 </div>
             </div>

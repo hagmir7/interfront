@@ -18,25 +18,25 @@ const AboutPage = () => {
     {
       title: 'Leader de marché de la fabrication de meubles de cuisine',
       description: 'Nous sommes profondément honorés de vous présenter notre société, qui se distingue en tant que leader incontesté dans le domaine de la fabrication sur mesure d\'éléments de cuisine. Notre expertise se fonde sur l\'exploitation de technologies de pointe, permettant ainsi la conception de cuisines d\'exception',
-      image: 'https://interapi.facepy.com/assets/imgs/intercocina.png',
+      image: 'https://app.intercocina.com/assets/imgs/intercocina.png',
       reversed: false
     },
     {
       title: 'Fabrication de meubles de cuisine',
       description: 'Depuis plus de 16 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés, hommes et femmes, met en œuvre son savoir-faire artisanal pour créer des meubles de cuisine d\'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.',
-      image: 'https://interapi.facepy.com/assets/imgs/fabrication.jpg',
+      image: 'https://app.intercocina.com/assets/imgs/fabrication.jpg',
       reversed: true
     },
     {
       title: 'Qualité premium',
       description: 'La sélection minutieuse des matériaux dans la confection de nos meubles et la rigueur de notre processus de création sont au cœur de notre engagement envers la qualité et la durabilité de nos produits. Depuis 2017, chacun de nos meubles est accompagné d\'une certification et d\'un certificat de catégorisation, offrant ainsi à nos clients l\'assurance d\'acquérir des pièces de mobilier exceptionnelles répondant aux normes de qualité les plus élevées.',
-      image: 'https://interapi.facepy.com/assets/imgs/qualite.jpg',
+      image: 'https://app.intercocina.com/assets/imgs/qualite.jpg',
       reversed: false
     },
     {
       title: 'Une grande capacité industrielle au service de vos projets',
       description: 'Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d’assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation industrielle performante garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des',
-      image: 'https://interapi.facepy.com/assets/imgs/innovation.jpg',
+      image: 'https://app.intercocina.com/assets/imgs/innovation.jpg',
       reversed: true
     }
   ];

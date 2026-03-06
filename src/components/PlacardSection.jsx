@@ -14,7 +14,7 @@ const PlacarColors = () => {
   const [colors, setColors] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const baseImageUrl = 'https://interapi.facepy.com/storage/';
+  const baseImageUrl = 'https://app.intercocina.com/storage/';
 
   const getImageUrl = (color) => {
     if (color.image) {
@@ -26,7 +26,7 @@ const PlacarColors = () => {
 
   const fetchColors = async () => {
     try {
-      const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://interapi.facepy.com';
+      const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://app.intercocina.com';
 
       const response = await api.get(`${baseURL}/api/view-colors?per_page=12`);
 

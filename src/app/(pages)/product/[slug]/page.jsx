@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: `${product.name}`,
         description: `${truncate(product.description)}`,
-        images: 'https://interapi.facepy.com/storage/'+ product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
+        images: 'https://app.intercocina.com/storage/'+ product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
       },
     };
   } catch {
@@ -55,7 +55,7 @@ export default async function Page({ params, searchParams }) {
     "@type": "Product",
     name: product.name,
     description: product.description,
-    image: 'https://interapi.facepy.com/storage/'+ product.images?.[0]?.image ?? "",
+    image: 'https://app.intercocina.com/storage/'+ product.images?.[0]?.image ?? "",
     brand: {
       "@type": "Brand",
       name: "INTERCOCINA",

@@ -14,7 +14,7 @@ export const metadata = {
   metadataBase: new URL(
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://interapi.facepy.com"
+      : "https://app.intercocina.com"
   ),
   title: "Fabricant de meubles de cuisine de lux. - Intercocina",
   description:

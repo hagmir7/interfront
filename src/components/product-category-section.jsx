@@ -5,7 +5,7 @@ import CLink from './CLink';
 
 const ProductCategories = async () => {
 
-    const response = await fetch("https://interapi.facepy.com/api/categories")
+    const response = await fetch("https://app.intercocina.com/api/categories")
     if (!response.ok) {
         throw new Error("Failed to fetch categories")
     }
@@ -32,7 +32,7 @@ const ProductCategories = async () => {
                             >
                                 <Image
                                     className="sm:object-cover object-contain w-full h-full bg-gray-200"
-                                    src={`https://interapi.facepy.com/storage/${category.image}`}
+                                    src={`https://app.intercocina.com/storage/${category.image}`}
                                     alt={category.name}
                                     width={500}
                                     height={500}

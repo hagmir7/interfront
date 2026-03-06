@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const BlogSection = async () => {
   
-  const response = await fetch('https://interapi.facepy.com/api/posts/home')
+  const response = await fetch('https://app.intercocina.com/api/posts/home')
   if(!response.ok){
     throw new Error('Failed to fetch articles')
   }

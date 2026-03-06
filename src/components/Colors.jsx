@@ -6,7 +6,7 @@ import { ColorCard } from './ColorCard';
 async function getColors() {
   try {
 
-    const baseURL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://interapi.facepy.com";
+    const baseURL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://app.intercocina.com";
 
     
     const response = await fetch(`${baseURL}/api/view-colors?per_page=10`, { next: { revalidate: 3600 } });

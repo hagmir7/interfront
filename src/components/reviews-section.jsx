@@ -35,7 +35,7 @@ const ReviewCard = ({ review }) => (
 );
 
 const ReviewsSection = async () => {
-  const response = await fetch('https://interapi.facepy.com/api/reviews')
+  const response = await fetch('https://app.intercocina.com/api/reviews')
   if(!response.ok){
     throw new Error('Failed to fetch reviews')
   }
