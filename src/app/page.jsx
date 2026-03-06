@@ -16,6 +16,7 @@ import CaissonSectionLeft from "@/components/CaissonSectionLeft";
 import FeaturesSection from "@/components/FeaturesSection";
 import PlacarSection from "@/components/PlacardSection";
 import Colors from "@/components/Colors";
+import TopFooter from "@/components/TopFooter";
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
       <ReviewSection />
       <BlogSection />
       <ContactSection />
+      <TopFooter />
     </div>
   );
 }

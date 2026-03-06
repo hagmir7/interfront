@@ -58,20 +58,6 @@ const BlogPage = async ({ params }) => {
           {/* Barre latérale */}
           <div className='lg:w-1/3 lg:order-1 order-2'>
             <aside className='sticky top-8 space-y-8'>
-              {/* Recherche */}
-              <div className='bg-white rounded-2xl p-6 shadow-sm'>
-                <div className='text-lg font-semibold mb-4'>Recherche</div>
-                <div className='relative'>
-                  <input
-                    type='text'
-                    placeholder='Rechercher ici'
-                    className='w-full py-3 px-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500'
-                  />
-                  <button className='absolute right-3 top-1/2 transform -translate-y-1/2 text-red-600 hover:text-red-800'>
-                    <Search size={20} />
-                  </button>
-                </div>
-              </div>
 
               {/* Catégories */}
               <div className='bg-white rounded-2xl p-6 shadow-sm'>

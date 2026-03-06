@@ -30,7 +30,7 @@ export default function Subscribe() {
 
 
     return (
-        <div className="w-full max-w-lg bg-accent-red px-8 py-16 xl:ml-36 rounded-3xl relative overflow-hidden order-1 xl:order-2 md:flex md:justify-center bg-red-500">
+        <div className="w-full  lg:max-w-lg bg-accent-red px-8 py-16 xl:ml-36 rounded-3xl relative overflow-hidden order-1 xl:order-2 md:flex md:justify-center bg-red-500">
             <div className="w-40 aspect-square rounded-full bg-gray-50 opacity-45 absolute z-0 -bottom-10 -left-10 animate__animated animate__zoomIn"></div>
             <div className="aspect-square rounded-full bg-gray-50 opacity-45 w-36 md:w-80 absolute z-0 -top-16 -right-16 md:-top-28 md:-right-28 animate__animated animate__zoomIn"></div>
             <div className="w-full relative z-20 space-y-6">
