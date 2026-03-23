@@ -221,7 +221,7 @@ const wardrobes = [
     imagePosition: 'right',
   },
   {
-    title: 'Dressing',
+    title: 'Dressings',
     description:
       'Créez l\'espace dressing de vos rêves, parfaitement intégré à votre pièce. Adapté à tous les styles d\'intérieur, du plus classique au plus contemporain.',
     images: [

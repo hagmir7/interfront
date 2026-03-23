@@ -9,6 +9,7 @@ import { CartProvider } from "@/context/CartContext";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { AuthProvider } from "@/context/AuthContext";
+import TopNav from "@/components/top-nav";
 
 export const metadata = {
   metadataBase: new URL(
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
         <LoadingBar />
         <CartProvider>
           <AuthProvider>
+            <TopNav />
             <MainNav />
             
             {children}

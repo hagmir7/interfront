@@ -17,6 +17,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import PlacarSection from "@/components/PlacardSection";
 import Colors from "@/components/Colors";
 import TopFooter from "@/components/TopFooter";
+import AccSlideShow from "@/components/AccSlideShow";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
       <ProductCategories />
        <Tracking />
       <CoverSection />
+      <AccSlideShow />
       <BrandsSection />
       <StatsSection />
       <ReviewSection />

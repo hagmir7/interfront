@@ -37,7 +37,7 @@ export function ProductsMenu() {
                   </CLink>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/groups/revetement-et-sol" title="Revêtement et Sole">
+              <ListItem href="/groups/revetement-et-sol" title="Revêtement de Sol">
                 Parquet, Plinthe et Accessoires
               </ListItem>
               <ListItem href="/placards" title="Placards et Dressings">

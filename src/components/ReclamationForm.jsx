@@ -180,7 +180,7 @@ export default function ReclamationForm() {
             id="phone"
             name="phone"
             type="tel"
-            placeholder="+33 6 00 00 00 00"
+            placeholder="+212 60 00 00 00 00"
             className={fi(state.fieldErrors?.phone)}
             disabled={isPending}
           />
@@ -198,7 +198,7 @@ export default function ReclamationForm() {
             id="clientNumber"
             name="clientNumber"
             type="text"
-            placeholder="CLI-0000"
+            placeholder="CL0000"
             className={fi()}
             disabled={isPending}
           />

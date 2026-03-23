@@ -5,14 +5,14 @@ function CategorySection() {
   const products = [
     {
       imageUrl: 'https://www.starax.com.tr/documents/starax_base/img/kitchen-slide-1920x760.jpg',
-      title: 'Meuble de cuisine',
+      title: 'Meubles de cuisine',
       description: 'Caisson, Armoires de cuisine, façades, accessoires et plans de travail',
       link: '/groups/meuble-de-cuisine',
       badge: 'Nouvelle arrivée'
     },
     {
       imageUrl: '/imgs/placard/parquet.png',
-      title: 'Revêtement et Sol',
+      title: 'Revêtement de Sol',
       description: 'Revêtement de sol stratifié, Parquet, Plinthe et Accessoires...',
       link: '/groups/revetement-et-sol',
       badge: 'Populaire'
@@ -29,7 +29,7 @@ function CategorySection() {
   return (
     <section className="max-w-7xl mx-auto px-2 md:px-4 py-8 md:py-12">
       <div className="mb-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">La collection des porduits Intercocina.</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">Nos Produits</h2>
         <p className="text-gray-600 max-w-4xl mx-auto">Que vous recherchiez le style, la fonctionnalité ou la qualité, notre gamme de produits a tout pour plaire. Explorez dès maintenant pour dénicher vos favoris.</p>
       </div>
       

@@ -4,36 +4,33 @@ import {
   BadgeCheck,
   Factory,
 } from 'lucide-react'
+import Image from 'next/image'
 
 
 const FeatureIcon = ({ children }) => (
-  <div className="relative group w-14 h-14">
-    <div className="absolute inset-x-5 bottom-0 h-2 bg-rose-400 blur-md opacity-50" />
-    <div className="relative h-14 w-14 overflow-hidden rounded-2xl p-px
-      bg-gradient-to-b from-slate-200 to-slate-300
-      dark:from-slate-700 dark:to-[#171C23]
+  <div className="relative group w-16 h-16">
+    <div className="absolute inset-x-5 bottom-0 h- blur-md opacity-50" />
+    <div className="relative h-16 w-16 overflow-hidden rounded-2xl p-px
+
       shadow-lg shadow-black/5">
 
-      <div className="absolute inset-x-4 -bottom-2 h-4 bg-rose-400 blur-md dark:opacity-80" />
+      <div className="absolute inset-x-4 -bottom-2 h-4 blur-md dark:opacity-80" />
 
-      <div className="relative flex h-full w-full items-center justify-center
-        rounded-[15px]
-        bg-gradient-radial from-white to-slate-100
-        dark:from-[#393C45] dark:to-[#171C23]">
+      <div className="relative flex h-full w-full items-center justify-center rounded-[15px] p-2 bg-white">
         {children}
       </div>
     </div>
   </div>
 )
 
-const features = [
+const features = [ 
   {
     title: (
       <>
         N°1  au Maroc dans la fabrication de meubles cuisine sur mesure
       </>
     ),
-    icon: <Award className="h-7 w-7 text-rose-400" />,
+    icon: <Image src={'/icons/forts/1.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -41,7 +38,7 @@ const features = [
         +16 années d’expertise reconnue et de savoir-faire industriel maîtrisé
       </>
     ),
-    icon: <History className="h-7 w-7 text-rose-400" />,
+    icon: <Image src={'/icons/forts/4.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -49,7 +46,7 @@ const features = [
         Qualité premium certifiée conforme aux normes internationales
       </>
     ),
-    icon: <BadgeCheck className="h-7 w-7 text-rose-400" />,
+    icon: <Image src={'/icons/forts/3.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -57,7 +54,7 @@ const features = [
         Grande capacité industrielle assurant une production fiable et continue
       </>
     ),
-    icon: <Factory className="h-7 w-7 text-rose-400" />,
+    icon: <Image src={'/icons/forts/2.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
   }
 ]
 

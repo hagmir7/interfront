@@ -74,6 +74,8 @@ export default function CheckoutPage() {
         content: response.data.message,
       });
 
+      localStorage.setItem('cart', '[]');
+
     } catch (error) {
       setMessage({
         type: "error",

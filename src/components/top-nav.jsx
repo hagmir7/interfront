@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function TopNav() {
     return (
-        <div className="hidden lg:block bg-red-400 text-white border-b-2">
-            <div className="container mx-auto px-4">
+        <div className="hidden lg:block bg-[#f72e2f] text-white border-b-2">
+            <div className="mx-auto px-4">
                 <div className="flex items-center justify-between py-2 text-sm w-full">
                     <div className="flex space-x-4">
                         <Link href="/contact" className="hover:text-gray-600">Contactez-nous</Link>

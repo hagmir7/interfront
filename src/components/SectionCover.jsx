@@ -13,7 +13,7 @@ const SectionConver = () => {
   return (
     <section className='relative bg-gradient-to-br from-blue-900 to-gray-800 text-white overflow-hidden'>
       <div className='absolute inset-0 bg-black opacity-50'></div>
-      <Image src='/icons/B2B.svg' className="absolute right-10 top-4 z-50" width={100} height={100} alt="b2b" />
+      <Image src='/icons/B2B.svg' className="absolute right-10 top-4 z-10 hidden md:block" width={100} height={100} alt="b2b" />
       <div className='absolute inset-0 bg-cover bg-center opacity-50'
         style={{backgroundImage: "url('/imgs/fabrica.jpeg')"}}
       ></div>

@@ -2,17 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Thumbs } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Image as AntdImage } from 'antd';
 import Image from 'next/image';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/thumbs';
 
 const Carousel = ({ images = [], currentColor, onImageChange }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
   const [currentImages, setCurrentImages] = useState(images);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -21,13 +19,35 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
     if (!images.length) return;
 
     const filtered = currentColor
-      ? images.filter((img) => img.color_id === currentColor)
+      ? images.filter((img) => String(img.color_id) === String(currentColor))
       : images;
 
-    setCurrentImages(filtered.length ? filtered : images);
+    const newImages = filtered.length ? filtered : images;
+
+    setCurrentImages(newImages);
     setActiveIndex(0);
-    mainSwiper?.slideTo(0);
-  }, [images, currentColor]);
+
+    setTimeout(() => {
+      mainSwiper?.slideTo(0, 0);
+    }, 0);
+  }, [images, currentColor, mainSwiper]);
+
+  const handleThumbClick = (img) => {
+    const indexInCurrent = currentImages.findIndex((ci) => ci.image === img.image);
+    if (indexInCurrent !== -1) {
+      // Image exists in current filtered list, just navigate
+      mainSwiper?.slideToLoop(indexInCurrent);
+      setActiveIndex(indexInCurrent);
+    } else {
+      // Image belongs to another color, switch to full list and navigate
+      const indexInAll = images.findIndex((i) => i.image === img.image);
+      setCurrentImages(images);
+      setActiveIndex(indexInAll);
+      setTimeout(() => {
+        mainSwiper?.slideTo(indexInAll, 0);
+      }, 0);
+    }
+  };
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -35,7 +55,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
       <div className="relative w-full max-w-[650px] select-none">
 
         <Swiper
-          modules={[Navigation, Pagination, Thumbs]}
+          modules={[Navigation, Pagination]}
           spaceBetween={0}
           slidesPerView={1}
           loop={currentImages.length > 1}
@@ -44,9 +64,6 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
           navigation={{
             nextEl: ".custom-next",
             prevEl: ".custom-prev",
-          }}
-          thumbs={{
-            swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
           onSlideChange={(s) => {
             setActiveIndex(s.realIndex);
@@ -94,12 +111,9 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
         </button>
       </div>
 
-      {currentImages.length > 1 && (
+      {images.length > 1 && (
         <div className="w-full max-w-[650px] mt-4 px-2">
           <Swiper
-            modules={[Thumbs]}
-            onSwiper={setThumbsSwiper}
-            watchSlidesProgress
             slidesPerView={4}
             spaceBetween={12}
             breakpoints={{
@@ -109,12 +123,16 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
             }}
             style={{ height: '100px' }}
           >
-            {currentImages.map((img, i) => (
+            {images.map((img, i) => (
               <SwiperSlide key={i} style={{ height: '100px' }}>
                 <div
-                  onClick={() => mainSwiper?.slideToLoop(i)}
+                  onClick={() => handleThumbClick(img)}
                   className={`overflow-hidden rounded-lg cursor-pointer border transition-all h-full
-                    ${activeIndex === i ? "border-red-500 border-2" : "border-gray-200"}
+                    ${
+                      currentImages[activeIndex]?.image === img.image
+                        ? "border-red-500 border-2"
+                        : "border-gray-200"
+                    }
                     hover:border-gray-400`}
                 >
                   <Image
