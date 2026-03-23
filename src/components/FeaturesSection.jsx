@@ -1,9 +1,3 @@
-import {
-  Award,
-  History,
-  BadgeCheck,
-  Factory,
-} from 'lucide-react'
 import Image from 'next/image'
 
 
@@ -30,7 +24,7 @@ const features = [
         N°1  au Maroc dans la fabrication de meubles cuisine sur mesure
       </>
     ),
-    icon: <Image src={'/icons/forts/1.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
+    icon: <Image src='/icons/forts/1.svg' width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -38,7 +32,7 @@ const features = [
         +16 années d’expertise reconnue et de savoir-faire industriel maîtrisé
       </>
     ),
-    icon: <Image src={'/icons/forts/4.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
+    icon: <Image src='/icons/forts/4.svg' width={50} height={50} alt='+16 années d’expertise' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -46,7 +40,7 @@ const features = [
         Qualité premium certifiée conforme aux normes internationales
       </>
     ),
-    icon: <Image src={'/icons/forts/3.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
+    icon: <Image src='/icons/forts/3.svg' width={50} height={50} alt=' Qualité premium' className="h-full w-full text-rose-400" />,
   },
   {
     title: (
@@ -54,7 +48,7 @@ const features = [
         Grande capacité industrielle assurant une production fiable et continue
       </>
     ),
-    icon: <Image src={'/icons/forts/2.svg'} width={50} height={50} alt='Fabrication de meubles cuisine' className="h-full w-full text-rose-400" />,
+    icon: <Image src='/icons/forts/2.svg' width={50} height={50} alt='Grande capacité industrielle' className="h-full w-full text-rose-400" />,
   }
 ]
 
