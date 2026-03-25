@@ -298,7 +298,23 @@ const MainNav = () => {
                 >
                   Accueil
                 </CLink>
+
+
               </li>
+
+               <ProductsMenu />
+
+
+              {/* <li>
+                <CLink
+                  href='/aprops'
+                  className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
+                >
+                  Promotions & Nouveautés
+                </CLink>
+              </li> */}
+
+
               <li>
                 <CLink
                   href='/aprops'
@@ -315,7 +331,7 @@ const MainNav = () => {
                   Événements
                 </CLink>
               </li>
-              <ProductsMenu />
+             
             </ul>
             <div className='flex gap-3'>
               <CLink
