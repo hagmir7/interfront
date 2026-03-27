@@ -235,7 +235,7 @@ const wardrobes = [
 
 export default function PlacardCards() {
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       {/* Section header */}
       <div className="max-w-2xl mx-auto text-center mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">

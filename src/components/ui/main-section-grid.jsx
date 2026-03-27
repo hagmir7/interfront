@@ -30,9 +30,6 @@ const MainSectionGrid = () => {
   const IMAGE_BASE_URL = isProduction
     ? 'https://app.intercocina.com/storage/'
     : 'https://app.intercocina.com/storage/';
-
-
-
     
   useEffect(() => {
     getData()
@@ -108,10 +105,12 @@ const MainSectionGrid = () => {
                     </div>
                   </div>
                   <div className='order-1 sm:order-2 mb-4 sm:mb-0 relative'>
-
-                    <span className="absolute top-4 right-4  text-white text-xs md:text-sm font-bold px-4 py-1.5 animate-pulse">
-                      <Image width={50} height={50} alt='New' src={'/icons/new-badge-3-256.png'} />
-                    </span>
+                    {
+                      item.is_new ? (<span className="absolute top-4 right-4  text-white text-xs md:text-sm font-bold px-4 py-1.5 animate-pulse">
+                        <Image width={50} height={50} alt='New' src={'/icons/new-badge-3-256.png'} />
+                      </span>) : ''
+                    }
+                    
 
                     <Image
                       src={IMAGE_BASE_URL + item.image}

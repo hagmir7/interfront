@@ -10,7 +10,7 @@ export default function PlacardReviews({ type }) {
     const projects = [
         {
             id: 1,
-            src: '/imgs/placard/placard-sub.jpg',
+            src: '/imgs/placard/placard-6.jpeg',
             alt: 'Placard 1',
             review: {
                 name: "Mounia",
@@ -19,7 +19,7 @@ export default function PlacardReviews({ type }) {
         },
         {
             id: 2,
-            src: 'https://boisetblanc.fr/wp-content/uploads/36.-Bobillot-9.webp',
+            src: '/imgs/placard/placard-7.jpeg',
             alt: 'Placard 2',
             review: {
                 name: "Imane",
@@ -46,7 +46,7 @@ export default function PlacardReviews({ type }) {
         },
         {
             id: 5,
-            src: '/imgs/placard/placard-2.jpeg',
+            src: '/imgs/placard/placard-5.jpeg',
             alt: 'Placard 5',
             review: {
                 name: "Karim",
