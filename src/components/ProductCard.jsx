@@ -6,9 +6,10 @@ import { Star, Eye, ShoppingCart, Heart } from "lucide-react"
 import Image from "next/image"
 import { AddToCartModal } from "./AddToCartModal"
 
-const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug }) => {
+const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  
   const renderStars = () => {
     return Array(5)
       .fill(0)
@@ -37,7 +38,7 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
               width={600}
               height={600}
               src={imageUrl || "/placeholder.svg"}
-              className="w-full h-56 xl:h-64 object-contain transition-transform duration-300 group-hover:scale-105"
+              className={`w-full h-56 xl:h-64 transition-transform duration-300 group-hover:scale-105 ${type_id == 14 ? 'object-center' : 'object-contain'}`}
             />
           </Link>
 

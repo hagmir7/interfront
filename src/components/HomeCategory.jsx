@@ -60,7 +60,7 @@ const HomeCategory = () => {
   }, []);
 
   return (
-    <section className="bg-[#f7f6f4] py-10 px-4">
+    <section className=" py-10 px-4">
       {/* Section header */}
       <div className="container mx-auto mb-10 flex flex-col items-center text-center gap-3">
         <span className="text-xs font-semibold tracking-[0.25em] uppercase text-red-500">
