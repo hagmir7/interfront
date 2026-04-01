@@ -1,4 +1,5 @@
 import CLink from "@/components/CLink";
+import HomeCategory from "@/components/HomeCategory";
 import { api } from "@/lib/api";
 import Image from "next/image";
 

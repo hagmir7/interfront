@@ -24,16 +24,33 @@ export function ProductsMenu() {
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
-                  <CLink href='/groups/meuble-de-cuisine'
+                  <CLink href='/meuble-de-cuisine'
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   >
-                    <Image width={100} height={100} src="https://cdn-icons-png.flaticon.com/512/7860/7860152.png" alt="Produits" className="w-full" />
+                    <Image width={100} height={100} src="/icons/kitchen-icon.png" alt="Produits" className="w-full" />
                     <div className="mt-4 text-lg font-semibold leading-none">
                       Meuble Cuisine
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Armoires de cuisine, façades, accessoires et plans de travail
                     </p>
+                    {/* Sub-links under Meuble Cuisine */}
+                    {/* <div className="mt-3 flex flex-col gap-1">
+                      {[
+                        { href: "/meuble-de-cuisine/caisson", label: "Caisson" },
+                        { href: "/meuble-de-cuisine/portes", label: "Portes" },
+                        { href: "/meuble-de-cuisine/accessoires", label: "Accessoires" },
+                      ].map(({ href, label }) => (
+                        <CLink
+                          key={href}
+                          href={href}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors"
+                        >
+                          → {label}
+                        </CLink>
+                      ))}
+                    </div> */}
                   </CLink>
                 </NavigationMenuLink>
               </li>
