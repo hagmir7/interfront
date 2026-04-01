@@ -37,7 +37,7 @@ const Footer = () => {
             <h3 className="py-6 text-lg text-accent-red font-semibold">Ressources</h3>
             <ul className="space-y-5">
               <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
-                <Link href="h/aprops">À propos</Link>
+                <Link href="/aprops">À propos</Link>
               </li>
               <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="/contact">Contactez-nous</Link>

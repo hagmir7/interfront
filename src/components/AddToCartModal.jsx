@@ -349,7 +349,7 @@ export function AddToCartModal({ open, onOpenChange, product }) {
                                     Ajouter au panier
                                 </Button>
                                 <Button variant="outline" onClick={() => onOpenChange(false)} className="w-full sm:w-auto">
-                                    Annuler
+                                    Fermer
                                 </Button>
 
                             </div>
