@@ -262,7 +262,7 @@ export default function PlacardCards() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="max-w-2xl mx-auto text-center mt-16">
+      {/* <div className="max-w-2xl mx-auto text-center mt-16">
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
           <h3 className="text-xl font-bold text-gray-900 mb-2">Un projet en tête ?</h3>
           <p className="text-gray-500 text-sm mb-6">
@@ -276,7 +276,7 @@ export default function PlacardCards() {
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

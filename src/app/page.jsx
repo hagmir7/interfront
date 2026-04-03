@@ -30,14 +30,16 @@ export default function Home() {
      
       <CategorySection />
       <CaissonSection />
-      <PlacarSection />
+     
       <CaissonSectionLeft />
+       <PlacarSection />
+       <AccSlideShow />
       <Colors />
      
       <ProductCategories />
-       <Tracking />
+       {/* <Tracking /> */}
       <CoverSection />
-      <AccSlideShow />
+     
       <BrandsSection />
       <StatsSection />
       <ReviewSection />

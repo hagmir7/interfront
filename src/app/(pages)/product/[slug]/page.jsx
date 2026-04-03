@@ -103,36 +103,41 @@ export default async function Page({ params, searchParams }) {
         )}
 
         {/* Options Table */}
-        {(Object.keys(options).length > 0 || product.content) && (
-          <div className="rounded-2xl border shadow-2xs bg-white p-3 mt-3">
-            {Object.keys(options).length > 0 && (
-              <div className="relative overflow-x-auto border rounded-lg mt-3 md:mt-6">
-                <table className="w-full text-sm text-left">
-                  <tbody>
-                    {Object.entries(options).map(([key, value]) => (
-                      <tr
-                        key={key}
-                        className="border-b last:border-0 hover:bg-gray-50 transition"
-                      >
-                        <th className="px-2 md:px-6 py-1 md:py-3 text-gray-800 font-medium w-1/3">
-                          {key.trim()}
-                        </th>
-                        <td className="px-2 md:px-6 py-1 md:py-3 text-gray-600">{value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {product.content && (
-              <div
-                className="my-3 md:my-6 w-full prose"
-                dangerouslySetInnerHTML={{ __html: product.content }}
-              />
-            )}
+        {/* {String(product.content).length} */}
+        {(Object.keys(options).length > 0 || String(product.content).length > 10) && (
+      <div className="rounded-2xl border border-stone-200 shadow-sm bg-gradient-to-b from-white to-stone-50 p-4 mt-4 space-y-4">
+        
+        {Object.keys(options).length > 0 && (
+          <div className="overflow-x-auto rounded-xl border border-stone-100">
+            <table className="w-full text-sm">
+              <tbody>
+                {Object.entries(options).map(([key, value], i) => (
+                  <tr
+                    key={key}
+                    className={`flex justify-between gap-4 px-4 py-2.5 ${
+                      i % 2 === 0 ? "bg-stone-50/60" : "bg-white"
+                    }`}
+                  >
+                    <th className="text-stone-500 font-medium text-left whitespace-nowrap">
+                      {key.trim()}
+                    </th>
+                    <td className="text-stone-800 text-right">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
+
+        {product.content && (
+          <div
+            className="prose prose-sm prose-stone max-w-none text-stone-700"
+            dangerouslySetInnerHTML={{ __html: product.content }}
+          />
+        )}
+
+      </div>
+    )}
 
         {/* Share Product */}
         <ShareProduct
