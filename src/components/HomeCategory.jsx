@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 const categories = [
   {
     href: "/category/caissons",
-    img: "https://app.intercocina.com/storage/01JAA3TB6QYCZ5E8XS1AVPBK0R.webp",
+    img: "/imgs/caisson.png",
     alt: "Caisson de cuisine",
     title: "Caisson de cuisine",
     desc: "Caissons conçus avec passion pour transformer votre espace culinaire en une œuvre d'art fonctionnelle.",
@@ -15,7 +15,7 @@ const categories = [
   },
   {
     href: "/category/facade",
-    img: "https://app.intercocina.com/storage/01JAA40Y5FK3ZG3KCJGE6WJQKK.webp",
+    img: "/imgs/facade.png",
     alt: "Façades et Portes",
     title: "Façades et Portes de cuisine",
     desc: "Façades élégantes et personnalisables, conçues pour donner vie à vos idées de design.",
@@ -24,21 +24,21 @@ const categories = [
 
    {
     href: "/category/accessoiriser",
-    img: "https://app.intercocina.com/storage/01JP024AA9ZXNG4JVA9B1ZVF4H.webp",
+    img: "/imgs/acc.png",
     alt: "Accessoires de cuisine",
     title: "Accessoires de cuisine",
     desc: "La touche finale parfaite pour vos projets de meubles de cuisine — fonctionnel et raffiné.",
     tag: "Finition",
   },
   
-  {
-    href: "/category/parquettes",
-    img: "https://app.intercocina.com/storage/01JBYH67AWDCCPY1XMTHY7VXDP.webp",
-    alt: "Parquets",
-    title: "Parquets",
-    desc: "Un sol élégant et durable pour sublimer votre intérieur — chaleur et style à chaque pièce.",
-    tag: "Revêtement",
-  },
+  // {
+  //   href: "/category/parquettes",
+  //   img: "/imgs/parquet.png",
+  //   alt: "Parquets",
+  //   title: "Parquets",
+  //   desc: "Un sol élégant et durable pour sublimer votre intérieur — chaleur et style à chaque pièce.",
+  //   tag: "Revêtement",
+  // },
  
 ];
 
@@ -67,7 +67,7 @@ const HomeCategory = () => {
           Nos catégories
         </span>
         <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight">
-          Meuble de cuisine
+          Meubles de cuisine
         </h2>
         <p className="text-gray-500 max-w-md text-sm leading-relaxed">
           Des solutions complètes pour aménager votre cuisine et votre intérieur, fabriquées au Maroc.
@@ -82,7 +82,7 @@ const HomeCategory = () => {
       {/* Grid */}
       <div
         ref={gridRef}
-        className="container mx-auto grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        className="max-w-7xl mx-auto grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
       >
         {categories.map(({ href, img, alt, title, desc, tag }) => (
           <Link

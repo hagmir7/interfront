@@ -27,7 +27,7 @@ const SectionConver = () => {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[82vh] flex items-center justify-center overflow-hidden bg-gray-950 text-white"
+      className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-gray-950 text-white"
     >
       {/* Background image */}
       <div

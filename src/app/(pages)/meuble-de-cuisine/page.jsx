@@ -5,7 +5,7 @@ import HomeCategory from "@/components/HomeCategory";
 export async function generateMetadata({ params }) {
 
     return {
-        title: "Meuble de cuisine",
+        title: "Meubles de cuisine",
         description: "Meubles de cuisine, d'aménagement, Caisson de cuisin, Ports, Accessoires de cuisine",
     };
 }

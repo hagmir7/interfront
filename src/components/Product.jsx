@@ -48,6 +48,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
     if (attributes.length > 0) {
       changeAttribute({ target: { value: attributes[0].id } });
     }
+
     setPrice(product.price_format);
   }, []);
 
