@@ -1,4 +1,3 @@
-
 import "./globals.css";
 import "@fontsource/figtree";
 import "@fontsource/figtree/400.css";
@@ -40,16 +39,19 @@ export default function RootLayout({ children }) {
         <LoadingBar />
         <CartProvider>
           <AuthProvider>
-            <TopNav />
-            <MainNav />
-            
-            {children}
-            
+            <header>
+              <TopNav />
+              <MainNav />
+            </header>
+
+            <main>
+              {children}
+            </main>
           </AuthProvider>
         </CartProvider>
         <Footer />
         <WhatsAppFloat />
       </body>
     </html>
-  );
+  )
 }

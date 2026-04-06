@@ -14,25 +14,22 @@ import 'swiper/css/pagination'
 const CaissonSection = () => {
 
   const images = [
-     {
+    {
       src: 'https://app.intercocina.com/storage/01J96VEEPMQRW9VHPMR9NQJ8VB.png',
-      title: ' Caisson de Cuisine Blanc - Meuble bas',
+      title: 'Caisson de Cuisine Blanc - Meuble bas',
       link: '/category/caisson-hydrofuge?type=hydrofuge-bas',
     },
-
     {
       src: 'https://app.intercocina.com/storage/01JD542CJ2N520EJX56Y445YFF.png',
       title: 'Caisson de Cuisine Hydrofuge - Meuble bas',
       link: '/category/caisson-hydrofuge?type=hydrofuge-haut',
     },
-   
     {
       src: 'https://app.intercocina.com/storage/01J96TYBTJ8JD7VVS3MSW9QD5C.png',
       title: 'Caisson de Cuisine Blanc – Meuble Haut',
       link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
     },
-
-        {
+    {
       src: 'https://app.intercocina.com/storage/01JD7C9KAEDZVYXG1WJ59GT17A.png',
       title: 'Caisson de Cuisine Hydrofuge – Meuble Haut',
       link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
@@ -40,31 +37,12 @@ const CaissonSection = () => {
   ]
 
   const features = [
-    {
-      title: 'Recyclable',
-      icon: '/icons/caisson-icon-1.svg'
-    },
-    {
-      title: "Résistant à l'humidité",
-      icon: '/icons/caisson-icon-2.svg'
-    },
-    {
-      title: 'Densité élevée',
-      icon: '/icons/caisson-icon-3.svg'
-    },
-    {
-      title: 'Écologique',
-      icon: '/icons/caisson-icon-4.svg'
-    },
-    {
-      title: 'Résistant à la chaleur',
-      icon: '/icons/caisson-icon-5.svg'
-    },
-    {
-      title: 'Épaisseur 18mm',
-      icon: '/icons/caisson-icon-6.svg'
-    },
-
+    { title: 'Recyclable', icon: '/icons/caisson-icon-1.svg' },
+    { title: "Résistant à l'humidité", icon: '/icons/caisson-icon-2.svg' },
+    { title: 'Densité élevée', icon: '/icons/caisson-icon-3.svg' },
+    { title: 'Écologique', icon: '/icons/caisson-icon-4.svg' },
+    { title: 'Résistant à la chaleur', icon: '/icons/caisson-icon-5.svg' },
+    { title: 'Épaisseur 18mm', icon: '/icons/caisson-icon-6.svg' },
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -100,32 +78,31 @@ const CaissonSection = () => {
         {/* Product Details */}
         <div className="flex-1">
 
-          {/* Dynamic title ONLY */}
+          {/* Dynamic title */}
           <div className="mb-2">
             <h4 className="text-xl sm:text-2xl font-semibold mb-2">
-              <a
+              <a 
                 href={images[activeIndex].link}
                 className="text-gray-900 hover:text-red-600 transition-colors"
               >
                 {images[activeIndex].title}
               </a>
             </h4>
-             {/* Description */}
-          <p className="text-gray-600 text-sm font-light leading-7 mb-2 hidden md:block">
-            Explorez notre gamme de caissons, la base d’un aménagement fiable et performant.
-          </p>
+
+            {/* Description */}
+            <p className="text-gray-600 text-sm font-light leading-7 mb-2 hidden md:block">
+              Explorez notre gamme de caissons, la base d&apos;un aménagement fiable et performant.
+            </p>
 
             {/* Rating */}
-            <ul className="flex gap-0.5">
+            <ul className="flex gap-0.5" aria-label="Note : 5 sur 5 étoiles">
               {[1, 2, 3, 4, 5].map((star) => (
                 <li key={star}>
-                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" aria-hidden="true" />
                 </li>
               ))}
             </ul>
           </div>
-
-         
 
           {/* Features */}
           <div className="hidden lg:block mb-6">
@@ -135,7 +112,14 @@ const CaissonSection = () => {
                   key={index}
                   className="text-center p-3 bg-gray-50 rounded-xl transition"
                 >
-                  <Image src={feature.icon} alt={feature.title} width={55} height={55} className=" mt-0.5 m-auto" />
+                  <Image
+                    src={feature.icon}
+                    width={55}
+                    height={55}
+                    className="mt-0.5 m-auto"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span className="text-gray-700 text-sm sm:text-md font-bold">
                     {feature.title}
                   </span>
@@ -143,7 +127,6 @@ const CaissonSection = () => {
               ))}
             </ul>
           </div>
-
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <CLink

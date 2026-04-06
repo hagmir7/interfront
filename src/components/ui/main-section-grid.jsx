@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import LacaColors from '../LacaColors';
 import CLink from '../CLink';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -95,7 +94,8 @@ const MainSectionGrid = () => {
                           className='rounded-lg flex gap-2 text-white bg-[#da3036] hover:bg-red-600 py-1.5 md:py-3 px-3 md:px-5 text-sm md:text-[17px] hover:text-white'
                         >
                           <span>Voir Plus</span>
-                          <ArrowRight className='h-5 md:h-6' />
+                          <span className='sr-only'>{item.title}</span>
+                          <ArrowRight className='h-5 md:h-6' aria-hidden="true" />
                         </CLink>
                       </div>
                     </div>
@@ -106,7 +106,7 @@ const MainSectionGrid = () => {
                           <Image
                             width={50}
                             height={50}
-                            alt='New'
+                            alt='Nouveau'
                             src={'/icons/new-badge-3-256.png'}
                           />
                         </span>
@@ -154,10 +154,10 @@ const MainSectionGrid = () => {
                   </div>
                 </div>
                 <div className='ml-4 flex-shrink-0'>
-                  <CLink href={product.url}>
+                  <CLink href={product.url} aria-label={product.title}>
                     <Image
                       src={IMAGE_BASE_URL + product.image}
-                      alt={product.title}
+                      alt=""
                       width={200}
                       height={200}
                       className='w-32 h-32 object-contain'

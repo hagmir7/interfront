@@ -10,7 +10,6 @@ import {
   } from "@/components/ui/navigation-menu"
   
 
-// import CLink from 'next/CLink';
 import React from 'react';
 import { ProductsMenu } from "./products-menu";
 import TopNav from "./top-nav";
@@ -26,8 +25,7 @@ import Image from "next/image";
 const MainNav = () => {
   
     return (
-      <nav className='border-b-2 border-red-500'>
-        {/* <TopNav /> */}
+      <nav className='border-b-2 border-red-500' aria-label="Navigation principale">
         <div className='container mx-auto flex flex-wrap items-center justify-between px-4 py-4'>
           {/* Mobile menu */}
           <div className='z-30'>
@@ -141,7 +139,6 @@ const MainNav = () => {
               <span className='text-[#b6b6b7]'>INTER</span>
               <span className='text-[#ec2228]'>COCINA</span>
             </div>
-            {/* <Image src="https://app.intercocina.com/assets/imgs/intercocina-logo.png" width={100} height={100} alt="Intercocina" className="w-32 md:h-12 md:w-auto" /> */}
           </CLink>
 
           {/* Search */}
@@ -151,9 +148,11 @@ const MainNav = () => {
             <CLink
               href='#'
               className='hover:text-gray-600 p-2 rounded-full bg-[#efeeeb] me-3 border border-red-600'
+              aria-label='Favoris'
             >
               <svg
                 className='w-6 h-6 text-red-600'
+                aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
                 height='32'
@@ -183,6 +182,7 @@ const MainNav = () => {
               >
                 <svg
                   className='w-6 h-6'
+                  aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   width='32'
                   height='32'
@@ -259,15 +259,17 @@ const MainNav = () => {
             {/* End side */}
           </div>
 
-          {/* Moblie Cart button */}
+          {/* Mobile Cart button */}
           <div>
             <div className='items-center space-x-4 flex lg:hidden'>
               <CLink
                 href='/cart'
+                aria-label='Panier'
                 className='hover:bg-gray-400 bg-gray-500 p-2 rounded-full relative text-white duration-200'
               >
                 <svg
                   className='w-6 h-6'
+                  aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   width='32'
                   height='32'
@@ -298,22 +300,11 @@ const MainNav = () => {
                 >
                   Accueil
                 </CLink>
-
-
               </li>
 
-               <ProductsMenu />
-
-
-              {/* <li>
-                <CLink
-                  href='/aprops'
-                  className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
-                >
-                  Promotions & Nouveautés
-                </CLink>
-              </li> */}
-
+              <li>
+                <ProductsMenu />
+              </li>
 
               <li>
                 <CLink
@@ -331,14 +322,13 @@ const MainNav = () => {
                   Événements
                 </CLink>
               </li>
-             
             </ul>
             <div className='flex gap-3'>
               <CLink
                 href='/contact'
                 className='rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white'
               >
-                <span>
+                <span aria-hidden='true'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='20'
@@ -357,7 +347,6 @@ const MainNav = () => {
                 </span>
                 <span>Contactez-nous</span>
               </CLink>
-              {/* <Modal /> */}
             </div>
           </div>
         </div>
