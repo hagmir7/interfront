@@ -6,6 +6,7 @@ import { api } from '@/lib/api';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LoaderCircle, ShoppingCart, Star, TriangleAlert } from 'lucide-react';
+import ColorDisclaimer from './ColorDisclaimer';
 
 
 const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
@@ -582,6 +583,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
           Ajouter au panier
         </button>
       </div>
+      <ColorDisclaimer />
     </div>
   )
 };

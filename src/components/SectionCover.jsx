@@ -33,7 +33,6 @@ const SectionConver = () => {
   opacity: 1;
   transform: translateY(0);
 }
-Changes:
         @keyframes slowZoom {
           from { transform: scale(1.05); }
           to   { transform: scale(1.12); }
@@ -42,20 +41,26 @@ Changes:
           from { background-position: 0 0; }
           to   { background-position: 60px 60px; }
         }
+        .hero-bg-zoom {
+          animation: slowZoom 20s ease-in-out infinite alternate;
+        }
       `}</style>
 
       <section
         ref={heroRef}
         className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-gray-950 text-white"
       >
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-105"
-          style={{
-            backgroundImage: "url('/imgs/fabrica.jpeg')",
-            animation: 'slowZoom 20s ease-in-out infinite alternate',
-          }}
-        />
+        {/* Background image — using Next.js Image for LCP optimization */}
+        <div className="absolute inset-0 hero-bg-zoom">
+          <Image
+            src="/imgs/fabrica/fabrica-4.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
@@ -93,7 +98,7 @@ Changes:
           {/* Eyebrow tag */}
           <div data-animate>
             <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm text-white/80 text-xs tracking-[0.2em] uppercase px-4 py-2 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" aria-hidden="true" />
               Leader marocain • Fabrication sur mesure
             </span>
           </div>
@@ -120,7 +125,7 @@ Changes:
           </h1>
 
           {/* Divider */}
-          <div data-animate className="flex items-center gap-4 w-full max-w-xs">
+          <div data-animate className="flex items-center gap-4 w-full max-w-xs" aria-hidden="true">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent" />
             <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent" />
@@ -137,7 +142,7 @@ Changes:
               href="/shop"
               className="group relative overflow-hidden bg-red-600 hover:bg-red-500 rounded-xl px-8 py-4 flex items-center gap-3 font-semibold text-white shadow-[0_4px_32px_rgba(236,34,40,0.4)] transition-all duration-300 hover:shadow-[0_4px_48px_rgba(236,34,40,0.6)] hover:-translate-y-0.5"
             >
-              <ShoppingCart size={19} className="transition-transform duration-300 group-hover:scale-110" />
+              <ShoppingCart size={19} className="transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
               <span className="tracking-wide">Voir les produits</span>
             </CLink>
 
@@ -145,7 +150,7 @@ Changes:
               href="/contact"
               className="group bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md rounded-xl px-8 py-4 flex items-center gap-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
             >
-              <Mail size={19} className="transition-transform duration-300 group-hover:scale-110" />
+              <Mail size={19} className="transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
               <span className="tracking-wide">Nous contacter</span>
             </CLink>
           </div>
