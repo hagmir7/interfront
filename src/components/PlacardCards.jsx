@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Check, Mail, MessageCircle, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Check, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Lightweight image slider (no Swiper dependency needed)
 const ImageSlider = ({ images, title }) => {
   const [current, setCurrent] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -37,10 +37,8 @@ const ImageSlider = ({ images, title }) => {
         />
       ))}
 
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none rounded-2xl" />
 
-      {/* Nav arrows */}
       {images.length > 1 && (
         <>
           <button
@@ -56,7 +54,6 @@ const ImageSlider = ({ images, title }) => {
             <ChevronRight className="w-4 h-4 text-gray-700" />
           </button>
 
-          {/* Dots */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
             {images.map((_, i) => (
               <button
@@ -66,7 +63,7 @@ const ImageSlider = ({ images, title }) => {
                 style={{
                   width: i === current ? '20px' : '6px',
                   height: '6px',
-                  backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.5)'
+                  backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.5)',
                 }}
               />
             ))}
@@ -74,7 +71,6 @@ const ImageSlider = ({ images, title }) => {
         </>
       )}
 
-      {/* Image count badge */}
       <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full z-10">
         {current + 1} / {images.length}
       </div>
@@ -82,29 +78,22 @@ const ImageSlider = ({ images, title }) => {
   );
 };
 
-const features = [
-  'Épaisseur au choix (16, 18, 22 mm)',
-  '+50 couleurs disponibles',
-  '100% fabriqué sur mesure',
-  '+20 poignées disponibles',
-];
-
 const WardrobeCard = ({ title, description, images = [], imagePosition = 'left', index }) => {
   const isLeft = imagePosition === 'left';
 
-  const fallbackImages = ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800"];
+  const fallbackImages = [
+    'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800',
+  ];
   const displayImages = images.length ? images : fallbackImages;
 
   const content = (
     <div className="flex flex-col justify-center h-full space-y-6 py-2">
-      {/* Badge */}
       <div className="inline-flex items-center gap-2 w-fit">
         <span className="text-xs font-semibold uppercase tracking-widest text-red-500 bg-red-50 px-3 py-1 rounded-full border border-red-100">
           Devis gratuit
         </span>
       </div>
 
-      {/* Title */}
       <div>
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
           {title}
@@ -112,40 +101,27 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left',
         <div className="mt-3 w-10 h-1 bg-red-500 rounded-full" />
       </div>
 
-      {/* Description */}
       <p className="text-base text-gray-500 leading-relaxed max-w-md">
         {description}
       </p>
 
-      {/* Features */}
-      {/* <ul className="space-y-2.5">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-              <Check className="w-3 h-3 text-emerald-600" strokeWidth={3} />
-            </div>
-            <span className="text-sm text-gray-600">{feature}</span>
-          </li>
-        ))}
-      </ul> */}
-
-      {/* CTA buttons */}
       <div className="flex flex-col xs:flex-row gap-3 pt-2">
-        <a
+        <Link
           href="/contact"
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 active:translate-y-0"
         >
           <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
           Contactez-nous
-        </a>
+        </Link>
+        
         <a
-          href="https://wa.me/"
+          href="https://wa.me/212673266750" // replace with your number
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-emerald-200 hover:-translate-y-0.5 active:translate-y-0"
         >
-
-          
           <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 text-white relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
+            className="w-4 h-4 sm:w-5 sm:h-5 text-white"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -167,7 +143,6 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left',
   const imageEl = (
     <div className="relative">
       <ImageSlider images={displayImages} title={title} />
-      {/* Decorative number */}
       <div
         className="absolute -top-4 font-black text-7xl select-none pointer-events-none"
         style={{
@@ -190,7 +165,6 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left',
         </>
       ) : (
         <>
-          {/* On mobile: image first, then content. On lg: content left, image right */}
           <div className="order-2 lg:order-1">{content}</div>
           <div className="order-1 lg:order-2">{imageEl}</div>
         </>
@@ -203,27 +177,21 @@ const wardrobes = [
   {
     title: 'Placards Coulissants',
     description:
-      'Personnalisez votre placard sur-mesure selon vos envies. Nos portes coulissantes s\'adaptent parfaitement à votre intérieur tout en optimisant l\'espace disponible.',
-    images: [
-      '/imgs/placard/placard-colise.png',
-      '/imgs/placard/placard-colise-2.png',
-    ],
+      "Personnalisez votre placard sur-mesure selon vos envies. Nos portes coulissantes s'adaptent parfaitement à votre intérieur tout en optimisant l'espace disponible.",
+    images: ['/imgs/placard/placard-colise.png', '/imgs/placard/placard-colise-2.png'],
     imagePosition: 'left',
   },
   {
     title: 'Placards Battants',
     description:
       'Placards à portes battantes entièrement personnalisables avec charnières de qualité supérieure et une multitude de styles et de couleurs au choix.',
-    images: [
-      '/imgs/placard/placard-abatible.png',
-      '/imgs/placard/placard-abatible-2.png',
-    ],
+    images: ['/imgs/placard/placard-abatible.png', '/imgs/placard/placard-abatible-2.png'],
     imagePosition: 'right',
   },
   {
     title: 'Dressings',
     description:
-      'Créez l\'espace dressing de vos rêves, parfaitement intégré à votre pièce. Adapté à tous les styles d\'intérieur, du plus classique au plus contemporain.',
+      "Créez l'espace dressing de vos rêves, parfaitement intégré à votre pièce. Adapté à tous les styles d'intérieur, du plus classique au plus contemporain.",
     images: [
       '/imgs/placard/placard-dressing.png',
       '/imgs/placard/placard-dressing-1.png',
@@ -245,7 +213,8 @@ export default function PlacardCards() {
           Placards sur mesure
         </h1>
         <p className="text-gray-500 text-base leading-relaxed">
-          Chaque placard est conçu et fabriqué sur mesure pour s'adapter parfaitement à votre espace et vos besoins.
+          Chaque placard est conçu et fabriqué sur mesure pour s&#39;adapter parfaitement à votre
+          espace et vos besoins.
         </p>
       </div>
 
@@ -261,22 +230,61 @@ export default function PlacardCards() {
         ))}
       </div>
 
-      {/* Bottom CTA */}
-      {/* <div className="max-w-2xl mx-auto text-center mt-16">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Un projet en tête ?</h3>
-          <p className="text-gray-500 text-sm mb-6">
-            Contactez-nous pour un devis gratuit et personnalisé sous 24h.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold text-sm rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-red-200 hover:-translate-y-0.5"
-          >
-            Demander un devis
-            <ArrowRight className="w-4 h-4" />
-          </a>
+      {/* Video - Full Width */}
+      <div className="max-w-6xl mx-auto mt-16">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
+          {/* Text header */}
+          <div className="p-6 sm:p-8 lg:p-10 pb-2">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+              <div>
+                <div className="inline-flex items-center gap-2 w-fit mb-4">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-red-500 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                    Vidéo
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
+                  Notre savoir-faire en action
+                </h2>
+                <div className="mt-3 w-10 h-1 bg-red-500 rounded-full" />
+                <p className="mt-4 text-base text-gray-500 leading-relaxed max-w-xl">
+                  Découvrez comment nos artisans conçoivent et installent vos placards sur mesure
+                  avec précision et passion. Chaque détail est pensé pour un résultat parfait.
+                </p>
+              </div>
+
+              <div className="flex flex-row gap-3 flex-shrink-0">
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                  Demander un devis
+                </Link>
+              </div>
+            </div>
+
+            <div className="w-full rounded-lg overflow-hidden">
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }} >
+              <iframe
+                src="https://player.vimeo.com/video/1180417066?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=1&background=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+                title="VIDEO ARMARIO"
+              />
+            </div>
+          </div>
+          </div>
+          
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

@@ -68,7 +68,7 @@ const page = () => {
                 </div>
                 <PlacardCards />
 
-                  <div className='max-w-7xl mx-auto py-3'>
+                <div className='max-w-7xl mx-auto py-3'>
                     <div className="rounded-3xl bg-white p-6 shadow-sm border border-gray-100">
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                             <FeatureItem icon="/icons/epaisseur.svg" alt="Épaisseur" text="Épaisseur au choix (16, 18, 22 mm)" />
