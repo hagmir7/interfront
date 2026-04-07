@@ -29,7 +29,7 @@ export function ProductsMenu() {
                   >
                     <Image width={100} height={100} src="/icons/kitchen-icon.png" alt="Produits" className="w-full" />
                     <div className="mt-4 text-lg font-semibold leading-none">
-                      Meuble Cuisine
+                      Meubles Cuisine
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Armoires de cuisine, façades, accessoires et plans de travail

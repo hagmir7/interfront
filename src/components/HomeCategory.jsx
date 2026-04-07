@@ -8,8 +8,8 @@ const categories = [
   {
     href: "/category/caissons",
     img: "/imgs/caisson.png",
-    alt: "Caisson de cuisine",
-    title: "Caisson de cuisine",
+    alt: "Caissons de cuisine",
+    title: "Caissons de cuisine",
     desc: "Caissons conçus avec passion pour transformer votre espace culinaire en une œuvre d'art fonctionnelle.",
     tag: "Structure",
   },

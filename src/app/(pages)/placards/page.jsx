@@ -3,7 +3,7 @@ import CLink from '@/components/CLink';
 import PlacardCards from '@/components/PlacardCards';
 import Colors from '@/components/Colors';
 import PlacardReviews from '@/components/PlacardReviews';
-import Image from 'next/image';
+
 import PlacardSlideShow from '@/components/PlacardSlideShow';
 import { ArrowRight } from 'lucide-react';
 
@@ -16,13 +16,6 @@ export const metadata = {
         canonical: '/placards',
     },
 };
-
-const FeatureItem = ({ icon, alt, text }) => (
-    <div className="flex flex-col items-center text-center space-y-3 hover:scale-105 transition-transform duration-200">
-        <Image src={icon} alt={alt} width={60} height={60} />
-        <h3 className="text-sm font-semibold text-gray-800">{text}</h3>
-    </div>
-);
 
 const page = () => {
     return (
@@ -65,19 +58,19 @@ const page = () => {
                         </div>
                     </div>
 
+
+
+
                 </div>
+               
                 <PlacardCards />
 
+
+                
+                
+
                 <div className='max-w-7xl mx-auto py-3'>
-                    <div className="rounded-3xl bg-white p-6 shadow-sm border border-gray-100">
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-                            <FeatureItem icon="/icons/epaisseur.svg" alt="Épaisseur" text="Épaisseur au choix (16, 18, 22 mm)" />
-                            <FeatureItem icon="/icons/rapide.svg" alt="Préparation rapide" text="Fabrication rapide" />
-                            <FeatureItem icon="/icons/couleurs.svg" alt="Couleurs" text="+50 couleurs disponibles" />
-                            <FeatureItem icon="/icons/mesure.svg" alt="Sur mesure" text="100% fabriqué sur mesure" />
-                            <FeatureItem icon="/icons/poignees.svg" alt="Poignées" text="+20 poignées disponibles" />
-                        </div>
-                    </div>
+                    
 
                     <div className="rounded-3xl bg-white p-8 shadow-xs border border-gray-100 text-center space-y-4 mt-3">
 

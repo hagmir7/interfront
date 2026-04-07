@@ -2,7 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Check, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+
+
+
+
+const FeatureItem = ({ icon, alt, text }) => (
+    <div className="flex flex-col items-center text-center space-y-3 hover:scale-105 transition-transform duration-200">
+        <Image src={icon} alt={alt} width={60} height={60} />
+        <h3 className="text-sm font-semibold text-gray-800">{text}</h3>
+    </div>
+);
+
 
 const ImageSlider = ({ images, title }) => {
   const [current, setCurrent] = useState(0);
@@ -113,7 +125,7 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left',
           <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
           Contactez-nous
         </Link>
-        
+
         <a
           href="https://wa.me/212673266750" // replace with your number
           target="_blank"
@@ -194,7 +206,7 @@ const wardrobes = [
       "Créez l'espace dressing de vos rêves, parfaitement intégré à votre pièce. Adapté à tous les styles d'intérieur, du plus classique au plus contemporain.",
     images: [
       '/imgs/placard/placard-dressing.png',
-      '/imgs/placard/placard-dressing-1.png',
+      // '/imgs/placard/placard-dressing-1.png',
       '/imgs/placard/placard-dressing-2.png',
     ],
     imagePosition: 'left',
@@ -230,8 +242,20 @@ export default function PlacardCards() {
         ))}
       </div>
 
+      <div className='max-w-6xl mx-auto py-3'>
+        <div className="rounded-3xl bg-white p-6 shadow-sm border border-gray-100">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            <FeatureItem icon="/icons/epaisseur.svg" alt="Épaisseur" text="Épaisseur au choix (16, 18, 22 mm)" />
+            <FeatureItem icon="/icons/rapide.svg" alt="Préparation rapide" text="Fabrication rapide" />
+            <FeatureItem icon="/icons/couleurs.svg" alt="Couleurs" text="+50 couleurs disponibles" />
+            <FeatureItem icon="/icons/mesure.svg" alt="Sur mesure" text="100% fabriqué sur mesure" />
+            <FeatureItem icon="/icons/poignees.svg" alt="Poignées" text="+20 poignées disponibles" />
+          </div>
+        </div>
+      </div>
+
       {/* Video - Full Width */}
-      <div className="max-w-6xl mx-auto mt-16">
+      <div className="max-w-6xl mx-auto mt-10">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
           {/* Text header */}
           <div className="p-6 sm:p-8 lg:p-10 pb-2">
@@ -247,8 +271,7 @@ export default function PlacardCards() {
                 </h2>
                 <div className="mt-3 w-10 h-1 bg-red-500 rounded-full" />
                 <p className="mt-4 text-base text-gray-500 leading-relaxed max-w-xl">
-                  Découvrez comment nos artisans conçoivent et installent vos placards sur mesure
-                  avec précision et passion. Chaque détail est pensé pour un résultat parfait.
+                 Visualisez votre placard en 3D avant de commander. Profitez d’un design 100 % personnalisé, avec un large choix de couleurs, pour des résultats parfaitement adaptés à vos besoins.
                 </p>
               </div>
 
@@ -263,26 +286,28 @@ export default function PlacardCards() {
               </div>
             </div>
 
+
+     
             <div className="w-full rounded-lg overflow-hidden">
-            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }} >
-              <iframe
-                src="https://player.vimeo.com/video/1180417066?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=1&background=1"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                }}
-                title="VIDEO ARMARIO"
-              />
+              <div style={{ padding: '56.25% 0 0 0', position: 'relative' }} >
+                <iframe
+                  src="https://player.vimeo.com/video/1180417066?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=1&background=1"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                  }}
+                  title="VIDEO ARMARIO"
+                />
+              </div>
             </div>
           </div>
-          </div>
-          
+
         </div>
       </div>
     </div>
