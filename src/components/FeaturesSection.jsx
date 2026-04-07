@@ -20,7 +20,7 @@ const features = [
   {
     title: (
       <>
-        N°1  au Maroc dans la fabrication des meubles cuisine sur mesure
+        N°1  au Maroc dans la fabrication de meubles de cuisine sur mesure.
       </>
     ),
     icon: <Image src='/icons/forts/1.svg' width={50} height={50} alt='' aria-hidden="true" className="h-full w-full text-rose-400" />,

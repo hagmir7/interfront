@@ -154,8 +154,8 @@ const SectionConver = () => {
             <span className="text-[#ec2228] tracking-widest" style={{ fontFamily: 'DOCK11-Heavy, sans-serif' }}>COCINA</span>
             <br />
             <span className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white/90 tracking-normal leading-snug">
-              Leader de la fabrication des meubles
-              <br className="hidden sm:block" /> de cuisine au Maroc
+              Leader de la fabrication de meubles 
+              <br className="hidden sm:block" /> de cuisine au Maroc.
             </span>
           </h1>
 
