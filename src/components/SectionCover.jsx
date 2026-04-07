@@ -12,7 +12,7 @@ const images = [
   '/imgs/fabrica.jpeg',
 ];
 
-const SLIDE_INTERVAL = 5000; // ms per slide
+const SLIDE_INTERVAL = 5000; 
 
 const SectionConver = () => {
   const heroRef = useRef(null);
@@ -99,7 +99,7 @@ const SectionConver = () => {
         />
 
         {/* Grid lines */}
-        <div
+        {/* <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
             backgroundImage:
@@ -107,7 +107,7 @@ const SectionConver = () => {
             backgroundSize: '60px 60px',
             animation: 'gridDrift 30s linear infinite',
           }}
-        />
+        /> */}
 
         {/* Slide dots */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">

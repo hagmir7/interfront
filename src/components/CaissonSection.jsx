@@ -14,25 +14,31 @@ import 'swiper/css/pagination'
 const CaissonSection = () => {
 
   const images = [
+
+    {
+      src: 'https://app.intercocina.com/storage/01KNGVT0BNQ0R6KCV7S2KCJ6GS.png',
+      title: 'Caisson Hydrofuge Granada - Meuble bas',
+      link: '/caisson-hydrofuge-granada?type=caisson-hydrofuge-granada-bas',
+    },
     {
       src: 'https://app.intercocina.com/storage/01J96VEEPMQRW9VHPMR9NQJ8VB.png',
       title: 'Caisson de Cuisine Blanc - Meuble bas',
-      link: '/category/caisson-hydrofuge?type=hydrofuge-bas',
+      link: '/category/caissons?type=caisson-bas',
     },
     {
       src: 'https://app.intercocina.com/storage/01JD542CJ2N520EJX56Y445YFF.png',
       title: 'Caisson de Cuisine Hydrofuge - Meuble bas',
-      link: '/category/caisson-hydrofuge?type=hydrofuge-haut',
+      link: '/category/caisson-hydrofuge?type=hydrofuge-bas',
     },
     {
       src: 'https://app.intercocina.com/storage/01J96TYBTJ8JD7VVS3MSW9QD5C.png',
       title: 'Caisson de Cuisine Blanc – Meuble Haut',
-      link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
+      link: '/category/caissons?type=caisson-haut',
     },
     {
       src: 'https://app.intercocina.com/storage/01JD7C9KAEDZVYXG1WJ59GT17A.png',
       title: 'Caisson de Cuisine Hydrofuge – Meuble Haut',
-      link: '/category/caisson-hydrofuge?type=hydrofuge-colonne',
+      link: '/category/caisson-hydrofuge?type=hydrofuge-haut',
     },
   ]
 
