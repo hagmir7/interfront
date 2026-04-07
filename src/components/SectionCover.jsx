@@ -6,9 +6,10 @@ import Image from "next/image";
 
 const images = [
   '/imgs/fabrica/fabrica-4.png',
-  '/imgs/fabrica/fabrica-1.jpeg', 
-  '/imgs/fabrica/fabrica-2.jpeg',
+  '/imgs/fabrica/fabrica-6.jpg', 
+  '/imgs/fabrica/fabrica-5.jpg',
   '/imgs/fabrica/fabrica-3.jpeg',
+  '/imgs/fabrica.jpeg',
 ];
 
 const SLIDE_INTERVAL = 5000; // ms per slide
@@ -164,7 +165,7 @@ const SectionConver = () => {
           </div>
 
           <p data-animate className="text-white/75 text-base md:text-lg max-w-xl leading-relaxed font-light">
-            De la cuisine aux placards, des salles de bain au parquet — nous concevons des solutions d&apos;aménagement haut de gamme, entièrement sur mesure.
+            De la cuisine aux placards, des salles de bain au parquet, nous concevons des solutions d&apos;aménagement haut de gamme, entièrement sur mesure.
           </p>
 
           <div data-animate className="flex flex-col sm:flex-row items-start gap-4 pt-2">

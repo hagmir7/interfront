@@ -24,7 +24,7 @@ const AboutPage = () => {
     {
       title: 'Fabrication de meubles de cuisine',
       description: 'Depuis plus de 16 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés, hommes et femmes, met en œuvre son savoir-faire artisanal pour créer des meubles de cuisine d\'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.',
-      image: 'https://app.intercocina.com/assets/imgs/fabrication.jpg',
+      image: '/imgs/fabrica/fabrica-7.png',
       reversed: true
     },
     {
@@ -51,7 +51,7 @@ const AboutPage = () => {
             L'excellence des cuisines De luxe au Maroc
           </h2>
           <p className="relative z-[11] my-8 text-lg text-gray-700 text-center">
-            Haute qualité - Livraison rapide - Accessible
+            Qualité premium- Livraison rapide - Grande capacité industrielle
           </p>
           <div className="flex items-center justify-center gap-6">
             <Link href="/contact" 
