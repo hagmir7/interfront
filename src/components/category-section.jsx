@@ -7,7 +7,7 @@ function CategorySection() {
       imageUrl: 'https://www.starax.com.tr/documents/starax_base/img/kitchen-slide-1920x760.jpg',
       title: 'Meubles de cuisine',
       description: 'Caisson, Armoires de cuisine, façades, accessoires et plans de travail',
-      link: '/groups/meuble-de-cuisine',
+      link: '/meuble-de-cuisine',
       badge: 'Nouvelle arrivée'
     },
     {
