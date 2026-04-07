@@ -6,8 +6,9 @@ import Image from "next/image";
 
 const images = [
   '/imgs/fabrica/fabrica-4.png',
+  '/imgs/fabrica/fabrica-9.jpg',
   '/imgs/fabrica/fabrica-6.jpg', 
-  '/imgs/fabrica/fabrica-5.jpg',
+  
   '/imgs/fabrica/fabrica-3.jpeg',
   '/imgs/fabrica.jpeg',
 ];

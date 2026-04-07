@@ -46,7 +46,7 @@ export function ProductsMenu() {
             <ListItem href="/salles-de-bain" title="Salles de bain">
               Meubles et Accessoires de Salle de bain
             </ListItem>
-            <ListItem href="/category/accessoiriser?type=tiroir" title="Accessoires de cuisine">
+            <ListItem href="/category/accessoiriser?type=tiroir" title="Accessoires">
               Tiroir, Poignées, LED et Plan de travail
             </ListItem>
           </ul>

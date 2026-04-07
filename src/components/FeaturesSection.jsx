@@ -20,7 +20,7 @@ const features = [
   {
     title: (
       <>
-        N°1  au Maroc dans la fabrication de meubles cuisine sur mesure
+        N°1  au Maroc dans la fabrication des meubles cuisine sur mesure
       </>
     ),
     icon: <Image src='/icons/forts/1.svg' width={50} height={50} alt='' aria-hidden="true" className="h-full w-full text-rose-400" />,
@@ -36,7 +36,7 @@ const features = [
   {
     title: (
       <>
-        Qualité premium certifiée conforme aux normes internationales
+        Qualité premium conforme aux normes internationales
       </>
     ),
     icon: <Image src='/icons/forts/3.svg' width={50} height={50} alt='' aria-hidden="true" className="h-full w-full text-rose-400" />,
