@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import CategorySwiper from "./CategorySwiper";
 
 const categories = [
   {
@@ -22,7 +23,7 @@ const categories = [
     tag: "Design",
   },
 
-   {
+  {
     href: "/category/accessoiriser",
     img: "/imgs/acc.png",
     alt: "Accessoires de cuisine",
@@ -30,7 +31,7 @@ const categories = [
     desc: "La touche finale parfaite pour vos projets de meubles de cuisine — fonctionnel et raffiné.",
     tag: "Finition",
   },
-  
+
   // {
   //   href: "/category/parquettes",
   //   img: "/imgs/parquet.png",
@@ -39,8 +40,28 @@ const categories = [
   //   desc: "Un sol élégant et durable pour sublimer votre intérieur — chaleur et style à chaque pièce.",
   //   tag: "Revêtement",
   // },
- 
+
 ];
+
+
+const images = [
+  {
+    image: "/imgs/cuisin-image.jpg",
+    alt: "Meubles de cuisine 1"
+  },
+  {
+    image: "/imgs/cuisin-image-1.jpg",
+    alt: "Meubles de cuisine 2"
+  },
+  {
+    image: "/imgs/cuisin-image-2.jpg",
+    alt: "Meubles de cuisine 3"
+  },
+  {
+    image: "/imgs/cuisin-image-3.jpg",
+    alt: "Meubles de cuisine 4"
+  }
+]
 
 const HomeCategory = () => {
   const gridRef = useRef(null);
@@ -63,9 +84,6 @@ const HomeCategory = () => {
     <section className="py-10 px-4">
       {/* Section header */}
       <div className="container mx-auto mb-10 flex flex-col items-center text-center gap-3">
-        <span className="text-xs font-semibold tracking-[0.25em] uppercase text-red-500">
-          Nos catégories
-        </span>
         <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight">
           Meubles de cuisine
         </h2>
@@ -127,6 +145,9 @@ const HomeCategory = () => {
             <div className="h-0.5 w-0 bg-red-500 group-hover:w-full transition-all duration-400 absolute bottom-0 left-0" />
           </Link>
         ))}
+      </div>
+      <div className="max-w-7xl m-auto rounded-xl overflow-hidden mt-16">
+        <CategorySwiper images={images} />
       </div>
     </section>
   );

@@ -76,9 +76,11 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
             </div>
           </div>
           <h3 className="font-semibold text-gray-800 hover:text-blue-600 transition-colors mb-2 text-sm md:text-base">{name}</h3>
-          <div className="flex items-center space-x-2">
-            <span className="text-sm md:text-lg font-bold text-red-600">{price_format ? price_format : price} MAD</span>
-          </div>
+          {(parseInt(price_format) || parseInt(price)) > 0 && (
+            <div className="flex items-center space-x-2">
+              <span className="text-sm md:text-lg font-bold text-red-600">{price_format ? price_format : price} MAD</span>
+            </div>
+          )}
         </Link>
       </div>
 

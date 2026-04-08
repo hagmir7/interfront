@@ -326,7 +326,7 @@ const MainNav = () => {
             <div className='flex gap-3'>
               <CLink
                 href='/contact'
-                className='rounded-pill flex gap-2 text-white bg-[#da3036] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white'
+                className='rounded-pill flex gap-2 text-white bg-[#f72e2f] py-2 px-4 text-[17px] rounded-full text-sm hover:text-white'
               >
                 <span aria-hidden='true'>
                   <svg

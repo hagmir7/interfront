@@ -26,15 +26,15 @@ export default function PlacardReviews({ type }) {
                 text: "Travail soigné et finitions de qualité."
             }
         },
-        {
-            id: 3,
-            src: '/imgs/placard/DSC_0373.jpg',
-            alt: 'Placard 3',
-            review: {
-                name: "Youssef",
-                text: "Nous apprécions la qualité des matériaux et le soin apporté aux détails. Le résultat final est à la hauteur."
-            }
-        },
+        // {
+        //     id: 3,
+        //     src: '/imgs/placard/DSC_0373.jpg',
+        //     alt: 'Placard 3',
+        //     review: {
+        //         name: "Youssef",
+        //         text: "Nous apprécions la qualité des matériaux et le soin apporté aux détails. Le résultat final est à la hauteur."
+        //     }
+        // },
         {
             id: 4,
             src: '/imgs/placard/placard-4.jpeg',
