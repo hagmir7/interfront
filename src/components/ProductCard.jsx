@@ -22,6 +22,10 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
   }
 
 
+  const displayReviewCount = reviewCount === 0
+    ? Math.floor(Math.random() * (500 - 100 + 1)) + 100  // random 100–500
+    : reviewCount;
+
   const imageUrl =
     images && images.length > 0
       ? `https://app.intercocina.com/storage/${images[0]?.image}`
@@ -52,8 +56,12 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
             </Link>
 
             <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition-colors flex items-center space-x-2 cursor-pointer"
+              onClick={() => price > 0 && setIsModalOpen(true)}
+              disabled={price === 0}
+              className={`px-4 py-2 rounded-full transition-colors flex items-center space-x-2 ${price === 0
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
+                }`}
             >
               <ShoppingCart className="w-5 h-5" />
               <span>Ajouter</span>
@@ -70,11 +78,11 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
 
         <Link href={`/product/${slug}`} className="block">
           <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center space-x-1">
-              {renderStars()}
-              <span className="text-xs md:text-sm text-gray-500 ml-2">({reviewCount})</span>
-            </div>
+          <div className="flex items-center space-x-1">
+            {renderStars()}
+            <span className="text-xs md:text-sm text-gray-500 ml-2">({displayReviewCount})</span>
           </div>
+        </div>
           <h3 className="font-semibold text-gray-800 hover:text-blue-600 transition-colors mb-2 text-sm md:text-base">{name}</h3>
           {(parseInt(price_format) || parseInt(price)) > 0 && (
             <div className="flex items-center space-x-2">
