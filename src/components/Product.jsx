@@ -297,10 +297,13 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       ) : (
         <div className='flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-5 gap-y-3 flex-wrap'>
           <div className='flex items-center'>
-            <div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
-              <span>{price}</span> MAD
-            </div>
-            <span className='ml-3 font-semibold text-lg text-green-600'>
+              {
+                (price && (parseInt(price) > 0)) && (<div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
+                  <span>{price}</span> MAD
+                </div>)
+              }
+
+             <span className={` ${(price && (parseInt(price) > 0)) && 'ml-3' } font-semibold text-lg text-green-600`}>
               {' '}
               {getStatus(product.status)}{' '}
             </span>
@@ -573,7 +576,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
         </div>
         <button
           onClick={handleAddToCart}
-          className='cursor-pointer group border-2 border-red-400 py-2 md:py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100'
+          disabled={!(price && (parseInt(price) > 0))}
+          className='cursor-pointer group border-2 border-red-400 py-2 md:py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
         >
           {spinner ? (
             <LoaderCircle className='inline w-6 h-6 text-gray-200 animate-spin stroke-red-600' />
