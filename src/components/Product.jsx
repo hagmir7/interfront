@@ -25,7 +25,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
   useEffect(() => {
     if (code) {
       router.push(`?code=${code}`);
-    }else{
+    } else {
       router.push('')
     }
   }, [code])
@@ -297,13 +297,13 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       ) : (
         <div className='flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-5 gap-y-3 flex-wrap'>
           <div className='flex items-center'>
-              {
-                (price && (parseInt(price) > 0)) && (<div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
-                  <span>{price}</span> MAD
-                </div>)
-              }
+            {
+              (price && (parseInt(price) > 0)) && (<div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
+                <span>{price}</span> MAD
+              </div>)
+            }
 
-             <span className={` ${(price && (parseInt(price) > 0)) && 'ml-3' } font-semibold text-lg text-green-600`}>
+            <span className={` ${(price && (parseInt(price) > 0)) && 'ml-3'} font-semibold text-lg text-green-600`}>
               {' '}
               {getStatus(product.status)}{' '}
             </span>

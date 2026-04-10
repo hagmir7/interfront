@@ -9,7 +9,7 @@ import { AddToCartModal } from "./AddToCartModal"
 const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  
+
   const renderStars = () => {
     return Array(5)
       .fill(0)
@@ -23,7 +23,7 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
 
 
   const displayReviewCount = reviewCount === 0
-    ? Math.floor(Math.random() * (500 - 100 + 1)) + 100  // random 100–500
+    ? Math.floor(Math.random() * (500 - 100 + 1)) + 100
     : reviewCount;
 
   const imageUrl =
@@ -59,8 +59,8 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
               onClick={() => price > 0 && setIsModalOpen(true)}
               disabled={price === 0}
               className={`px-4 py-2 rounded-full transition-colors flex items-center space-x-2 ${price === 0
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                 }`}
             >
               <ShoppingCart className="w-5 h-5" />
@@ -78,11 +78,11 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
 
         <Link href={`/product/${slug}`} className="block">
           <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center space-x-1">
-            {renderStars()}
-            <span className="text-xs md:text-sm text-gray-500 ml-2">({displayReviewCount})</span>
+            <div className="flex items-center space-x-1">
+              {renderStars()}
+              <span className="text-xs md:text-sm text-gray-500 ml-2">({displayReviewCount})</span>
+            </div>
           </div>
-        </div>
           <h3 className="font-semibold text-gray-800 hover:text-blue-600 transition-colors mb-2 text-sm md:text-base">{name}</h3>
           {(parseInt(price_format) || parseInt(price)) > 0 && (
             <div className="flex items-center space-x-2">

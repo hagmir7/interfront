@@ -3,8 +3,8 @@ import { api } from '@/lib/api';
 import React from 'react'
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params; // no await
-    console.log("Slug in metadata:", slug); // => "lacado-offer"
+    const { slug } = await params;
+    console.log("Slug in metadata:", slug);
 
     try {
         const response = await api.get(`collections/${slug}`);
