@@ -56,9 +56,9 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
             </Link>
 
             <button
-              onClick={() => price > 0 && setIsModalOpen(true)}
-              disabled={price === 0}
-              className={`px-4 py-2 rounded-full transition-colors flex items-center space-x-2 ${price === 0
+              onClick={() => price_format !== "0" && setIsModalOpen(true)}
+              disabled={price_format === '0'}
+              className={`px-4 py-2 rounded-full transition-colors flex items-center space-x-2 ${price_format === "0"
                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                 : "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                 }`}

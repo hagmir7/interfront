@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DimentionLoading from './ui/dimention-loading';
 import { useCart } from '@/context/CartContext';
 import { api } from '@/lib/api';
@@ -8,13 +8,13 @@ import { useRouter } from 'next/navigation';
 import { LoaderCircle, ShoppingCart, Star, TriangleAlert } from 'lucide-react';
 import ColorDisclaimer from './ColorDisclaimer';
 
-
 const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
 
   const [data, setData] = useState({});
   const [colors, setColors] = useState([]);
   const [attributes, setAttributes] = useState([]);
   const [dimensions, setDimensions] = useState([]);
+  const dimensionsRef = useRef([]);
   const [heights, setHeights] = useState([]);
   const [widths, setWidths] = useState([]);
 
@@ -26,13 +26,12 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
     if (code) {
       router.push(`?code=${code}`);
     } else {
-      router.push('')
+      router.push('');
     }
-  }, [code])
+  }, [code]);
 
   const [dimensionMessage, setDimensionMessage] = useState(null);
   const [colorMessage, setColorMessage] = useState(null);
-
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState(null);
   const [height, setHeight] = useState(null);
@@ -42,19 +41,26 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
   const [spinner, setSpinner] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
   const [price, setPrice] = useState();
-  const [dimension, setDimension] = useState()
+  const [dimension, setDimension] = useState();
 
   useEffect(() => {
     getData();
-    if (attributes.length > 0) {
-      changeAttribute({ target: { value: attributes[0].id } });
-    }
-
     setPrice(product.price_format);
   }, []);
 
+  // ✅ KEY FIX: normalize all dimension fields to numbers
+  function normalizeDimensions(dims) {
+    return dims.map(d => ({
+      ...d,
+      width: parseInt(d.width, 10),
+      height: parseInt(d.height, 10),
+      color_id: parseInt(d.color_id, 10),
+      attribute_id: parseInt(d.attribute_id, 10),
+    }));
+  }
+
   function validation() {
-    if (colors.length > 0 && (!color)) {
+    if (colors.length > 0 && !color) {
       setColorMessage("Obligatoire de sélectionner une couleur");
       return false;
     }
@@ -70,7 +76,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       return false;
     }
 
-    if (dimensions.length > 0 && !width && !height) {
+    if (dimensionsRef.current.length > 0 && !width && !height) {
       setDimensionMessage("Obligatoire de sélectionner la dimension");
       return false;
     }
@@ -91,21 +97,25 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
 
   async function getData() {
     try {
-      const response = await api.get(`products/dimensions/${product.slug}`)
+      const response = await api.get(`products/dimensions/${product.slug}`);
       const data = response.data;
-      setAttributes(data.attributes || []);
-      setColors(data.colors || []);
-      setDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
+
+      // ✅ Normalize all dimensions to numbers immediately
+      const allDimensions = normalizeDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
+      const allAttributes = data.attributes || [];
+      const allColors = data.colors || [];
+
+      dimensionsRef.current = allDimensions;
+
+      setAttributes(allAttributes);
+      setColors(allColors);
+      setDimensions(allDimensions);
       setData(data);
       setPrice(product.price_format);
 
-      if (data.dimensions?.length === 0) {
+      if (allDimensions.length === 0) {
         setCode(data.data?.code);
       }
-
-      const allDimensions = Array.isArray(data.dimensions) ? data.dimensions : [];
-
-      const allAttributes = data.attributes || [];
 
       if (initialCode && allDimensions.length > 0) {
         const matched = allDimensions.find(dim => String(dim.code) === String(initialCode));
@@ -116,12 +126,10 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
           setHeight(matched.height);
           setWidth(matched.width);
 
-          // Auto-select attribute if dimension has one
           if (matched.attribute_id && allAttributes.length > 0) {
             const matchedAttribute = allAttributes.find(a => a.id === matched.attribute_id);
             if (matchedAttribute) {
               setAttribute(matchedAttribute);
-              // Filter heights/widths by this attribute
               const attrDimensions = allDimensions.filter(d => d.attribute_id === matched.attribute_id);
               setHeights([...new Set(attrDimensions.map(d => d.height).filter(h => h != null))]);
               setWidths([...new Set(attrDimensions.map(d => d.width).filter(w => w != null))]);
@@ -134,17 +142,14 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
           }
         }
       } else if (allAttributes.length > 0) {
-        // No initialCode — select first attribute by default
         const firstAttr = allAttributes[0];
         setAttribute(firstAttr);
         const attrDimensions = allDimensions.filter(d => d.attribute_id === firstAttr.id);
         setHeights([...new Set(attrDimensions.map(d => d.height).filter(h => h != null))]);
         setWidths([...new Set(attrDimensions.map(d => d.width).filter(w => w != null))]);
-      }
-
-      if (allDimensions.length > 0 && data.attributes?.length === 0) {
-        setHeights([...new Set(allDimensions.map(item => item?.height).filter(h => h != null))]);
-        setWidths([...new Set(allDimensions.map(item => item?.width).filter(w => w != null))]);
+      } else if (allDimensions.length > 0 && allAttributes.length === 0) {
+        setHeights([...new Set(allDimensions.map(item => item.height).filter(h => h != null))]);
+        setWidths([...new Set(allDimensions.map(item => item.width).filter(w => w != null))]);
       }
 
     } catch (error) {
@@ -152,95 +157,98 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
     }
   }
 
-  const findDimension = () => {
-    const validDimensions = color
-      ? dimensions.filter(
-        (dim) =>
-          dim.width >= width &&
-          dim.height >= height &&
-          dim.color_id == color
-      )
-      : dimensions.filter((dim) => dim.width >= width && dim.height >= height)
+  function changeDimension({ height: h, width: w, color: c, attribute: a } = {}) {
+    const currentHeight = h !== undefined ? h : height;
+    const currentWidth = w !== undefined ? w : width;
+    const currentColor = c !== undefined ? c : color;
+    const currentAttribute = a !== undefined ? a : attribute;
 
-    if (validDimensions.length === 0) {
-      setDimensionMessage(`La dimension ${height} x ${width} n'est pas disponible. (1)`)
-      setPrice(null)
-      return
+    if (currentColor) setColorMessage(null);
+
+    let filtered = [...dimensionsRef.current];
+
+    if (currentAttribute) {
+      filtered = filtered.filter(item => item.attribute_id === currentAttribute.id);
     }
 
-    const current = validDimensions.reduce((best, current) => {
-      const bestArea = best.width * best.height
-      const currentArea = current.width * current.height
-      return currentArea < bestArea ? current : best
-    })
+    if (currentColor) {
+      filtered = filtered.filter(item => item.color_id === currentColor);
+    }
 
-    setDimension(current)
-    setPrice(current.price)
-    setCode(current.code)
-    setDimensionMessage(null)
-    return current
+    const matched = filtered.find(item =>
+      (currentHeight == null || item.height === currentHeight) &&
+      (currentWidth == null || item.width === currentWidth)
+    );
+
+    if (matched) {
+      setPrice(matched.price);
+      setDimension(matched);
+      setCode(matched.code);
+      setDimensionMessage(null);
+    } else if (currentHeight && currentWidth) {
+      setDimensionMessage(`La dimension ${currentHeight} x ${currentWidth} n'est pas disponible`);
+      setCode(null);
+      setPrice(null);
+    }
   }
+
+  const findDimension = ({ height: h, width: w } = {}) => {
+    const currentHeight = h !== undefined ? h : height;
+    const currentWidth = w !== undefined ? w : width;
+
+    let filtered = [...dimensionsRef.current];
+
+    if (attribute) {
+      filtered = filtered.filter(item => item.attribute_id === attribute.id);
+    }
+
+    const validDimensions = color
+      ? filtered.filter(dim => dim.width >= currentWidth && dim.height >= currentHeight && dim.color_id === color)
+      : filtered.filter(dim => dim.width >= currentWidth && dim.height >= currentHeight);
+
+    if (validDimensions.length === 0) {
+      setDimensionMessage(`La dimension ${currentHeight} x ${currentWidth} n'est pas disponible. (1)`);
+      setPrice(null);
+      return;
+    }
+
+    const best = validDimensions.reduce((best, cur) =>
+      (cur.width * cur.height) < (best.width * best.height) ? cur : best
+    );
+
+    setDimension(best);
+    setPrice(best.price);
+    setCode(best.code);
+    setDimensionMessage(null);
+    return best;
+  };
 
   useEffect(() => {
     if (isDirty && height && width) {
-      findDimension();
+      findDimension({ height, width });
       setIsDirty(false);
     }
   }, [height, width, isDirty]);
 
-  function changeDimension() {
-    if (color) {
-      setColorMessage(null);
-    }
+  function changeAttribute(e) {
+    const selectedValue = parseInt(e.target.value, 10);
+    const selectedAttr = attributes.find(a => a.id === selectedValue);
+    const validDimensions = dimensionsRef.current.filter(item => item.attribute_id === selectedValue);
 
-    const updateDimensionState = (dimension) => {
-      setPrice(dimension.price);
-      setDimension(dimension);
-      setCode(dimension.code);
-      setDimensionMessage(null);
-    };
+    setAttribute(selectedAttr);
+    setHeight(null);
+    setWidth(null);
+    setDimension(null);
+    setPrice(product.price_format);
+    setCode(null);
+    setDimensionMessage(null);
 
-    const findMatchingDimension = () => {
-      if (color && height && width) {
-        return dimensions.find(
-          item => item.width === width &&
-            item.height === height &&
-            item.color_id === color
-        );
-      }
-
-      if (height && width) {
-        return dimensions.find(
-          item => item.width === width &&
-            item.height === height
-        );
-      }
-
-      if (height && widths.length === 0) {
-        return dimensions.find(item => item.height === height);
-      }
-
-      if (width && heights.length === 0) {
-        return dimensions.find(item => item.width === width);
-      }
-
-      return null;
-    };
-
-    const matchedDimension = findMatchingDimension();
-
-    if (matchedDimension) {
-      updateDimensionState(matchedDimension);
-    } else if (height && width) {
-      setDimensionMessage(`La dimension ${height} x ${width} n'est pas disponible`);
-      setCode(null);
-    }
+    setHeights([...new Set(validDimensions.map(item => item.height).filter(h => h != null))]);
+    setWidths([...new Set(validDimensions.map(item => item.width).filter(w => w != null))]);
   }
 
   function handleAddToCart() {
-    if (!validation()) {
-      return;
-    }
+    if (!validation()) return;
 
     setSpinner(true);
 
@@ -251,32 +259,21 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       quantity: quantity,
       attributes: {
         color: color || null,
-        color_name: color && dimension ? dimension.color.name : color ? colors.find((item) => item.id === color)?.name : null,
+        color_name: color && dimension ? dimension.color?.name : color ? colors.find((item) => item.id === color)?.name : null,
         image: product.images[0]?.image,
         height: height || null,
         width: width || null,
         dimension: height && width ? `${height} * ${width}` : null,
         slug: product.slug,
-        attribute: attributes.length > 0 ? attribute.name : null,
+        attribute: attributes.length > 0 ? attribute?.name : null,
         product_id: product.id,
         dimension_id: dimension?.id || null,
         special: special,
       },
-    }
+    };
 
     addToCart(cart);
-
-    setTimeout(() => {
-      setSpinner(false);
-    }, 1000)
-  }
-
-  function changeAttribute(e) {
-    const selectedValue = parseInt(e.target.value, 10);
-    const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
-    setAttribute(attributes.find((attribute) => attribute.id === selectedValue));
-    setHeights([...new Set(valide_dimensions.map(item => item?.height))]);
-    setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
+    setTimeout(() => setSpinner(false), 1000);
   }
 
   function getStatus(value) {
@@ -297,26 +294,17 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       ) : (
         <div className='flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-5 gap-y-3 flex-wrap'>
           <div className='flex items-center'>
-            {
-              (price && (parseInt(price) > 0)) && (<div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
+            {(price && parseInt(price) > 0) && (
+              <div className='font-manrope font-semibold sm:text-2xl text-xl leading-9 text-gray-900'>
                 <span>{price}</span> MAD
-              </div>)
-            }
-
-            <span className={` ${(price && (parseInt(price) > 0)) && 'ml-3'} font-semibold text-lg text-green-600`}>
-              {' '}
-              {getStatus(product.status)}{' '}
+              </div>
+            )}
+            <span className={`${(price && parseInt(price) > 0) && 'ml-3'} font-semibold text-lg text-green-600`}>
+              {' '}{getStatus(product.status)}{' '}
             </span>
           </div>
 
-          <svg
-            className='mx-5 hidden md:block'
-            xmlns='http://www.w3.org/2000/svg'
-            width='2'
-            height='36'
-            viewBox='0 0 2 36'
-            fill='none'
-          >
+          <svg className='mx-5 hidden md:block' xmlns='http://www.w3.org/2000/svg' width='2' height='36' viewBox='0 0 2 36' fill='none'>
             <path d='M1 0V36' stroke='#E5E7EB'></path>
           </svg>
 
@@ -340,9 +328,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
             >
               <option value=''>Select type</option>
               {attributes.map((attr, index) => (
-                <option key={index} value={attr.id}>
-                  {attr.name}
-                </option>
+                <option key={index} value={attr.id}>{attr.name}</option>
               ))}
             </select>
           </div>
@@ -350,21 +336,19 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
 
         {attributes.length > 0 && (
           <div className='md:ms-4 text-left'>
-            <div>
-              <p className='font-bold text-gray-900'>Special</p>
-              <div className='text-black/70 mb-3 bg-white px-3 py-3 flex items-center font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full md:w-64 border-2'>
-                <input
-                  checked={special}
-                  onChange={(e) => setSpecial(e.target.checked)}
-                  id='bordered-checkbox-1'
-                  type='checkbox'
-                  name='bordered-checkbox'
-                  className='h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded'
-                />
-                <label htmlFor='bordered-checkbox-1' className='w-full h-4 ms-2 text-sm font-medium text-gray-900'>
-                  Special
-                </label>
-              </div>
+            <p className='font-bold text-gray-900'>Special</p>
+            <div className='text-black/70 mb-3 bg-white px-3 py-3 flex items-center font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full md:w-64 border-2'>
+              <input
+                checked={special}
+                onChange={(e) => setSpecial(e.target.checked)}
+                id='bordered-checkbox-1'
+                type='checkbox'
+                name='bordered-checkbox'
+                className='h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded'
+              />
+              <label htmlFor='bordered-checkbox-1' className='w-full h-4 ms-2 text-sm font-medium text-gray-900'>
+                Special
+              </label>
             </div>
           </div>
         )}
@@ -378,11 +362,10 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               <li
                 key={index}
                 onClick={() => {
-                  onColorChange(c.id)
-                  setColor(c.id)
-                  if (dimensions.length > 0) {
-                    changeDimension()
-                    findDimension()
+                  onColorChange(c.id);
+                  setColor(c.id);
+                  if (dimensionsRef.current.length > 0) {
+                    changeDimension({ color: c.id });
                   }
                 }}
                 className='color-box group text-center me-3 relative'
@@ -399,9 +382,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
                 <label
                   htmlFor={`color-${c.id}`}
                   className='inline-flex items-center justify-between w-full p-4 text-gray-500 border-gray-500 rounded-lg cursor-pointer peer-checked:border-red-600 peer-checked:border-2 border-2 peer-checked:text-red-600 hover:text-gray-600 hover:bg-gray-100'
-                  style={{
-                    backgroundImage: `url('https://app.intercocina.com/storage/${c.image}')`,
-                  }}
+                  style={{ backgroundImage: `url('https://app.intercocina.com/storage/${c.image}')` }}
                 />
                 <div
                   id={`tooltip-${c.id}`}
@@ -440,8 +421,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               <li
                 key={h}
                 onClick={() => {
-                  setHeight(h)
-                  changeDimension()
+                  setHeight(h);
+                  changeDimension({ height: h });
                 }}
               >
                 <input
@@ -467,7 +448,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
         </div>
       )}
 
-      {!special && widths.length > 0 ? (
+      {!special && widths.length > 0 && (
         <div className='text-left mt-2'>
           <div className='font-bold'>
             Largeur {product.unit ? `(${product.unit})` : ''}
@@ -477,8 +458,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               <li
                 key={w}
                 onClick={() => {
-                  changeDimension()
-                  setWidth(w)
+                  setWidth(w);
+                  changeDimension({ width: w });
                 }}
               >
                 <input
@@ -502,8 +483,6 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
             ))}
           </ul>
         </div>
-      ) : (
-        ''
       )}
 
       {special && (
@@ -518,9 +497,9 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               max='2800'
               className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full border-2'
               onChange={(e) => {
-                const newHeight = parseInt(e.target.value, 10)
-                setHeight(newHeight)
-                setIsDirty(true)
+                const newHeight = parseInt(e.target.value, 10);
+                setHeight(newHeight);
+                setIsDirty(true);
               }}
             />
           </div>
@@ -534,9 +513,9 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               max='2100'
               className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full border-2'
               onChange={(e) => {
-                const newWidth = parseInt(e.target.value, 10)
-                setWidth(newWidth)
-                setIsDirty(true)
+                const newWidth = parseInt(e.target.value, 10);
+                setWidth(newWidth);
+                setIsDirty(true);
               }}
             />
           </div>
@@ -576,7 +555,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
         </div>
         <button
           onClick={handleAddToCart}
-          disabled={!(price && (parseInt(price) > 0))}
+          disabled={!(price && parseInt(price) > 0)}
           className='cursor-pointer group border-2 border-red-400 py-2 md:py-3 px-5 rounded-full bg-red-50 text-red-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-red-300 hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
         >
           {spinner ? (
@@ -589,7 +568,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       </div>
       <ColorDisclaimer />
     </div>
-  )
+  );
 };
 
 export default Product;

@@ -127,7 +127,7 @@ const WardrobeCard = ({ title, description, images = [], imagePosition = 'left',
         </Link>
 
         <a
-          href="https://wa.me/212673266750" // replace with your number
+          href="https://wa.me/212666100759"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-emerald-200 hover:-translate-y-0.5 active:translate-y-0"

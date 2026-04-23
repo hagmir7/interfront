@@ -3,7 +3,7 @@ import React from "react";
 const WhatsAppFloat = () => {
   return (
     <a
-      href="https://wa.me/212673266750"
+      href="https://wa.me/212661547900"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp!"
