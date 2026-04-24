@@ -45,15 +45,7 @@ export const STATUS_STEPS = [
     color: '#059669',
     icon: Package,
     description: 'Les articles sont en cours de préparation.',
-    ids: [7],
-  },
-  {
-    key: 'prepare',
-    name: 'Préparé',
-    color: '#14B8A6',
-    icon: PackageCheck,
-    description: 'La commande est prête après préparation.',
-    ids: [8],
+    ids: [7, 8],
   },
   {
     key: 'controle',
@@ -65,7 +57,7 @@ export const STATUS_STEPS = [
   },
   {
     key: 'valide',
-    name: 'Validé',
+    name: 'Prête',
     color: '#22C55E',
     icon: BadgeCheck,
     description: 'La commande est validée et prête pour la livraison.',

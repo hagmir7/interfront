@@ -43,7 +43,8 @@ const formatDateTime = (value) => {
   });
 };
 
-export default function Tracking({ initialCode = '' }) {
+// Inner component that safely uses useSearchParams (must be inside <Suspense>)
+function TrackingInner({ initialCode = '' }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -168,7 +169,6 @@ export default function Tracking({ initialCode = '' }) {
   const currentGroup = trackingData ? getStatusGroup(currentStatusId) : null;
   const visibleSteps = trackingData ? getVisibleSteps(trackingData) : STATUS_STEPS;
 
-  // Progress percentage based on visible steps
   const progressPercent = (() => {
     if (!trackingData || !currentStatusId) return 0;
     const currentIndex = visibleSteps.findIndex(
@@ -189,7 +189,7 @@ export default function Tracking({ initialCode = '' }) {
             Suivre votre commande
           </h2>
           <p className="text-gray-600 text-sm md:text-base">
-            Entrez votre code de commande pour suivre son statut en temps réel
+            Entrez votre Numero de commande pour suivre son statut en temps réel
           </p>
         </div>
 
@@ -529,8 +529,7 @@ export default function Tracking({ initialCode = '' }) {
                   </p>
                   <p className="text-sm text-blue-700 mt-1">
                     Les délais de livraison peuvent varier en fonction des
-                    conditions météorologiques et du trafic. Vous recevrez une
-                    notification SMS/Email lors de la livraison.
+                    conditions météorologiques et du trafic.
                   </p>
                 </div>
               </div>
@@ -552,5 +551,33 @@ export default function Tracking({ initialCode = '' }) {
         )}
       </div>
     </div>
+  );
+}
+
+// Public export wraps TrackingInner in its own Suspense boundary,
+// so it's safe regardless of where it's used in the app.
+import { Suspense } from 'react';
+
+function TrackingSkeleton() {
+  return (
+    <div className="max-w-7xl mx-auto px-2">
+      <div className="bg-white rounded-xl shadow-sm p-2 md:p-4 animate-pulse">
+        <div className="h-6 bg-gray-200 rounded w-1/3 mx-auto mb-3"></div>
+        <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto mb-8"></div>
+        <div className="flex gap-4 max-w-md mx-auto mb-8">
+          <div className="flex-1 h-12 bg-gray-200 rounded-lg"></div>
+          <div className="w-28 h-12 bg-gray-200 rounded-lg"></div>
+        </div>
+        <div className="h-32 bg-gray-100 rounded-lg"></div>
+      </div>
+    </div>
+  );
+}
+
+export default function Tracking({ initialCode = '' }) {
+  return (
+    <Suspense fallback={<TrackingSkeleton />}>
+      <TrackingInner initialCode={initialCode} />
+    </Suspense>
   );
 }
