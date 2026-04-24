@@ -26,6 +26,9 @@ const Footer = () => {
                   <Link href="/event/list">Événements</Link>
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
+                  <Link href="/tracking">Suivre de commande</Link>
+                </li>
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="#">Politique de confidentialité</Link>
                 </li>
               </ul>
@@ -47,6 +50,9 @@ const Footer = () => {
               </li>
               <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
                 <Link href="/reclamation">Réclamation</Link>
+              </li>
+               <li className="text-slate-700 font-semibold text-sm md:text-base hover:text-accent-red">
+                <Link href="/carriere">Carrière chez Intercocina</Link>
               </li>
             </ul>
           </div>

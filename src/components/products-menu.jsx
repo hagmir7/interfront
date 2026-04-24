@@ -43,9 +43,9 @@ export function ProductsMenu() {
             <ListItem href="/placards" title="Placards et Dressings">
               Placards et Dressing sur mesure
             </ListItem>
-            <ListItem href="/salles-de-bain" title="Salles de bain">
+            {/* <ListItem href="/salles-de-bain" title="Salles de bain">
               Meubles et Accessoires de Salle de bain
-            </ListItem>
+            </ListItem> */}
             <ListItem href="/category/accessoiriser?type=tiroir" title="Accessoires">
               Tiroir, Poignées, LED et Plan de travail
             </ListItem>
