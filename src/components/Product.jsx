@@ -52,10 +52,10 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
   function normalizeDimensions(dims) {
     return dims.map(d => ({
       ...d,
-      width: parseInt(d.width, 10),
-      height: parseInt(d.height, 10),
-      color_id: parseInt(d.color_id, 10),
-      attribute_id: parseInt(d.attribute_id, 10),
+      width: Number.isNaN(parseInt(d.width, 10)) ? null : parseInt(d.width, 10),
+      height: Number.isNaN(parseInt(d.height, 10)) ? null : parseInt(d.height, 10),
+      color_id: Number.isNaN(parseInt(d.color_id, 10)) ? null : parseInt(d.color_id, 10),
+      attribute_id: Number.isNaN(parseInt(d.attribute_id, 10)) ? null : parseInt(d.attribute_id, 10),
     }));
   }
 
@@ -131,8 +131,20 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
             if (matchedAttribute) {
               setAttribute(matchedAttribute);
               const attrDimensions = allDimensions.filter(d => d.attribute_id === matched.attribute_id);
-              setHeights([...new Set(attrDimensions.map(d => d.height).filter(h => h != null))]);
-              setWidths([...new Set(attrDimensions.map(d => d.width).filter(w => w != null))]);
+              setHeights([
+                ...new Set(
+                  attrDimensions
+                    .map(d => d.height)
+                    .filter(h => Number.isFinite(h))
+                ),
+              ]);
+              setWidths([
+                ...new Set(
+                  attrDimensions
+                    .map(d => d.width)
+                    .filter(w => Number.isFinite(w))
+                ),
+              ]);
             }
           }
 
@@ -145,8 +157,20 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
         const firstAttr = allAttributes[0];
         setAttribute(firstAttr);
         const attrDimensions = allDimensions.filter(d => d.attribute_id === firstAttr.id);
-        setHeights([...new Set(attrDimensions.map(d => d.height).filter(h => h != null))]);
-        setWidths([...new Set(attrDimensions.map(d => d.width).filter(w => w != null))]);
+        setHeights([
+          ...new Set(
+            attrDimensions
+              .map(d => d.height)
+              .filter(h => Number.isFinite(h))
+          ),
+        ]);
+        setWidths([
+          ...new Set(
+            attrDimensions
+              .map(d => d.width)
+              .filter(w => Number.isFinite(w))
+          ),
+        ]);
       } else if (allDimensions.length > 0 && allAttributes.length === 0) {
         setHeights([...new Set(allDimensions.map(item => item.height).filter(h => h != null))]);
         setWidths([...new Set(allDimensions.map(item => item.width).filter(w => w != null))]);
@@ -417,33 +441,36 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
             Hauteur {product.unit ? `(${product.unit})` : ''}
           </div>
           <ul className='flex flex-wrap w-full gap-3'>
-            {heights.sort((a, b) => a - b).map((h) => (
-              <li
-                key={h}
-                onClick={() => {
-                  setHeight(h);
-                  changeDimension({ height: h });
-                }}
-              >
-                <input
-                  type='radio'
-                  id={`height-${h}`}
-                  value={h}
-                  name='height'
-                  checked={height === h}
-                  onChange={() => { }}
-                  className='hidden peer'
-                />
-                <label
-                  htmlFor={`height-${h}`}
-                  className='border-2 cursor-pointer inline-flex items-center justify-between p-1 px-2 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
+            {heights
+              .filter(h => Number.isFinite(h))
+              .sort((a, b) => a - b)
+              .map((h) => (
+                <li
+                  key={h}
+                  onClick={() => {
+                    setHeight(h);
+                    changeDimension({ height: h });
+                  }}
                 >
-                  <div className='block'>
-                    <div className='w-full text-md font-semibold'>{h}</div>
-                  </div>
-                </label>
-              </li>
-            ))}
+                  <input
+                    type='radio'
+                    id={`height-${h}`}
+                    value={h ?? ''}
+                    name='height'
+                    checked={height === h}
+                    onChange={() => { }}
+                    className='hidden peer'
+                  />
+                  <label
+                    htmlFor={`height-${h}`}
+                    className='border-2 cursor-pointer inline-flex items-center justify-between p-1 px-2 text-gray-500 bg-white border-gray-200 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100'
+                  >
+                    <div className='block'>
+                      <div className='w-full text-md font-semibold'>{h}</div>
+                    </div>
+                  </label>
+                </li>
+              ))}
           </ul>
         </div>
       )}
@@ -497,7 +524,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               max='2800'
               className='text-black/70 mb-3 bg-white px-3 py-2 font-semibold transition-all cursor-pointer hover:border-blue-600/30 border-gray-200 rounded-lg outline-blue-600/50 appearance-none invalid:text-black/30 w-full border-2'
               onChange={(e) => {
-                const newHeight = parseInt(e.target.value, 10);
+                const newHeight = Number(e.target.value);
+                setHeight(Number.isFinite(newHeight) ? newHeight : null);
                 setHeight(newHeight);
                 setIsDirty(true);
               }}

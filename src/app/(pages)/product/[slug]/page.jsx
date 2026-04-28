@@ -2,8 +2,11 @@ import ParqetCaracteristiques from "@/components/ParqetCaracteristiques";
 import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
 import ShareProduct from "@/components/ShareProduct";
+import ShowRoomTrigger from "@/components/ShowRoomTrigger";
+import ImageHotspot from "@/components/ZoomLightbox";
 import { api } from "@/lib/api";
 import { truncate } from "@/lib/utils";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 
@@ -24,7 +27,7 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: `${product.name}`,
         description: `${truncate(product.description)}`,
-        images: 'https://app.intercocina.com/storage/'+ product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
+        images: 'https://app.intercocina.com/storage/' + product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
       },
     };
   } catch {
@@ -55,7 +58,7 @@ export default async function Page({ params, searchParams }) {
     "@type": "Product",
     name: product.name,
     description: product.description,
-    image: 'https://app.intercocina.com/storage/'+ product.images?.[0]?.image ?? "",
+    image: 'https://app.intercocina.com/storage/' + product.images?.[0]?.image ?? "",
     brand: {
       "@type": "Brand",
       name: "INTERCOCINA",
@@ -93,6 +96,10 @@ export default async function Page({ params, searchParams }) {
         />
         <ProductClient product={product} code={code} />
 
+        <div className="mt-2">
+          {product?.color && <ShowRoomTrigger colorId={product?.color?.id} />}
+        </div>
+
         {/* Related Products */}
         {product?.related?.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7.5 gap-y-9 mt-5">
@@ -102,42 +109,53 @@ export default async function Page({ params, searchParams }) {
           </div>
         )}
 
+
+        {
+          parseInt(product?.type?.category_id) === 12 && (<ImageHotspot
+            mainImage="/imgs/zoom-caissons/caisson-granada.png"
+            hotspots={[
+              { id: 1, label: 'Trous', description: '...', x: 28, y: 20, zoomImage: '/imgs/zoom-caissons/trous.png' },
+              { id: 2, label: 'Panneau intérieur', description: '...', x: 59, y: 20, zoomImage: '/imgs/zoom-caissons/densite.png' },
+              { id: 3, label: 'Étagère ajustable', description: '...', x: 38, y: 43, zoomImage: '/imgs/zoom-caissons/etagere.png' },
+              { id: 4, label: 'Finision', description: '...', x: 65, y: 50, zoomImage: '/imgs/zoom-caissons/finition.png' },
+            ]} />)
+        }
+
+
         {/* Options Table */}
-        {/* {String(product.content).length} */}
         {(Object.keys(options).length > 0 || String(product.content).length > 10) && (
-      <div className="rounded-2xl border border-stone-200 shadow-sm bg-gradient-to-b from-white to-stone-50 p-4 mt-4 space-y-4">
-        
-        {Object.keys(options).length > 0 && (
-          <div className="overflow-x-auto rounded-xl border border-stone-100">
-            <table className="w-full text-sm">
-              <tbody>
-                {Object.entries(options).map(([key, value], i) => (
-                  <tr
-                    key={key}
-                    className={`flex justify-between gap-4 px-4 py-2.5 ${
-                      i % 2 === 0 ? "bg-stone-50/60" : "bg-white"
-                    }`}
-                  >
-                    <th className="text-stone-500 font-medium text-left whitespace-nowrap">
-                      {key.trim()}
-                    </th>
-                    <td className="text-stone-800 text-right">{value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="rounded-2xl border border-stone-200 shadow-sm bg-gradient-to-b from-white to-stone-50 p-4 mt-4 space-y-4">
+
+            {Object.keys(options).length > 0 && (
+              <div className="overflow-x-auto rounded-xl border border-stone-100">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {Object.entries(options).map(([key, value], i) => (
+                      <tr
+                        key={key}
+                        className={`flex justify-between gap-4 px-4 py-2.5 ${i % 2 === 0 ? "bg-stone-50/60" : "bg-white"}`}
+                      >
+                        <th className="text-stone-500 font-medium text-left whitespace-nowrap">
+                          {key.trim()}
+                        </th>
+                        <td className="text-stone-800 text-right">{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {product.content && (
+              <div
+                className="prose prose-sm prose-stone max-w-none text-stone-700"
+                dangerouslySetInnerHTML={{ __html: product.content }}
+              />
+            )}
+            {(({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id]) || []).length > 0 && <Image src={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[0]} alt={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[1]} className="w-full" width={1000} height={1000} />}
           </div>
         )}
 
-        {product.content && (
-          <div
-            className="prose prose-sm prose-stone max-w-none text-stone-700"
-            dangerouslySetInnerHTML={{ __html: product.content }}
-          />
-        )}
-
-      </div>
-    )}
 
         {/* Share Product */}
         <ShareProduct
@@ -148,6 +166,9 @@ export default async function Page({ params, searchParams }) {
           }}
         />
 
+
+
+
         {/* Parquet Section */}
         {String(product?.type?.name).includes("Parquet") && (
           <>
@@ -157,7 +178,7 @@ export default async function Page({ params, searchParams }) {
               <div className="block">
                 <h2 className="mb-8 text-2xl font-semibold">Couches</h2>
                 <img
-                  src="https://www.kastamonuentegre.com/uploads/2022/12/fr-floorpan.png"
+                  src="/imgs/floorpan.png"
                   alt="Couches"
                   className="w-full h-auto rounded-lg"
                 />
