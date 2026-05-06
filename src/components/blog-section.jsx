@@ -1,15 +1,10 @@
 import React from 'react';
 import BlogCard from './ui/BlogCard';
 import Link from 'next/link';
+import { apiServer } from '@/lib/api-server';
 
 const BlogSection = async () => {
-  
-  const response = await fetch('https://app.intercocina.com/api/posts/home')
-  if(!response.ok){
-    throw new Error('Failed to fetch articles')
-  }
-  const articles = await response.json();
-
+ const articles = await apiServer('posts/home');
   return (
     <section className="py-12 overflow-x-hidden">
        <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">

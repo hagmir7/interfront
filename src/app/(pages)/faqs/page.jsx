@@ -3,6 +3,7 @@
 import CLink from "@/components/CLink";
 import FAQAccordion from "@/components/Faqaccordion";
 import Image from "next/image";
+import { apiServer } from '@/lib/api-server';
 
 export const metadata = {
     title: "FAQ - Intercocina",
@@ -15,22 +16,18 @@ export const metadata = {
     },
 };
 
+
 async function getFaqs() {
     try {
-        const res = await fetch("https://app.intercocina.com/api/faqs", {
-            // Revalidate every hour, or use { cache: 'no-store' } for always-fresh
+        const data = await apiServer('faqs', {
             next: { revalidate: 3600 },
         });
-
-        if (!res.ok) throw new Error("Failed to fetch FAQs");
-
-        const data = await res.json();
         return data.map((item) => ({
             q: item.question,
             a: item.answer,
         }));
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching colors:', error);
         return [];
     }
 }

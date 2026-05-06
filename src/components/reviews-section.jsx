@@ -2,6 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 import Image from "next/image";
+import { apiServer } from "@/lib/api-server";
 
 
 const ReviewCard = ({ review }) => (
@@ -35,11 +36,8 @@ const ReviewCard = ({ review }) => (
 );
 
 const ReviewsSection = async () => {
-  const response = await fetch('https://app.intercocina.com/api/reviews')
-  if(!response.ok){
-    throw new Error('Failed to fetch reviews')
-  }
-  const reviews = await response.json();
+  const reviews = await apiServer('reviews')
+
   return (
   <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-12">
     <div className="max-w-7xl mx-auto">

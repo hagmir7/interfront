@@ -2,14 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import CLink from './CLink';
+import { apiServer } from '@/lib/api-server';
 
 const ProductCategories = async () => {
-
-    const response = await fetch("https://app.intercocina.com/api/categories")
-    if (!response.ok) {
-        throw new Error("Failed to fetch categories")
-    }
-    const categories = await response.json();
+    const categories = await apiServer("categories")
     return (
         <section className="py-12">
             <div className="px-4 py-16 md:max-w-5xl md:mx-auto">

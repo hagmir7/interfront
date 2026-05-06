@@ -14,19 +14,29 @@ const MainSectionGrid = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [data, setData] = useState([]);
 
-  const getData = async () => {
-    try {
-      const response = await api.get('covers');
-      setData(response.data);
-    } catch (error) {
-      console.error('Failed to fetch covers:', error);
-    }
-  };
+
 
   const IMAGE_BASE_URL = 'https://app.intercocina.com/storage/';
 
   useEffect(() => {
-    getData();
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const response = await api.get('covers');
+        if (isMounted) {
+          setData(response.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch covers:', error);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -76,13 +86,13 @@ const MainSectionGrid = () => {
 
                       {(item?.colors?.length > 0 ||
                         item?.color_views?.length > 0) && (
-                        <ColorCards
-                          colors={[
-                            ...(item?.colors || []),
-                            ...(item?.color_views || []),
-                          ]}
-                        />
-                      )}
+                          <ColorCards
+                            colors={[
+                              ...(item?.colors || []),
+                              ...(item?.color_views || []),
+                            ]}
+                          />
+                        )}
 
                       <p className='text-gray-600 mb-7 text-sm md:text-base'>
                         {item.description}
