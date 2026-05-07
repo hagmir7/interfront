@@ -10,7 +10,7 @@ const getAuthToken = () => {
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:8000/api/';
+    baseURL = 'https://app.intercocina.com/api/';
 } else {
     baseURL = 'https://app.intercocina.com/api/';
 }

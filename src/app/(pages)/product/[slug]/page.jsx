@@ -1,6 +1,7 @@
 import ParqetCaracteristiques from "@/components/ParqetCaracteristiques";
 import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
+import ProductPiece from "@/components/ProductPiece";
 import ShareProduct from "@/components/ShareProduct";
 import ShowRoomTrigger from "@/components/ShowRoomTrigger";
 import ImageHotspot from "@/components/ZoomLightbox";
@@ -95,6 +96,9 @@ export default async function Page({ params, searchParams }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ProductClient product={product} code={code} />
+
+        
+        {product?.piece?.length > 0 && <ProductPiece pieces={product.piece || []} />}
 
         <div className="mt-2">
           {product?.color && <ShowRoomTrigger colorId={product?.color?.id} />}

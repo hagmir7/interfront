@@ -4,6 +4,7 @@ import Carousel from "@/components/Carousel";
 import Product from "@/components/Product";
 import CLink from "./CLink";
 
+
 const ProductClient = ({ product, code }) => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [currentColor, setCurrentColor] = useState(null)
@@ -24,8 +25,7 @@ const ProductClient = ({ product, code }) => {
         <Carousel
           images={product.images}
           onImageChange={handleImageChange}
-          currentColor={currentColor}
-        />
+          currentColor={currentColor} />
       </div>
       <div className="flex justify-center">
         <div className="pro-detail w-full md:max-lg:max-w-[608px] lg:pl-8 xl:pl-12 max-lg:mx-auto max-lg:mt-6 px-3">
@@ -67,6 +67,8 @@ const ProductClient = ({ product, code }) => {
           
         </div>
       </div>
+
+    
     </div>
   );
 };
