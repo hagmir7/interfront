@@ -5,7 +5,7 @@ import { api } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
 import CLink from "@/components/CLink";
 
-const IMAGE_BASE = process.env.NEXT_PUBLIC_IMAGE_URL || "http://localhost:8000/storage";
+const IMAGE_BASE = 'https://app.intercocina.com/storage';
 
 
 /** Collection banner image */

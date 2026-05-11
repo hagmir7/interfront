@@ -22,9 +22,6 @@ export async function generateMetadata({ params }) {
       title: `${product.name}`,
       description: `${truncate(product.description)}`,
       keywords: `${product.tags}, armoires, meubles sur-mesure, rangement`,
-      alternates: {
-        canonical: `/product/${slug}`,
-      },
       openGraph: {
         title: `${product.name}`,
         description: `${truncate(product.description)}`,
@@ -106,7 +103,7 @@ export default async function Page({ params, searchParams }) {
 
         {/* Related Products */}
         {product?.related?.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7.5 gap-y-9 mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7.5 gap-y-9 mt-5 mb-3">
             {product.related.map((related, index) => (
               <ProductCard key={related.id ?? index} {...related} />
             ))}
