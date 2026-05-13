@@ -13,23 +13,6 @@ const nextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
-        hostname: 'cdn-icons-png.flaticon.com',
-        pathname: '/**',
-      },
-
-
-      {
-        protocol: 'https',
-        hostname: 'boisetblanc.fr',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'readymadeui.com',
-        pathname: '/**',
-      },
-      {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',

@@ -4,7 +4,7 @@ export default function ProductPiece({ pieces }) {
     return (
         <div className="py-2 px-1 grid grid-cols-2 gap-3">
             {pieces.map((item) => (
-                <div className="flex items-center justify-between bg-white border border-red-200 border-l-4 border-l-red-500 rounded-lg px-4 py-3 shadow-sm">
+                <div key={item.id} className="flex items-center justify-between bg-white border border-red-200 border-l-4 border-l-red-500 rounded-lg px-4 py-3 shadow-sm">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center shrink-0">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A32D2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

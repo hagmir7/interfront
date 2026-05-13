@@ -10,7 +10,7 @@ const getAuthToken = () => {
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'https://app.intercocina.com/api/';
+    baseURL = 'http://localhost:8000/api/';
 } else {
     baseURL = 'https://app.intercocina.com/api/';
 }
@@ -21,7 +21,6 @@ export const api = axios.create({
         'Content-Type': 'application/json',
         Accept: 'application/json',
     },
-    //  withCredentials: true,
 });
 
 api.interceptors.request.use(config => {
