@@ -40,10 +40,7 @@ export default function CheckoutPage() {
   }, [])
 
 
-  useEffect(() => {
-    if (!login) return;
-
-    const loadAddresses = async () => {
+  const loadAddresses = async () => {
       try {
         const res = await api.get("address");
         setAddresses(res.data || []);
@@ -51,6 +48,12 @@ export default function CheckoutPage() {
         console.error("Erreur chargement adresses:", error);
       }
     };
+
+
+  useEffect(() => {
+    if (!login) return;
+
+    
 
     loadAddresses();
   }, [login]);
@@ -159,6 +162,7 @@ export default function CheckoutPage() {
                 selectedAddress={selectedAddress}
                 onAddressChange={setSelectedAddress}
                 addresses={addresses}
+                addressCreated={loadAddresses}
               />
             </div>
           )}

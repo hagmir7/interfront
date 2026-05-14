@@ -207,6 +207,7 @@ export function AddToCartModal({ open, onOpenChange, product }) {
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <Alert message={error} type="error" />
+                
                  {showAlert && (
                     <AnimatedAlert
                     type="success"

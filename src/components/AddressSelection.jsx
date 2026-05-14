@@ -7,11 +7,10 @@ export function AddressSelection({
   selectedAddress,
   onAddressChange,
   addresses,
-  addresseCreated
+  addressCreated
 }) {
   const [showModal, setShowModal] = useState(false)
 
-  // ✅ Set first address as default IF nothing selected
   useEffect(() => {
     if (addresses.length > 0 && !selectedAddress) {
       onAddressChange(addresses[0].id)
@@ -19,7 +18,7 @@ export function AddressSelection({
   }, [addresses, selectedAddress, onAddressChange])
 
   const handleAddAddress = (addressData) => {
-    addresseCreated();
+    addressCreated();
     setTimeout(() => {
       setShowModal(false)
     }, 3000);

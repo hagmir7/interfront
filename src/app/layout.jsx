@@ -43,7 +43,6 @@ export default function RootLayout({ children }) {
               <TopNav />
               <MainNav />
             </header>
-
             <main>
               {children}
             </main>

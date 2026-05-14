@@ -2,22 +2,23 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { login, User } from "@/services/auth";
+import { googleLogin, login, User } from "@/services/auth";
 import { useAuth } from "@/context/AuthContext";
 import CLink from "./CLink";
+import { useGoogleLogin } from '@react-oauth/google'
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
   </svg>
 );
 
 const FacebookIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2" />
   </svg>
 );
 
@@ -32,15 +33,56 @@ const LoginForm = () => {
   const searchParams = useSearchParams();
   const { setUser } = useAuth();
 
+  const googleAuth = useGoogleLogin({
+
+    onSuccess: async (tokenResponse) => {
+      setIsLoading(true)
+
+      try {
+        const response = await googleLogin(tokenResponse.access_token)
+
+        setUser(response.user)
+
+        const next = searchParams.get("next")
+
+        if (next) {
+          router.push(next)
+        } else if (response.user.type) {
+          router.push('/profile')
+        } else {
+          router.push('/onboarding')
+        }
+
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+
+    onError: () => {
+      console.log('Google Login Failed')
+    },
+  })
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
+
     try {
       await login({ login: email, password, rememberMe });
+
       const user = await User();
+
       setUser(user);
+
+      if(user?.type == null){
+        router.push('/onboarding');
+      }
+
       router.push(searchParams.get("next") || "/profile");
+
     } catch (err) {
       setError("Identifiants invalides. Veuillez réessayer.");
     } finally {
@@ -65,9 +107,9 @@ const LoginForm = () => {
             {/* Logo */}
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-10">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
               </svg>
             </div>
 
@@ -117,12 +159,13 @@ const LoginForm = () => {
           <div className="flex gap-3 mb-6">
             <button
               type="button"
-              onClick={() => (window.location.href = "/auth/google")}
+              onClick={googleAuth}
               className="flex-1 flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 cursor-pointer"
             >
               <GoogleIcon />
               Google
             </button>
+
             <button
               type="button"
               onClick={() => (window.location.href = "/auth/facebook")}
@@ -142,18 +185,19 @@ const LoginForm = () => {
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-4">
+
             {error && (
               <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500 shrink-0">
-                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
                 <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
               </div>
             )}
 
             {/* Email */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Adresse email</label>
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Adresse email
+              </label>
+
               <input
                 type="email"
                 value={email}
@@ -169,7 +213,10 @@ const LoginForm = () => {
             {/* Password */}
             <div className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Mot de passe</label>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Mot de passe
+                </label>
+
                 <CLink
                   href="/user/forgot-password"
                   className="text-xs font-medium text-red-600 hover:text-red-700 hover:underline transition-colors"
@@ -177,6 +224,7 @@ const LoginForm = () => {
                   Mot de passe oublié ?
                 </CLink>
               </div>
+
               <input
                 type="password"
                 value={password}
@@ -191,23 +239,16 @@ const LoginForm = () => {
 
             {/* Remember me */}
             <label className="flex items-center gap-2.5 cursor-pointer group w-fit">
-              <div className="relative w-4 h-4 flex-shrink-0">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  disabled={isLoading}
-                  className="sr-only peer"
-                />
-                <div className="w-4 h-4 rounded border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 peer-checked:bg-red-600 peer-checked:border-red-600 transition-all duration-200 flex items-center justify-center">
-                  {rememberMe && (
-                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                      <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  )}
-                </div>
-              </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400 select-none">Se souvenir de moi</span>
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                disabled={isLoading}
+              />
+
+              <span className="text-sm text-gray-600 dark:text-gray-400 select-none">
+                Se souvenir de moi
+              </span>
             </label>
 
             {/* Submit */}
@@ -216,16 +257,7 @@ const LoginForm = () => {
               disabled={isLoading}
               className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold text-sm transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer shadow-sm shadow-red-200 dark:shadow-none"
             >
-              {isLoading ? (
-                <>
-                  <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-                  </svg>
-                  Connexion en cours…
-                </>
-              ) : (
-                "Se connecter"
-              )}
+              {isLoading ? "Connexion en cours…" : "Se connecter"}
             </button>
           </form>
 

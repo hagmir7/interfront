@@ -42,6 +42,7 @@ export function AddressForm({ onSubmit, onClose, open = true }) {
       })
 
     } catch (error) {
+      console.log(error)
       setMessage({
         content: error.response?.data?.message || "Une erreur est survenue",
         type: "error",

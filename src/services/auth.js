@@ -69,3 +69,45 @@ export const User = async () => {
         return null;
     }
 };
+
+
+
+/**
+ * Google Login
+ */
+export const googleLogin = async (access_token) => {
+
+    const response = await api.post(`auth/google/callback`, {
+        access_token,
+    })
+
+    if (response.data.token) {
+
+        Cookies.set('access_token', response.data.token, {
+            expires: 30,
+            path: '/',
+        })
+
+        Cookies.set('user', JSON.stringify(response.data.user), {
+            expires: 30,
+            path: '/',
+        })
+
+        localStorage.setItem('access_token', response.data.token)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
+    }
+
+    return response.data
+}
+
+
+export const updateUser = async (data) => {
+    try {
+        const response = await api.put('users/onboarding', data)
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        return response.data;
+    } catch (error) {
+        return error?.response?.data
+    }
+}
+
