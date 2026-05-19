@@ -10,8 +10,14 @@ export const metadata = {
 }
 
 const EventsSection = async () => {
-  const response = await api.get('events')
-  const events = response.data.data
+  let events = []
+
+  try {
+    const response = await api.get('events')
+    events = response.data.data ?? []
+  } catch (error) {
+    console.error('Failed to fetch events:', error)
+  }
 
   return (
     <section className='relative px-4 pt-10 pb-20 bg-[#f2f2f2] overflow-hidden'>
@@ -38,15 +44,14 @@ const EventsSection = async () => {
           {events.map((event, index) => (
             <div
               key={index}
-              className='group relative bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 '
+              className='group relative bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100'
             >
-              {/* Image container with overlay effect */}
               <div className='relative overflow-hidden'>
                 <CLink
                   href={`/event/${event.slug}`}
                   className='block relative overflow-hidden'
                 >
-                  <div className='absolute inset-0 '></div>
+                  <div className='absolute inset-0'></div>
                   <Image
                     src={event.image || '/page/'}
                     alt={event.title}
@@ -56,7 +61,6 @@ const EventsSection = async () => {
                     loading='lazy'
                     className='w-full h-[480px] object-cover'
                   />
-                  {/* Hover overlay with icon */}
                   <div className='absolute inset-0 flex items-center justify-center z-20'>
                     <div className='w-12 h-12 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm'>
                       <svg
@@ -77,7 +81,6 @@ const EventsSection = async () => {
                 </CLink>
               </div>
 
-              {/* Content */}
               <div className='p-6'>
                 <CLink
                   href={`/event/${event.slug}`}
@@ -89,12 +92,13 @@ const EventsSection = async () => {
                 </CLink>
 
                 <p className='text-gray-600 text-sm leading-relaxed'>
-                  {event.description.length > 120
-                    ? event.description.slice(0, 120).trim() + '...'
-                    : event.description}
+                  {event.description
+                    ? event.description.length > 120
+                      ? event.description.slice(0, 120).trim() + '...'
+                      : event.description
+                    : ''}
                 </p>
 
-                {/* Call to action */}
                 <div className='mt-6 pt-4 border-t border-gray-100'>
                   <CLink
                     href={`/event/${event.slug}`}
@@ -117,7 +121,6 @@ const EventsSection = async () => {
                   </CLink>
                 </div>
               </div>
-
             </div>
           ))}
         </div>

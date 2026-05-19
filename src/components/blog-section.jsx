@@ -4,16 +4,18 @@ import Link from 'next/link';
 import { apiServer } from '@/lib/api-server';
 
 const BlogSection = async () => {
- const articles = await apiServer('posts/home');
+  const articles = await apiServer('posts/home', {
+    next: { revalidate: 3600 },
+  }, false);
   return (
     <section className="py-12 overflow-x-hidden">
-       <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">
-          <h2 className="pt-10 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
-              Nos Articles récents
-          </h2>
-          <p className="text-center text-slate-500 md:text-lg animate__animated animate__fadeInUp">
-              Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
-          </p>
+      <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">
+        <h2 className="pt-10 text-2xl font-bold text-center md:text-4xl animate__animated animate__fadeInUp">
+          Nos Articles récents
+        </h2>
+        <p className="text-center text-slate-500 md:text-lg animate__animated animate__fadeInUp">
+          Nous partageons ici des conseils, des tendances et des idées pour optimiser votre intérieur avec nos solutions de placards sur mesure.
+        </p>
       </div>
       <div className="px-2 md:px-4 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-7.5">

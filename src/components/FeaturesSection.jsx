@@ -4,12 +4,9 @@ import Image from 'next/image'
 const FeatureIcon = ({ children }) => (
   <div className="relative group w-16 h-16">
     <div className="absolute inset-x-5 bottom-0 h- blur-md opacity-50" />
-    <div className="relative h-16 w-16 overflow-hidden rounded-2xl p-px
-      shadow-lg shadow-black/5">
-
+    <div className="relative h-16 w-16 overflow-hidden p-px shadow-lg rounded-full shadow-black/5">
       <div className="absolute inset-x-4 -bottom-2 h-4 blur-md dark:opacity-80" />
-
-      <div className="relative flex h-full w-full items-center justify-center rounded-[15px] p-2 bg-white">
+      <div className="relative flex h-full w-full items-center justify-center ">
         {children}
       </div>
     </div>

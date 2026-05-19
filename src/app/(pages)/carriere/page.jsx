@@ -101,7 +101,8 @@ export default function Page() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-3 -left-3 h-20 w-20 bg-[#e4373a] rounded-2xl -z-0 opacity-90 hidden sm:block" />
+            <div className="absolute -bottom-3 -left-3 h-20 w-20 bg-[#e4373a] rounded-2xl -z-0 opacity-90 hidden sm:block">
+            </div>
           </div>
         </div>
 
@@ -152,6 +153,7 @@ export default function Page() {
         </p>
 
         <div className="border-t border-gray-100 my-8 max-w-2xl" />
+        {/* <Image src={''} width={800} height={400} alt='ca' /> */}
 
         <div className="flex flex-wrap gap-2">
           {['Professionnalisme', "Esprit d'équipe", 'Amélioration continue', 'Performance', 'Épanouissement'].map((v) => (

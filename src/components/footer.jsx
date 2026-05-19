@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import InterSpin from './ui/InterSpin';
 import Subscribe from './Subscribe';
 
 const Footer = () => {
@@ -30,6 +29,9 @@ const Footer = () => {
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="#">Politique de confidentialité</Link>
+                </li>
+                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
+                  <a href="/pdfs/CGV.pdf" target='_blank'>Conditions de Vente</a>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,3 @@
-// app/faqs/page.jsx — SERVER COMPONENT
-
 import CLink from "@/components/CLink";
 import FAQAccordion from "@/components/Faqaccordion";
 import Image from "next/image";
@@ -19,16 +17,11 @@ export const metadata = {
 
 async function getFaqs() {
     try {
-        const data = await apiServer('faqs', {
-            next: { revalidate: 3600 },
-        });
-        return data.map((item) => ({
-            q: item.question,
-            a: item.answer,
-        }));
+        const data = await apiServer('faqs', { next: { revalidate: 3600 } }, false)
+        return data.map((item) => ({ q: item.question, a: item.answer }))
     } catch (error) {
-        console.error('Error fetching colors:', error);
-        return [];
+        console.error('Error fetching faqs:', error)
+        return []
     }
 }
 
@@ -61,8 +54,6 @@ export default async function FAQPage() {
                     détaillées et à un support.
                 </p>
             </div>
-
-            {/* Client component handles all interactivity */}
             <FAQAccordion faqs={faqs} />
         </div>
     );

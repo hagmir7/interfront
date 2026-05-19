@@ -7,7 +7,7 @@ async function getColors() {
   try {
     const data = await apiServer('view-colors', {
       next: { revalidate: 3600 },
-    });
+    }, false);
     return data.data || [];
   } catch (error) {
     console.error("Error fetching colors:", error);

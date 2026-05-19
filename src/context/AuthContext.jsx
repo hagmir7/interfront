@@ -39,9 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <GoogleOAuthProvider
-      clientId={
-        process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
-      }
+      clientId={'390112782986-ojtfc9lpi69tvgd2chc9smq8ppojhthj.apps.googleusercontent.com'}
     >
       <AuthContext.Provider
         value={{

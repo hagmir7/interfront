@@ -1,27 +1,11 @@
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-  } from "@/components/ui/navigation-menu"
-  
 
 import React from 'react';
 import { ProductsMenu } from "./products-menu";
-import TopNav from "./top-nav";
 import CartCounter from "./CartCounter";
 import CLink from "./CLink";
 import SideCart from "./SideCart";
 import Search from "./Search";
-import { User } from "@/services/auth";
 import AuthActions from "./AuthActions";
-import Image from "next/image";
-
-
 const MainNav = () => {
   
     return (
@@ -320,6 +304,14 @@ const MainNav = () => {
                   className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
                 >
                   Événements
+                </CLink>
+              </li>
+               <li>
+                <CLink
+                  href='/carriere'
+                  className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
+                >
+                  Carrière
                 </CLink>
               </li>
             </ul>
