@@ -24,7 +24,6 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1
   },
-  swcMinify: true,
 };
 
 export default nextConfig;

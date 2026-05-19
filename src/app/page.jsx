@@ -17,11 +17,13 @@ import PlacarSection from "@/components/PlacardSection";
 import Colors from "@/components/Colors";
 import TopFooter from "@/components/TopFooter";
 import AccSlideShow from "@/components/AccSlideShow";
+import SectionVideo from "@/components/SectionVideo";
 
 export default function Home() {
   return (
     <div className="bg-[#f2f2f2]">
-      <SectionConver />
+      <SectionVideo />
+      {/* <SectionConver /> */}
       {/* <MainSection /> */}
       <FeaturesSection />
       <MainSectionGrid />

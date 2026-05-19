@@ -4,19 +4,11 @@ import CLink from "./CLink";
 import { Mail, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
-const images = [
-  '/imgs/fabrica/fabrica-4.png',
-  '/imgs/fabrica/fabrica-9.jpg',
-  '/imgs/fabrica/fabrica-3.jpeg',
-  '/imgs/fabrica/fabrica-6.jpg', 
-  '/imgs/fabrica.jpeg',
-];
+const VIMEO_ID = "1193628406"; // ← paste your Vimeo video ID here
 
-const SLIDE_INTERVAL = 5000; 
-
-const SectionConver = () => {
+const SectionVideo = () => {
   const heroRef = useRef(null);
-  const [current, setCurrent] = useState(0);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -25,13 +17,6 @@ const SectionConver = () => {
     items.forEach((item, i) => {
       setTimeout(() => item.classList.add('anim-in'), 50 + i * 80);
     });
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent(prev => (prev + 1) % images.length);
-    }, SLIDE_INTERVAL);
-    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -46,22 +31,25 @@ const SectionConver = () => {
           opacity: 1;
           transform: translateY(0);
         }
-        @keyframes slowZoom {
-          from { transform: scale(1.05); }
-          to   { transform: scale(1.12); }
-        }
-        @keyframes gridDrift {
-          from { background-position: 0 0; }
-          to   { background-position: 60px 60px; }
-        }
-        .slide-layer {
+        .vimeo-bg {
           position: absolute;
           inset: 0;
-          opacity: 0;
-          transition: opacity 1.2s ease-in-out;
-          animation: slowZoom 20s ease-in-out infinite alternate;
+          overflow: hidden;
+          pointer-events: none;
         }
-        .slide-layer.active {
+        .vimeo-bg iframe {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          /* 16:9 — always cover the viewport */
+          width: 100vw;
+          height: 56.25vw; /* 100vw / (16/9) */
+          min-height: 100vh;
+          min-width: 177.78vh; /* 100vh * (16/9) */
+          transform: translate(-50%, -50%);
+          border: 0;
+        }
+        .vimeo-bg.ready {
           opacity: 1;
         }
       `}</style>
@@ -70,22 +58,15 @@ const SectionConver = () => {
         ref={heroRef}
         className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-gray-950 text-white"
       >
-        {/* Slideshow layers — one per image, crossfade via opacity */}
-        {images.map((src, i) => (
-          <div
-            key={src}
-            className={`slide-layer${i === current ? ' active' : ''}`}
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-        ))}
+        {/* ── Vimeo background ── */}
+        <div className={`vimeo-bg${videoReady ? ' ready' : ''}`}>
+          <iframe
+            src={`https://player.vimeo.com/video/${VIMEO_ID}?background=1&autoplay=1&loop=1&muted=1&quality=auto`}
+            allow="autoplay; fullscreen"
+            title="Hero background video"
+            onLoad={() => setVideoReady(true)}
+          />
+        </div>
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
@@ -97,38 +78,6 @@ const SectionConver = () => {
             background: 'radial-gradient(ellipse at center, transparent 40%, rgba(180,0,0,0.18) 100%)',
           }}
         />
-
-        {/* Grid lines */}
-        {/* <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage:
-              'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-            animation: 'gridDrift 30s linear infinite',
-          }}
-        /> */}
-
-        {/* Slide dots */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              style={{
-                width: i === current ? '24px' : '8px',
-                height: '8px',
-                borderRadius: '4px',
-                background: i === current ? '#ec2228' : 'rgba(255,255,255,0.4)',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                transition: 'width 0.3s ease, background 0.3s ease',
-              }}
-            />
-          ))}
-        </div>
 
         {/* B2B badge */}
         <div
@@ -153,7 +102,7 @@ const SectionConver = () => {
             <span className="text-[#ec2228] tracking-widest" style={{ fontFamily: 'DOCK11-Heavy, sans-serif' }}>COCINA</span>
             <br />
             <span className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white/90 tracking-normal leading-snug">
-              Leader de la fabrication de meubles 
+              Leader de la fabrication de meubles
               <br className="hidden sm:block" /> de cuisine au Maroc.
             </span>
           </h1>
@@ -206,4 +155,4 @@ const SectionConver = () => {
   );
 };
 
-export default SectionConver;
+export default SectionVideo;
