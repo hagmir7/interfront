@@ -20,6 +20,11 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    workerThreads: false,
+    cpus: 1
+  },
+  swcMinify: true,
 };
 
 export default nextConfig;

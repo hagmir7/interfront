@@ -181,7 +181,7 @@ function TrackingInner({ initialCode = '' }) {
   })();
 
   return (
-    <div className="max-w-7xl mx-auto px-2">
+    <div className="max-w-7xl mx-auto px-2" id='tracking'>
       <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
         {/* Search header */}
         <div className="text-center mb-6">

@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
 const BASE_URL = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:800/api'
+    ? 'https://app.intercocina.com/api'
     : 'https://app.intercocina.com/api';
 
 const getAuthToken = async () => {
@@ -9,7 +9,7 @@ const getAuthToken = async () => {
     return cookieStore.get('access_token')?.value || '';
 };
 
-export const apiServer = async (endpoint, options = {}, withAuth = false) => {
+export const apiServer = async (endpoint, options = {}, withAuth = true) => {
     const token = withAuth ? await getAuthToken() : null;
 
     const response = await fetch(`${BASE_URL}/${endpoint}`, {

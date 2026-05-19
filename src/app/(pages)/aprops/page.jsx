@@ -25,26 +25,26 @@ const sections = [
     tag: 'Notre histoire',
   },
   {
-    title: 'Artisanat & savoir-faire depuis Nador',
+    title: 'Fabrication de meubles de cuisine',
     description:
       "Depuis plus de 16 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés met en œuvre son savoir-faire artisanal pour créer des meubles d'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.",
-    image: '/imgs/fabrica/fabrica-7.png',
+    image: 'https://app.intercocina.com/assets/imgs/qualite.jpg',
     reversed: true,
     tag: 'Fabrication',
   },
   {
-    title: 'Qualité premium certifiée',
+    title: 'Qualité premium',
     description:
       "La sélection minutieuse des matériaux et la rigueur de notre processus de création sont au cœur de notre engagement envers la qualité et la durabilité. Depuis 2017, chacun de nos meubles est accompagné d'une certification et d'un certificat de catégorisation, offrant à nos clients l'assurance d'acquérir des pièces répondant aux normes les plus élevées.",
-    image: 'https://app.intercocina.com/assets/imgs/qualite.jpg',
+    image: '/imgs/fabrica/fabrica-5.jpg',
     reversed: false,
-    tag: 'Certification',
+    tag: 'Qualité',
   },
   {
     title: 'Grande capacité industrielle',
     description:
       "Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d'assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des livraisons.",
-    image: 'https://app.intercocina.com/assets/imgs/innovation.jpg',
+     image: `/imgs/fabrica/fabrica-${5+5}.jpg`,
     reversed: true,
     tag: 'Industrie',
   },
@@ -141,8 +141,8 @@ const AboutPage = () => {
               <Image
                 src={section.image}
                 alt={`Intercocina — ${section.title}`}
-                width={640}
-                height={460}
+                width={700}
+                height={700}
                 className="relative z-10 h-72 w-full rounded-2xl object-cover shadow-lg md:h-96"
               />
             </div>

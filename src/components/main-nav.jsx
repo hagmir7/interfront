@@ -314,6 +314,14 @@ const MainNav = () => {
                   Carrière
                 </CLink>
               </li>
+                <li>
+                <CLink
+                  href='/tracking'
+                  className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
+                >
+                  Suivi des commandes
+                </CLink>
+              </li>
             </ul>
             <div className='flex gap-3'>
                <AuthActions />

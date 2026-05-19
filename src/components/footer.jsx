@@ -25,13 +25,13 @@ const Footer = () => {
                   <Link href="/event/list">Événements</Link>
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
-                  <Link href="/tracking">Suivre de commande</Link>
+                  <Link href="/tracking">Suivi des commandes</Link>
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
-                  <Link href="#">Politique de confidentialité</Link>
+                  <Link href="/policies/privacy">Politique de confidentialité</Link>
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
-                  <a href="/pdfs/CGV.pdf" target='_blank'>Conditions de Vente</a>
+                  <a href="/pdfs/CGV.pdf" target='_blank'>Conditions Générales de Vente</a>
                 </li>
               </ul>
             </div>
@@ -77,7 +77,7 @@ const Footer = () => {
                 aria-label="Linkedin page link"
               >
                 <Image
-                  src="https://app.intercocina.com/assets/media-icons/linkedin.png"  // Make sure this path is correct
+                  src="https://app.intercocina.com/assets/media-icons/linkedin.png" 
                   width={30}
                   height={30}
                   loading="lazy"

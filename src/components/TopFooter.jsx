@@ -19,8 +19,8 @@ export default function TopFooter() {
                             title="Intercocina Logo"
                         />
                         <p className="text-slate-700 font-semibold text-sm sm:text-base leading-relaxed">
-                            Nous sommes profondément honorés de vous présenter notre société, qui se distingue en tant que
-                            leader incontesté dans le domaine de la fabrication sur mesure d'éléments de cuisine
+                            {/* Nous sommes profondément honorés de vous présenter notre société, qui se distingue en tant que
+                            leader incontesté dans le domaine de la fabrication sur mesure d'éléments de cuisine */}
                         </p>
                     </div>
 
