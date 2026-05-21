@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const MainSection = () => {
@@ -27,7 +28,7 @@ const MainSection = () => {
                     </p>
                     <div className="flex justify-start gap-4 animate__animated animate__fadeInUp animate__delay-500ms">
                         
-                           <a href="https://app.intercocina.com/contact"
+                        <Link href="/contact"
                             className="btn btn-accent-gray flex items-center justify-center gap-2"
                         >
                             <svg
@@ -46,9 +47,9 @@ const MainSection = () => {
                                 ></path>
                             </svg>
                             <span>Contact</span>
-                        </a>
+                        </Link>
                         
-                        <a href="https://app.intercocina.com/shop"
+                        <Link href="/shop"
                             className="btn btn-primary flex items-center justify-center gap-2"
                         >
                             <svg
@@ -66,8 +67,8 @@ const MainSection = () => {
                                     d={"M16.5 21a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m-8 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M3.71 5.4h15.214c1.378 0 2.373 1.27 1.995 2.548l-1.654 5.6C19.01 14.408 18.196 15 17.27 15H8.112c-.927 0-1.742-.593-1.996-1.452zm0 0L3 3"}
                                 ></path>
                             </svg>
-                            Produits1111
-                        </a>
+                            Produits
+                        </Link>
                     </div>
                 </div>
 

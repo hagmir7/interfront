@@ -87,12 +87,12 @@ const CaissonSection = () => {
           {/* Dynamic title */}
           <div className="mb-2">
             <h4 className="text-xl sm:text-2xl font-semibold mb-2">
-              <a 
+              <CLink 
                 href={images[activeIndex].link}
                 className="text-gray-900 hover:text-red-600 transition-colors"
               >
                 {images[activeIndex].title}
-              </a>
+              </CLink>
             </h4>
 
             {/* Description */}

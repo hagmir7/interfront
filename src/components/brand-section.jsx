@@ -87,7 +87,7 @@ const BrandsSection = () => {
 
         <div className='flex flex-col justify-center gap-10 px-4 py-18 md:flex-row'>
           <CLink href='/contact' className='btn btn-primary text-center'>
-            Travaillez avec nous
+            Contactez-nous
           </CLink>
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function Cart() {
                 </Typography.Text>
               }
             >
-              <Button variant='solid' color='red' href='/shop' type="primary">Nos Produits</Button>
+              <CLink href='/shop'><Button variant='solid' color='red' type="primary">Nos Produits</Button></CLink>
             </Empty>
           </div>
         </div>

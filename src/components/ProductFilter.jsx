@@ -34,6 +34,7 @@ const ProductFilter = () => {
       items: [
         { href: '/category/caisson-hydrofuge-granada?type=caisson-hydrofuge-granada-bas', label: 'Caisson Bas' },
         { href: '/category/caisson-hydrofuge-granada?type=caisson-hydrofuge-granada-haut', label: 'Caisson Haut' },
+        { href: '/category/caisson-hydrofuge-granada?type=caisson-granada-colonne', label: 'Caisson Colonne' }
       ]
     },
     {

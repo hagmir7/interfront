@@ -127,6 +127,8 @@ export default async function Page({ params, searchParams }) {
         {(Object.keys(options).length > 0 || String(product.content).length > 10) && (
           <div className="rounded-2xl border border-stone-200 shadow-sm bg-gradient-to-b from-white to-stone-50 p-4 mt-4 space-y-4">
 
+            {(({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id]) || []).length > 0 && <Image src={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[0]} alt={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[1]} className="w-full" width={1000} height={1000} />}
+
             {Object.keys(options).length > 0 && (
               <div className="overflow-x-auto rounded-xl border border-stone-100">
                 <table className="w-full text-sm">
@@ -147,13 +149,14 @@ export default async function Page({ params, searchParams }) {
               </div>
             )}
 
+
             {product.content && (
               <div
                 className="prose prose-sm prose-stone max-w-none text-stone-700"
                 dangerouslySetInnerHTML={{ __html: product.content }}
               />
             )}
-            {(({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id]) || []).length > 0 && <Image src={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[0]} alt={({ 11: ["/imgs/fiche-technique-caisson/stone.png", "Caisson de cuisine Blanc"], 1: ["/imgs/fiche-technique-caisson/blanc.png", "Caisson de cuisine Hydrofuge Ston"], 12: ["/imgs/fiche-technique-caisson/granada.png", "Caisson Hydrofuge Granada"] }[+product?.type?.category_id])[1]} className="w-full" width={1000} height={1000} />}
+
           </div>
         )}
 

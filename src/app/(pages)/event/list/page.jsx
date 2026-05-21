@@ -59,7 +59,7 @@ const EventsSection = async () => {
                     width={500}
                     height={600}
                     loading='lazy'
-                    className='w-full h-[480px] object-cover'
+                    className='w-full h-[480px] object-cover border-b border-red-500'
                   />
                   <div className='absolute inset-0 flex items-center justify-center z-20'>
                     <div className='w-12 h-12 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm'>
