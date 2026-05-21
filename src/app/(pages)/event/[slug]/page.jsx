@@ -43,9 +43,6 @@ const BlogPage = async ({ params }) => {
   const event = await response.data;
 
 
-
-
-
   return (
     <div className='min-h-screen bg-gray-50'>
       <div className='container mx-auto md:px-4 md:py-8'>

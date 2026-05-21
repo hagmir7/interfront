@@ -19,7 +19,7 @@ const sections = [
   {
     title: 'Leader de la fabrication de meubles de cuisine',
     description:
-      "Nous sommes profondément honorés de vous présenter notre société, qui se distingue en tant que leader incontesté dans le domaine de la fabrication sur mesure d'éléments de cuisine. Notre expertise se fonde sur l'exploitation de technologies de pointe, permettant ainsi la conception de cuisines d'exception.",
+      "Intercocina est une entreprise pionnière et leader dans la fabrication de meubles de cuisine sur mesure. Forte d’un savoir-faire éprouvé, la marque s’appuie sur l’exploitation de technologies de pointe et de processus de production innovants pour concevoir des cuisines d’exception. Chaque projet allie précision, design contemporain et exigence de qualité, afin d’offrir des solutions fonctionnelles, durables et parfaitement adaptées aux besoins des professionnels.",
     image: 'https://app.intercocina.com/assets/imgs/intercocina.png',
     reversed: false,
     tag: 'Notre histoire',
@@ -27,7 +27,7 @@ const sections = [
   {
     title: 'Fabrication de meubles de cuisine',
     description:
-      "Depuis plus de 16 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés met en œuvre son savoir-faire artisanal pour créer des meubles d'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.",
+      "Depuis plus de 16 ans, INTERCOCINA excelle dans la fabrication de meubles de cuisine au Maroc, depuis son atelier à Nador. Notre équipe de menuisiers hautement qualifiés, hommes et femmes, met en œuvre son savoir-faire artisanal pour créer des meubles de cuisine d'une qualité exceptionnelle. En choisissant méticuleusement des matériaux de qualité, nous nous engageons à vous proposer des meubles résistants qui traversent le temps avec distinction.",
     image: 'https://app.intercocina.com/assets/imgs/qualite.jpg',
     reversed: true,
     tag: 'Fabrication',
@@ -35,15 +35,14 @@ const sections = [
   {
     title: 'Qualité premium',
     description:
-      "La sélection minutieuse des matériaux et la rigueur de notre processus de création sont au cœur de notre engagement envers la qualité et la durabilité. Depuis 2017, chacun de nos meubles est accompagné d'une certification et d'un certificat de catégorisation, offrant à nos clients l'assurance d'acquérir des pièces répondant aux normes les plus élevées.",
+      "La sélection minutieuse des matériaux dans la confection de nos meubles et la rigueur de notre processus de création sont au cœur de notre engagement envers la qualité et la durabilité de nos produits. Depuis 2017, chacun de nos meubles est accompagné d'une certification et d'un certificat de catégorisation, offrant ainsi à nos clients l'assurance d'acquérir des pièces de mobilier exceptionnelles répondant aux normes de qualité les plus élevées.",
     image: '/imgs/fabrica/fabrica-5.jpg',
     reversed: false,
     tag: 'Qualité',
   },
   {
     title: 'Grande capacité industrielle',
-    description:
-      "Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d'assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des livraisons.",
+    description: "Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d’assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation industrielle performante garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des ",
      image: `/imgs/fabrica/fabrica-${5+5}.jpg`,
     reversed: true,
     tag: 'Industrie',
