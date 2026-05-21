@@ -324,7 +324,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
               </div>
             )}
             <span className={`${(price && parseInt(price) > 0) && 'ml-3'} font-semibold text-lg text-green-600`}>
-              {' '}{getStatus(product.status)}{' '}
+              {/* {' '}{getStatus(product.status)}{' '} */}
             </span>
           </div>
 

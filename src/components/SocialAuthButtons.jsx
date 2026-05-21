@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useGoogleLogin } from "@react-oauth/google";
-import { googleLogin } from "@/services/auth";
-import { useAuth } from "@/context/AuthContext";
+import { useState }                    from "react";
+import { useRouter, useSearchParams }  from "next/navigation";
+import { useGoogleLogin }              from "@react-oauth/google";
+import { googleLogin, facebookLogin }  from "@/services/auth";
+import { useAuth }                     from "@/context/AuthContext";
+import { loadFacebookSDK, getFacebookAccessToken } from "../../lib/facebook-sdk";
+
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -25,37 +27,15 @@ const FacebookIcon = () => (
 
 // ─── SocialAuthButtons ────────────────────────────────────────────────────────
 
-/**
- * Reusable social authentication buttons (Google + Facebook).
- *
- * Props:
- *   onLoadingChange?: (loading: boolean) => void
- *     Callback so the parent form can mirror the loading state (e.g. disable
- *     its own submit button while a social login is in progress).
- *
- *   onError?: (provider: "google" | "facebook", error: unknown) => void
- *     Optional error handler. Falls back to console.error if omitted.
- *
- *   redirectAfterLogin?: string
- *     Overrides the ?next= query-param redirect. Useful when embedding the
- *     component outside a page that has that param.
- *
- *   facebookHref?: string
- *     Override the Facebook OAuth URL (default: "/auth/facebook").
- *
- * Usage:
- *   <SocialAuthButtons onLoadingChange={setIsLoading} />
- */
 const SocialAuthButtons = ({
     onLoadingChange,
     onError,
     redirectAfterLogin,
-    facebookHref = "/auth/facebook",
 }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
+    const router       = useRouter();
     const searchParams = useSearchParams();
-    const { setUser } = useAuth();
+    const { setUser }  = useAuth();
 
     const setLoading = (value) => {
         setIsLoading(value);
@@ -63,13 +43,13 @@ const SocialAuthButtons = ({
     };
 
     const handleRedirect = (user) => {
-        const next =
-            redirectAfterLogin ?? searchParams.get("next");
-
-        if (next) return router.push(next);
+        const next = redirectAfterLogin ?? searchParams.get("next");
+        if (next)       return router.push(next);
         if (user?.type) return router.push("/profile");
         router.push("/onboarding");
     };
+
+    // ── Google ───────────────────────────────────────────────────────────────
 
     const googleAuth = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -79,22 +59,48 @@ const SocialAuthButtons = ({
                 setUser(response.user);
                 handleRedirect(response.user);
             } catch (error) {
-                onError ? onError("google", error) : console.error("Google login error:", error);
+                onError
+                    ? onError("google", error)
+                    : console.error("Google login error:", error);
             } finally {
                 setLoading(false);
             }
         },
         onError: () => {
-            const msg = "Google Login Failed";
-            onError ? onError("google", new Error(msg)) : console.log(msg);
+            const msg = "Google login failed.";
+            onError ? onError("google", new Error(msg)) : console.error(msg);
         },
     });
+
+    // ── Facebook ─────────────────────────────────────────────────────────────
+
+    const handleFacebookLogin = async () => {
+        setLoading(true);
+        try {
+            // Loads the SDK on first click — subsequent clicks reuse window.FB
+            await loadFacebookSDK();
+            const accessToken = await getFacebookAccessToken();
+            const response    = await facebookLogin(accessToken);
+            setUser(response.user);
+            handleRedirect(response.user);
+        } catch (error) {
+            onError
+                ? onError("facebook", error)
+                : console.error("Facebook login error:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // ── Shared style ─────────────────────────────────────────────────────────
 
     const buttonClass =
         "flex-1 flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
 
     return (
         <div className="flex gap-3 mb-6">
+
+            {/* Google */}
             <button
                 type="button"
                 onClick={googleAuth}
@@ -105,15 +111,17 @@ const SocialAuthButtons = ({
                 Google
             </button>
 
+            {/* Facebook */}
             <button
                 type="button"
-                onClick={() => (window.location.href = facebookHref)}
+                onClick={handleFacebookLogin}
                 disabled={isLoading}
                 className={buttonClass}
             >
                 <FacebookIcon />
                 Facebook
             </button>
+
         </div>
     );
 };
