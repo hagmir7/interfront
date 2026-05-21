@@ -6,6 +6,7 @@ import { googleLogin, login, User } from "@/services/auth";
 import { useAuth } from "@/context/AuthContext";
 import CLink from "./CLink";
 import { useGoogleLogin } from '@react-oauth/google'
+import SocialAuthButtons from "./SocialAuthButtons";
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,25 +157,13 @@ const LoginForm = () => {
           </div>
 
           {/* Social login */}
-          <div className="flex gap-3 mb-6">
-            <button
-              type="button"
-              onClick={googleAuth}
-              className="flex-1 flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 cursor-pointer"
-            >
-              <GoogleIcon />
-              Google
-            </button>
-
-            <button
-              type="button"
-              onClick={() => (window.location.href = "/auth/facebook")}
-              className="flex-1 flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 cursor-pointer"
-            >
-              <FacebookIcon />
-              Facebook
-            </button>
-          </div>
+            <SocialAuthButtons
+              onLoadingChange={setIsLoading}
+              onError={(provider, err) => {
+                console.error(`${provider} login error:`, err);
+                setError("Une erreur est survenue. Veuillez réessayer.");
+              }}
+            />
 
           {/* Divider */}
           <div className="relative flex items-center gap-3 mb-6">
