@@ -99,7 +99,7 @@ export default function OnboardingContent() {
         setSuccess(true);
         setError(null)
         const next = searchParams.get("next")
-
+        console.log(response.user)
         if (next) {
           router.push(next)
         } else if (response?.user?.type) {
@@ -141,7 +141,7 @@ export default function OnboardingContent() {
     <div className="bg-gray-100 px-4 py-10 flex items-center justify-center">
       <div className="w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-sm flex flex-col lg:flex-row">
         {/* LEFT PANEL */}
-        <div className="relative w-full lg:w-5/12 overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-pink-900 p-10 flex flex-col justify-between">
+        <div className="relative w-full lg:w-5/12 overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-pink-900 p-10 hidden lg:flex flex-col justify-between">
           <div className="absolute -top-16 -left-16 h-64 w-64 rounded-full bg-white/5" />
           <div className="absolute -bottom-24 -right-10 h-80 w-80 rounded-full bg-white/5" />
 
