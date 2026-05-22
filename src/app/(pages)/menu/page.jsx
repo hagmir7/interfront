@@ -11,9 +11,6 @@ export const metadata = {
 
 async function MenuPage() {
   const user = await getServerUser();
-
-
-  console.log(user);
   
   const menuItems = [
     { href: "/", label: "Accueil", icon: <Home size={18} /> },

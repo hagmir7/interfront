@@ -14,8 +14,6 @@ function UserDiscount() {
         setLoading(true);
         try {
             const response = await api.get("discounts");
-            console.log(response.data);
-
             setDiscounts(response.data || []);
         } catch (error) {
             console.error("Erreur lors du chargement des adresses :", error);

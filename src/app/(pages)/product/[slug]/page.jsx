@@ -115,10 +115,10 @@ export default async function Page({ params, searchParams }) {
           parseInt(product?.type?.category_id) === 12 && (<ImageHotspot
             mainImage="/imgs/zoom-caissons/caisson-granada.png"
             hotspots={[
-              { id: 1, label: 'Trous', description: '...', x: 28, y: 20, zoomImage: '/imgs/zoom-caissons/trous.png' },
-              { id: 2, label: 'Panneau intérieur', description: '...', x: 59, y: 20, zoomImage: '/imgs/zoom-caissons/densite.png' },
-              { id: 3, label: 'Étagère ajustable', description: '...', x: 38, y: 43, zoomImage: '/imgs/zoom-caissons/etagere.png' },
-              { id: 4, label: 'Finision', description: '...', x: 65, y: 50, zoomImage: '/imgs/zoom-caissons/finition.png' },
+              { id: 1, label: 'Peçages', description: '...', x: 28, y: 20, zoomImage: '/imgs/zoom-caissons/trous.png' },
+              { id: 2, label: "Structure interne du Panneau", description: '...', x: 59, y: 20, zoomImage: '/imgs/zoom-caissons/densite.png' },
+              { id: 3, label: "Support d'étagère avec systeme anti-basculement", description: '...', x: 38, y: 43, zoomImage: '/imgs/zoom-caissons/etagere.png' },
+              { id: 4, label: 'Finition Texturèe', description: '...', x: 65, y: 50, zoomImage: '/imgs/zoom-caissons/finition.png' },
             ]} />)
         }
 

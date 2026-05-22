@@ -4,8 +4,6 @@ import React from 'react'
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    console.log("Slug in metadata:", slug);
-
     try {
         const response = await api.get(`collections/${slug}`);
         const collection = response.data;

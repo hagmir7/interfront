@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: 'Grande capacité industrielle',
-    description: "Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d’assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation industrielle performante garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des ",
+    description: "Grâce à une grande capacité de production industrielle, Intercocina répond avec efficacité et constance aux exigences du marché B2B. Son outil de production moderne, intégrant des technologies innovantes et des processus optimisés, permet d’assurer une fabrication maîtrisée à grande échelle tout en préservant un haut niveau de qualité. Cette organisation industrielle performante garantit la disponibilité continue des produits, la fiabilité des délais et la régularité des approvisionnements, offrant ainsi à nos partenaires professionnels des solutions durables, flexibles et parfaitement adaptées à leurs projets.",
      image: `/imgs/fabrica/fabrica-${5+5}.jpg`,
     reversed: true,
     tag: 'Industrie',
@@ -64,9 +64,9 @@ const AboutPage = () => {
           </p>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-neutral-900 md:text-5xl">
-            L'excellence des cuisines{' '}
-            <span className="text-red-500">de luxe</span>{' '}
-            au Maroc
+           L’excellence de la production  {' '}
+            <span className="text-red-500">industrielle de meubles</span>{' '}
+            de cuisine premium au Maroc
           </h1>
 
           <p className="mt-5 max-w-xl text-lg text-neutral-500 leading-relaxed">

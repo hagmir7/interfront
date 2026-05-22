@@ -37,7 +37,6 @@ export default function OnboardingContent() {
     company_name: "",
     first_name: "",
     last_name: "",
-    phone: "",
     gender: "",
     city_id: "",
     address: "",
@@ -103,7 +102,7 @@ export default function OnboardingContent() {
 
         if (next) {
           router.push(next)
-        } else if (response.user.type) {
+        } else if (response?.user?.type) {
           router.push('/profile')
         } else {
           router.push('/onboarding')
@@ -321,7 +320,7 @@ export default function OnboardingContent() {
           {currentStep === 1 && (
             <div>
               <h3 className="mb-1 text-2xl font-bold text-gray-900">
-                {formData.type === "company"
+                {formData.type === 1
                   ? "Informations entreprise"
                   : "Informations personnelles"}
               </h3>
@@ -331,7 +330,7 @@ export default function OnboardingContent() {
               </p>
 
               <div className="space-y-4">
-                {formData.type === "company" && (
+                {formData.type === 1 && (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Nom de l'entreprise
@@ -378,21 +377,6 @@ export default function OnboardingContent() {
                       className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition-all focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-100"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
-                    Téléphone
-                  </label>
-
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="0612 345 678"
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition-all focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-100"
-                  />
                 </div>
 
                 <div>
