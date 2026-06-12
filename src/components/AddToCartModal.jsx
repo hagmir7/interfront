@@ -119,12 +119,24 @@ export function AddToCartModal({ open, onOpenChange, product }) {
     function changeAttribute(e) {
         const selectedValue = parseInt(e.target.value, 10);
 
-        const valide_dimensions = dimensions.filter(item => item?.attribute_id === selectedValue);
+        const validDimensions = dimensions.filter(
+            item => parseInt(item?.attribute_id, 10) === selectedValue  // ← coerce both sides
+        );
 
-        setSelectedAttribute(attributes.find((attribute) => attribute.id === selectedValue));
+        setSelectedAttribute(attributes.find(attr => attr.id === selectedValue));
 
-        setHeights([...new Set(valide_dimensions.map(item => item?.height))]);
-        setWidths([...new Set(valide_dimensions.map(item => item?.width))]);
+        // Reset dependent selections when attribute changes
+        setSelectedHieght("");
+        setSelectedWidth("");
+        setSelectedColor("");
+
+        setHeights([...new Set(validDimensions.map(item => item?.height).filter(h => h != null))]);
+        setWidths([...new Set(validDimensions.map(item => item?.width).filter(w => w != null))]);
+
+        // Re-filter colors to only those relevant to this attribute's dimensions
+        const validColorIds = new Set(
+            validDimensions.map(item => item?.color_id).filter(Boolean)
+        );
     }
 
     // Find matching dimension and update price

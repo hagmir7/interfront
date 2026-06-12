@@ -23,6 +23,7 @@ async function MenuPage() {
     { href: "/carriere", label: "Carrière", icon: <BriefcaseBusiness size={18} /> },
 
     { href: "/profile", label: "Commandes", icon: <ShoppingBag size={18} />, hidden: !user },
+    { href: "/tracking", label: "Suivi des commandes", icon: <BriefcaseBusiness size={18} /> },
   ];
 
   return (
