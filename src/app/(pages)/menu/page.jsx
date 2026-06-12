@@ -2,7 +2,7 @@ import CLink from '@/components/CLink';
 import LogoutButton from '@/components/ui/LogoutButton';
 import { User } from '@/services/auth';
 import { getServerUser } from '@/services/auth.server';
-import { ArrowRight, User2Icon, Home, ShoppingBag, Calendar, InfoIcon, ChevronRight, LogOut, LogIn, Heart, BriefcaseBusiness, MailWarning } from 'lucide-react';
+import { ArrowRight, User2Icon, Home, ShoppingBag, Calendar, InfoIcon, ChevronRight, LogOut, LogIn, Heart, BriefcaseBusiness, MailWarning, MapPinned } from 'lucide-react';
 
 export const metadata = {
   title: 'Menu - Intercocina',
@@ -23,7 +23,7 @@ async function MenuPage() {
     { href: "/carriere", label: "Carrière", icon: <BriefcaseBusiness size={18} /> },
 
     { href: "/profile", label: "Commandes", icon: <ShoppingBag size={18} />, hidden: !user },
-    { href: "/tracking", label: "Suivi des commandes", icon: <BriefcaseBusiness size={18} /> },
+    { href: "/tracking", label: "Suivi des commandes", icon: <MapPinned size={18} /> },
   ];
 
   return (
