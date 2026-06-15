@@ -413,7 +413,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
                   className='-top-56 hidden absolute overflow-hidden bg-neutral-950 left-1/2 p-0 border-black border-2 peer-focus:block peer-hover:block rounded text-center text-sm text-white transition-all w-40 whitespace-nowrap z-10'
                   role='tooltip'
                 >
-                  {c.name}
+                  {c.name} <br />
+                  <small>{c.code}</small>
                   <Image
                     className='w-full'
                     width={100}
