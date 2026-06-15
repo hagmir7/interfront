@@ -4,7 +4,7 @@ import PageComponent from '@/components/PageComponent';
 
 const slug = 'privacy';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   try {
