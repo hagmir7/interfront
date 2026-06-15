@@ -4,17 +4,19 @@ import PageComponent from '@/components/PageComponent';
 
 const slug = 'privacy';
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata() {
   try {
     const response = await api.get(`pages/${slug}`);
-    const page = response.data;
+    const page = response?.data;
 
     return {
-      title: page.title || `Page ${slug}`,
-      description: page.description || `Ceci est le page ${slug}`,
+      title: page?.title || `Page ${slug}`,
+      description: page?.description || `Ceci est le page ${slug}`,
     };
   } catch (error) {
-    console.error(error);
+    console.error('generateMetadata error:', error);
 
     return {
       title: `Page ${slug}`,
