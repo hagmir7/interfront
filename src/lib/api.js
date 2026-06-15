@@ -20,7 +20,8 @@ export const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
+        // 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
+        'X-API-KEY': 'BUvM$K|+z)XS)kz}cOal2cg{)gJV|H$',
     },
 });
 
