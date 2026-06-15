@@ -1,8 +1,10 @@
 import React from 'react';
 import { api } from '@/lib/api';
 import PageComponent from '@/components/PageComponent';
-const slug = 'return-policy'
 
+const slug = 'return-policy';
+
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   try {
@@ -21,8 +23,8 @@ export async function generateMetadata() {
   }
 }
 
-const page = async () => {
-  return (<PageComponent slug={slug} />)
+const Page = async () => {
+  return <PageComponent slug={slug} />;
 };
 
-export default page;
+export default Page;
