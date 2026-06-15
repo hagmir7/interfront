@@ -6,7 +6,9 @@ import { Star, Eye, ShoppingCart, Heart } from "lucide-react"
 import Image from "next/image"
 import { AddToCartModal } from "./AddToCartModal"
 
-const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new = false }) => {
+const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new }) => {
+    console.log(is_new);
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
 
@@ -35,11 +37,11 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
     <>
       <div className="group relative transition-all duration-300 shadow-sm hover:shadow-lg rounded-lg p-2 md:p-4 bg-white">
         <div className="relative overflow-hidden rounded-lg bg-gray-50 mb-4">
-          {is_new && (
+          {parseInt(is_new) ? (
             <span className="absolute top-2 left-2 z-10 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
               Nouveau
             </span>
-          )}
+          ): ''}
 
           <Link href={`/product/${slug}`} className="block">
             <Image
