@@ -19,7 +19,8 @@ export const api = axios.create({
     baseURL,
     headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Accept': 'application/json',
+        'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
     },
 });
 
