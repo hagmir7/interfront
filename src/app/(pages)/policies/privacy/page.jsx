@@ -1,27 +1,30 @@
 import React from 'react';
 import { api } from '@/lib/api';
 import PageComponent from '@/components/PageComponent';
-const slug = 'privacy'
+
+const slug = 'privacy';
+
 export async function generateMetadata() {
   try {
-    const response = await api.get(`pages/${slug}`)
-    const page = await response.data
+    const response = await api.get(`pages/${slug}`);
+    const page = response.data;
 
     return {
       title: page.title || `Page ${slug}`,
-      description:
-        page.description || `Ceci est le page ${slug}`,
-    }
+      description: page.description || `Ceci est le page ${slug}`,
+    };
   } catch (error) {
+    console.error(error);
+
     return {
-      title: `Page ${title}`,
+      title: `Page ${slug}`,
       description: `Ceci est le page ${slug}`,
-    }
+    };
   }
 }
 
-const page = async () => {
-  return (<PageComponent slug={slug} />)
+const Page = async () => {
+  return <PageComponent slug={slug} />;
 };
 
-export default page;
+export default Page;
