@@ -30,12 +30,19 @@ const nextConfig = {
         port: '8000',
         pathname: '/**',
       },
+
+
     ],
   },
   experimental: {
     workerThreads: false,
     cpus: 1
   },
+
+  turbopack: {
+    root: '/home/nepi6015',
+  },
+
 };
 
 export default nextConfig;
