@@ -4,7 +4,7 @@ import CLink from "./CLink";
 import { Mail, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
-const VIMEO_ID = "1193628406"; // ← paste your Vimeo video ID here
+const VIMEO_ID = "1193628406";
 
 const SectionVideo = () => {
   const heroRef = useRef(null);
@@ -58,7 +58,7 @@ const SectionVideo = () => {
         ref={heroRef}
         className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gray-950 text-white"
       >
-        {/* ── Vimeo background ── */}
+
         <div className={`vimeo-bg${videoReady ? ' ready' : ''}`}>
           <iframe
             src={`https://player.vimeo.com/video/${VIMEO_ID}?background=1&autoplay=1&loop=1&muted=1&quality=auto`}

@@ -38,7 +38,7 @@ export default function Home() {
       <Colors />
      
       {/* <ProductCategories /> */}
-       <Tracking />
+       {/* <Tracking /> */}
       <CoverSection />
      
       <BrandsSection />

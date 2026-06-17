@@ -1,5 +1,6 @@
 "use client";
 
+import { api } from "@/lib/api";
 import { useActionState, useRef, useState, useEffect } from "react";
 
 export async function submitReclamation(prevState, formData) {
@@ -10,28 +11,41 @@ export async function submitReclamation(prevState, formData) {
   const message = formData.get("message");
   const files = formData.getAll("files");
 
-  const fieldErrors = {};
-  if (!fullName?.trim()) fieldErrors.fullName = "Le nom complet est obligatoire.";
-  if (!subject?.trim()) fieldErrors.subject = "Le sujet est obligatoire.";
-  if (!phone?.trim()) fieldErrors.phone = "Le numéro de téléphone est obligatoire.";
-  if (!message?.trim()) fieldErrors.message = "Le message est obligatoire.";
-
-  if (Object.keys(fieldErrors).length > 0) {
-    return { fieldErrors };
-  }
-
   try {
-    console.log("Reclamation submitted:", {
-      fullName,
-      subject,
-      phone,
-      clientNumber,
-      message,
-      filesCount: files.filter((f) => f.size > 0).length,
-    });
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    const apiFormData = new FormData();
+    apiFormData.append("fullName", fullName ?? "");
+    apiFormData.append("subject", subject ?? "");
+    apiFormData.append("phone", phone ?? "");
+    apiFormData.append("clientNumber", clientNumber ?? "");
+    apiFormData.append("message", message ?? "");
+    files
+      .filter((f) => f instanceof File && f.size > 0)
+      .forEach((f) => apiFormData.append("files", f));
+
+    const { data } = await api.post("reclamations", apiFormData);
+
+    if (!data.success) {
+      return { error: data.error || "Une erreur s'est produite. Veuillez réessayer." };
+    }
+
     return { success: true };
-  } catch {
+  } catch (err) {
+    if (err.response?.status === 422) {
+      const apiErrors = err.response.data.errors ?? {};
+      const mapped = {};
+
+      for (const key of ["fullName", "subject", "phone", "clientNumber", "message"]) {
+        if (apiErrors[key]?.length) mapped[key] = apiErrors[key];
+      }
+
+      const fileErrors = Object.entries(apiErrors)
+        .filter(([k]) => k === "files" || k.startsWith("files."))
+        .flatMap(([, v]) => v);
+      if (fileErrors.length) mapped.files = fileErrors;
+
+      return { fieldErrors: mapped };
+    }
+
     return { error: "Une erreur s'est produite. Veuillez réessayer." };
   }
 }
@@ -147,9 +161,9 @@ export default function ReclamationForm() {
             className={fi(state.fieldErrors?.fullName)}
             disabled={isPending}
           />
-          {state.fieldErrors?.fullName && (
-            <span className="mt-1 text-xs text-red-500">{state.fieldErrors.fullName}</span>
-          )}
+          {state.fieldErrors?.fullName?.map((msg, i) => (
+            <span key={i} className="mt-1 text-xs text-red-500">{msg}</span>
+          ))}
         </div>
 
         <div className="flex flex-col">
@@ -164,9 +178,9 @@ export default function ReclamationForm() {
             className={fi(state.fieldErrors?.subject)}
             disabled={isPending}
           />
-          {state.fieldErrors?.subject && (
-            <span className="mt-1 text-xs text-red-500">{state.fieldErrors.subject}</span>
-          )}
+          {state.fieldErrors?.subject?.map((msg, i) => (
+            <span key={i} className="mt-1 text-xs text-red-500">{msg}</span>
+          ))}
         </div>
       </div>
 
@@ -184,9 +198,9 @@ export default function ReclamationForm() {
             className={fi(state.fieldErrors?.phone)}
             disabled={isPending}
           />
-          {state.fieldErrors?.phone && (
-            <span className="mt-1 text-xs text-red-500">{state.fieldErrors.phone}</span>
-          )}
+          {state.fieldErrors?.phone?.map((msg, i) => (
+            <span key={i} className="mt-1 text-xs text-red-500">{msg}</span>
+          ))}
         </div>
 
         <div className="flex flex-col">
@@ -199,9 +213,12 @@ export default function ReclamationForm() {
             name="clientNumber"
             type="text"
             placeholder="CL0000"
-            className={fi()}
+            className={fi(state.fieldErrors?.clientNumber)}
             disabled={isPending}
           />
+          {state.fieldErrors?.clientNumber?.map((msg, i) => (
+            <span key={i} className="mt-1 text-xs text-red-500">{msg}</span>
+          ))}
         </div>
       </div>
 
@@ -218,9 +235,9 @@ export default function ReclamationForm() {
           className={fi(state.fieldErrors?.message)}
           disabled={isPending}
         />
-        {state.fieldErrors?.message && (
-          <span className="mt-1 text-xs text-red-500">{state.fieldErrors.message}</span>
-        )}
+        {state.fieldErrors?.message?.map((msg, i) => (
+          <span key={i} className="mt-1 text-xs text-red-500">{msg}</span>
+        ))}
       </div>
 
       {/* File Upload */}
@@ -293,6 +310,10 @@ export default function ReclamationForm() {
             ))}
           </ul>
         )}
+
+        {state.fieldErrors?.files?.map((msg, i) => (
+          <span key={i} className="text-xs text-red-500">{msg}</span>
+        ))}
       </div>
 
       {/* Submit */}

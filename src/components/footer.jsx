@@ -24,9 +24,9 @@ const Footer = () => {
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/event/list">Événements</Link>
                 </li>
-                <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
+                {/* <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/tracking">Suivi des commandes</Link>
-                </li>
+                </li> */}
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/policies/privacy">Politique de confidentialité</Link>
                 </li>

@@ -315,12 +315,12 @@ const MainNav = () => {
                 </CLink>
               </li>
                 <li>
-                <CLink
+                {/* <CLink
                   href='/tracking'
                   className='inline-flex cursor-pointer py-2 hover:text-gray-500 gap-2 items-center text-[18px] text-neutral-600'
                 >
                   Suivi des commandes
-                </CLink>
+                </CLink> */}
               </li>
             </ul>
             <div className='flex gap-3'>

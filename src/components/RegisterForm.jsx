@@ -53,10 +53,10 @@ const RegisterForm = ({ isRegister = false }) => {
 
       if (user?.type == null) {
         router.push('/onboarding');
-      }else{
+      } else {
         router.push(searchParams?.get("next") || "/profile");
       }
-      
+
     } catch (err) {
       setError(err?.response?.data?.message || "Une erreur est survenue");
     } finally {
@@ -83,7 +83,7 @@ const RegisterForm = ({ isRegister = false }) => {
             {/* Logo placeholder */}
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-10">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
               </svg>
             </div>
 
@@ -127,13 +127,13 @@ const RegisterForm = ({ isRegister = false }) => {
           </div>
 
           {/* Social login */}
-            <SocialAuthButtons
-              onLoadingChange={setIsLoading}
-              onError={(provider, err) => {
-                console.error(`${provider} login error:`, err);
-                setError("Une erreur est survenue. Veuillez réessayer.");
-              }}
-            />
+          <SocialAuthButtons
+            onLoadingChange={setIsLoading}
+            onError={(provider, err) => {
+              console.error(`${provider} login error:`, err);
+              setError("Une erreur est survenue. Veuillez réessayer.");
+            }}
+          />
 
           {/* Divider */}
           <div className="relative flex items-center gap-3 mb-6">
@@ -147,7 +147,7 @@ const RegisterForm = ({ isRegister = false }) => {
             {error && (
               <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500 shrink-0">
-                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                  <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
                 </svg>
                 <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
               </div>
@@ -174,7 +174,7 @@ const RegisterForm = ({ isRegister = false }) => {
               {isLoading ? (
                 <>
                   <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                   </svg>
                   Inscription en cours…
                 </>

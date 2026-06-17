@@ -22,7 +22,7 @@ async function MenuPage() {
     { href: "/aprops", label: "À propos", icon: <InfoIcon size={18} /> },
     { href: "/carriere", label: "Carrière", icon: <BriefcaseBusiness size={18} /> },
     { href: "/profile", label: "Commandes", icon: <ShoppingBag size={18} />, hidden: !user },
-    { href: "/tracking", label: "Suivi des commandes", icon: <MapPinned size={18} /> },
+    // { href: "/tracking", label: "Suivi des commandes", icon: <MapPinned size={18} /> },
   ];
 
   return (
