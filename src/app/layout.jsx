@@ -13,7 +13,7 @@ import { getDomain } from "@/lib/domain";
 
 export async function generateMetadata() {
   return {
-    metadataBase: await getDomain(),
+    metadataBase: new URL(await getDomain()),
   };
 }
 
