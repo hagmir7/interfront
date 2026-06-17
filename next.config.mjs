@@ -12,6 +12,18 @@ const nextConfig = {
         hostname: 'dev.intercocina.com',
         pathname: '/**',
       },
+
+      {
+        protocol: 'https',
+        hostname: 'intercocina.com',
+        pathname: '/**',
+      },
+
+      {
+        protocol: 'https',
+        hostname: 'wwww.intercocina.com',
+        pathname: '/**',
+      },
       {
         protocol: 'http',
         hostname: 'localhost',
