@@ -67,7 +67,6 @@ export default function ShareProduct({ product }) {
                             errorLevel="H"
                             size={130}
                             value={productUrl}
-                            icon="https://intercocina.com/assets/imgs/intercocina-logo.png"
                         />
                     </div>
                 </div>

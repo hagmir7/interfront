@@ -1,23 +1,27 @@
 import CLink from "@/components/CLink";
-import HomeCategory from "@/components/HomeCategory";
 import { api } from "@/lib/api";
 import Image from "next/image";
 
+
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
+    const { slug } = await params;
 
-  try {
-    const res = await api.get(`groups/${slug}`);
-    const post = res.data;
 
-    return {
-      title: post.name || "Untitled Group",
-      description: post.description || "",
-    };
-  } catch (err) {
-    console.error("Error fetching group metadata:", err);
-    return { title: "Group not found", description: "" };
-  }
+    try {
+        const res = await api.get(`groups/${slug}`);
+        const post = res.data;
+
+        return {
+            title: post.name || "Untitled Group",
+            description: post.description || "",
+            alternates: {
+                canonical: `/groups/${slug}`,
+            },
+        };
+    } catch (err) {
+        console.error("Error fetching group metadata:", err);
+        return { title: "Group not found", description: "" };
+    }
 }
 
 

@@ -6,4 +6,8 @@ export function cn(...inputs) {
 }
 
 
-export const truncate = (s, n = 160) => s.length > n ? s.slice(0, n) + '...' : s;
+export const truncate = (s, n = 160) => s?.length > n ? s?.slice(0, n) + '...' : s;
+
+
+
+

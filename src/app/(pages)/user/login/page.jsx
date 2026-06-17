@@ -4,7 +4,7 @@ import { Suspense } from "react";
 export const metadata = {
   title: 'Connexion | Intercocina',
   description:
-    'Connectez-vous à votre espace client Intercocina pour accéder à vos projets de cuisines, dressings et meubles sur mesure. Consultez vos devis, suivez vos commandes et gérez vos informations en toute sécurité.',
+    'Connectez-vous à votre espace client Intercocina pour accéder à vos projets de cuisines, dressings et meubles sur mesure. Consultez vos devis.',
 
   keywords: [
     'Intercocina connexion',
@@ -19,7 +19,11 @@ export const metadata = {
     'mobilier sur mesure',
     'aménagement intérieur',
     'Intercocina Maroc',
-  ]
+  ],
+
+   alternates: {
+      canonical: `/user/login`,
+    },
 }
 
 

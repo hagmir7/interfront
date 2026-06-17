@@ -18,14 +18,32 @@ export async function generateMetadata({ params }) {
     const response = await api.get(`products/${slug}`);
     const product = response.data?.data ?? response.data;
 
+    const description = product?.description
+      ? truncate(product.description)
+      : `Découvrez ${product?.name} chez INTERCOCINA : meubles sur-mesure et rangement de qualité.`;
+
+    const tagList = Array.isArray(product?.tags)
+      ? product.tags
+      : product?.tags
+        ? [product.tags]
+        : [];
+    const keywords = [...tagList, "armoires", "meubles sur-mesure", "rangement"]
+      .filter(Boolean)
+      .join(", ");
+
     return {
-      title: `${product.name}`,
-      description: `${truncate(product.description)}`,
-      keywords: `${product.tags}, armoires, meubles sur-mesure, rangement`,
+      title: `${product?.name}`,
+      description,
+      alternates: {
+        canonical: `/product/${slug}`,
+      },
+      keywords,
       openGraph: {
-        title: `${product.name}`,
-        description: `${truncate(product.description)}`,
-        images: 'https://app.intercocina.com/storage/' + product.images?.[0]?.image ? [{ url: product.images[0].image }] : [],
+        title: `${product?.name}`,
+        description,
+        images: product?.images?.[0]?.image
+          ? [{ url: 'https://app.intercocina.com/storage/' + product.images[0].image }]
+          : [],
       },
     };
   } catch {
@@ -44,7 +62,9 @@ export default async function Page({ params, searchParams }) {
   try {
     const response = await api.get(`products/${slug}`);
     const data = response.data;
+
     product = data?.data ?? data;
+
   } catch {
     notFound();
   }
@@ -92,7 +112,7 @@ export default async function Page({ params, searchParams }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ProductClient product={product} code={code} />
+        <ProductClient product={product} code={product.code || code} />
 
         
         {product?.piece?.length > 0 && <ProductPiece pieces={product.piece || []} />}
@@ -169,9 +189,6 @@ export default async function Page({ params, searchParams }) {
             slug: product.slug,
           }}
         />
-
-
-
 
         {/* Parquet Section */}
         {String(product?.type?.name).includes("Parquet") && (

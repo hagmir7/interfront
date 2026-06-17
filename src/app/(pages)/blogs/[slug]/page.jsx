@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { Search, User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
+import { User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 import CLink from '@/components/CLink';
@@ -15,8 +15,10 @@ export async function generateMetadata({ params }) {
 
     return {
       title: article.title || `Blog ${slug}`,
-      description:
-        article.description || `Ceci est le blog ${slug}`,
+      description: article.description || `Ceci est le blog ${slug}`,
+      alternates: {
+        canonical: `/blogs/${slug}`,
+      },
     }
   } catch (error) {
     return {
@@ -41,7 +43,7 @@ const BlogPage = async ({ params }) => {
   const { slug } = await params;
 
   const response = await api.get(`posts/${slug}`);
-  
+
   const article = await response.data;
 
 

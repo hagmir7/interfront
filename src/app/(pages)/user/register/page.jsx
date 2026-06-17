@@ -1,4 +1,5 @@
 import RegisterForm from '@/components/RegisterForm'
+
 import React, { Suspense } from 'react'
 
 
@@ -16,6 +17,10 @@ export const metadata = {
     'espace client',
     'meubles sur mesure',
   ],
+
+  alternates: {
+    canonical: `/user/register`,
+  },
 }
 
 

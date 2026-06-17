@@ -10,7 +10,7 @@ export const metadata = {
     keywords:
         "FAQ Intercocina, questions fréquentes, aide meubles sur mesure, support client, livraison, commande, conseils aménagement, assistance Intercocina",
     alternates: {
-        canonical: "/faqs",
+        canonical: `/faqs`,
     },
 };
 

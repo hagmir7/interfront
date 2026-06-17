@@ -39,9 +39,9 @@ const nextConfig = {
     cpus: 1
   },
 
-  turbopack: {
-    root: '/home/nepi6015',
-  },
+  // turbopack: {
+  //   root: '/home/nepi6015',
+  // },
 
 };
 

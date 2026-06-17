@@ -8,7 +8,7 @@ export const metadata = {
   description: 'Contactez Intercocina pour toute demande d’information, devis ou assistance sur nos meubles sur mesure. Notre équipe est à votre écoute.',
   keywords: 'contact Intercocina, service client, devis meubles sur mesure, assistance, informations meubles, support client, questions aménagement, meubles sur mesure',
   alternates: {
-    canonical: '/contact',
+    canonical: `/contact`,
   },
 };
 

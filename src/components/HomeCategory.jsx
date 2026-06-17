@@ -84,9 +84,9 @@ const HomeCategory = () => {
     <section className="py-10 px-4">
       {/* Section header */}
       <div className="container mx-auto mb-10 flex flex-col items-center text-center gap-3">
-        <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight">
+        <h1 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight">
           Meubles de cuisine
-        </h2>
+        </h1>
         <p className="text-gray-500 max-w-md text-sm leading-relaxed">
           Des solutions complètes pour aménager votre cuisine et votre intérieur, fabriquées au Maroc.
         </p>

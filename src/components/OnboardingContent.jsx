@@ -99,7 +99,6 @@ export default function OnboardingContent() {
         setSuccess(true);
         setError(null)
         const next = searchParams.get("next")
-        console.log(response.user)
         if (next) {
           router.push(next)
         } else if (response?.user?.type) {

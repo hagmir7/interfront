@@ -30,13 +30,13 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: 'https://www.intercocina.com/carriere',
+    canonical: `/carriere`,
   },
   openGraph: {
     title: 'Carrière chez Intercocina | Rejoignez notre équipe',
     description:
       "L'humain au cœur de notre performance industrielle. Découvrez nos opportunités en production, bureau d'études et services supports.",
-    url: 'https://www.intercocina.com/carriere',
+    url: `/carriere`,
     siteName: 'Intercocina',
     locale: 'fr_FR',
     type: 'website',

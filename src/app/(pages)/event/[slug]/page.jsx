@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { Search, User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
+import { User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
 import { api } from '@/lib/api';
 import CLink from '@/components/CLink';
 import EventImageSwiper from '@/components/EventImageSwiper';
@@ -14,9 +14,12 @@ export async function generateMetadata({ params }) {
 
     return {
       title: event.title || `Blog ${slug}`,
-      description:
-        event.description || `Ceci est le blog ${slug}`,
+      description: event?.description?.slice(0, 170) || `Ceci est le blog ${slug}`,
+      alternates: {
+        canonical: `${await getDomain()}/user/login`,
+      },
     }
+
   } catch (error) {
     return {
       title: `Blog ${slug}`,
@@ -26,7 +29,7 @@ export async function generateMetadata({ params }) {
 }
 
 const BlogPage = async ({ params }) => {
-   const categories = [
+  const categories = [
     { name: 'Caissons Blanc 18', count: 10, url: '/category/caissons?type=caisson-bas' },
     { name: 'Caissons Hydrofuge 22', count: 5, url: '/category/caisson-hydrofuge?type=hydrofuge-bas' },
     { name: 'Facads et Portes', count: 17, url: '/category/facade' },
@@ -39,7 +42,7 @@ const BlogPage = async ({ params }) => {
   const { slug } = await params;
 
   const response = await api.get(`events/${slug}`);
-  
+
   const event = await response.data;
 
 

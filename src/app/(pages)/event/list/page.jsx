@@ -1,5 +1,6 @@
 import CLink from '@/components/CLink'
 import { api } from '@/lib/api'
+
 import Image from 'next/image'
 import React from 'react'
 
@@ -7,6 +8,9 @@ export const metadata = {
   title: 'Événements et exposition - Intercocina',
   description:
     'Intercocina, la fabrication de meubles de cuisine, meubles TV, placards et armoires, meubles de salle de bain, ainsi que de parquets, au Maroc.',
+  alternates: {
+    canonical: `/event/list`,
+  },
 }
 
 const EventsSection = async () => {
@@ -32,9 +36,9 @@ const EventsSection = async () => {
           <div className='inline-block px-4 py-2 mb-6 text-sm font-medium text-blue-600 bg-blue-50 rounded-full border border-blue-200'>
             Événements & Expositions
           </div>
-          <h2 className='mb-6 text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent leading-tight'>
+          <h1 className='mb-6 text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent leading-tight'>
             Joignez-vous à Nous lors des Événements
-          </h2>
+          </h1>
           <p className='max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed'>
             Clés pour Tout Savoir sur les Tendances de la Cuisine et du Design.
           </p>

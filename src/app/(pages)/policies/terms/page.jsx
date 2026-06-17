@@ -14,6 +14,9 @@ export async function generateMetadata() {
     return {
       title: page.title || `Page ${slug}`,
       description: page.description || `Ceci est le page ${slug}`,
+      alternates: {
+        canonical: `/policies/terms`,
+      },
     };
   } catch (error) {
     return {

@@ -1,16 +1,17 @@
 import BrandsSection from '@/components/brand-section';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
-  title: "À propos d'Intercocina - Expert en cuisines et rangements sur mesure",
+  title: "À propos d'Intercocina",
   description:
     "Découvrez Intercocina, spécialiste des cuisines, armoires et rangements sur mesure. Nous allions qualité, design et solutions personnalisées pour chaque espace.",
   keywords:
     "Intercocina, à propos, cuisine sur mesure, armoires, dressings, rangements, mobilier personnalisé, expert en aménagement intérieur",
   alternates: {
-    canonical: '/aprops',
+    canonical: `/aprops`,
   },
 };
 
@@ -63,11 +64,11 @@ const AboutPage = () => {
             À propos d'Intercocina
           </p>
 
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-neutral-900 md:text-5xl">
-           L’excellence de la production  {' '}
-            <span className="text-red-500">industrielle de meubles</span>{' '}
+          <div className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-neutral-900 md:text-5xl">
+            <h1> L’excellence de la production  {' '}
+            <span className="text-red-500">industrielle de meubles</span>{' '}</h1>
             de cuisine premium au Maroc
-          </h1>
+          </div>
 
           <p className="mt-5 max-w-xl text-lg text-neutral-500 leading-relaxed">
             Qualité premium · Livraison rapide · Grande capacité industrielle
