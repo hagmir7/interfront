@@ -6,6 +6,7 @@ import {
   logout as apiLogout,
 } from "@/services/auth";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { api } from "@/lib/api";
 
 const AuthContext = createContext(null);
 

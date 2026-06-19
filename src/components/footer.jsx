@@ -66,7 +66,7 @@ const Footer = () => {
       <hr className="h-px bg-gray-200 border-0" />
       <div className="flex flex-col items-center gap-8 pt-8 md:justify-between lg:flex-row">
         <p className="text-center text-slate-700 md:text-left font-semibold">
-          Copyright © INTERCOCINA 2025. All rights reserved. Made with ❤️ in Nador.
+          Copyright © INTERCOCINA 2026. All rights reserved. Made with ❤️ in Nador.
         </p>
         <div>
           <ul className="flex items-center gap-4">

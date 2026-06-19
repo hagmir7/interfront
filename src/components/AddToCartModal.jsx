@@ -44,6 +44,8 @@ export function AddToCartModal({ open, onOpenChange, product }) {
         if(!validation()){
             return;
         };
+
+        console.log(product)
         addToCart({
             quantity,
             id: `${product.name}-${product.id}-${selectedWidth || ''}-${selectedHieght || ''}-${selectedColor || ''}`,

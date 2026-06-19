@@ -15,12 +15,15 @@ import CLink from "./CLink";
 import { LogIn } from "lucide-react";
 import { User } from "@/services/auth";
 
-
-
+// Safely coerce any price/quantity/percentage value to a number
+const toNumber = (val) => {
+  const n = Number(val);
+  return Number.isFinite(n) ? n : 0;
+};
 
 export default function CheckoutPage() {
   const { cart } = useCart();
-  const { user, authLoading } = useAuth();
+  const { user, authLoading, discounts } = useAuth();
   const [login, setLogin] = useState();
 
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -91,10 +94,34 @@ export default function CheckoutPage() {
     }
   };
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+  // Discount % for an item — only applies if the user is logged in
+  const getDiscountPercentage = (item) => {
+    if (!login) return 0;
+    return toNumber(
+      discounts?.find(d => d.family_id === item.attributes?.family_id)?.percentage
+    );
+  };
+
+  // Unit price after discount
+  const getDiscountedUnitPrice = (item) => {
+    const price = toNumber(item.price);
+    const pct = getDiscountPercentage(item);
+    return price * (1 - pct / 100);
+  };
+
+  // Total before any discount (for showing savings)
+  const rawTotal = cart.reduce(
+    (sum, item) => sum + toNumber(item.price) * toNumber(item.quantity),
     0
   );
+
+  // Total after discount — used for tax & order total
+  const total = cart.reduce(
+    (sum, item) => sum + getDiscountedUnitPrice(item) * toNumber(item.quantity),
+    0
+  );
+
+  const totalDiscount = rawTotal - total;
 
   if (authLoading) {
     return (
@@ -124,15 +151,20 @@ export default function CheckoutPage() {
             let name = `${attribute} ${item?.name ?? ""}`.trim();
             name = name.replace(/façade|facade/gi, "").trim();
 
+            const discountPct = getDiscountPercentage(item);
+            const discountedPrice = getDiscountedUnitPrice(item);
+
             return (
               <CartItem
                 key={item.id}
                 name={name}
                 dimensions={item?.attributes?.dimension ?? ""}
                 color={item?.attributes?.color_name ?? ""}
-                price={item.price}
+                price={Math.round(discountedPrice * 100) / 100}
+                originalPrice={toNumber(item.price)}
+                discountPercentage={discountPct}
                 href={`/product/${item?.attributes?.slug ?? ""}`}
-                quantity={item.quantity}
+                quantity={toNumber(item.quantity)}
               />
             );
           })}
@@ -181,9 +213,10 @@ export default function CheckoutPage() {
           {login ? (
             <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
               <OrderSummary
-                originalPrice={Number(total)}
-                tax={Number(total) * 0.2}
-                total={Number(total) * 1.2}
+                originalPrice={total}
+                discount={totalDiscount}
+                tax={total * 0.2}
+                total={total * 1.2}
                 onSubmit={handleSubmitOrder}
                 isLoading={isLoading}
               />

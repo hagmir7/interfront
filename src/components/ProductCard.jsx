@@ -6,7 +6,7 @@ import { Star, Eye, ShoppingCart, Heart } from "lucide-react"
 import Image from "next/image"
 import { AddToCartModal } from "./AddToCartModal"
 
-const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new }) => {
+const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new, family_id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
 
@@ -107,7 +107,8 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
           price_format,
           images,
           slug,
-          id
+          id,
+          family_id
         }}
 
       />
