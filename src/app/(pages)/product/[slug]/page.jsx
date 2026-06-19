@@ -71,38 +71,77 @@ export default async function Page({ params, searchParams }) {
 
   const options = product?.options ?? {};
 
+  function buildProductOffer(product) {
+    const url = `https://intercocina.com/product/${product.slug}`;
+
+    const isRange = (val) => typeof val === "string" && val.includes(" - ");
+    const rawPrice = product.price || product.price_format;
+
+    if (!rawPrice) return undefined; // no price data — omit offers entirely
+
+    if (isRange(rawPrice)) {
+      const [low, high] = rawPrice.split(" - ").map((s) => s.trim());
+      return {
+        "@type": "AggregateOffer",
+        url,
+        priceCurrency: "MAD",
+        lowPrice: low,
+        highPrice: high || low,
+        availability: "https://schema.org/InStock",
+      };
+    }
+
+    return {
+      "@type": "Offer",
+      url,
+      priceCurrency: "MAD",
+      price: String(rawPrice),
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+    };
+  }
+
+  const offer = buildProductOffer(product);
+
+  const imageUrl = product.images?.[0]?.image
+    ? "https://app.intercocina.com/storage/" + product.images[0].image
+    : undefined;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    description: product.description,
-    image: 'https://app.intercocina.com/storage/' + product.images?.[0]?.image ?? "",
+    ...(product.description && { description: product.description }),
+    ...(imageUrl && { image: imageUrl }),
     brand: {
       "@type": "Brand",
       name: "INTERCOCINA",
     },
-    offers: {
-      "@type": "Offer",
-      url: `https://intercocina.com/product/${product.slug}`,
-      priceCurrency: "MAD",
-      price: product.price,
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
-    },
+    ...(offer && { offers: offer }),
     manufacturer: {
       "@type": "Organization",
       name: "INTERCOCINA",
     },
-    ...(product.aggregateRating && {
+    ...(product.reviews?.length && {
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "4.5",
-        reviewCount: "150",
-        bestRating: "100",
-        worstRating: "1",
+        ratingValue: String(
+          (
+            product.reviews.reduce((sum, r) => sum + r.rating, 0) /
+            product.reviews.length
+          ).toFixed(1)
+        ),
+        reviewCount: String(product.reviews.length),
       },
+      review: product.reviews.slice(0, 5).map((r) => ({
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: String(r.rating) },
+        author: { "@type": "Person", name: r.authorName },
+        reviewBody: r.body,
+      })),
     }),
   };
+
 
   return (
     <section className="py-2 md:py-6 mt-5 md:mt-6">
@@ -114,7 +153,7 @@ export default async function Page({ params, searchParams }) {
         />
         <ProductClient product={product} code={product.code || code} />
 
-        
+
         {product?.piece?.length > 0 && <ProductPiece pieces={product.piece || []} />}
 
         <div className="mt-2">

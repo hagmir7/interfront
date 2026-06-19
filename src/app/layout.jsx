@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="INTER" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="preconnect" href="https://app.intercocina.com" />
       </head>
       <body className="bg-[#f2f2f2]">
         <LoadingBar />
