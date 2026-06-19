@@ -52,6 +52,11 @@ export async function generateMetadata({ params }) {
 }
 
 
+
+
+
+
+
 export default async function Page({ params, searchParams }) {
   const { slug } = await params;
   const resolvedSearch = await searchParams;
@@ -62,11 +67,18 @@ export default async function Page({ params, searchParams }) {
   try {
     const response = await api.get(`products/${slug}`);
     const data = response.data;
-
     product = data?.data ?? data;
-
   } catch {
     notFound();
+  }
+
+
+  let reviews;
+  try {
+    const response = await api.get(`products/reviews/${slug}`);
+    reviews = response.data || [];
+  } catch {
+    reviews = [];
   }
 
   const options = product?.options ?? {};
@@ -74,10 +86,12 @@ export default async function Page({ params, searchParams }) {
   function buildProductOffer(product) {
     const url = `https://intercocina.com/product/${product.slug}`;
 
+    
+
     const isRange = (val) => typeof val === "string" && val.includes(" - ");
     const rawPrice = product.price || product.price_format;
 
-    if (!rawPrice) return undefined; // no price data — omit offers entirely
+    if (!rawPrice) return undefined;
 
     if (isRange(rawPrice)) {
       const [low, high] = rawPrice.split(" - ").map((s) => s.trim());
@@ -122,22 +136,22 @@ export default async function Page({ params, searchParams }) {
       "@type": "Organization",
       name: "INTERCOCINA",
     },
-    ...(product.reviews?.length && {
+    ...(reviews?.length && {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: String(
           (
-            product.reviews.reduce((sum, r) => sum + r.rating, 0) /
-            product.reviews.length
+            reviews.reduce((sum, r) => sum + r.stars, 0) /
+            reviews.length
           ).toFixed(1)
         ),
-        reviewCount: String(product.reviews.length),
+        reviewCount: String(reviews.length),
       },
-      review: product.reviews.slice(0, 5).map((r) => ({
+      review: reviews.slice(0, 5).map((r) => ({
         "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: String(r.rating) },
-        author: { "@type": "Person", name: r.authorName },
-        reviewBody: r.body,
+        reviewRating: { "@type": "Rating", ratingValue: String(r.stars) },
+        author: { "@type": "Person", name: r.full_name },
+        reviewBody: r.comment,
       })),
     }),
   };
