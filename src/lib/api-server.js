@@ -16,8 +16,8 @@ export const apiServer = async (endpoint, options = {}, withAuth = true) => {
         ...options,
         headers: {
             'Content-Type': 'application/json',
-             'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
-            // 'X-API-KEY': 'BUvM$K|+z)XS)kz}cOal2cg{)gJV|H$',
+            //  'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
+            'X-API-KEY': 'BUvM$K|+z)XS)kz}cOal2cg{)gJV|H$',
             Accept: 'application/json',
             ...(token && { Authorization: `Bearer ${token}` }),
             ...options.headers,
