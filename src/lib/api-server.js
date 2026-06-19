@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
 const BASE_URL = process.env.NODE_ENV === 'development'
-    ? 'https://app.intercocina.com/api'
+    ? 'http://localhost:8000/api'
     : 'https://app.intercocina.com/api';
 
 const getAuthToken = async () => {

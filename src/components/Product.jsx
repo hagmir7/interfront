@@ -282,6 +282,7 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
       price: price,
       quantity: quantity,
       attributes: {
+        family_id: product?.family_id,
         color: color || null,
         color_name: color && dimension ? dimension.color?.name : color ? colors.find((item) => item.id === color)?.name : null,
         image: product.images[0]?.image,
@@ -293,6 +294,8 @@ const Product = ({ product, selectedColor, onColorChange, initialCode }) => {
         product_id: product.id,
         dimension_id: dimension?.id || null,
         special: special,
+   
+        
       },
     };
 

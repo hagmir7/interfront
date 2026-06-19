@@ -23,7 +23,9 @@ export default function AddToCart() {
                 attribute: "",
                 product_id: "",
                 dimension_id: "",
-                special: ""
+                special: "",
+                family_id:""
+          
             }
         }
         setSpinner(false)

@@ -2,6 +2,7 @@ import ParqetCaracteristiques from "@/components/ParqetCaracteristiques";
 import ProductCard from "@/components/ProductCard";
 import ProductClient from "@/components/ProductClient";
 import ProductPiece from "@/components/ProductPiece";
+import ReviewForm from "@/components/ReviewForm";
 import ShareProduct from "@/components/ShareProduct";
 import ShowRoomTrigger from "@/components/ShowRoomTrigger";
 import ImageHotspot from "@/components/ZoomLightbox";
@@ -81,12 +82,16 @@ export default async function Page({ params, searchParams }) {
     reviews = [];
   }
 
+  const avgRating = reviews?.length
+  ? reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length
+  : 0;
+
   const options = product?.options ?? {};
 
   function buildProductOffer(product) {
     const url = `https://intercocina.com/product/${product.slug}`;
 
-    
+
 
     const isRange = (val) => typeof val === "string" && val.includes(" - ");
     const rawPrice = product.price || product.price_format;
@@ -260,7 +265,65 @@ export default async function Page({ params, searchParams }) {
             </div>
           </>
         )}
+
+
+        <div className="mt-10 flex flex-col lg:flex-row gap-6 items-start">
+
+          {/* Rating Summary */}
+          {reviews?.length > 0 && (
+            <div className="w-full lg:w-1/3 lg:sticky lg:top-24 rounded-2xl border border-stone-200 shadow-sm bg-white p-6">
+              <h3 className="text-lg font-semibold text-stone-800 mb-4">Avis clients</h3>
+
+              <div className="flex items-end gap-2 mb-2">
+                <span className="text-4xl font-bold text-stone-900">{avgRating.toFixed(1)}</span>
+                <span className="text-stone-500 mb-1">/ 5</span>
+              </div>
+
+              <div className="flex items-center gap-1 mb-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg
+                    key={star}
+                    className={`w-5 h-5 ${star <= Math.round(avgRating) ? "text-amber-400" : "text-stone-200"}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.367-2.447a1 1 0 00-1.175 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.957z" />
+                  </svg>
+                ))}
+              </div>
+
+              <p className="text-sm text-stone-500 mb-5">{reviews.length} avis</p>
+
+              <div className="space-y-2">
+                {[5, 4, 3, 2, 1].map((star) => {
+                  const count = reviews.filter((r) => r.stars === star).length;
+                  const pct = reviews.length ? Math.round((count / reviews.length) * 100) : 0;
+                  return (
+                    <div key={star} className="flex items-center gap-2 text-xs">
+                      <span className="w-3 text-stone-500">{star}</span>
+                      <svg className="w-3.5 h-3.5 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.367-2.447a1 1 0 00-1.175 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.957z" />
+                      </svg>
+                      <div className="flex-1 h-2 rounded-full bg-stone-100 overflow-hidden">
+                        <div className="h-full bg-amber-400 rounded-full" style={{ width: `${pct}%` }} />
+                      </div>
+                      <span className="w-8 text-right text-stone-500">{count}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Review Form */}
+          <div className="w-full lg:flex-1">
+            <ReviewForm product={product} />
+          </div>
+
+        </div>
       </div>
+
+
     </section>
   );
 }

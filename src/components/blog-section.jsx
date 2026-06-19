@@ -7,6 +7,7 @@ const BlogSection = async () => {
   const articles = await apiServer('posts/home', {
     next: { revalidate: 3600 },
   }, false);
+  
   return (
     <section className="py-12 overflow-x-hidden">
       <div className="px-4 space-y-6 md:max-w-5xl md:mx-auto mb-4">

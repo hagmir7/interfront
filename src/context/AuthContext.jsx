@@ -12,6 +12,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [discounts, setDiscounts] = useState([]);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     loadUser();
+    getDiscount()
   }, []);
 
 
@@ -34,6 +36,16 @@ export const AuthProvider = ({ children }) => {
       await apiLogout();
     } finally {
       setUser(null);
+    }
+  };
+
+  
+  const getDiscount = async () => {
+    try {
+      const response = await api.get("discounts");
+      setDiscounts(response.data || []);
+    } catch (error) {
+      console.error("Erreur lors du chargement des adresses :", error);
     }
   };
 
@@ -47,6 +59,7 @@ export const AuthProvider = ({ children }) => {
           setUser,
           logout,
           authLoading,
+          discounts
         }}
       >
         {children}

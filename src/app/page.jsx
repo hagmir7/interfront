@@ -14,6 +14,7 @@ import Colors from "@/components/Colors";
 import TopFooter from "@/components/TopFooter";
 import AccSlideShow from "@/components/AccSlideShow";
 import SectionVideo from "@/components/SectionVideo";
+import { apiServer } from "@/lib/api-server";
 
 
 
@@ -28,7 +29,10 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  
+
+
   return (
     <div className="bg-[#f2f2f2]">
       <SectionVideo />

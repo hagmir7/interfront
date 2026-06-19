@@ -157,7 +157,7 @@ export default function ReclamationForm() {
             id="fullName"
             name="fullName"
             type="text"
-            placeholder="Jean Dupont"
+            placeholder="Hassan..."
             className={fi(state.fieldErrors?.fullName)}
             disabled={isPending}
           />

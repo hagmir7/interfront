@@ -60,7 +60,9 @@ export function AddToCartModal({ open, onOpenChange, product }) {
                 attribute: selectedAttribute?.name,
                 product_id: product.id,
                 dimension_id: dimension?.id || "",
-                special: false
+                special: false,
+                family_id: product?.family_id,
+                
             }
         })
         setShowAlert(true)

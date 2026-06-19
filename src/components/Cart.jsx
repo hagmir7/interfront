@@ -5,11 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CLink from './CLink';
 import { Button, Empty, Typography } from 'antd';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity } = useCart();
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  const { discounts } = useAuth()
 
   if (cart.length === 0) {
     return (
@@ -68,7 +71,7 @@ export default function Cart() {
                     {item.attributes.attribute} {item.name.replace("Façade", '')} {item?.attributes?.dimension} {item.attributes?.color_name?.name}
                   </Link>
                 </h2>
-                <p className="text-gray-600 text-sm md:text-base">Prix: {item.price} MAD</p>
+                <p className="text-gray-600 text-sm md:text-base">Prix: {item.price} MAD {}</p>
 
                 {/* Additional */}
                 <div className="flex flex-wrap gap-x-4 mt-1">

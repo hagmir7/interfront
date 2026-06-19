@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/lib/api";
-import { MapPin, PlusCircle, Trash } from "lucide-react";
+import { MapPin } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 
@@ -23,9 +23,6 @@ function UserDiscount() {
     };
 
 
-    const confirmDelete = (addr) => {
-        setDeleteConfirm(addr);
-    };
 
     useEffect(() => {
         getData();
