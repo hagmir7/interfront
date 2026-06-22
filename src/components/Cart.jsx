@@ -7,9 +7,8 @@ import CLink from './CLink';
 import { Button, Empty, Typography } from 'antd';
 import { useAuth } from '@/context/AuthContext';
 
-const TVA_RATE = 0.02; // 2%
+const TVA_RATE = 0.20; // 20%
 
-// Safely coerce any price value (string, number, null, undefined) to a number
 const toNumber = (val) => {
   const n = Number(val);
   return Number.isFinite(n) ? n : 0;
@@ -172,7 +171,7 @@ export default function Cart() {
             <span className="text-sm md:text-base font-medium">{totalHT.toFixed(2)} MAD</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-sm md:text-base text-gray-600">TVA (2%)</span>
+            <span className="text-sm md:text-base text-gray-600">TVA (20%)</span>
             <span className="text-sm md:text-base font-medium">{totalTVA.toFixed(2)} MAD</span>
           </div>
           <div className="flex justify-between pt-2 border-t mt-2">
