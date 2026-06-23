@@ -15,7 +15,6 @@ import CLink from "./CLink";
 import { LogIn } from "lucide-react";
 import { User } from "@/services/auth";
 
-// Safely coerce any price/quantity/percentage value to a number
 const toNumber = (val) => {
   const n = Number(val);
   return Number.isFinite(n) ? n : 0;
@@ -44,19 +43,17 @@ export default function CheckoutPage() {
 
 
   const loadAddresses = async () => {
-      try {
-        const res = await api.get("address");
-        setAddresses(res.data || []);
-      } catch (error) {
-        console.error("Erreur chargement adresses:", error);
-      }
-    };
+    try {
+      const res = await api.get("address");
+      setAddresses(res.data || []);
+    } catch (error) {
+      console.error("Erreur chargement adresses:", error);
+    }
+  };
 
 
   useEffect(() => {
     if (!login) return;
-
-    
 
     loadAddresses();
   }, [login]);
@@ -94,7 +91,6 @@ export default function CheckoutPage() {
     }
   };
 
-  // Discount % for an item — only applies if the user is logged in
   const getDiscountPercentage = (item) => {
     if (!login) return 0;
     return toNumber(

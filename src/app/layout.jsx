@@ -16,7 +16,6 @@ export async function generateMetadata() {
     metadataBase: new URL(await getDomain()),
   };
 }
-
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
@@ -40,11 +39,11 @@ export default function RootLayout({ children }) {
             <main>
               {children}
             </main>
+            <Footer />
+            <WhatsAppFloat />
           </AuthProvider>
         </CartProvider>
-        <Footer />
-        <WhatsAppFloat />
       </body>
     </html>
-  )
+  );
 }

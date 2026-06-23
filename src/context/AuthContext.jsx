@@ -15,38 +15,42 @@ export const AuthProvider = ({ children }) => {
   const [authLoading, setAuthLoading] = useState(true);
   const [discounts, setDiscounts] = useState([]);
 
+  const getDiscount = async () => {
+    try {
+      const response = await api.get("discounts");
+      console.log("discounts loaded:", response.data); // ← check this
+      setDiscounts(response.data || []);
+    } catch (error) {
+      console.error("Erreur lors du chargement des remises :", error);
+      setDiscounts([]);
+    }
+  };
+
   useEffect(() => {
     const loadUser = async () => {
       try {
         const userData = await getUser();
         setUser(userData);
+        if (userData) {
+          await getDiscount();
+        }
       } catch (error) {
         setUser(null);
+        setDiscounts([]);
       } finally {
         setAuthLoading(false);
       }
     };
 
     loadUser();
-    getDiscount()
   }, []);
-
 
   const logout = async () => {
     try {
       await apiLogout();
     } finally {
       setUser(null);
-    }
-  };
-
-  
-  const getDiscount = async () => {
-    try {
-      const response = await api.get("discounts");
-      setDiscounts(response.data || []);
-    } catch (error) {
-      console.error("Erreur lors du chargement des adresses :", error);
+      setDiscounts([]); // Clear discounts on logout
     }
   };
 
@@ -60,7 +64,7 @@ export const AuthProvider = ({ children }) => {
           setUser,
           logout,
           authLoading,
-          discounts
+          discounts,
         }}
       >
         {children}
