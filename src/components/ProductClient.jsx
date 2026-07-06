@@ -39,7 +39,7 @@ const ProductClient = ({ product, code }) => {
               </h2>
             </div>
 
-            {product?.id && (
+            {/* {product?.id && (
               <CLink href={`/admin/products/${product.id}/edit`} className="group transition-all duration-500 p-0.5 hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                   <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
@@ -48,7 +48,7 @@ const ProductClient = ({ product, code }) => {
                   </g>
                 </svg>
               </CLink>
-            )}
+            )} */}
           </div>
 
           {

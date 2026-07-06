@@ -74,7 +74,7 @@ const AccSlideShow = () => {
     { url: "caisse-amovible-500-mm-pour-caisson-coin-l", imageUrl: "https://app.intercocina.com/storage/01JM9Y1FJR312PXFDWRPBH1MT3.png", title: "Mécanisme d'angle coulissant" },
     { url: "coin-magique-500-mm-gauche", imageUrl: "https://app.intercocina.com/storage/01JMA3S4S4GHRGSXWWDG82GWJT.png", title: "Coin magique Droite, Gauche" },
     { url: "mecanisme-slim-pour-porte-relevable-classe-d", imageUrl: "https://app.intercocina.com/storage/01JJYFZNN1X6S9QVK20M37E9XF.png", title: "Mécanisme Slim relevable" },
-    { url: "facade-laca-g1-atania", imageUrl: "https://app.intercocina.com/storage/01JKDAQ2TQMCYJQJAXQ4NHPA1Z.png", title: "Kit mécanismes relevable" },
+    { url: "kit-mecanismes-pour-porte-relevable-pliante", imageUrl: "https://app.intercocina.com/storage/01JKDAQ2TQMCYJQJAXQ4NHPA1Z.png", title: "Kit mécanismes relevable" },
   ];
 
   return (
