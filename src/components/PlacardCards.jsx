@@ -221,9 +221,9 @@ export default function PlacardCards() {
         <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">
           Nos Réalisations
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
           Placards sur mesure
-        </h1>
+        </h2>
         <p className="text-gray-500 text-base leading-relaxed">
           Chaque placard est conçu et fabriqué sur mesure pour s&#39;adapter parfaitement à votre
           espace et vos besoins.
