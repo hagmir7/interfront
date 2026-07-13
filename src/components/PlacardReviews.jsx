@@ -111,9 +111,9 @@ export default function PlacardReviews({ type }) {
         <div>
             {/* Header */}
             <div className="text-center mb-6 md:mb-10 mt-6">
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                     {type === 'placards' ? "Retours Clients" : 'Galerie d’inspirations'}
-                </h1>
+                </h4>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                     {type === 'placards' ? "Les avis et retours d’expérience de nos clients sur notre savoir-faire, notre qualité et notre engagement"
                         : 'Parcourez notre galerie d’inspirations et découvrez nos meubles de salle de bain dans différents styles et agencements.'}
