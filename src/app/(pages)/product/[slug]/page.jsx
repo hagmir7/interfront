@@ -10,7 +10,15 @@ import { api } from "@/lib/api";
 import { truncate } from "@/lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
+
+
+
+// function truncate(text, length = 160) {
+//   if (!text) return "";
+//   return text.length > length ? text.substring(0, length).trim() + "..." : text;
+// }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -28,31 +36,76 @@ export async function generateMetadata({ params }) {
       : product?.tags
         ? [product.tags]
         : [];
-    const keywords = [...tagList, "armoires", "meubles sur-mesure", "rangement"]
+
+    const keywords = [
+      ...tagList,
+      "armoires",
+      "meubles sur-mesure",
+      "rangement",
+    ]
       .filter(Boolean)
       .join(", ");
 
+    // Detect current domain (www or non-www)
+    const headersList = await headers();
+
+    const protocol =
+      process.env.NODE_ENV === "development"
+        ? "http"
+        : headersList.get("x-forwarded-proto") || "https";
+
+    const host = headersList.get("x-forwarded-host") || headersList.get("host");
+
+    const url = `${protocol}://${host}/product/${slug}`;
+
+    const image = product?.images?.[0]?.image
+      ? `https://app.intercocina.com/storage/${product.images[0].image}`
+      : "/images/default-og.jpg";
+
     return {
-      title: `${product?.name}`,
+      title: product?.name,
       description,
-      alternates: {
-        canonical: `/product/${slug}`,
-      },
       keywords,
+
+      alternates: {
+        canonical: url,
+      },
+
       openGraph: {
-        title: `${product?.name}`,
+        title: product?.name,
         description,
-        images: product?.images?.[0]?.image
-          ? [{ url: 'https://app.intercocina.com/storage/' + product.images[0].image }]
-          : [],
+        url,
+        type: "website",
+        siteName: "INTERCOCINA",
+        locale: "fr_FR",
+        images: [
+          {
+            url: image,
+            width: 1200,
+            height: 630,
+            alt: product?.name,
+          },
+        ],
+      },
+
+      twitter: {
+        card: "summary_large_image",
+        title: product?.name,
+        description,
+        images: [image],
       },
     };
-  } catch {
-    return { title: 'Produit introuvable', description: 'Erreur lors du chargement du produit.' };
+  } catch (error) {
+    return {
+      title: "Produit introuvable",
+      description: "Erreur lors du chargement du produit.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
   }
 }
-
-
 
 
 
