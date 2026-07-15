@@ -135,9 +135,18 @@ export default async function Page({ params, searchParams }) {
     reviews = [];
   }
 
-  const avgRating = reviews?.length
-  ? reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length
-  : 0;
+  // Keep only reviews with a valid numeric rating between 1 and 5.
+  // This guards both the JSON-LD structured data and the on-page UI
+  // against bad/missing `stars` values (0, null, undefined, > 5, etc.)
+  // which is what triggers Google's "Rating is outside the specified
+  // or default range" structured-data error.
+  const validReviews = (reviews || []).filter(
+    (r) => Number.isFinite(Number(r?.stars)) && Number(r.stars) >= 1 && Number(r.stars) <= 5
+  );
+
+  const avgRating = validReviews.length
+    ? validReviews.reduce((sum, r) => sum + Number(r.stars), 0) / validReviews.length
+    : 0;
 
   const options = product?.options ?? {};
 
@@ -194,20 +203,22 @@ export default async function Page({ params, searchParams }) {
       "@type": "Organization",
       name: "INTERCOCINA",
     },
-    ...(reviews?.length && {
+    ...(validReviews.length && {
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: String(
-          (
-            reviews.reduce((sum, r) => sum + r.stars, 0) /
-            reviews.length
-          ).toFixed(1)
-        ),
-        reviewCount: String(reviews.length),
+        ratingValue: avgRating.toFixed(1),
+        bestRating: "5",
+        worstRating: "1",
+        reviewCount: String(validReviews.length),
       },
-      review: reviews.slice(0, 5).map((r) => ({
+      review: validReviews.slice(0, 5).map((r) => ({
         "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: String(r.stars) },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: String(Number(r.stars)),
+          bestRating: "5",
+          worstRating: "1",
+        },
         author: { "@type": "Person", name: r.full_name },
         reviewBody: r.comment,
       })),
@@ -323,7 +334,7 @@ export default async function Page({ params, searchParams }) {
         <div className="mt-10 flex flex-col lg:flex-row gap-6 items-start">
 
           {/* Rating Summary */}
-          {reviews?.length > 0 && (
+          {validReviews.length > 0 && (
             <div className="w-full lg:w-1/3 lg:sticky lg:top-24 rounded-2xl border border-stone-200 shadow-sm bg-white p-6">
               <h3 className="text-lg font-semibold text-stone-800 mb-4">Avis clients</h3>
 
@@ -345,12 +356,12 @@ export default async function Page({ params, searchParams }) {
                 ))}
               </div>
 
-              <p className="text-sm text-stone-500 mb-5">{reviews.length} avis</p>
+              <p className="text-sm text-stone-500 mb-5">{validReviews.length} avis</p>
 
               <div className="space-y-2">
                 {[5, 4, 3, 2, 1].map((star) => {
-                  const count = reviews.filter((r) => r.stars === star).length;
-                  const pct = reviews.length ? Math.round((count / reviews.length) * 100) : 0;
+                  const count = validReviews.filter((r) => Number(r.stars) === star).length;
+                  const pct = validReviews.length ? Math.round((count / validReviews.length) * 100) : 0;
                   return (
                     <div key={star} className="flex items-center gap-2 text-xs">
                       <span className="w-3 text-stone-500">{star}</span>
