@@ -51,7 +51,7 @@ export default function FAQAccordion({ faqs = [] }) {
                                 : "max-h-0 invisible"
                         }`}
                     >
-                        <p className="text-[15px] text-slate-600 leading-relaxed">
+                        <p className="text-[15px] text-slate-600 leading-relaxed whitespace-break-spaces">
                             {faq.a}
                         </p>
                     </div>
