@@ -12,16 +12,14 @@ const nextConfig = {
         hostname: 'dev.intercocina.com',
         pathname: '/**',
       },
-
       {
         protocol: 'https',
         hostname: 'intercocina.com',
         pathname: '/**',
       },
-
       {
         protocol: 'https',
-        hostname: 'wwww.intercocina.com',
+        hostname: 'www.intercocina.com', // fixed typo: was "wwww"
         pathname: '/**',
       },
       {
@@ -30,19 +28,30 @@ const nextConfig = {
         port: '8000',
         pathname: '/**',
       },
-
-
     ],
   },
+
   experimental: {
     workerThreads: false,
-    cpus: 1
+    cpus: 1,
   },
 
-  // turbopack: {
-  //   root: '/home/nepi6015',
-  // },
-
+  async redirects() {
+    return [
+      // non-www → www (host-based redirect)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'intercocina.com',
+          },
+        ],
+        destination: 'https://www.intercocina.com/:path*',
+        permanent: true, // 301
+      },
+    ];
+  },
 };
 
 export default nextConfig;
