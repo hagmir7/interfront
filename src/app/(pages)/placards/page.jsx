@@ -19,7 +19,7 @@ const page = () => {
         <div>
             <div className="min-h-screen bg-[#f2f2f2]">
                 <div className="relative min-h-[250px] max-sm:min-h-[230px] bg-cover bg-center z-[2] w-full before:absolute before:inset-0 before:bg-black before:opacity-40 before:z-[-1]"
-                    style={{ backgroundImage: "url('https://www.gamso-menuiseries.fr/wp-content/uploads/2024/07/gamso-amenagement-interieur.jpg')" }}>
+                    style={{ backgroundImage: "url('/imgs/placard/wal-in-wardrobes.jpeg')" }}>
                     <div className="container relative z-10 table h-full mx-auto px-4">
                         <div className="container relative z-10 table h-full mx-auto px-4">
                             <div className="text-center py-[90px] max-sm:py-10 table-cell align-middle h-[500px] max-sm:h-[230px]">
