@@ -10,6 +10,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { AuthProvider } from "@/context/AuthContext";
 import TopNav from "@/components/top-nav";
 import { getDomain } from "@/lib/domain";
+import SIBCountdown from "@/components/SIBCountdown";
 
 export async function generateMetadata() {
   return {
@@ -42,8 +43,10 @@ export default function RootLayout({ children }) {
             </main>
             <Footer />
             <WhatsAppFloat />
+           
           </AuthProvider>
         </CartProvider>
+         <SIBCountdown />
       </body>
     </html>
   );
