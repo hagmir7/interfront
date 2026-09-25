@@ -17,7 +17,7 @@ const CaissonSection = () => {
 
     {
       src: 'https://app.intercocina.com/storage/01KNGVT0BNQ0R6KCV7S2KCJ6GS.png',
-      title: 'Caisson Hydrofuge Granada - Meuble bas',
+      title: 'Caisson TERRA - Meuble bas',
       link: '/caisson-hydrofuge-granada?type=caisson-hydrofuge-granada-bas',
     },
     {
