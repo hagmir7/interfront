@@ -1,0 +1,233 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
+import { api } from "@/lib/api";
+import { CartItem } from "./CartItem";
+import { PaymentMethodSelect } from "./PaymentMethodSelect";
+import { ShippingMethodSelect } from "./ShippingMethodSelect";
+import { AddressSelection } from "./AddressSelection";
+import { OrderSummary } from "./OrderSummary";
+import { AnimatedAlert } from "./ui/AnimatedAlert";
+import CheckoutMessage from "./CheckoutMessage";
+import CLink from "./CLink";
+import { LogIn } from "lucide-react";
+import { User } from "@/services/auth";
+
+const toNumber = (val) => {
+  const n = Number(val);
+  return Number.isFinite(n) ? n : 0;
+};
+
+export default function CheckoutPage() {
+  const { cart } = useCart();
+  const { user, authLoading, discounts } = useAuth();
+  const [login, setLogin] = useState();
+
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [shippingMethod, setShippingMethod] = useState("2");
+  const [selectedAddress, setSelectedAddress] = useState("1");
+  const [addresses, setAddresses] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [orderCode, setOrderCode] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await User()
+      setLogin(data)
+    }
+    fetchUser()
+  }, [])
+
+
+  const loadAddresses = async () => {
+    try {
+      const res = await api.get("address");
+      setAddresses(res.data || []);
+    } catch (error) {
+      console.error("Erreur chargement adresses:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    if (!login) return;
+
+    loadAddresses();
+  }, [login]);
+
+  const handleSubmitOrder = async () => {
+    setIsLoading(true);
+    setMessage(null);
+
+    try {
+      const response = await api.post("orders", {
+        address_id: selectedAddress,
+        payment: paymentMethod,
+        shipping_id: shippingMethod,
+        cart,
+      });
+
+      setOrderCode(response?.data?.order?.code);
+
+      setMessage({
+        type: "success",
+        content: response.data.message,
+      });
+
+      localStorage.setItem('cart', '[]');
+
+    } catch (error) {
+      setMessage({
+        type: "error",
+        content:
+          error.response?.data?.message ||
+          "Une erreur est survenue",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getDiscountPercentage = (item) => {
+    if (!login) return 0;
+    return toNumber(
+      discounts?.find(d => d.family_id === item.attributes?.family_id)?.percentage
+    );
+  };
+
+  // Unit price after discount
+  const getDiscountedUnitPrice = (item) => {
+    const price = toNumber(item.price);
+    const pct = getDiscountPercentage(item);
+    return price * (1 - pct / 100);
+  };
+
+  // Total before any discount (for showing savings)
+  const rawTotal = cart.reduce(
+    (sum, item) => sum + toNumber(item.price) * toNumber(item.quantity),
+    0
+  );
+
+  // Total after discount — used for tax & order total
+  const total = cart.reduce(
+    (sum, item) => sum + getDiscountedUnitPrice(item) * toNumber(item.quantity),
+    0
+  );
+
+  const totalDiscount = rawTotal - total;
+
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        Chargement...
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-screen-xl px-2 md:px-4 2xl:px-0">
+      <h2 className="text-md md:text-xl mt-4 font-semibold text-gray-900">
+        Confirmation de commande
+      </h2>
+
+      {/* SUCCESS MESSAGE */}
+      {message?.type === "success" && (
+        <CheckoutMessage orderCode={orderCode} />
+      )}
+
+      <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-8">
+
+        {/* LEFT SIDE — CART ITEMS */}
+        <div className="lg:col-span-2 space-y-3">
+          {cart.map((item) => {
+            const attribute = item?.attributes?.attribute ?? "";
+            let name = `${attribute} ${item?.name ?? ""}`.trim();
+            name = name.replace(/façade|facade/gi, "").trim();
+
+            const discountPct = getDiscountPercentage(item);
+            const discountedPrice = getDiscountedUnitPrice(item);
+
+            return (
+              <CartItem
+                key={item.id}
+                name={name}
+                dimensions={item?.attributes?.dimension ?? ""}
+                color={item?.attributes?.color_name ?? ""}
+                price={Math.round(discountedPrice * 100) / 100}
+                originalPrice={toNumber(item.price)}
+                discountPercentage={discountPct}
+                href={`/product/${item?.attributes?.slug ?? ""}`}
+                quantity={toNumber(item.quantity)}
+              />
+            );
+          })}
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="space-y-4">
+
+          <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
+            <PaymentMethodSelect
+              value={paymentMethod}
+              onChange={setPaymentMethod}
+            />
+          </div>
+
+          <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
+            <ShippingMethodSelect
+              value={shippingMethod}
+              onChange={setShippingMethod}
+            />
+          </div>
+
+          {/* ADDRESS SECTION */}
+          {login && (
+            <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
+              <AddressSelection
+                selectedAddress={selectedAddress}
+                onAddressChange={setSelectedAddress}
+                addresses={addresses}
+                addressCreated={loadAddresses}
+              />
+            </div>
+          )}
+
+          {/* ERROR MESSAGE */}
+          {message?.type === "error" && (
+            <AnimatedAlert
+              type="error"
+              title={message.content}
+              autoClose={5000}
+              onDismiss={() => setMessage(null)}
+            />
+          )}
+
+          {/* ORDER SUMMARY OR LOGIN BUTTON */}
+          {login ? (
+            <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-xs">
+              <OrderSummary
+                originalPrice={total}
+                discount={totalDiscount}
+                tax={total * 0.2}
+                total={total * 1.2}
+                onSubmit={handleSubmitOrder}
+                isLoading={isLoading}
+              />
+            </div>
+          ) : (
+            <CLink
+              href="/user/login?next=/checkout"
+              className="w-full justify-center flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-white bg-red-600 hover:bg-red-700 transition-all shadow-sm"
+            >
+              Se connecter
+              <LogIn className="h-5 w-5" />
+            </CLink>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
