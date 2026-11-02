@@ -1,30 +1,30 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { User, Facebook, Instagram, Twitter, Linkedin, ChevronRight } from 'lucide-react';
+import { User, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { api } from '@/lib/api';
 import CLink from '@/components/CLink';
 import EventImageSwiper from '@/components/EventImageSwiper';
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params
+  const { slug } = await params;
 
   try {
-    const response = await api.get(`events/${slug}`)
-    const event = await response.data
+    const response = await api.get(`events/${slug}`);
+    const event = response.data;
 
     return {
-      title: event.title || `Blog ${slug}`,
-      description: event?.description?.slice(0, 170) || `Ceci est le blog ${slug}`,
+      title: event?.title || `événement ${slug}`,
+      description: event?.description?.slice(0, 170) || `Ceci est l'événement ${slug}`,
       alternates: {
-        canonical: `${await getDomain()}/user/login`,
+        canonical: `/event/${slug}`,
       },
-    }
-
+    };
   } catch (error) {
+    console.log('metadata error', error);
     return {
-      title: `Blog ${slug}`,
-      description: `Ceci est le blog ${slug}`,
-    }
+      title: `Event ${slug}`,
+      description: `Ceci est l'événement ${slug}`,
+    };
   }
 }
 

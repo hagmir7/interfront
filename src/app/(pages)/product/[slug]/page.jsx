@@ -49,12 +49,19 @@ export async function generateMetadata({ params }) {
     // Detect current domain (www or non-www)
     const headersList = await headers();
 
+    const forwardedProtocol = headersList
+      .get("x-forwarded-proto")
+      ?.split(",")[0]
+      ?.trim();
+    const forwardedHost = headersList
+      .get("x-forwarded-host")
+      ?.split(",")[0]
+      ?.trim();
     const protocol =
       process.env.NODE_ENV === "development"
         ? "http"
-        : headersList.get("x-forwarded-proto") || "https";
-
-    const host = headersList.get("x-forwarded-host") || headersList.get("host");
+        : forwardedProtocol || "https";
+    const host = forwardedHost || headersList.get("host");
 
     const url = `${protocol}://${host}/product/${slug}`;
 
