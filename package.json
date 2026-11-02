@@ -51,5 +51,8 @@
     "eslint-config-next": "^16.2.6",
     "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4"
+  },
+  "optionalDependencies": {
+    "@next/swc-wasm-nodejs": "^16.4.3"
   }
 }
