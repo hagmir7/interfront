@@ -20,19 +20,13 @@ const BlogCard = ({ title, created_at, image, slug }) => {
         </Link>
         <div className='mt-5.5'>
           <span className='flex items-center gap-3 mb-2.5'>
-            <a
-              className='text-custom-sm ease-out duration-200 hover:text-blue'
-              href='#'
-            >
+            <div className='text-custom-sm ease-out duration-200 hover:text-blue' >
               {format(new Date(created_at), 'MMM dd, yyyy')}
-            </a>
+            </div>
             <span className='block w-px h-4 bg-gray-300'></span>
-            <a
-              className='text-custom-sm ease-out duration-200 hover:text-blue'
-              href='#'
-            >
+            <CLink className='text-custom-sm ease-out duration-200 hover:text-blue' href='/' >
               INTERCOCINA
-            </a>
+            </CLink>
           </span>
           <h3 className='font-bold text-dark text-md sm:text-xl ease-out duration-200 mb-4 hover:text-blue'>
             <CLink href={`/blogs/${slug}`}>{title}</CLink>

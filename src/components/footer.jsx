@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="flex gap-10">
               <ul className="space-y-5">
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
-                  <Link href="shop">Produits</Link>
+                  <Link href="/shop">Produits</Link>
                 </li>
                 <li className="text-slate-700 text-sm md:text-base font-semibold hover:text-accent-red">
                   <Link href="/blogs">Blog</Link>

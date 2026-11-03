@@ -188,7 +188,6 @@ export function AddToCartModal({ open, onOpenChange, product }) {
             setError("Obligatoire de sélectionner une couleur");
             return false;
         }
-        // setError(null);
 
         if (heights.length > 0 && selectedHieght === "") {
             setError("Obligatoire de sélectionner la hauteur");
@@ -200,6 +199,7 @@ export function AddToCartModal({ open, onOpenChange, product }) {
             return false;
         }
 
+  
         if (dimensions.length > 0 && !selectedWidth && !selectedHieght) {
             setError("Obligatoire de sélectionner la dimension");
             return false;

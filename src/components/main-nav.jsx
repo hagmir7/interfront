@@ -108,7 +108,7 @@ const MainNav = () => {
 
               <div className='absolute bottom-0 left-0 right-0 p-4 border-t bg-white'>
                 <CLink
-                  href='/auth/login'
+                  href='/user/login'
                   className='w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors'
                 >
                   Connexion / Inscription

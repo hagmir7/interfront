@@ -10,10 +10,21 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const Carousel = ({ images = [], currentColor, onImageChange }) => {
+const Carousel = ({
+  images = [],
+  currentColor,
+  onImageChange,
+  productName = 'Meuble de cuisine Intercocina',
+}) => {
   const [mainSwiper, setMainSwiper] = useState(null);
   const [currentImages, setCurrentImages] = useState(images);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Alt text: use the API value if present, otherwise use the product name
+  const getAlt = (img, index, prefix = '') => {
+    if (img?.alt && String(img.alt).trim()) return img.alt;
+    return `${prefix}${productName} - image ${index + 1}`;
+  };
 
   useEffect(() => {
     if (!images.length) return;
@@ -51,9 +62,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
 
   return (
     <div className="w-full flex flex-col items-center">
-
       <div className="relative w-full max-w-[650px] select-none">
-
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={0}
@@ -62,8 +71,8 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
           onSwiper={setMainSwiper}
           pagination={{ clickable: true }}
           navigation={{
-            nextEl: ".custom-next",
-            prevEl: ".custom-prev",
+            nextEl: '.custom-next',
+            prevEl: '.custom-prev',
           }}
           onSlideChange={(s) => {
             setActiveIndex(s.realIndex);
@@ -74,14 +83,17 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
         >
           {currentImages.map((img, i) => (
             <SwiperSlide
-              key={i}
+              key={img.image || i}
               style={{ height: '450px' }}
               className="flex justify-center items-center overflow-hidden"
             >
               <AntdImage.PreviewGroup>
                 <AntdImage
                   src={`https://app.intercocina.com/storage/${img.image}`}
-                  alt=""
+                  alt={getAlt(img, i)}
+                  width={650}
+                  height={450}
+                  loading="lazy"
                   style={{
                     width: '100%',
                     height: '450px',
@@ -96,17 +108,25 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
         </Swiper>
 
         {/* ARROWS */}
-        <button className="custom-prev absolute top-1/2 left-2 -translate-y-1/2 z-30
+        <button
+          type="button"
+          aria-label="Image précédente"
+          className="custom-prev absolute top-1/2 left-2 -translate-y-1/2 z-30
           w-9 h-9 flex items-center justify-center bg-white/90
           backdrop-blur-sm rounded-full shadow-md text-gray-600
-          hover:scale-110 transition">
+          hover:scale-110 transition"
+        >
           ‹
         </button>
 
-        <button className="custom-next absolute top-1/2 right-2 -translate-y-1/2 z-30
+        <button
+          type="button"
+          aria-label="Image suivante"
+          className="custom-next absolute top-1/2 right-2 -translate-y-1/2 z-30
           w-9 h-9 flex items-center justify-center bg-white/90
           backdrop-blur-sm rounded-full shadow-md text-gray-600
-          hover:scale-110 transition">
+          hover:scale-110 transition"
+        >
           ›
         </button>
       </div>
@@ -124,14 +144,14 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
             style={{ height: '100px' }}
           >
             {images.map((img, i) => (
-              <SwiperSlide key={i} style={{ height: '100px' }}>
+              <SwiperSlide key={img.image || i} style={{ height: '100px' }}>
                 <div
                   onClick={() => handleThumbClick(img)}
                   className={`overflow-hidden rounded-lg cursor-pointer border transition-all h-full
                     ${
                       currentImages[activeIndex]?.image === img.image
-                        ? "border-red-500 border-2"
-                        : "border-gray-200"
+                        ? 'border-red-500 border-2'
+                        : 'border-gray-200'
                     }
                     hover:border-gray-400`}
                 >
@@ -139,7 +159,7 @@ const Carousel = ({ images = [], currentColor, onImageChange }) => {
                     src={`https://app.intercocina.com/storage/${img.image}`}
                     width={120}
                     height={100}
-                    alt=""
+                    alt={getAlt(img, i, 'Miniature - ')}
                     className="object-cover w-full h-full py-1 px-1"
                   />
                 </div>

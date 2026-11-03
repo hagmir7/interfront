@@ -16,6 +16,7 @@ import SearchableSelect from "@/components/ui/SearchableSelect";
 import Alert from "@/components/ui/Alert";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
+import CLink from "./CLink";
 
 
 
@@ -170,12 +171,12 @@ export default function OnboardingContent() {
 
           <p className="relative z-10 text-xs text-red-200/70">
             Déjà un compte ?{" "}
-            <a
-              href="#"
+            <CLink
+              href="/user/login"
               className="font-medium text-white underline underline-offset-2"
             >
               Se connecter
-            </a>
+            </CLink>
           </p>
         </div>
 

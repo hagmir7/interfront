@@ -1,34 +1,58 @@
 import CLink from '@/components/CLink';
 import LogoutButton from '@/components/ui/LogoutButton';
-import { User } from '@/services/auth';
 import { getServerUser } from '@/services/auth.server';
-import { ArrowRight, User2Icon, Home, ShoppingBag, Calendar, InfoIcon, ChevronRight, LogOut, LogIn, Heart, BriefcaseBusiness, MailWarning, MapPinned } from 'lucide-react';
+import {
+  ArrowRight,
+  User2Icon,
+  Home,
+  ShoppingBag,
+  Calendar,
+  InfoIcon,
+  ChevronRight,
+  LogOut,
+  LogIn,
+  Heart,
+  BriefcaseBusiness,
+  MailWarning,
+} from 'lucide-react';
 
 export const metadata = {
   title: 'Menu - Intercocina',
-  alternates: { canonical: '/menu' },
   description:
     "Intercocina, la fabrication de meubles de cuisine, meubles TV, placards et armoires, meubles de salle de bain, ainsi que de parquets, au Maroc.",
+  alternates: { canonical: '/menu' },
+  openGraph: {
+    title: 'Menu - Intercocina',
+    description:
+      "Accédez à tous nos services : produits, événements, réclamations, carrière et plus encore.",
+    url: '/menu',
+    siteName: 'Intercocina',
+    locale: 'fr_FR',
+    type: 'website',
+  },
 };
 
 async function MenuPage() {
   const user = await getServerUser();
-  
+
   const menuItems = [
-    { href: "/", label: "Accueil", icon: <Home size={18} /> },
-    { href: "/user/login", label: "Se connecter", icon: <LogIn size={18} />, hidden: !!user },
-    { href: "/shop", label: "Produits", icon: <ShoppingBag size={18} /> },
-    { href: "/favorite", label: "Favori", icon: <Heart size={18} />, hidden: !user },
-    { href: "/event/list", label: "Événements", icon: <Calendar size={18} /> },
-    { href: "/reclamation", label: "Réclamation", icon: <MailWarning size={18} /> },
-    { href: "/aprops", label: "À propos", icon: <InfoIcon size={18} /> },
-    { href: "/carriere", label: "Carrière", icon: <BriefcaseBusiness size={18} /> },
-    { href: "/profile", label: "Commandes", icon: <ShoppingBag size={18} />, hidden: !user },
-    // { href: "/tracking", label: "Suivi des commandes", icon: <MapPinned size={18} /> },
+    { href: '/', label: 'Accueil', icon: <Home size={18} /> },
+    { href: '/user/login', label: 'Se connecter', icon: <LogIn size={18} />, hidden: !!user },
+    { href: '/shop', label: 'Produits', icon: <ShoppingBag size={18} /> },
+    { href: '/favorite', label: 'Favori', icon: <Heart size={18} />, hidden: !user },
+    { href: '/event/list', label: 'Événements', icon: <Calendar size={18} /> },
+    { href: '/reclamation', label: 'Réclamation', icon: <MailWarning size={18} /> },
+    { href: '/aprops', label: 'À propos', icon: <InfoIcon size={18} /> },
+    { href: '/carriere', label: 'Carrière', icon: <BriefcaseBusiness size={18} /> },
+    { href: '/profile', label: 'Commandes', icon: <ShoppingBag size={18} />, hidden: !user },
   ];
 
   return (
-    <div className="mx-auto max-w-2xl py-6 bg-white rounded-none md:rounded-lg shadow-sm">
+    <main className="mx-auto max-w-2xl py-6 bg-white rounded-none md:rounded-lg shadow-sm">
+      <h1 className="px-4 text-xl font-bold text-gray-900 dark:text-white">
+        Menu Intercocina
+      </h1>
+
       {user && (
         <div className="px-4 pb-4 mb-2 border-b border-gray-200 dark:border-gray-700">
           <CLink href="/profile">
@@ -50,32 +74,37 @@ async function MenuPage() {
         </div>
       )}
 
-      <nav className="px-2">
+      <nav className="px-2" aria-label="Menu principal">
         <ul className="space-y-1">
-          {menuItems.filter(item => !item.hidden).map((item, index) => (
-            <li key={index}>
-              <CLink
-                href={item.href}
-                className="py-3 px-4 flex items-center justify-between w-full rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group"
-              >
-                <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                  <span className="text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                    {item.icon}
-                  </span>
-                  <span className="text-base font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                    {item.label}
-                  </span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-200" />
-              </CLink>
-            </li>
-          ))}
+          {menuItems
+            .filter((item) => !item.hidden)
+            .map((item) => (
+              <li key={item.href}>
+                <CLink
+                  href={item.href}
+                  className="py-3 px-4 flex items-center justify-between w-full rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group"
+                >
+                  <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span className="text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                      {item.icon}
+                    </span>
+                    <span className="text-base font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                      {item.label}
+                    </span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                </CLink>
+              </li>
+            ))}
 
           {user && (
             <li>
               <LogoutButton className="py-3 px-4 flex items-center justify-between w-full rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                  <LogOut size={18} className="text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200" />
+                  <LogOut
+                    size={18}
+                    className="text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200"
+                  />
                   <span className="text-base font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                     Déconnexion
                   </span>
@@ -86,7 +115,7 @@ async function MenuPage() {
           )}
         </ul>
       </nav>
-    </div>
+    </main>
   );
 }
 

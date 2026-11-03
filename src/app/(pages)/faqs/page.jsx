@@ -32,7 +32,7 @@ export default async function FAQPage() {
         <div className="max-w-7xl mx-auto p-4">
             <div className="px-4 text-center lg:px-12">
                 <div className="w-full flex justify-center py-6">
-                    <CLink href="#">
+                    <CLink href="/">
                         <Image
                             className="w-48"
                             src="https://app.intercocina.com/assets/imgs/intercocina-logo.png"

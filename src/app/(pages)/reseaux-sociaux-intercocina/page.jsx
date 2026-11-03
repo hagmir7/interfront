@@ -52,13 +52,6 @@ const SOCIALS = [
     path: "M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z",
   },
   {
-    name: "TikTok",
-    handle: "@intercocina", // TODO : vérifier l’identifiant exact
-    cta: "Suivre",
-    href: "https://www.tiktok.com/@intercocina", // TODO : vérifier le lien exact
-    path: "M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9.1a6.1 6.1 0 1 0 5.3 6V8.6a7.3 7.3 0 0 0 4.2 1.3V6.7a4.2 4.2 0 0 1-4.2-4.7Z",
-  },
-  {
     name: "Facebook",
     handle: "IntercocinaSARL",
     cta: "Aimer la page",
