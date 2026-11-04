@@ -219,7 +219,7 @@ const BlogPage = async ({ params }) => {
                   >
                     <Image
                       src={`https://app.intercocina.com/storage/${post.image}`}
-                      alt=''
+                      alt={post.title}
                       className='w-full h-80 object-cover'
                       width={500}
                       height={500}

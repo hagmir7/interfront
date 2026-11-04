@@ -106,7 +106,6 @@ const Carousel = ({
             </SwiperSlide>
           ))}
         </Swiper>
-
         {/* ARROWS */}
         <button
           type="button"

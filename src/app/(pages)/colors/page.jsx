@@ -19,7 +19,7 @@ export const metadata = {
     "palette de couleurs",
   ],
   alternates: {
-    canonical: "/couleurs",
+    canonical: "/colors",
   },
   robots: {
     index: true,
