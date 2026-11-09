@@ -9,14 +9,26 @@ import CartCounter from './CartCounter';
 import Image from 'next/image';
 
 const TVA_RATE = 0.20;
+const IMAGE_BASE = 'https://app.intercocina.com/storage/';
 
 const toNumber = (val) => {
   const n = Number(val);
   return Number.isFinite(n) ? n : 0;
 };
 
+// Full image URL (unchanged if it already starts with http/https)
+const getImageUrl = (path) => {
+  if (!path) return null;
+
+  const url = /^https?:\/\//i.test(path)
+    ? path
+    : IMAGE_BASE + String(path).replace(/^\/+/, '');
+
+  return url.replace(/ /g, '%20');
+};
+
 const ShoppingCartSidebar = () => {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart = [], removeFromCart, updateQuantity } = useCart();
   const { user, discounts } = useAuth();
 
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -24,10 +36,11 @@ const ShoppingCartSidebar = () => {
   const getDiscountPercentage = (item) => {
     if (!user) return 0;
     return toNumber(
-      discounts?.find(d => Number(d.family_id) === Number(item.attributes?.family_id))?.percentage
+      discounts?.find(
+        (d) => Number(d.family_id) === Number(item.attributes?.family_id)
+      )?.percentage
     );
   };
-
 
   const getDiscountedUnitPrice = (item) => {
     const price = toNumber(item.price);
@@ -42,10 +55,18 @@ const ShoppingCartSidebar = () => {
   const totalTVA = totalHT * TVA_RATE;
   const totalTTC = totalHT + totalTVA;
 
+  const handleQuantityInput = (item, value) => {
+    const qty = parseInt(value, 10);
+    // Ignore empty/invalid input and never go below 1
+    if (!Number.isFinite(qty) || qty < 1) return;
+    updateQuantity(item.id, qty);
+  };
+
   return (
     <>
       <button
         onClick={() => setIsCartOpen(true)}
+        aria-label='Ouvrir le panier'
         className='bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition-colors cursor-pointer relative'
       >
         <svg
@@ -78,96 +99,121 @@ const ShoppingCartSidebar = () => {
           >
             {/* Content - Scrollable area */}
             <div className='flex-grow overflow-y-auto py-6 px-4 pb-0'>
-              <ul className='space-y-4'>
-                {cart.map((item) => {
-                  const discountPct = getDiscountPercentage(item);
-                  const discountedPrice = getDiscountedUnitPrice(item);
-                  const originalPrice = toNumber(item.price);
+              {cart.length === 0 ? (
+                <EmptyCart setIsCartOpen={setIsCartOpen} />
+              ) : (
+                <ul className='space-y-4'>
+                  {cart.map((item, index) => {
+                    const discountPct = getDiscountPercentage(item);
+                    const discountedPrice = getDiscountedUnitPrice(item);
+                    const originalPrice = toNumber(item.price);
+                    const imageUrl = getImageUrl(item?.attributes?.image);
 
-                  return (
-                    <li key={item.id} className='py-2 border-b border-gray-200'>
-                      <div className='flex items-center'>
-                        <div className='w-20 h-20 rounded-3xl overflow-hidden mr-4 flex-shrink-0'>
-                          <Image
-                            src={`https://app.intercocina.com/storage/${item.attributes.image}`}
-                            alt={item.name}
-                            className='w-full h-full object-cover'
-                            width={100}
-                            height={100}
-                          />
-                        </div>
+                    // color_name can be an object ({ name }) or a string
+                    const colorName =
+                      item.attributes?.color_name?.name ??
+                      (typeof item.attributes?.color_name === 'string'
+                        ? item.attributes.color_name
+                        : null);
 
-                        <div className='flex-1 mr-4'>
-                          <h6 className='mb-2 font-medium text-sm'>
-                            <CLink
-                              href={`/product/${item.attributes.slug}`}
-                              className='hover:text-red-600 transition-colors'
-                            >
-                              {item.attributes.attribute}{' '}
-                              {item.name.replace('Façade', '')}{' '}
-                              {item.attributes?.dimension}{' '}
-                              {item?.attributes?.color_name}
-                            </CLink>
-                          </h6>
-
-                          <p className='text-gray-600 text-sm'>
-                            Prix:{' '}
-                            {discountPct > 0 ? (
-                              <>
-                                <span className='line-through text-gray-400 mr-1'>
-                                  {originalPrice.toFixed(2)} MAD
-                                </span>
-                                <span className='text-red-500 font-semibold'>
-                                  {discountedPrice.toFixed(2)} MAD
-                                </span>
-                                <span className='ml-1 text-xs bg-red-100 text-red-600 rounded px-1'>
-                                  -{discountPct}%
-                                </span>
-                              </>
-                            ) : (
-                              <>{originalPrice.toFixed(2)} MAD</>
-                            )}
-                          </p>
-
-                          <div className='flex items-center gap-2 mt-2'>
-                            <div className='flex items-center'>
-                              <button
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className='w-8 h-8 rounded-full border border-red-600 bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors'
-                              >
-                                <Minus size={16} />
-                              </button>
-                              <input
-                                type='number'
-                                value={item.quantity}
-                                onChange={(e) =>
-                                  updateQuantity(item.id, parseInt(e.target.value || 0))
-                                }
-                                className='w-16 h-8 text-center border border-red-600 rounded-full mx-2 bg-gray-50 outline-none text-sm leading-8'
+                    return (
+                      <li
+                        key={item.id ?? index}
+                        className='py-2 border-b border-gray-200'
+                      >
+                        <div className='flex items-center'>
+                          <div className='w-20 h-20 rounded-3xl overflow-hidden mr-4 flex-shrink-0 bg-gray-100'>
+                            {imageUrl && (
+                              <Image
+                                src={imageUrl}
+                                alt={item.name || 'Produit'}
+                                className='w-full h-full object-cover'
+                                width={100}
+                                height={100}
                               />
-                              <button
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className='w-8 h-8 rounded-full border border-red-600 bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors'
+                            )}
+                          </div>
+
+                          <div className='flex-1 mr-4'>
+                            <h6 className='mb-2 font-medium text-sm'>
+                              <CLink
+                                href={`/product/${item.attributes?.slug}`}
+                                className='hover:text-red-600 transition-colors'
                               >
-                                <Plus size={16} />
-                              </button>
+                                {item.attributes?.attribute}{' '}
+                                {item.name?.replace('Façade', '')}{' '}
+                                {item.attributes?.dimension} {colorName}
+                              </CLink>
+                            </h6>
+
+                            <p className='text-gray-600 text-sm'>
+                              Prix:{' '}
+                              {discountPct > 0 ? (
+                                <>
+                                  <span className='line-through text-gray-400 mr-1'>
+                                    {originalPrice.toFixed(2)} MAD
+                                  </span>
+                                  <span className='text-red-500 font-semibold'>
+                                    {discountedPrice.toFixed(2)} MAD
+                                  </span>
+                                  <span className='ml-1 text-xs bg-red-100 text-red-600 rounded px-1'>
+                                    -{discountPct}%
+                                  </span>
+                                </>
+                              ) : (
+                                <>{originalPrice.toFixed(2)} MAD</>
+                              )}
+                            </p>
+
+                            <div className='flex items-center gap-2 mt-2'>
+                              <div className='flex items-center'>
+                                <button
+                                  onClick={() =>
+                                    updateQuantity(item.id, item.quantity - 1)
+                                  }
+                                  disabled={item.quantity <= 1}
+                                  aria-label='Diminuer la quantité'
+                                  className='w-8 h-8 rounded-full border border-red-600 bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                                >
+                                  <Minus size={16} />
+                                </button>
+
+                                <input
+                                  type='number'
+                                  min={1}
+                                  value={item.quantity}
+                                  onChange={(e) =>
+                                    handleQuantityInput(item, e.target.value)
+                                  }
+                                  className='w-16 h-8 text-center border border-red-600 rounded-full mx-2 bg-gray-50 outline-none text-sm leading-8'
+                                />
+
+                                <button
+                                  onClick={() =>
+                                    updateQuantity(item.id, item.quantity + 1)
+                                  }
+                                  aria-label='Augmenter la quantité'
+                                  className='w-8 h-8 rounded-full border border-red-600 bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors'
+                                >
+                                  <Plus size={16} />
+                                </button>
+                              </div>
                             </div>
                           </div>
+
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            aria-label='Supprimer'
+                            className='w-7 h-7 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors'
+                          >
+                            <X size={18} />
+                          </button>
                         </div>
-
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          className='w-7 h-7 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors'
-                        >
-                          <X size={18} />
-                        </button>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              {cart.length === 0 ? <EmptyCart setIsCartOpen={setIsCartOpen} /> : ''}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
 
             {/* Fixed Footer */}
@@ -176,11 +222,15 @@ const ShoppingCartSidebar = () => {
                 <div className='p-4 mb-4 bg-gray-50 rounded-lg space-y-2'>
                   <div className='flex items-center justify-between'>
                     <span className='text-gray-600 text-sm'>Total HT</span>
-                    <span className='font-medium text-sm'>{totalHT.toFixed(2)} MAD</span>
+                    <span className='font-medium text-sm'>
+                      {totalHT.toFixed(2)} MAD
+                    </span>
                   </div>
                   <div className='flex items-center justify-between'>
                     <span className='text-gray-600 text-sm'>TVA (20%)</span>
-                    <span className='font-medium text-sm'>{totalTVA.toFixed(2)} MAD</span>
+                    <span className='font-medium text-sm'>
+                      {totalTVA.toFixed(2)} MAD
+                    </span>
                   </div>
                   <div className='flex items-center justify-between border-t pt-2'>
                     <h5 className='font-bold'>Total TTC</h5>

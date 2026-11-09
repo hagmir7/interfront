@@ -18,7 +18,7 @@ const Search = () => {
     }
     setLoading(true)
     try {
-      const response = await api.get(`search?search=${encodeURIComponent(searchTerm)}`)
+      const response = await api.get(`products/search?search=${encodeURIComponent(searchTerm)}`)
       setArticles(response.data)
     } catch (error) {
       console.error('Search error:', error)

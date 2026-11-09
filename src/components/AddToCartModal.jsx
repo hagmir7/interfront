@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
+import { useEffect, useMemo, useRef, useState } from "react"
 import {
     Dialog,
     DialogContent,
@@ -12,363 +11,393 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { api } from "@/lib/api"
+import { useCart } from "@/context/CartContext"
 import Alert from "./ui/Alert"
 import AddToCartSketelon from "./ui/AddToCartSketelon"
-import { useCart } from "@/context/CartContext"
 import { AnimatedAlert } from "./ui/AnimatedAlert"
 
-export function AddToCartModal({ open, onOpenChange, product }) {
+const STORAGE_URL =
+    process.env.NEXT_PUBLIC_STORAGE_URL ?? "https://app.intercocina.com/storage"
 
-    const [selectedColor, setSelectedColor] = useState("")
-    const [quantity, setQuantity] = useState(1);
-    const [data, setData] = useState([]);
-    const [attributes, setAttributes] = useState([]);
+/* ----------------------------- helpers ----------------------------- */
+
+// Compares ids/values safely even if one side is a string and the other a number
+const same = (a, b) => a != null && b != null && String(a) === String(b)
+
+const unique = (items, key) => [
+    ...new Set(items.map((item) => item?.[key]).filter((v) => v != null)),
+]
+
+/* ------------------------- small components ------------------------- */
+
+function OptionGroup({ label, options, value, onChange }) {
+    return (
+        <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                {options.map((option) => {
+                    const isSelected = same(value, option)
+                    return (
+                        <button
+                            key={option}
+                            type="button"
+                            aria-pressed={isSelected}
+                            onClick={() => onChange(option)}
+                            className={`py-2 px-3 rounded-lg border-2 transition-colors text-sm font-medium ${isSelected
+                                    ? "border-red-600 bg-red-50 text-red-600"
+                                    : "border-gray-200 bg-white text-gray-700 hover:border-red-300"
+                                }`}
+                        >
+                            {option}
+                        </button>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+function ColorPicker({ colors, value, onChange }) {
+    const selected = colors.find((c) => same(c.id, value))
+
+    return (
+        <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+                Couleurs <strong className="ml-1">{selected?.name}</strong>
+            </label>
+            <div className="flex flex-wrap gap-2">
+                {colors.map((color) => {
+                    const isSelected = same(color.id, value)
+                    return (
+                        <button
+                            key={color.id}
+                            type="button"
+                            onClick={() => onChange(color.id)}
+                            title={color.name}
+                            aria-label={`Select ${color.name} color`}
+                            aria-pressed={isSelected}
+                            style={{ backgroundImage: `url(${STORAGE_URL}/${color.image})` }}
+                            className={`w-10 h-10 rounded-full border-2 shadow-sm bg-cover bg-center transition-all duration-200 ${isSelected
+                                    ? "border-gray-900 ring-4 ring-gray-300 scale-105"
+                                    : "border-gray-100 hover:border-gray-500 hover:scale-105"
+                                }`}
+                        />
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+function QuantityStepper({ value, onChange }) {
+    const buttonClass =
+        "px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
+
+    return (
+        <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Quantité</label>
+            <div className="flex items-center gap-3">
+                <button
+                    type="button"
+                    className={buttonClass}
+                    onClick={() => onChange(Math.max(1, value - 1))}
+                    aria-label="Diminuer la quantité"
+                >
+                    −
+                </button>
+                <span className="w-12 text-center font-semibold text-lg">{value}</span>
+                <button
+                    type="button"
+                    className={buttonClass}
+                    onClick={() => onChange(value + 1)}
+                    aria-label="Augmenter la quantité"
+                >
+                    +
+                </button>
+            </div>
+        </div>
+    )
+}
+
+/* ------------------------------ modal ------------------------------ */
+
+export function AddToCartModal({ open, onOpenChange, product }) {
+    const { addToCart } = useCart()
+
+    // Data from the API
+    const [attributes, setAttributes] = useState([])
     const [colors, setColors] = useState([])
     const [dimensions, setDimensions] = useState([])
-    const [code, setCode] = useState();
-    const [price, setPrice] = useState(product.price_format)
-    const [widths, setWidths] = useState([]);
-    const [heights, setHeights] = useState([]);
-    const [selectedHieght, setSelectedHieght] = useState("")
-    const [selectedWidth, setSelectedWidth] = useState("")
-    const [selectedAttribute, setSelectedAttribute] = useState("")
-    const [isLoading, setIsLoading] = useState(true);
-    const [dimension, setDimension] = useState('');
-    const [error, setError] = useState('')
-    const [showAlert, setShowAlert] = useState(false);
 
-     const { addToCart } = useCart();
+    // User selections
+    const [selectedAttribute, setSelectedAttribute] = useState(null)
+    const [selectedHeight, setSelectedHeight] = useState(null)
+    const [selectedWidth, setSelectedWidth] = useState(null)
+    const [selectedColor, setSelectedColor] = useState(null)
+    const [quantity, setQuantity] = useState(1)
 
+    // UI state
+    const [isLoading, setIsLoading] = useState(true)
+    const [isAdding, setIsAdding] = useState(false)
+    const [error, setError] = useState("")
+    const [showAlert, setShowAlert] = useState(false)
 
-    const handleAddToCart = () => {
-        if(!validation()){
-            return;
-        };
+    // Cache of color images so each color is requested only once
+    const colorImageCache = useRef(new Map())
 
-        console.log(product)
-        addToCart({
-            quantity,
-            id: `${product.name}-${product.id}-${selectedWidth || ''}-${selectedHieght || ''}-${selectedColor || ''}`,
-            name: product.name,
-            price,
-            attributes: {
-                color: selectedColor,
-                color_name: colors.find(c => c.id === selectedColor)?.name,
-                image: product.images?.[0]?.image,
-                height: selectedHieght,
-                width: selectedWidth,
-                dimension: selectedHieght && selectedWidth ? `${selectedHieght} * ${selectedWidth}` : null,
-                slug: product.slug,
-                attribute: selectedAttribute?.name,
-                product_id: product.id,
-                dimension_id: dimension?.id || "",
-                special: false,
-                family_id: product?.family_id,
-                
+    /* ----------------------- load product options ----------------------- */
+
+    useEffect(() => {
+        if (!open || !product?.slug) return
+
+        let cancelled = false
+
+        async function loadOptions() {
+            setIsLoading(true)
+            setError("")
+            setSelectedAttribute(null)
+            setSelectedHeight(null)
+            setSelectedWidth(null)
+            setSelectedColor(null)
+            setQuantity(1)
+
+            try {
+                const { data } = await api.get(`products/dimensions/${product.slug}`)
+                if (cancelled) return
+
+                setAttributes(data.attributes ?? [])
+                setColors(data.colors ?? [])
+                setDimensions(Array.isArray(data.dimensions) ? data.dimensions : [])
+            } catch (err) {
+                console.error(err)
+            } finally {
+                if (!cancelled) setIsLoading(false)
             }
-        })
-        setShowAlert(true)
-        
-        // Reset state
-        setSelectedWidth("")
-        setSelectedHieght("")
-        setSelectedColor("")
-        setQuantity(1)
-        setDimension('')
+        }
+
+        loadOptions()
+        return () => {
+            cancelled = true
+        }
+    }, [open, product?.slug])
+
+    /* ------------------------- derived values ------------------------- */
+
+    const hasAttributes = attributes.length > 0
+
+    // Dimensions available for the current attribute choice
+    const visibleDimensions = useMemo(() => {
+        if (!hasAttributes) return dimensions
+        if (!selectedAttribute) return []
+        return dimensions.filter((d) => same(d.attribute_id, selectedAttribute.id))
+    }, [dimensions, hasAttributes, selectedAttribute])
+
+    const heights = useMemo(() => unique(visibleDimensions, "height"), [visibleDimensions])
+    const widths = useMemo(() => unique(visibleDimensions, "width"), [visibleDimensions])
+
+    // The dimension matching the current selections (null until something is picked)
+    const dimension = useMemo(() => {
+        if (selectedHeight === null && selectedWidth === null && selectedColor === null) {
+            return null
+        }
+
+        return (
+            visibleDimensions.find(
+                (d) =>
+                    (selectedWidth === null || same(d.width, selectedWidth)) &&
+                    (selectedHeight === null || same(d.height, selectedHeight)) &&
+                    (selectedColor === null || same(d.color_id, selectedColor))
+            ) ?? null
+        )
+    }, [visibleDimensions, selectedWidth, selectedHeight, selectedColor])
+
+    const price = dimension?.price ?? product.price ?? product.price_format
+
+    /* ---------------------------- handlers ---------------------------- */
+
+    function handleAttributeChange(e) {
+        const attribute = attributes.find((a) => same(a.id, e.target.value)) ?? null
+
+        setSelectedAttribute(attribute)
+        // Dependent selections are no longer valid
+        setSelectedHeight(null)
+        setSelectedWidth(null)
+        setSelectedColor(null)
+        setError("")
     }
 
+    function validate() {
+        if (hasAttributes && !selectedAttribute) return "Obligatoire de sélectionner le type de façade"
+        if (colors.length > 0 && selectedColor === null) return "Obligatoire de sélectionner une couleur"
+        if (heights.length > 0 && selectedHeight === null) return "Obligatoire de sélectionner la hauteur"
+        if (widths.length > 0 && selectedWidth === null) return "Obligatoire de sélectionner la largeur"
+        return ""
+    }
 
-    async function getData() {
+    // Returns the product image that has this color_id (cached), or null
+    async function fetchColorImage(colorId) {
+        const cacheKey = `${product.id}-${colorId}`
+        const cache = colorImageCache.current
+        if (cache.has(cacheKey)) return cache.get(cacheKey)
+
         try {
-            setWidths([]);
-            setHeights([]);
-            setSelectedAttribute("")
-            setSelectedColor("");
-            setSelectedHieght("");
-            setSelectedWidth("");
-            setIsLoading(true);
-            const response = await api.get(`products/dimensions/${product.slug}`)
-            const data = response.data;
-            setAttributes(data.attributes || []);
-            setColors(data.colors || []);
-            setDimensions(Array.isArray(data.dimensions) ? data.dimensions : []);
-            setData(data);
-            setPrice(product.price);
+            const { data } = await api.get(`products/${product.id}/color-image/${colorId}`)
+            const image = data?.image ?? null
+            cache.set(cacheKey, image)
+            return image
+        } catch (err) {
+            console.error("Color image request failed", err)
+            return null
+        }
+    }
 
-            if (data.dimensions?.length === 0) {
-                setCode(data.data?.code);
-            }
+    async function handleAddToCart() {
+        if (isAdding) return
 
-            if (data.dimensions?.length > 0 && data.attributes?.length === 0) {
-                setHeights([...new Set(data.dimensions.map(item => item?.height).filter(h => h != null))]);
-                setWidths([...new Set(data.dimensions.map(item => item?.width).filter(w => w != null))]);
-            }
+        const validationError = validate()
+        setError(validationError)
+        if (validationError) return
 
-        } catch (error) {
-            console.error(error);
+        setIsAdding(true)
+
+        try {
+            // Color image if a color is selected, otherwise the first product image
+            const colorImage = selectedColor !== null ? await fetchColorImage(selectedColor) : null
+            const image = colorImage ?? product.image
+
+            console.log(product.image)
+
+            addToCart({
+                quantity,
+                id: `${product.name}-${product.id}-${selectedWidth ?? ""}-${selectedHeight ?? ""}-${selectedColor ?? ""}`,
+                name: product.name,
+                price,
+                attributes: {
+                    color: selectedColor ?? "",
+                    color_name: colors.find((c) => same(c.id, selectedColor))?.name,
+                    image,
+                    height: selectedHeight ?? "",
+                    width: selectedWidth ?? "",
+                    dimension:
+                        selectedHeight !== null && selectedWidth !== null
+                            ? `${selectedHeight} * ${selectedWidth}`
+                            : null,
+                    slug: product.slug,
+                    attribute: selectedAttribute?.name,
+                    product_id: product.id,
+                    dimension_id: dimension?.id ?? "",
+                    special: false,
+                    family_id: product.family_id,
+                },
+            })
+
+            setShowAlert(true)
+
+            // Reset the selections (the attribute choice is kept)
+            setSelectedHeight(null)
+            setSelectedWidth(null)
+            setSelectedColor(null)
+            setQuantity(1)
         } finally {
-            setIsLoading(false);
+            setIsAdding(false)
         }
     }
 
-    useEffect(() => {
-        if (open) {
-            
-            getData();
-        }
-    }, [product, open]);
-
-
-
-    function changeAttribute(e) {
-        const selectedValue = parseInt(e.target.value, 10);
-
-        const validDimensions = dimensions.filter(
-            item => parseInt(item?.attribute_id, 10) === selectedValue  // ← coerce both sides
-        );
-
-        setSelectedAttribute(attributes.find(attr => attr.id === selectedValue));
-
-        // Reset dependent selections when attribute changes
-        setSelectedHieght("");
-        setSelectedWidth("");
-        setSelectedColor("");
-
-        setHeights([...new Set(validDimensions.map(item => item?.height).filter(h => h != null))]);
-        setWidths([...new Set(validDimensions.map(item => item?.width).filter(w => w != null))]);
-
-        // Re-filter colors to only those relevant to this attribute's dimensions
-        const validColorIds = new Set(
-            validDimensions.map(item => item?.color_id).filter(Boolean)
-        );
-    }
-
-    // Find matching dimension and update price
-    useEffect(() => {
-        if (dimensions.length > 0) {
-
-            const matchingDimension = dimensions.find((dim) => {
-                let matches = true;
-                
-                if (widths.length > 0 && selectedWidth) {
-                    matches = matches && dim.width === selectedWidth;
-                }
-                
-
-                if (heights.length > 0 && selectedHieght) {
-                    matches = matches && dim.height === selectedHieght;
-                }
-                
-
-                if (colors.length > 0 && selectedColor) {
-                    matches = matches && dim.color_id === selectedColor;
-                }
-                
-                return matches;
-            });
-
- 
-            if (matchingDimension) {
-                setDimension(matchingDimension);
-                
-                if (matchingDimension.price) {
-                    setPrice(matchingDimension.price);
-                }
-                if (matchingDimension.code) {
-                    setCode(matchingDimension.code);
-                }
-            }
-        }
-    }, [selectedWidth, selectedHieght, selectedColor, dimensions, widths, heights, colors]);
-
-
-
-    function validation() {
-        if (colors.length > 0 && (!selectedColor)) {
-            setError("Obligatoire de sélectionner une couleur");
-            return false;
-        }
-
-        if (heights.length > 0 && selectedHieght === "") {
-            setError("Obligatoire de sélectionner la hauteur");
-            return false;
-        }
-
-        if (widths.length > 0 && selectedWidth === "") {
-            setError("Obligatoire de sélectionner la largeur");
-            return false;
-        }
-
-  
-        if (dimensions.length > 0 && !selectedWidth && !selectedHieght) {
-            setError("Obligatoire de sélectionner la dimension");
-            return false;
-        }
-
-        if (attributes.length > 0 && !selectedAttribute) {
-            setError("Obligatoire de sélectionner la type de facad");
-            return false;
-        }
-
-        setError('');
-        return true
-
-    }
+    /* ------------------------------ render ------------------------------ */
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>{product.name}</DialogTitle>
-                    <DialogDescription></DialogDescription>
+                    <DialogDescription />
                 </DialogHeader>
+
                 <Alert message={error} type="error" />
-                
-                 {showAlert && (
+
+                {showAlert && (
                     <AnimatedAlert
-                    type="success"
-                    title="Operation Successful"
-                    // message="Your data has been saved successfully!"
-                    dismissible={true}
-                    autoClose={3000} // auto-close after 3 seconds
-                    onDismiss={() => setShowAlert(false)}
+                        type="success"
+                        title="Produit ajouté au panier"
+                        dismissible
+                        autoClose={3000}
+                        onDismiss={() => setShowAlert(false)}
                     />
                 )}
 
                 {isLoading ? (
-                  <AddToCartSketelon />
+                    <AddToCartSketelon />
                 ) : (
                     <>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className="space-y-6 col-span-2">
-                                <div>
-                                    <p className="text-xl font-bold text-red-600">{price || product.price_format} MAD</p>
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="col-span-2">
+                                <p className="text-xl font-bold text-red-600">{price} MAD</p>
 
-                                    {
-                                        attributes.length > 0 && (<div><select
-                                            name="attribute"
-                                            id="attribute"
-                                            className="border rounded-md px-3 py-2 text-sm w-full mt-2 animate-shake"
-                                            onChange={changeAttribute}
-                                            defaultValue=""
-                                        >
-                                            <option value="" disabled>
-                                                Type de Façade
+                                {hasAttributes && (
+                                    <select
+                                        id="attribute"
+                                        name="attribute"
+                                        value={selectedAttribute?.id ?? ""}
+                                        onChange={handleAttributeChange}
+                                        className="border rounded-md px-3 py-2 text-sm w-full mt-2"
+                                    >
+                                        <option value="" disabled>
+                                            Type de Façade
+                                        </option>
+                                        {attributes.map((attr) => (
+                                            <option key={attr.id} value={attr.id}>
+                                                {attr.name}
                                             </option>
-
-                                            {attributes.map((attr) => (
-                                                <option key={attr.id} value={attr.id}>
-                                                    {attr.name}
-                                                </option>
-                                            ))}
-                                        </select></div>)
-                                    }
-                                </div>
+                                        ))}
+                                    </select>
+                                )}
                             </div>
-                            {
-                                heights.length > 0 && (<div className="col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Hauteur</label>
-                                    <div className="grid grid-cols-6 gap-2">
-                                        {heights.map((dim) => (
-                                            <button
-                                                key={dim}
-                                                onClick={() => setSelectedHieght(dim)}
-                                                className={`py-2 px-3 rounded-lg border-2 transition-colors text-sm font-medium ${selectedHieght === dim
-                                                    ? "border-red-600 bg-red-50 text-red-600"
-                                                    : "border-gray-200 bg-white text-gray-700 hover:border-red-300"
-                                                    }`}
-                                            >
-                                                {dim}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>)
-                            }
 
-                            {
-                                widths.length > 0 && (<div className="col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Largeur</label>
-                                    <div className="grid grid-cols-6 gap-2">
-                                        {widths.map((dim) => (
-                                            <button
-                                                key={dim}
-                                                onClick={() => setSelectedWidth(dim)}
-                                                className={`py-2 px-3 rounded-lg border-2 transition-colors text-sm font-medium ${selectedWidth === dim
-                                                    ? "border-red-600 bg-red-50 text-red-600"
-                                                    : "border-gray-200 bg-white text-gray-700 hover:border-red-300"
-                                                    }`}
-                                            >
-                                                {dim}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>)
-                            }
+                            {heights.length > 0 && (
+                                <OptionGroup
+                                    label="Hauteur"
+                                    options={heights}
+                                    value={selectedHeight}
+                                    onChange={setSelectedHeight}
+                                />
+                            )}
 
-                            {
-                                colors.length > 0 && (<div className="col-span-2">
-                                    <label className="block text-sm font-medium text-gray-700 mb-3">
-                                        Couleurs {"  "}
-                                        <strong>{selectedColor && (colors.find((c) => c.id === selectedColor)?.name)}</strong>
-                                    </label>
+                            {widths.length > 0 && (
+                                <OptionGroup
+                                    label="Largeur"
+                                    options={widths}
+                                    value={selectedWidth}
+                                    onChange={setSelectedWidth}
+                                />
+                            )}
 
-                                    <div className="flex flex-wrap gap-2">
-                                        {colors.map((color) => {
-                                            const isSelected = selectedColor === color.id;
-
-                                            return (
-                                                <button
-                                                    key={color.id}
-                                                    onClick={() => setSelectedColor(color.id)}
-                                                    className={`
-                                                w-10 h-10 rounded-full border-2 shadow-sm 
-                                                bg-cover bg-center transition-all duration-200
-                                                ${isSelected
-                                                            ? "border-gray-900 ring-4 ring-gray-300 scale-105"
-                                                            : "border-gray-100 hover:border-gray-500 hover:scale-105"}
-                                            `}
-                                                    style={{
-                                                        backgroundImage: `url(https://app.intercocina.com/storage/${color.image})`,
-                                                    }}
-                                                    title={color.name}
-                                                    aria-label={`Select ${color.name} color`}
-                                                />
-                                            );
-                                        })}
-                                    </div>
-
-
-                                </div>)
-                            }
+                            {colors.length > 0 && (
+                                <ColorPicker
+                                    colors={colors}
+                                    value={selectedColor}
+                                    onChange={setSelectedColor}
+                                />
+                            )}
                         </div>
 
                         <DialogFooter className="gap-2 sm:gap-0 flex items-end justify-between sm:justify-between">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-3">Quantité</label>
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                        className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
-                                    >
-                                        −
-                                    </button>
-                                    <span className="w-12 text-center font-semibold text-lg">{quantity}</span>
-                                    <button
-                                        onClick={() => setQuantity(quantity + 1)}
-                                        className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                            </div>
+                            <QuantityStepper value={quantity} onChange={setQuantity} />
+
                             <div className="flex gap-3">
-                                <Button onClick={handleAddToCart} className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white">
-                                    Ajouter au panier
+                                <Button
+                                    onClick={handleAddToCart}
+                                    disabled={isAdding}
+                                    className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white"
+                                >
+                                    {isAdding ? "Ajout..." : "Ajouter au panier"}
                                 </Button>
-                                <Button variant="outline" onClick={() => onOpenChange(false)} className="w-full sm:w-auto">
+                                <Button
+                                    variant="outline"
+                                    onClick={() => onOpenChange(false)}
+                                    className="w-full sm:w-auto"
+                                >
                                     Fermer
                                 </Button>
-
                             </div>
                         </DialogFooter>
                     </>

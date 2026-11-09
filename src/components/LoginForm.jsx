@@ -95,7 +95,7 @@ const LoginForm = () => {
               Pas encore de compte ?{" "}
               <CLink
                 href={`/user/register${nextParam ? `?next=${nextParam}` : ""}`}
-                className="text-white font-medium underline underline-offset-2 hover:text-red-100 transition-colors"
+                className="text-white font-medium text-lg underline underline-offset-2 hover:text-red-100 transition-colors"
               >
                 S'inscrire
               </CLink>
@@ -209,7 +209,7 @@ const LoginForm = () => {
             Pas encore de compte ?{" "}
             <CLink
               href={`/user/register${nextParam ? `?next=${nextParam}` : ""}`}
-              className="font-medium text-red-600 hover:text-red-700 hover:underline"
+              className="font-medium text-red-600 hover:text-red-700 hover:underline text-lg"
             >
               S'inscrire
             </CLink>

@@ -6,9 +6,8 @@ import { Star, Eye, ShoppingCart, Heart } from "lucide-react"
 import Image from "next/image"
 import { AddToCartModal } from "./AddToCartModal"
 
-const ProductCard = ({ name, images = [], price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new, family_id }) => {
+const ProductCard = ({ name, first_image , price = 899, price_format = 930, rating = 4, id = 0, reviewCount = 0, slug, type_id, is_new, family_id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
 
   const renderStars = () => {
     return Array(5)
@@ -26,11 +25,7 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
     ? Math.floor(Math.random() * (500 - 100 + 1)) + 100
     : reviewCount;
 
-  const imageUrl =
-    images && images.length > 0
-      ? `https://app.intercocina.com/storage/${images[0]?.image}`
-      : "/modern-tech-product.png"
-
+  const imageUrl = first_image ? `https://app.intercocina.com/storage/${first_image?.image}` : "/modern-tech-product.png"
   return (
     <>
       <div className="group relative transition-all duration-300 shadow-sm hover:shadow-lg rounded-lg p-2 md:p-4 bg-white">
@@ -105,8 +100,8 @@ const ProductCard = ({ name, images = [], price = 899, price_format = 930, ratin
           name,
           price,
           price_format,
-          images,
           slug,
+          image: imageUrl,
           id,
           family_id
         }}
