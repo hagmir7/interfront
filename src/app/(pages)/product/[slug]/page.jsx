@@ -232,7 +232,6 @@ export default async function Page({ params, searchParams }) {
     }),
   };
 
-
   return (
     <section className="py-2 md:py-6 mt-5 md:mt-6">
 
@@ -249,7 +248,7 @@ export default async function Page({ params, searchParams }) {
         <div className="mt-2">
           {product?.color && <ShowRoomTrigger colorId={product?.color?.id} />}
         </div>
-
+        
         {/* Related Products */}
         {product?.products?.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7.5 gap-y-9 mt-5 mb-3">
