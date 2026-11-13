@@ -67,7 +67,7 @@ export default function CheckoutMessage({ onDismiss, orderCode }) {
 
             <p className="text-gray-600 leading-relaxed">
                 Votre commande a été envoyée. Nous vous contacterons bientôt au
-                <CLink className="font-bold" href="tel:+212661547900">+212 661 54 79 00</CLink>.
+                <CLink className="font-bold" href="tel:+212661364574">+212 661 36 45 74</CLink>.
             </p>
 
 

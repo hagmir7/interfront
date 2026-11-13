@@ -265,8 +265,6 @@ export function AddToCartModal({ open, onOpenChange, product }) {
             const colorImage = selectedColor !== null ? await fetchColorImage(selectedColor) : null
             const image = colorImage ?? product.image
 
-            console.log(product.image)
-
             addToCart({
                 quantity,
                 id: `${product.name}-${product.id}-${selectedWidth ?? ""}-${selectedHeight ?? ""}-${selectedColor ?? ""}`,

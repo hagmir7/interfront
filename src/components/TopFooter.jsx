@@ -57,7 +57,7 @@ export default function TopFooter() {
                             />
                             <div>
                                 <p className="text-sm sm:text-base font-bold leading-tight">Appelez-nous</p>
-                                <p className="text-sm">+212 661 54 79 00</p>
+                                <p className="text-sm">+212 661 36 45 74</p>
                                 <p className="text-sm">+212 536 35 88 88</p>
                             </div>
                         </div>

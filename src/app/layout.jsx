@@ -11,6 +11,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import TopNav from "@/components/top-nav";
 import { getDomain } from "@/lib/domain";
 import SIBCountdown from "@/components/SIBCountdown";
+import WhatsAppNumberAlert from "@/components/WhatsAppNumberAlert";
 
 export async function generateMetadata() {
   return {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
         <LoadingBar />
         <CartProvider>
           <AuthProvider>
+            <WhatsAppNumberAlert />
             <header>
               <TopNav />
               <MainNav />

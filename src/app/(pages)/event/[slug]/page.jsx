@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (error) {
-    console.log('metadata error', error);
+    console.error('metadata error', error);
     return {
       title: `Event ${slug}`,
       description: `Ceci est l'événement ${slug}`,

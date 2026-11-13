@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   const getDiscount = async () => {
     try {
       const response = await api.get("discounts");
-      console.log("discounts loaded:", response.data); // ← check this
       setDiscounts(response.data || []);
     } catch (error) {
       console.error("Erreur lors du chargement des remises :", error);
@@ -50,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       await apiLogout();
     } finally {
       setUser(null);
-      setDiscounts([]); // Clear discounts on logout
+      setDiscounts([]);
     }
   };
 
