@@ -5,6 +5,7 @@ import { useRouter, useSearchParams }  from "next/navigation";
 import { useGoogleLogin }              from "@react-oauth/google";
 import { googleLogin, facebookLogin }  from "@/services/auth";
 import { useAuth }                     from "@/context/AuthContext";
+import { safeRedirectPath } from "@/lib/security.mjs";
 import { loadFacebookSDK, getFacebookAccessToken } from "../../lib/facebook-sdk";
 
 
@@ -44,8 +45,8 @@ const SocialAuthButtons = ({
 
     const handleRedirect = (user) => {
         const next = redirectAfterLogin ?? searchParams.get("next");
-        if (next)       return router.push(next);
-        if (user?.type) return router.push("/profile");
+        if (next)       return router.push(safeRedirectPath(next));
+        if (user?.type) return router.push("/dashboard");
         router.push("/onboarding");
     };
 

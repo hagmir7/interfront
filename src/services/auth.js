@@ -1,6 +1,12 @@
 import { api } from '@/lib/api';
 import Cookies from 'js-cookie';
 
+const cookieOptions = () => ({
+    expires: 30,
+    path: '/',
+    sameSite: 'Lax',
+    secure: typeof window !== 'undefined' && window.location.protocol === 'https:',
+});
 
 export const register = async (userData) => {
     return await api.post(`register`, userData);
@@ -9,8 +15,8 @@ export const register = async (userData) => {
 export const login = async (userData) => {
     const response = await api.post(`login`, userData);
     if (response.data.access_token) {
-        Cookies.set('access_token', response.data.access_token, { expires: 30, path: '/' });
-        Cookies.set('user', JSON.stringify(response.data.user), { expires: 30, path: '/' });
+        Cookies.set('access_token', response.data.access_token, cookieOptions());
+        Cookies.set('user', JSON.stringify(response.data.user), cookieOptions());
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
     }
@@ -25,9 +31,6 @@ export const forgotPassword = async (email) => {
 
 
 export const logout = async () => {
-    const access_token = Cookies.get('access_token') || localStorage.getItem("access_token");
-    if (!access_token) return;
-
     Cookies.remove('access_token', { path: '/' });
     Cookies.remove('user', { path: '/' });
     localStorage.removeItem("access_token");
@@ -41,15 +44,7 @@ export const User = async () => {
         return null;
     }
 
-    const user = localStorage.getItem("user");
-    if (user) {
-        try {
-            return JSON.parse(user);
-        } catch {
-            localStorage.removeItem("user");
-        }
-    }
-
+    // Cached profile data is not proof of an authenticated session.
     const access_token = localStorage.getItem("access_token");
     if (!access_token) return null;
 
@@ -63,9 +58,9 @@ export const User = async () => {
             return response.data;
         }
     } catch (error) {
-        console.error("Failed to fetch user info:", error);
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("user");
+        if ([401, 403].includes(error.response?.status)) {
+            await logout();
+        }
         return null;
     }
 };
@@ -83,15 +78,9 @@ export const googleLogin = async (access_token) => {
 
     if (response.data.token) {
 
-        Cookies.set('access_token', response.data.token, {
-            expires: 30,
-            path: '/',
-        })
+        Cookies.set('access_token', response.data.token, cookieOptions())
 
-        Cookies.set('user', JSON.stringify(response.data.user), {
-            expires: 30,
-            path: '/',
-        })
+        Cookies.set('user', JSON.stringify(response.data.user), cookieOptions())
 
         localStorage.setItem('access_token', response.data.token)
         localStorage.setItem('user', JSON.stringify(response.data.user))
@@ -109,15 +98,9 @@ export const facebookLogin = async (access_token) => {
 
     if (response.data.token) {
 
-        Cookies.set('access_token', response.data.token, {
-            expires: 30,
-            path: '/',
-        })
+        Cookies.set('access_token', response.data.token, cookieOptions())
 
-        Cookies.set('user', JSON.stringify(response.data.user), {
-            expires: 30,
-            path: '/',
-        })
+        Cookies.set('user', JSON.stringify(response.data.user), cookieOptions())
 
         localStorage.setItem('access_token', response.data.token)
         localStorage.setItem('user', JSON.stringify(response.data.user))

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { updateUser } from "@/services/auth";
 import { api } from "@/lib/api";
+import { safeRedirectPath } from "@/lib/security.mjs";
 import SearchableSelect from "@/components/ui/SearchableSelect";
 import Alert from "@/components/ui/Alert";
 import { useAuth } from "@/context/AuthContext";
@@ -101,9 +102,9 @@ export default function OnboardingContent() {
         setError(null)
         const next = searchParams.get("next")
         if (next) {
-          router.push(next)
+          router.push(safeRedirectPath(next))
         } else if (response?.user?.type) {
-          router.push('/profile')
+          router.push('/dashboard')
         } else {
           router.push('/onboarding')
         }
@@ -119,7 +120,7 @@ export default function OnboardingContent() {
 
   useEffect(() => {
     if (user?.type !== null && user?.type !== undefined) {
-      router.push("/profile");
+      router.push("/dashboard");
     }
   }, [user, router]);
 

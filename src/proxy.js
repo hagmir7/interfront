@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 
 export function proxy(req) {
-    const token = req.cookies.get("token");
+    // Optimistic redirect only; the dashboard page verifies the session with the API.
+    const token = req.cookies.get("access_token")?.value;
 
     if (!token && req.nextUrl.pathname.startsWith("/dashboard")) {
-        return NextResponse.redirect(new URL("/login", req.url));
+        const loginUrl = new URL("/user/login", req.url);
+        loginUrl.searchParams.set("next", req.nextUrl.pathname + req.nextUrl.search);
+        return NextResponse.redirect(loginUrl);
     }
 
     return NextResponse.next();

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { login, User } from "@/services/auth";
 import { useAuth } from "@/context/AuthContext";
+import { safeRedirectPath } from "@/lib/security.mjs";
 import CLink from "./CLink";
 import SocialAuthButtons from "./SocialAuthButtons";
 
@@ -34,7 +35,7 @@ const LoginForm = () => {
       if (user?.type == null) {
         router.push('/onboarding');
       } else {
-        router.push(searchParams.get("next") || "/profile");
+        router.push(safeRedirectPath(searchParams.get("next")));
       }
 
     

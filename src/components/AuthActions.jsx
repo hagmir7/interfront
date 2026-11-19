@@ -38,7 +38,7 @@ function AuthActions() {
 
 
       <CLink
-        href={user ? '/profile' : '/user/login'}
+        href={user ? '/dashboard' : '/user/login'}
         className="rounded-pill flex gap-2 text-white bg-red-600 py-2 px-4 text-[17px] rounded-full text-sm hover:text-white"
         title={user ? `Profil de ${user.name}` : 'Connexion'}
         aria-label={user ? `Profil de ${user.name}` : 'Connexion'}

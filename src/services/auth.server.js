@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { api } from '@/lib/api';
+import { apiServer } from '@/lib/api-server';
 
 export async function getServerUser() {
     const cookieStore = await cookies();
@@ -8,12 +8,11 @@ export async function getServerUser() {
     if (!token) return null;
 
     try {
-        const response = await api.get(`user`, {
-            headers: { Authorization: `Bearer ${token}` }
+        return await apiServer('user', {
+            cache: 'no-store',
+            signal: AbortSignal.timeout(10000),
         });
-        return response.data;
-    } catch (error) {
-        console.error('Failed to fetch user on server:', error);
+    } catch {
         return null;
     }
 }

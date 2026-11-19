@@ -92,7 +92,7 @@ export default function CheckoutMessage({ onDismiss, orderCode }) {
                 Continuer mes achats
               </CLink>
               <CLink
-              href={`/profile`}
+              href="/dashboard/orders"
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-medium hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Voir ma commande

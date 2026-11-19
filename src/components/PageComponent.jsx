@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { api } from '@/lib/api';
+import { sanitizeRichHtml } from '@/lib/sanitize-html.mjs';
 import { User } from 'lucide-react';
 
 const PageComponent = async ({slug}) => {
@@ -47,7 +48,7 @@ const PageComponent = async ({slug}) => {
               prose-img:rounded-xl prose-img:shadow-lg prose-img:my-8
               prose-hr:border-gray-300 prose-hr:my-12
               max-w-none'
-          dangerouslySetInnerHTML={{ __html: page.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeRichHtml(page.content) }}
         />
 
       </article>
