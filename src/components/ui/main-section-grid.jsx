@@ -49,7 +49,11 @@ const MainSectionGrid = () => {
             spaceBetween={30}
             slidesPerView={1}
             loop={true}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             pagination={{
               clickable: true,
               dynamicBullets: true,
@@ -167,7 +171,7 @@ const MainSectionGrid = () => {
                   <CLink href={product.url} aria-label={product.title}>
                     <Image
                       src={IMAGE_BASE_URL + product.image}
-                      alt=""
+                      alt={product.title}
                       width={200}
                       height={200}
                       className='w-32 h-32 object-contain'
