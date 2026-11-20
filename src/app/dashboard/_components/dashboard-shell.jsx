@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, LockKeyhole, LogOut, MapPin, Menu, MessageSquare, Package, Percent, Store, Truck, UserRound } from "lucide-react";
 import LogoutButton from "@/components/ui/LogoutButton";
@@ -25,9 +26,9 @@ function DashboardNavigation({ mobile = false }) {
 
   return (
     <>
-      <Link href="/dashboard" className="mb-8 inline-flex shrink-0 items-center gap-3 px-3" aria-label="Intercocina — Espace client">
-        <span className="flex size-10 items-center justify-center rounded-xl bg-red-600 text-lg font-bold text-white">i.</span>
-        <span className="text-lg font-bold tracking-tight text-slate-900">INTERCOCINA<span className="mt-0.5 block text-xs font-medium tracking-normal text-slate-500">Espace client</span></span>
+      <Link href="/dashboard" className="mb-8 flex shrink-0 flex-col items-start gap-3 px-3" aria-label="Intercocina — Espace client">
+        <Image src="/icons/intercocina-logo.png" alt="Intercocina" width={458} height={265} className="h-auto w-36" priority />
+        <span className="text-sm font-medium text-slate-500">Espace client</span>
       </Link>
       <nav aria-label="Navigation de l’espace client" className="min-h-0 flex-1 space-y-1 overflow-y-auto pb-5">
         <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Mon espace</p>
